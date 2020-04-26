@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <include layout="@layout/head_layout"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:background="@color/background"
+
+            android:layout_height="match_parent">
+
+            <include layout="@layout/orde_detall"/>
+
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/yi_button_chankanwuliu"
+                    android:layout_width="155dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/bg_btn_red"
+                    android:text="查看物流"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize18" />
+                <Button
+                    android:id="@+id/yi_button_pingjia"
+                    android:layout_width="155dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/bg_btn_red"
+                    android:text="评价"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize18" />
+            </LinearLayout>
+            <!--<Button
+                android:id="@+id/jiaoyi_button_shouhou"
+                android:layout_width="315dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="@dimen/distance_24"
+                android:layout_marginRight="@dimen/distance_24"
+                android:layout_marginTop="19dp"
+                android:background="@drawable/shap_button_more"
+                android:text="售后服务"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/type_111A38"
+                android:textSize="@dimen/textsize18" />-->
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

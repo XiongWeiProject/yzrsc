@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <include layout="@layout/head_layout"/>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:background="@color/type_FFFFFF"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+
+            android:text="可提现金额"
+            style="@style/text_111A38_14"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="冻结金额"
+            android:gravity="right"
+            style="@style/text_111A38_14"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:padding="10dp"
+        android:background="@color/type_FFFFFF"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tixian_kejine"
+            android:text="￥0.00"
+            style="@style/text_BA0008_18"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tixian_dong"
+            android:text="￥0.00"
+            android:gravity="right"
+            style="@style/text_666666_18"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/tixian_button"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:layout_marginLeft="@dimen/distance_24"
+        android:layout_marginRight="@dimen/distance_24"
+        android:background="@drawable/bg_btn_red"
+        android:text="提现"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize18" />
+    <TextView
+        android:text="@string/tixian_shuoming"
+        style="@style/text_111A38_14"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+
+        android:text="买家确认收货，交易完成，该笔订单扣除服务费用，进入可提现金额，您随时可以提现"
+        style="@style/text_999999_13"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="@string/tixian_dongjie"
+        style="@style/text_111A38_14"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+
+        android:text="@string/tixian_dongjie_jieshou"
+        style="@style/text_999999_13"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

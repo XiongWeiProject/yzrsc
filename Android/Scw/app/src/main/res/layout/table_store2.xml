@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/store_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="我的转售"
+        android:textColor="@color/co_111A3B"
+        android:textSize="@dimen/textsize14" />
+
+    <View
+        android:id="@+id/store_h"
+        android:layout_width="60dp"
+        android:layout_height="2dp"
+        android:layout_below="@id/store_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="7dp"
+        android:background="@color/co_F95F3D" />
+
+    <View
+        android:id="@+id/store_v"
+        android:layout_width="0.5dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/store_text"
+        android:background="#CED0D7" />
+</RelativeLayout>

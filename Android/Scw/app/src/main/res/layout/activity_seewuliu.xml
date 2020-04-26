@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/type_FFFFFF"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/head_layout"/>
+
+    <!--<ListView
+        android:layout_marginTop="20dp"
+        android:id="@+id/see_listview"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:listSelector="@drawable/icon_transparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>-->
+    <com.commodity.scw.ui.widget.webview.AdvancedWebView
+        android:id="@+id/express_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.commodity.scw.ui.widget.webview.AdvancedWebView>
+</LinearLayout>

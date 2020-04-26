@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titlebar_height"
+        android:background="@color/co_FD713F">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:onClick="back"
+            android:paddingBottom="13dp"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:paddingTop="13dp"
+            android:src="@drawable/ico_back" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center"
+            android:padding="@dimen/distance_8"
+            android:text="详情"
+            android:textColor="@color/white"
+            android:textSize="@dimen/titlebar_textsize" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/type_FAFAFA"
+        android:padding="@dimen/distance_16"
+        android:text="交易流程"
+        android:textColor="@color/co_FD713F"
+        android:textSize="@dimen/textsize14"
+        android:textStyle="bold" />
+    <com.commodity.scw.ui.widget.webview.CustomWebView
+        android:id="@+id/customwebview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.commodity.scw.ui.widget.webview.CustomWebView>
+    <TextView
+        android:id="@+id/tv_textinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/distance_16"
+        android:text="提现规则提现规则提现规则提现规则提现规则提现规则提现规则提现规则提现规则提现规则提现规则提现规则提现提现规则提现规则规则"
+        android:textColor="@color/co_FD713F"
+        android:textSize="@dimen/textsize14" />
+
+
+</LinearLayout>

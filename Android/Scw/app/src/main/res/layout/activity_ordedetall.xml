@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <include layout="@layout/head_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/type_FFFFFF">
+
+                <ImageView
+                    android:id="@+id/ordedetall_image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="11dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="9dp"
+                    android:background="@drawable/mainimg5" />
+
+                <TextView
+                    android:id="@+id/ordedetall_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/ordedetall_image"
+                    android:layout_toRightOf="@id/ordedetall_image"
+                    android:text="新春超值巨献【冰福贝】完美无暇，水润起荧
+光，种水超好，水润通透，超细腻" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/ordedetall_text"
+                    android:layout_below="@id/ordedetall_text"
+                    android:layout_marginTop="10dp"
+                    android:text="¥1920"
+                    android:textColor="#FF999999"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/orde_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/orde_button_send"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ll_height50"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="@dimen/distance_24"
+                android:layout_marginRight="@dimen/distance_24"
+                android:layout_marginTop="@dimen/ll_height50"
+                android:background="@drawable/bg_btn_red"
+                android:text="发货"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize18" />
+            <!--<Button
+                android:id="@+id/orde_button_shouhou"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ll_height50"
+                android:layout_marginLeft="@dimen/distance_24"
+                android:layout_marginRight="@dimen/distance_24"
+                android:layout_marginTop="19dp"
+                android:background="@drawable/shap_button_more"
+                android:text="售后服务"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/type_111A38"
+                android:textSize="@dimen/textsize18" />-->
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <include layout="@layout/head_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:orientation="vertical">
+
+            <include layout="@layout/orde_detall" />
+
+
+            <Button
+                android:id="@+id/back_button_shouhou"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ll_height50"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="@dimen/distance_24"
+                android:layout_marginRight="@dimen/distance_24"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/shap_button_more"
+                android:text="退款详情"
+                android:textColor="@color/co_111A3B"
+                android:textSize="@dimen/textsize18"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

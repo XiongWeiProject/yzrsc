@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/baby_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/co_FD713F"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <include layout="@layout/head_layout" />
+
+        <com.commodity.scw.ui.widget.scrollView.DampingScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/type_FFFFFF"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/upload_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:paddingTop="@dimen/distance_8"
+                        android:paddingBottom="@dimen/distance_8"
+                        android:gravity="left|top"
+                        android:layout_marginTop="13dp"
+                        android:background="@drawable/icon_transparent"
+                        android:hint="描述您的宝贝…"
+                        android:textColor="@color/co_111A3B"
+                        android:maxLength="200"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_shumu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="0/200"
+                        android:layout_marginRight="20dp"
+                        android:layout_gravity="right"
+                        android:textColor="#FF999999"
+                        android:textSize="13sp" />
+                    <com.commodity.scw.ui.widget.specialview.MyGridView
+                        android:id="@+id/upload_grid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:listSelector="@drawable/icon_transparent"
+                        android:numColumns="4"
+                        android:paddingLeft="19dp">
+
+                    </com.commodity.scw.ui.widget.specialview.MyGridView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/type_FFFFFF"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="13dp"
+                        android:text="上传小视频（支持：MP4、mov、3gp）"
+                        android:textColor="#FF999999"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/upload_add_vdio"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/icon_add_vdio" />
+                    <ImageView
+                        android:id="@+id/item_video_delete"
+                        android:background="@drawable/umeng_socialize_delete"
+                        android:layout_marginTop="-80sp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginLeft="65dp"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/type_FFFFFF"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_BA0008_14"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:text="*" />
+
+                    <TextView
+                        style="@style/text_111A38_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text=" 商家价格" />
+
+                    <EditText
+                        android:id="@+id/upload_price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/icon_transparent"
+                        android:digits="0123456789."
+                        android:hint="请输入"
+                        android:inputType="number"
+                        android:textColor="@color/co_111A3B"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        style="@style/text_111A38_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="元" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/upload_fenli"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/type_FFFFFF"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_BA0008_14"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:text="*" />
+
+                    <TextView
+                        style="@style/text_111A38_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text=" 分类" />
+
+                    <TextView
+                        android:id="@+id/type_value"
+                        style="@style/text_111A38_14"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:text="" />
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/ioc_user_right" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/type_FFFFFF"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_111A38_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="10dp"
+                        android:text=" 尺寸" />
+
+                    <EditText
+                        android:id="@+id/upload_size"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/icon_transparent"
+                        android:hint="12*13*14"
+                        android:textColor="@color/co_111A3B"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        style="@style/text_111A38_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="毫米" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/type_FFFFFF"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_111A38_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="10dp"
+                        android:text=" 重量" />
+
+                    <EditText
+                        android:id="@+id/upload_weight"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/icon_transparent"
+                        android:digits="0123456789."
+                        android:hint="请输入"
+                        android:inputType="number"
+                        android:textColor="@color/co_111A3B"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        style="@style/text_111A38_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="g" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/type_FFFFFF"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_111A38_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="10dp"
+                        android:text=" 货号" />
+
+                    <EditText
+                        android:id="@+id/upload_goods_on"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/icon_transparent"
+                        android:digits="0123456789"
+                        android:hint="请输入"
+                        android:inputType="number"
+                        android:textColor="@color/co_111A3B"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        style="@style/text_111A38_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/type_FFFFFF"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_BA0008_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:text=" " />
+
+                    <TextView
+                        style="@style/text_111A38_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text=" 邮费" />
+
+                    <EditText
+                        android:id="@+id/upload_express"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/icon_transparent"
+                        android:digits="0123456789."
+                        android:hint="请输入"
+                        android:inputType="number"
+                        android:textColor="@color/co_111A3B"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        style="@style/text_111A38_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="元" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </com.commodity.scw.ui.widget.scrollView.DampingScrollView>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/backage_baby"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#77777777"
+        android:visibility="gone" />
+</FrameLayout>

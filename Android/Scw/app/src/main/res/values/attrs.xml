@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension"></attr>
+        <attr name="border_color" format="color"></attr>
+    </declare-styleable>
+    -
+    <declare-styleable name="CityPickerView">
+        <attr name="citypicker_title_background" format="color" />
+        <!--标题背景颜色-->
+        <attr name="citypicker_text_confirm_color" format="color" />
+        <!--确认文字的颜色-->
+        <attr name="citypicker_text_cancel_color" format="color" />
+        <!--取消文字的颜色-->
+        <attr name="citypicker_wheel_color" format="color" />
+        <!--滚轮的颜色-->
+        <attr name="citypicker_wheel_text_color" format="color" />
+        <!--滚轮里面内容的文字颜色-->
+        <attr name="citypicker_wheel_text_size" format="dimension" />
+        <!--滚轮里面内容的文字大小-->
+        <attr name="citypicker_title_text_size" format="dimension" />
+        <!--标题的文字大小-->
+        <attr name="citypicker_title_action_size" format="dimension" />
+        <!--确认和取消的文字大小-->
+    </declare-styleable>
+
+    <!-- 吸顶 -->
+    <declare-styleable name="StickyScrollView">
+        <attr name="stuckShadowHeight" format="dimension" />
+        <attr name="stuckShadowDrawable" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ProgressWheel">
+    <attr name="matProg_progressIndeterminate" format="boolean" />
+    <attr name="matProg_barColor" format="color" />
+    <attr name="matProg_rimColor" format="color" />
+    <attr name="matProg_rimWidth" format="dimension" />
+    <attr name="matProg_spinSpeed" format="float" />
+    <attr name="matProg_barSpinCycleTime" format="integer" />
+    <attr name="matProg_circleRadius" format="dimension" />
+    <attr name="matProg_fillRadius" format="boolean" />
+    <attr name="matProg_barWidth" format="dimension" />
+    <attr name="matProg_linearProgress" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="MovieRecorderView">
+        <!-- 开始是否打开摄像头 -->
+        <attr name="is_open_camera" format="boolean" />
+        <!-- 一次拍摄最长时间 -->
+        <attr name="record_max_time" format="integer"/>
+        <!-- 视频分辨率宽度 -->
+        <attr name="video_width" format="integer"/>
+        <!-- 视频分辨率高度 -->
+        <attr name="video_height" format="integer"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="10dp"
+        android:gravity="center|left"
+        android:text="New Text"
+        android:textSize="@dimen/textsize14"
+        android:textColor="@color/second_black"
+        android:background="@drawable/selector_item_bg"
+        android:clickable="true"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divideline" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_gravity="center"
+        android:text="清空历史搜索"
+        android:background="@drawable/seector_clearhistory"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/third_black"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:textSize="@dimen/textsize14"
+        android:id="@+id/bt_clear" />
+</LinearLayout>

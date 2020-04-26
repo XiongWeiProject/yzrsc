@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <include layout="@layout/head_layout"/>
+    <RelativeLayout
+        android:background="@color/type_FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.commodity.scw.ui.widget.imageview.XCRoundRectImageView
+            android:id="@+id/pingjia_image"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="11dp"
+            android:background="@drawable/mainimg5"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:id="@+id/pjngjai_text"
+            android:text="
+             "
+            android:layout_toRightOf="@id/pingjia_image"
+            android:layout_alignTop="@id/pingjia_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/pingjia_jiage"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@id/pjngjai_text"
+            android:layout_below="@id/pjngjai_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¥"
+            android:textColor="#FF999999"
+            android:textSize="12sp"
+            />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:background="@color/type_FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/pingjia_edit"
+            android:padding="10dp"
+            style="@style/text_666666_14"
+            android:background="@drawable/icon_transparent"
+            android:hint="请输入"
+            android:textColorHint="#666666"
+            android:layout_width="match_parent"
+            android:layout_height="120dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/pingjia_button_send"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:layout_marginLeft="@dimen/distance_24"
+        android:layout_marginRight="@dimen/distance_24"
+        android:layout_marginTop="@dimen/ll_height50"
+        android:background="@drawable/bg_btn_red"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize18" />
+</LinearLayout>

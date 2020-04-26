@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titlebar_height"
+        android:background="@color/co_FD713F">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:onClick="back"
+            android:paddingBottom="13dp"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:paddingTop="13dp"
+            android:src="@drawable/ico_back" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center"
+            android:padding="@dimen/distance_8"
+            android:text="新增收货地址"
+            android:textColor="@color/white"
+            android:textSize="@dimen/titlebar_textsize" />
+
+        <TextView
+            android:id="@+id/tv_rightbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:padding="@dimen/distance_16"
+            android:text="保存"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize14" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_shouhuoren"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:background="@color/white"
+        android:hint="收货人"
+        android:padding="@dimen/distance_16"
+        android:singleLine="true"
+        android:textColor="@color/main_black"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/textsize14" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="-0.5dp"
+        android:layout_marginLeft="@dimen/distance_16"
+        android:layout_marginRight="@dimen/distance_16"
+        android:background="@color/divideline" />
+
+    <EditText
+        android:id="@+id/et_lianxifangshi"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:background="@color/white"
+        android:hint="联系方式"
+        android:padding="@dimen/distance_16"
+        android:inputType="number"
+        android:maxLength="11"
+        android:singleLine="true"
+        android:textColor="@color/main_black"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/textsize14" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="-0.5dp"
+        android:layout_marginLeft="@dimen/distance_16"
+        android:layout_marginRight="@dimen/distance_16"
+        android:background="@color/divideline" />
+    <TextView
+        android:id="@+id/tv_shengshiqu"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:background="@color/white"
+        android:hint="省／市／区"
+        android:padding="@dimen/distance_16"
+        android:singleLine="true"
+        android:textColor="@color/main_black"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/textsize14" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="-0.5dp"
+        android:layout_marginLeft="@dimen/distance_16"
+        android:layout_marginRight="@dimen/distance_16"
+        android:background="@color/divideline" />
+    <EditText
+        android:id="@+id/et_xiangxidizhi"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:background="@color/white"
+        android:hint="详细地址"
+        android:padding="@dimen/distance_16"
+        android:singleLine="true"
+        android:textColor="@color/main_black"
+        android:textColorHint="@color/hint_color"
+        android:textSize="@dimen/textsize14" />
+</LinearLayout>

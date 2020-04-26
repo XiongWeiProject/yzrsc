@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/selector_item_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/distance_12"
+        android:paddingBottom="@dimen/distance_12"
+        android:paddingRight="@dimen/distance_12"
+        android:paddingLeft="@dimen/distance_12"
+        android:gravity="center_vertical">
+
+        <View
+            android:id="@+id/view_ico1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/icon_xttz2x"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_text1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/distance_12"
+            android:layout_weight="1"
+            android:text="系统通知"
+            android:textColor="@color/co_FD713F"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            android:id="@+id/tv_text2"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginRight="@dimen/distance_8"
+            android:text="2"
+            android:gravity="center"
+            android:background="@drawable/num_tip"
+            android:textColor="@color/white"
+            android:textSize="8sp" />
+
+        <View
+            android:id="@+id/view_ico2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ioc_user_right" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="@dimen/distance_12"
+        android:layout_marginRight="@dimen/distance_12"
+        android:background="@color/divideline" />
+</LinearLayout>

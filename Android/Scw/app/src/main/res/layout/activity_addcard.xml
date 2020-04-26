@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <include layout="@layout/head_layout"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/type_FFFFFF"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/addcard_button_add"
+            android:background="@color/type_FFFFFF"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/addcard_text_yinhang"
+                android:text="开户银行"
+                android:layout_margin="10dp"
+                style="@style/text_BCBCBC_16"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/addcard_image"
+                android:background="@drawable/jtdown_gray"
+                android:layout_marginRight="24dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/addcard_edit_number"
+            android:hint="卡号"
+            android:background="@color/type_FFFFFF"
+            android:inputType="number"
+            android:padding="10dp"
+            style="@style/text_BCBCBC_16"
+            android:textColorHint="#BCBCBC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#E6E6E6" />
+        <EditText
+            android:id="@+id/addcard_name"
+            android:hint="姓名"
+            android:inputType="text"
+            android:background="@color/type_FFFFFF"
+            android:padding="10dp"
+            style="@style/text_BCBCBC_16"
+            android:textColorHint="#BCBCBC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#E6E6E6" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/shap_bg_tixian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="注意："
+            style="@style/text_111A38_13"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="1、提现不支持信用卡，请填写储蓄卡；"
+            style="@style/text_111A38_13"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="2、开户行、卡号、户名必须一致，否则会提现失败；"
+            style="@style/text_111A38_13"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/add_card_confirmation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:layout_marginLeft="@dimen/distance_24"
+        android:layout_marginRight="@dimen/distance_24"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_btn_red"
+        android:text="确认"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize18" />
+
+</LinearLayout>

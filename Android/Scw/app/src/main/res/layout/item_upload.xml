@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/type_FFFFFF"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:background="@color/type_FFFFFF"
+        android:id="@+id/shop_linearlaout"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginBottom="11dp"
+        android:layout_width="68dp"
+        android:layout_height="68dp">
+        <ImageView
+            android:id="@+id/upload_grid_imag"
+            android:scaleType="fitXY"
+            android:background="@drawable/ico_pic_fail_defalt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/item_delete"
+        android:layout_alignRight="@id/shop_linearlaout"
+        android:background="@drawable/umeng_socialize_delete"
+        android:layout_width="24dp"
+        android:layout_height="24dp" />
+</RelativeLayout>

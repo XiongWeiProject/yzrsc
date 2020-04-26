@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <TextView
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:text="推广到你的朋友圈，成交更迅速"
+        android:textColor="#FF111A38"
+        android:textSize="14sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <GridView
+        android:id="@+id/share_gridview"
+        android:numColumns="4"
+        android:listSelector="@drawable/icon_transparent"
+        android:background="@color/type_FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        
+    </GridView>
+    <Button
+        android:id="@+id/share_cancle"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/selector_item_bg"
+        android:text="取消"
+        android:textColor="#FF111A38"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="315dp"
+        android:layout_height="45dp" />
+</LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 系统颜色 -->
+    <color name="theme_color">#07A8E8</color>
+    <color name="background">#FAFAFA</color>
+    <color name="divideline">#F9F9F9</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_half">#50FFFFFF</color>
+    <color name="black">#000000</color>
+    <!-- 字体颜色 -->
+    <color name="main_black">#333333</color>
+    <color name="second_black">#666666</color>
+    <color name="third_black">#9b9b9b</color>
+    <color name="hint_black">#c6c6c6</color>
+    <color name="black4">#c6c6c6</color>
+    <color name="black5">#f1f1f1</color>
+    <color name="hint_color">#BCBCBC</color>
+    <!-- 其他颜色 -->
+    <color name="co_FAFAFA">#FAFAFA</color>
+    <color name="co_999999">#999999</color>
+    <color name="co_666666">#666666</color>
+    <color name="co_3C3636">#3C3636</color>
+    <color name="co_F95F3D">#F95F3D</color>
+    <color name="co_F7A926">#F7A926</color>
+    <color name="co_FD713F">#FD713F</color>
+    <color name="co_BEBEBE">#BEBEBE</color>
+    <color name="co_FF0000">#FF0000</color>
+    <color name="co_FF5F49">#FF5F49</color>
+    <color name="co_F3F3F3">#F3F3F3</color>
+    <color name="co_EFF31B">#EFF31B</color>
+    <color name="co_F2F2F2">#F2F2F2</color>
+    <color name="co_F2D46E">#F2D46E</color>
+    <color name="co_111A3B">#111A3B</color>
+    <!--分类-->
+    <color name="type_FFFFFF">#FFFFFF</color>
+    <color name="type_BA0008">#BA0008</color>
+    <color name="type_9F9F9">#F9F9F9</color>
+    <color name="type_BA020A">#BA020A</color>
+    <color name="type_FAFAFA">#FAFAFA</color>
+    <color name="type_3C3636">#3C3636</color>
+    <color name="type_666666">#666666</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="province_line_border">#C7C7C7</color>
+
+    <color name="seal_bg">#f0f0f6</color>
+    <color name="de_title_bg">#0195ff</color>
+    <color name="press">#e8e8e8</color>
+    <color name="trans">#00000000</color>
+
+    <color name="gray">#ddd</color>
+    <color name="blue">#3394EC</color>
+</resources>

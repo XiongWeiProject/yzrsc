@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_line_xuxian" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/tv_text1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:layout_marginLeft="@dimen/distance_8"
+            android:singleLine="true"
+            android:text="新春超值巨献【冰福贝】完美无暇，水润光泽"
+            android:textColor="@color/main_black"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            android:id="@+id/tv_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/distance_8"
+            android:gravity="left"
+            android:text="￥1900"
+            android:textColor="@color/co_FF5F49"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/distance_8"
+            android:layout_marginTop="-2dp"
+            android:gravity="left"
+            android:text="￥3800"
+            android:textColor="@color/third_black"
+            android:textSize="@dimen/textsize10" />
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/hsc_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        <com.commodity.scw.ui.widget.customview.GoodsLinearLayout
+            android:id="@+id/ll_childview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+        </com.commodity.scw.ui.widget.customview.GoodsLinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_text4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/distance_16"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="9分钟前"
+            android:paddingTop="8dp"
+            android:textColor="@color/third_black"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            android:id="@+id/tv_text5"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/distance_8"
+            android:drawablePadding="4dp"
+            android:paddingTop="8dp"
+            android:drawableRight="@drawable/ico_love"
+            android:gravity="left|center_vertical"
+            android:text="收藏"
+            android:textColor="@color/third_black"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            android:id="@+id/tv_text6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/distance_8"
+            android:drawablePadding="4dp"
+            android:drawableRight="@drawable/ico_weixin"
+            android:gravity="left|center_vertical"
+            android:text="转售"
+            android:paddingTop="8dp"
+            android:textColor="@color/third_black"
+            android:textSize="@dimen/textsize12" />
+    </LinearLayout>
+</LinearLayout>

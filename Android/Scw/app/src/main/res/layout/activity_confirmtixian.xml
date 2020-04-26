@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <include layout="@layout/head_layout"/>
+    <TextView
+        android:id="@+id/confirm_text_phone"
+        android:text="为了您的资金安全，本次操作需要短信验证。已发送验证码至手机：15000000258"
+        android:textColor="#3C3636"
+        android:textSize="16sp"
+        android:paddingTop="20dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:background="@color/type_FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="20dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:background="@color/type_FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/confirm_edit_yzm"
+            android:hint="请输入验证码"
+            android:background="@color/type_FFFFFF"
+            style="@style/text_BCBCBC_16"
+            android:paddingTop="10dp"
+            android:inputType="number"
+            android:paddingBottom="10dp"
+            android:textColorHint="#BCBCBC"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/confirm_button_y_z_m"
+            android:text="获取验证码"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            style="@style/text_BA0008_14"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#E6E6E6" />
+
+    <Button
+        android:id="@+id/confirm_tixian"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:layout_marginLeft="@dimen/distance_24"
+        android:layout_marginRight="@dimen/distance_24"
+        android:background="@drawable/bg_btn_red"
+        android:text="确认"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize18" />
+
+</LinearLayout>

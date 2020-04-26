@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+    <LinearLayout     android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:id="@+id/bk_rg"
+        android:background="@color/background"
+        android:layout_height="match_parent">
+        <include layout="@layout/head_layout"/>
+
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:id="@+id/backmoney_serion"
+            android:gravity="center_vertical"
+            android:background="@color/type_FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="退款原因"
+                style="@style/text_666666_14"
+                android:layout_marginTop="9dp"
+                android:layout_marginBottom="11dp"
+                android:layout_marginLeft="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/backmoney_serion_text"
+                android:text="有色差"
+                style="@style/text_111A38_14"
+                android:layout_marginLeft="28dp"
+                android:layout_marginBottom="11dp"
+                android:layout_marginTop="9dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginRight="18dp"
+                android:layout_width="24dp"
+                android:background="@drawable/jtdown_gray"
+                android:layout_height="24dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:background="@color/type_FFFFFF"
+            android:layout_marginTop="9dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/text_666666_14"
+                    android:text="退款说明"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    style="@style/text_666666_14"
+                    android:text="（非必填）"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginBottom="96dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+            <EditText
+                android:id="@+id/backmoney_edite"
+                android:hint="请输入退款说明"
+                style="@style/text_111A38_14"
+                android:textColorHint="#FFBCBCBC"
+                android:paddingTop="9dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:background="@drawable/icon_transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="9dp"
+            android:background="@color/type_FFFFFF"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="上传图片"
+                style="@style/text_666666_14"
+                android:layout_marginTop="9dp"
+                android:layout_marginLeft="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <!--<LinearLayout
+                android:id="@+id/backmoney_image"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/mainimg5"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
+                <ImageView
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/icon_addimage"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
+            </LinearLayout>-->
+            <com.commodity.scw.ui.widget.specialview.MyGridView
+                android:id="@+id/gridview_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="4"
+                ></com.commodity.scw.ui.widget.specialview.MyGridView>
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/backmoney_button"
+
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="@dimen/ll_height50"
+            android:background="@drawable/bg_btn_red"
+            android:text="提交申请"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize18" />
+
+    </LinearLayout>
+    <View
+        android:visibility="gone"
+        android:id="@+id/bg"
+        android:background="#77777777"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</FrameLayout>

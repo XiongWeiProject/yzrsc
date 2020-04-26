@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <include layout="@layout/head_layout"/>
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设置您的店铺招商政策及相关要求说明"
+        android:textColor="#FF111A38"
+        android:textSize="14sp"
+        />
+    <EditText
+
+        android:id="@+id/shop_edit"
+        android:text=""
+        android:background="@color/type_FFFFFF"
+        android:hint="请输入内容"
+        android:textColor="#FF111A38"
+        android:textSize="14sp"
+        android:paddingBottom="12dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

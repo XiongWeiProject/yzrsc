@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/head_layout"/>
+
+    <TextView
+        android:text="提现申请已提交。"
+        android:textColor="@color/co_FD713F"
+        android:textSize="@dimen/textsize13"
+        android:layout_marginTop="50dp"
+        android:drawableLeft="@drawable/icon_success"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/tixian_success"
+        android:layout_marginTop="30dp"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:layout_marginLeft="@dimen/distance_24"
+        android:layout_marginRight="@dimen/distance_24"
+        android:background="@drawable/bg_btn_red"
+        android:text="完成"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize18" />
+
+
+</LinearLayout>

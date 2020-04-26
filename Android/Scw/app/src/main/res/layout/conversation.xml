@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/rc_normal_bg"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titlebar_height"
+        android:background="@color/co_FD713F">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:onClick="back"
+            android:paddingBottom="13dp"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:paddingTop="13dp"
+            android:src="@drawable/ico_back" />
+
+        <TextView
+            android:id="@+id/tv_title_"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center"
+            android:padding="@dimen/distance_8"
+            android:text="会话"
+            android:textColor="@color/white"
+            android:textSize="@dimen/titlebar_textsize" />
+        <TextView
+            android:id="@+id/tv_rightbtn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tv_rightbtn"
+            android:paddingLeft="@dimen/distance_8"
+            android:paddingRight="@dimen/distance_8"
+            android:paddingTop="@dimen/distance_2"
+            android:paddingBottom="@dimen/distance_2"
+            android:background="@drawable/shape_trim_tran_bg"
+            android:text="关注"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize12" />
+        <TextView
+            android:id="@+id/tv_rightbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:paddingTop="@dimen/distance_16"
+            android:paddingBottom="@dimen/distance_16"
+            android:paddingRight="@dimen/distance_12"
+            android:paddingLeft="@dimen/distance_8"
+            android:text="进入店铺"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize14" />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll_commod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/distance_8"
+        android:visibility="gone">
+
+        <com.commodity.scw.ui.widget.imageview.XCRoundRectImageView
+            android:id="@+id/iv_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/mainimg1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/xioashou_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="11dp"
+                android:text="新春超值巨献【冰福贝】完美无暇，水润起荧光，种水超好，水润通透，超细腻"
+                android:textColor="@color/co_111A3B"
+                android:textSize="@dimen/textsize14" />
+
+            <TextView
+                android:id="@+id/tv_yuanjia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="10dp"
+                android:text="¥1300"
+                android:textColor="@color/co_999999"
+                android:textSize="@dimen/textsize12" />
+
+            <TextView
+                android:id="@+id/tv_btn_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发送宝贝链接"
+                android:background="@drawable/shape_trim_red_bg"
+                android:paddingLeft="@dimen/distance_16"
+                android:paddingRight="@dimen/distance_16"
+                android:paddingTop="@dimen/distance_4"
+                android:paddingBottom="@dimen/distance_4"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/co_F95F3D"
+                android:textSize="@dimen/textsize12" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="私下交易有风险，请保持谨慎，防止受骗。"
+        android:background="@color/co_F2D46E"
+        android:padding="@dimen/distance_12"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize13" />
+    <FrameLayout
+        android:id="@+id/rong_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

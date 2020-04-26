@@ -1,0 +1,102 @@
+<resources>
+    <string name="app_name">文巴掌商城</string>
+    <string name="app_name_en">scw</string>
+    <string name="action_settings">Settings</string>
+    <string name="no_data">暂无相关数据</string>
+
+    <!-- http请求提示 -->
+    <string name="TIP_NONET">网络连接失败，请检查网络！</string>
+    <string name="TIP_NETSUCCESS">访问成功！</string>
+    <string name="TIP_NETOUTTIME">请求超时！</string>
+    <string name="TIP_NODATA">暂无相关数据！</string>
+
+    <!--刷新控件  -->
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal"> </string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="no_more_data">没有更多数据了</string>
+
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+
+    <string name="update">立即更新</string>
+    <!--首页tab -->
+    <string name="first_home">逛市场</string>
+    <string name="second_home">分类</string>
+    <string name="third_home">我的店</string>
+    <string name="fourth_home">个人中心</string>
+    <string name="app_exit_tip">再按一次退出程序</string>
+    <string name="nostr">——</string>
+    <string name="yuan">￥</string>
+
+    <string name="Login_phone_error">请输入手机号!</string>
+    <string name="Login_phone_styleerror">请输入正确手机号码!</string>
+    <string name="Login_pwd_error">请输入密码!</string>
+    <string name="Login_sms_error">请输入验证码!</string>
+    <string name="Register_username_error">请输入用户名!</string>
+    <string name="Login_getsms">发送验证码</string>
+
+    <string name="FindPwd_title1">找回密码</string>
+    <string name="FindPwd_next">下一步</string>
+    <string name="ChangePwd_title1">设置密码</string>
+    <string name="ChangePwd_title2">修改密码</string>
+    <string name="ChangePwd_old">原密码</string>
+    <string name="ChangePwd_new">新密码</string>
+    <string name="ChangePwd_again">确认密码</string>
+    <string name="ChangePwd_old_tip">请输入您的原密码</string>
+    <string name="ChangePwd_new_tip">请输入您的新密码</string>
+    <string name="ChangePwd_again_tip">请再次输入您的新密码</string>
+    <string name="ChangePwd_old_error">请输入原密码!</string>
+    <string name="ChangePwd_new_error">请输入新密码!</string>
+    <string name="ChangePwd_again_error">请输入确认密码!</string>
+    <string name="ChangePwd_error1">新密码不能与原密码相同!</string>
+    <string name="ChangePwd_error2">确认密码与新密码不匹配!</string>
+    <string name="ChangePwd_complete">完 成</string>
+    <string name="Login_hint_phone">请输入手机号</string>
+    <string name="Login_hint_pwd">请输入密码</string>
+    <string name="Login_sms">请输入验证码</string>
+
+    <string name="tixian_shuoming">什么是\"可提现金额？\"</string>
+    <string name="tixian_dongjie">什么是\"冻结金额？\"</string>
+    <string name="tixian_dongjie_jieshou">操作\"提现\"后，扣除\"可提现金额\"的额度，但该笔钱款未提现成功，此笔钱款的状态为\"冻结金额\"；提现成功后冻结金额自动释放。</string>
+
+    <string name="umeng_update_content">版本号：6.4.2\n1.优化了新浪精简版的部分逻辑\n2.优化了微信精简版的部分逻辑\n3.优化了QQ精简版的部分逻辑</string>
+    <string name="umeng_home_title">U-Share产品Demo</string>
+    <string name="umeng_home_update">新版更新内容</string>
+    <string name="umeng_share_title">分享</string>
+    <string name="umeng_auth_title">授权</string>
+    <string name="umeng_delauth_title">删除授权</string>
+    <string name="umeng_getinfo_title">获取用户信息</string>
+    <string name="umeng_check_title">自检工具</string>
+    <string name="umeng_menu_title">分享菜单模板</string>
+
+    <string name="umeng_check_sign">检查签名</string>
+    <string name="umeng_check_sina">检查新浪</string>
+    <string name="umeng_check_wx">检查微信</string>
+    <string name="umeng_check_alipay">检查支付宝</string>
+    <string name="umeng_check_qq">检查qq</string>
+    <string name="umeng_check_fb">检查facebook</string>
+    <string name="umeng_check_vk">vkontakte</string>
+    <string name="umeng_choose_style">选择分享类型</string>
+
+    <string name="umeng_sharebutton_copy">复制文本</string>
+    <string name="umeng_sharebutton_copyurl">复制连接</string>
+
+    <string name="de_actionbar_system">"系统消息"</string>
+    <string name="main_customer">意见反馈</string>
+    <string name="de_actionbar_sub_defult">"聊天"</string>
+    <string name="phone_number_is_null">手机号不能为空</string>
+    <string name="password_is_null">密码不能为空</string>
+    <string name="phone_or_psw_error">手机或者密码错误</string>
+    <string name="contact_notification_someone_agree_your_request">%1$s已同意你的好友请求</string>
+    <string name="contact_notification_agree_your_request">对方已同意你的好友请求</string>
+    <string name="de_dialog_item_message_delete">删除消息</string>
+    <string name="update_app_model_prepare">准备下载</string>
+    <string name="update_app_model_progress">正在下载 %1$d%2$s</string>
+    <string name="update_app_model_success">下载成功(点击安装)</string>
+    <string name="update_app_model_error">下载失败(点击浏览器下载)</string>
+    <string name="downloading_apk">正在后台下载...</string>
+</resources>

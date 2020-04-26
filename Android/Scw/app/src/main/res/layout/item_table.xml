@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_line_xuxian" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:layout_marginLeft="@dimen/distance_8"
+            android:singleLine="true"
+            android:text="新春超值巨献【冰福贝】完美无暇，水润光泽"
+            android:textColor="@color/main_black"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/distance_8"
+            android:gravity="left"
+            android:text="￥1900"
+            android:textColor="@color/co_FF5F49"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/distance_8"
+            android:layout_marginTop="-2dp"
+            android:gravity="left"
+            android:text="￥3800"
+            android:textColor="@color/third_black"
+            android:textSize="@dimen/textsize10" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="1900"
+                android:textColor="#999999"
+                android:layout_marginLeft="10dp"
+                android:textSize="@dimen/textsize12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="16dp"
+                android:background="#999999"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/hsc_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        <com.commodity.scw.ui.widget.customview.GoodsLinearLayout
+            android:id="@+id/ll_childview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+        </com.commodity.scw.ui.widget.customview.GoodsLinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/distance_16"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="9分钟前"
+            android:textColor="@color/third_black"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/distance_8"
+            android:drawablePadding="4dp"
+            android:drawableRight="@drawable/ico_love"
+            android:gravity="left"
+            android:text="收藏"
+            android:textColor="@color/third_black"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/distance_8"
+            android:drawablePadding="4dp"
+            android:drawableRight="@drawable/ico_weixin"
+            android:gravity="left"
+            android:text="转售"
+            android:textColor="@color/third_black"
+            android:textSize="@dimen/textsize12" />
+    </LinearLayout>
+</LinearLayout>

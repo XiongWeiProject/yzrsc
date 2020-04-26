@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#fff"
+    android:id="@+id/item"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView
+        android:layout_marginTop="30dp"
+        android:id="@+id/popup_button_delete"
+        android:background="@drawable/icon_xzon"
+        android:layout_marginLeft="15dp"
+
+        android:layout_width="28dp"
+        android:layout_height="28dp" />
+    <LinearLayout
+        android:id="@+id/zhuanshou_item"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="wrap_content">
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.commodity.scw.ui.widget.imageview.XCRoundRectImageView
+                android:id="@+id/zhuanshou_imag"
+                android:layout_margin="10dp"
+                android:background="@drawable/ico_pic_fail_defalt"
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/zhuanshou_content"
+                    android:text="新春局限新春局限新春局限新春局限新春局限新春局限新春局限新春局限新春局限新春局限新春局限新春局限新春局限"
+                    android:textColor="@color/co_111A3B"
+                    android:textSize="@dimen/textsize13"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/shop_price"
+                        android:text="¥0"
+                        android:textColor="#FFBA0008"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/shop_lir"
+                        android:layout_width="wrap_content"
+                        android:layout_height="17dp"
+                        android:text="¥0"
+                        android:textColor="#FF999999"
+                        android:textSize="12sp"
+                        android:layout_marginLeft="17dp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/background"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/zhuan_optional"
+                android:text="商品ID 88888"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:textColor="#999999"
+                android:textSize="@dimen/textsize12"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/zhuan_viewCount"
+                android:text="浏览 99"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:textColor="#999999"
+                android:textSize="@dimen/textsize12"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <!--<TextView
+                android:id="@+id/zhuan_soldCount"
+                android:text="销售 99"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:textColor="#999999"
+                android:textSize="@dimen/textsize12"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />-->
+            <TextView
+                android:id="@+id/zhuan_favorCount"
+                android:text="收藏 99"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:textColor="#999999"
+                android:textSize="@dimen/textsize12"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/background"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <LinearLayout
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/zhuanshou_move"
+                android:text="推广"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="17dp"
+                android:textSize="@dimen/textsize14"
+                android:textColor="#BA0008"
+                android:background="@drawable/shap_button_tuiguang"
+                android:layout_width="76dp"
+                android:layout_height="26dp" />
+            <Button
+                android:id="@+id/shop_more"
+                android:text="更多"
+                android:layout_marginRight="10dp"
+                android:textSize="@dimen/textsize14"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/co_111A3B"
+                android:background="@drawable/shap_button_more"
+                android:layout_width="76dp"
+                android:layout_height="26dp" />
+        </LinearLayout>
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bg_line_xuxian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+
+    </LinearLayout>
+</FrameLayout>

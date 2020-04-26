@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/buy"
+        android:text="买家"
+        android:textColor="#FF666666"
+        android:textSize="14sp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/t_l"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shap_back_namal"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="11dp"
+        android:paddingRight="11dp"
+        android:paddingTop="9dp"
+        android:paddingBottom="9dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="74dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/t_s"
+            android:text="退款说明："
+            android:textColor="#FF111A38"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/t_c"
+            android:text="说明内容说明内容说明内容说明内容
+说明内容说明内容说明内容"
+            android:layout_marginTop="8dp"
+            android:textColor="#FF111A38"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/linear_picture"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/seller"
+        android:text="卖家"
+        android:textColor="#FF666666"
+        android:textSize="14sp"
+        android:layout_marginRight="11dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

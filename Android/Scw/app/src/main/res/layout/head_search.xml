@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/ll_height50"
+    android:background="@color/co_FD713F">
+
+    <LinearLayout
+        android:id="@+id/serach"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/distance_32"
+        android:layout_marginRight="55dp"
+        android:background="@drawable/bg_search_banyuanjiao"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/distance_16">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ico_search"
+            android:drawablePadding="@dimen/distance_8"
+            android:text="搜索商品名称"
+            android:textColor="#88FFFFFF"
+            android:textSize="@dimen/textsize14" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_info"
+        android:layout_width="55dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:paddingBottom="15dp"
+        android:paddingLeft="@dimen/distance_16"
+        android:paddingRight="@dimen/distance_16"
+        android:paddingTop="15dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ico_notice" />
+
+    <TextView
+        android:id="@+id/info_"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="11dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/bg_circular_red_point"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize9"
+        android:visibility="gone"/>
+</RelativeLayout>

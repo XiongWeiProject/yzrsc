@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <include layout="@layout/head_layout"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:background="@color/background"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/orde_detall"/>
+
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/yi_button_backpay"
+                    android:layout_width="155dp"
+                    android:layout_height="45dp"
+
+                    android:background="@drawable/bg_btn_red"
+                    android:text="申请退款"
+                    android:layout_marginRight="5dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize18" />
+                <Button
+                    android:id="@+id/yi_button_confirm"
+                    android:layout_width="155dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/bg_btn_red"
+                    android:text="确认收货"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize18" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/yi_button_wuliu"
+                    android:layout_width="320dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/bg_btn_red"
+                    android:text="查看物流"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize18" />
+                <!--<Button
+                    android:id="@+id/yi_button_shouhou"
+                    android:layout_width="155dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/shap_button_more"
+                    android:text="售后服务"
+                    android:textColor="@color/co_111A3B"
+                    android:textSize="@dimen/textsize18" />-->
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

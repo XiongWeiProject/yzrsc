@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <include layout="@layout/head_layout"/>
+    <HorizontalScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/zhuanshou_guid"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.commodity.scw.ui.widget.xlistView.XListView xmlns:pla="http://schemas.android.com/apk/res-auto"
+            pla:plaColumnNumber="1"
+            pla:plaLandscapeColumnNumber="1"
+            android:id="@+id/zhuanshou_listview"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:listSelector="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.commodity.scw.ui.widget.xlistView.XListView>
+        <com.commodity.scw.ui.widget.textview.CenterDrawableTextView
+            android:id="@+id/tv_nodata"
+            style="@style/nodata_style"
+            android:background="@color/white"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</LinearLayout>

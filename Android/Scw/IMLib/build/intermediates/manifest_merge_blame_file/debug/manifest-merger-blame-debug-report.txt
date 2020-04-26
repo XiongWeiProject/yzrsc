@@ -1,0 +1,173 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="io.rong.imlib"
+4    android:versionCode="1"
+5    android:versionName="2.8.8" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="9"
+8-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml
+9        android:targetSdkVersion="19" />
+9-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml
+10
+11    <!-- <uses-sdk -->
+12    <!-- android:minSdkVersion="9" -->
+13    <!-- android:targetSdkVersion="20" /> -->
+14
+15    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+15-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:8:5-81
+15-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:8:22-78
+16    <uses-permission android:name="android.permission.INTERNET" />
+16-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:9:5-67
+16-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:9:22-64
+17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+17-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:10:5-79
+17-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:10:22-76
+18    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+18-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:11:5-76
+18-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:11:22-73
+19    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+19-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:12:5-75
+19-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:12:22-72
+20    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+20-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:13:5-71
+20-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:13:22-68
+21    <uses-permission android:name="android.permission.GET_TASKS" />
+21-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:14:5-68
+21-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:14:22-65
+22    <uses-permission android:name="android.permission.WAKE_LOCK" />
+22-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:15:5-68
+22-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:15:22-65
+23    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+23-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:16:5-80
+23-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:16:22-77
+24    <uses-permission android:name="android.permission.VIBRATE" />
+24-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:17:5-66
+24-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:17:22-63
+25    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+25-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:18:5-79
+25-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:18:22-76
+26    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+26-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:19:5-81
+26-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:19:22-78
+27
+28    <application>
+28-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:21:5-91:19
+29
+30        <!-- imlib config begin   n19jmcy59f1q9   测试版  lmxuhwagl4vzd  正式版  x18ywvqfxjeuc -->
+31        <meta-data
+31-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:24:9-26:45
+32            android:name="RONG_CLOUD_APP_KEY"
+32-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:25:13-46
+33            android:value="lmxuhwagl4vzd" />
+33-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:26:13-42
+34
+35        <service
+35-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:28:9-31:38
+36            android:name="io.rong.imlib.ipc.RongService"
+36-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:29:13-57
+37            android:exported="true"
+37-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:30:13-36
+38            android:process=":ipc" />
+38-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:31:13-35
+39        <service
+39-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:33:9-34:38
+40            android:name="io.rong.imlib.ReConnectService"
+40-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:33:18-63
+41            android:exported="true" />
+41-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:34:13-36
+42
+43        <receiver
+43-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:36:9-37:38
+44            android:name="io.rong.imlib.ConnectChangeReceiver"
+44-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:36:19-69
+45            android:exported="true" />
+45-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:37:13-36
+46        <receiver
+46-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:39:9-41:38
+47            android:name="io.rong.imlib.HeartbeatReceiver"
+47-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:40:13-59
+48            android:process=":ipc" />
+48-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:41:13-35
+49        <!-- imlib config end -->
+50
+51
+52        <!-- 必选： SDK 核心功能 -->
+53        <!-- 第三方相关,向第三方推送服务请求 token 的服务 -->
+54        <service
+54-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:47:9-50:19
+55            android:name="io.rong.push.core.PushRegistrationService"
+55-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:48:13-69
+56            android:exported="false" >
+56-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:49:13-37
+57        </service>
+58
+59        <!-- 处理 push 消息相关的服务 -->
+60        <service
+60-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:53:9-56:19
+61            android:name="io.rong.push.core.MessageHandleService"
+61-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:54:13-66
+62            android:exported="true" >
+62-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:55:13-36
+63        </service>
+64
+65        <!-- push服务 -->
+66        <service
+66-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:59:9-63:19
+67            android:name="io.rong.push.PushService"
+67-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:60:13-52
+68            android:exported="true"
+68-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:61:13-36
+69            android:process="io.rong.push" > <!-- push进程，可以改名 -->
+69-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:62:13-43
+70        </service>
+71
+72        <!-- push 相关事件接收器 -->
+73        <receiver
+73-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:66:9-86:20
+74            android:name="io.rong.push.PushReceiver"
+74-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:67:13-53
+75            android:process="io.rong.push" > <!-- 此处进程可以改名，名称需要和PushService所在进程统一 -->
+75-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:68:13-43
+76            <!-- 心跳事件 -->
+77            <intent-filter>
+77-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:70:13-72:29
+78                <action android:name="io.rong.push.intent.action.HEART_BEAT" />
+78-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:71:17-80
+78-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:71:25-77
+79            </intent-filter>
+80            <!-- 网络变动事件 -->
+81            <intent-filter>
+81-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:74:13-76:29
+82                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+82-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:75:17-79
+82-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:75:25-76
+83            </intent-filter>
+84            <!-- 部分用户事件 -->
+85            <intent-filter>
+85-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:78:13-80:29
+86                <action android:name="android.intent.action.BOOT_COMPLETED" />
+86-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:79:17-79
+86-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:79:25-76
+87            </intent-filter>
+88            <intent-filter>
+88-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:81:13-85:29
+89                <action android:name="android.intent.action.USER_PRESENT" />
+89-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:82:17-77
+89-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:82:25-74
+90                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+90-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:83:17-87
+90-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:83:25-84
+91                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+91-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:84:17-90
+91-->F:\androidstudio\yzrsc\Android\Scw\IMLib\AndroidManifest.xml:84:25-87
+92            </intent-filter>
+93        </receiver>
+94
+95        <!-- 必选： SDK 核心功能 -->
+96
+97
+98        <!-- end -->
+99    </application>
+100
+101</manifest>

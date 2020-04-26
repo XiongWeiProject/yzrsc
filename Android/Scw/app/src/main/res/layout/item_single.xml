@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:background="@color/type_FFFFFF"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/single_bank"
+        android:text="银行"
+        style="@style/text_111A38_16"
+        android:layout_margin="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/single_select_bg"
+        android:layout_margin="10dp"
+        android:button="@drawable/icon_xzon"
+        android:layout_width="24dp"
+        android:layout_height="24dp" />
+</LinearLayout>

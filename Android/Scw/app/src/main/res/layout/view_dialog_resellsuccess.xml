@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_tuoyuanjiao_white"
+    android:padding="@dimen/distance_8"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_dialog_msg"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:text="宝贝已转到您的店铺"
+        android:textColor="@color/co_3C3636"
+        android:textSize="16sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divideline"
+        android:visibility="visible"/>
+    <TextView
+        android:layout_width="170dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/distance_8"
+        android:drawablePadding="4dp"
+        android:drawableLeft="@drawable/xz_on"
+        android:gravity="left|center_vertical"
+        android:text="您的客户看不到源头宝贝"
+        android:paddingTop="8dp"
+        android:textColor="@color/co_FD713F"
+        android:textSize="@dimen/textsize13" />
+    <TextView
+        android:layout_width="170dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/distance_8"
+        android:drawablePadding="4dp"
+        android:drawableLeft="@drawable/xz_on"
+        android:gravity="left|center_vertical"
+        android:text="宝贝描述已复制"
+        android:paddingTop="8dp"
+        android:textColor="@color/co_FD713F"
+        android:textSize="@dimen/textsize13" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_weight="1"
+            android:visibility="visible"/>
+
+        <Button
+            android:id="@+id/btn_cancle"
+            android:layout_width="76dp"
+            android:layout_height="26dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_btn_blueborder"
+            android:text="取消"
+            android:textColor="@color/co_111A3B"
+            android:textSize="@dimen/textsize14" />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="76dp"
+            android:layout_height="26dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/bg_btn_red_on"
+            android:text="发到朋友圈"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize12" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_weight="1"
+            android:visibility="visible"/>
+    </LinearLayout>
+</LinearLayout>

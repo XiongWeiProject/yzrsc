@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:background="@color/co_FD713F">
+        <LinearLayout
+            android:id="@+id/mine_back"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:background="@drawable/ico_back"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+        </LinearLayout>
+
+        <TextView
+            android:gravity="center"
+            android:text="个人信息"
+
+            android:layout_centerInParent="true"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/textsize18"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:gravity="right"
+            android:text=""
+            android:layout_marginRight="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/textsize14"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/background"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--<LinearLayout
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/select_button_backage"
+            android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:text="买家等级"
+                android:textColor="@color/co_111A3B"
+                android:textSize="@dimen/textsize14"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:id="@+id/mine_heart"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content">
+
+            </LinearLayout>
+        </LinearLayout>-->
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/mine_info_phone"
+            android:gravity="center_vertical"
+            android:background="@drawable/select_button_backage"
+            android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:text="修改绑定手机"
+                android:textColor="@color/co_111A3B"
+                android:textSize="@dimen/textsize14"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/mine_phone_text"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:text="1311111111111"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/textsize12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+
+            <ImageView
+                android:layout_marginRight="12dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/ioc_user_right"
+                android:layout_width="@dimen/size_20"
+                android:layout_height="@dimen/size_20"
+                android:id="@+id/imageView" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/mine_password"
+            android:gravity="center_vertical"
+            android:background="@drawable/select_button_backage"
+            android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:text="修改密码"
+                android:textColor="@color/co_111A3B"
+                android:textSize="@dimen/textsize14"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content">
+
+            </RelativeLayout>
+
+
+            <ImageView
+                android:layout_marginRight="12dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/ioc_user_right"
+                android:layout_width="@dimen/size_20"
+                android:layout_height="@dimen/size_20" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/mine_address"
+            android:gravity="center_vertical"
+            android:background="@drawable/select_button_backage"
+            android:orientation="horizontal" android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:text="收货地址"
+                android:textColor="@color/co_111A3B"
+                android:textSize="@dimen/textsize14"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content">
+
+            </RelativeLayout>
+
+
+            <ImageView
+                android:layout_marginRight="12dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/ioc_user_right"
+                android:layout_width="@dimen/size_20"
+                android:layout_height="@dimen/size_20" />
+        </LinearLayout>
+        </LinearLayout>
+
+</LinearLayout>

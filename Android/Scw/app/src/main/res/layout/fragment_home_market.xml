@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:background="@color/co_FD713F">
+
+        <LinearLayout
+            android:id="@+id/ll_search"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/distance_32"
+            android:layout_marginRight="55dp"
+            android:background="@drawable/bg_search_banyuanjiao"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/distance_16">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ico_search"
+                android:drawablePadding="@dimen/distance_8"
+                android:text="搜索商品名称"
+                android:textColor="#88FFFFFF"
+                android:textSize="@dimen/textsize14" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_tip_btn"
+            android:layout_width="55dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="15dp"
+            android:paddingLeft="@dimen/distance_16"
+            android:paddingRight="@dimen/distance_16"
+            android:paddingTop="15dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ico_notice" />
+
+        <TextView
+            android:id="@+id/tv_tips"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="11dp"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/bg_circular_red_point"
+            android:gravity="center"
+            android:text="99"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize9"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <com.commodity.scw.ui.widget.xlistView.XListView xmlns:pla="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/xlistView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fastScrollEnabled="true"
+        android:scrollbars="vertical"
+        pla:plaColumnNumber="1"
+        pla:plaLandscapeColumnNumber="1"/>
+
+
+    <com.commodity.scw.ui.widget.scrollView.DampingScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/ll_childview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/mainbanner" />
+        </LinearLayout>
+    </com.commodity.scw.ui.widget.scrollView.DampingScrollView>
+
+
+
+</LinearLayout>

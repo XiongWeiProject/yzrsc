@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <include layout="@layout/head_layout"/>
+    <TextView
+        android:id="@+id/tixian_jine"
+        android:background="@color/type_FFFFFF"
+        android:paddingTop="10dp"
+        android:text="账户可提现金额0.00元"
+        style="@style/text_666666_14"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:background="@color/type_FFFFFF"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+
+            android:id="@+id/tixian_input"
+            android:digits="1234567890."
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="@dimen/ll_height50"
+            android:layout_marginLeft="@dimen/distance_24"
+            android:layout_marginRight="@dimen/distance_24"
+            android:background="#00000000"
+            android:hint="请输入提现金额"
+            android:textSize="@dimen/textsize14"
+            android:textColor="@color/co_111A3B"
+            android:textColorHint="@color/hint_color" />
+        <TextView
+            android:text="元"
+            style="@style/text_666666_18"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/tixian_card_control"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:padding="10dp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:background="@color/type_FFFFFF"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tixian_name"
+                android:text=""
+                style="@style/text_111A38_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tixian_bank"
+                android:text=""
+                android:layout_marginLeft="20dp"
+                style="@style/text_111A38_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:id="@+id/tixian_edit"
+                android:gravity="center_vertical|right"
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:background="@drawable/icon_tixian"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+                <TextView
+                    android:text="编辑"
+                    android:layout_marginLeft="10dp"
+                    style="@style/text_BA0008_14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tixian_card_code"
+            android:background="@color/type_FFFFFF"
+            android:text=""
+            style="@style/text_666666_18"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@color/type_FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/tixian_button_bang"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ll_height50"
+            android:layout_marginLeft="@dimen/distance_24"
+            android:layout_marginRight="@dimen/distance_24"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/shap_button_tuiguang"
+            android:text="绑定银行卡"
+            android:textColor="@color/type_BA0008"
+            android:textSize="@dimen/textsize18" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/shap_bg_tixian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="注意："
+            style="@style/text_111A38_13"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="1、7个工作日内到账，节假日顺延；"
+            style="@style/text_111A38_13"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="2、每日只能提现一次；"
+            style="@style/text_111A38_13"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="3、提现时银行会收取一定的手续费；"
+            style="@style/text_111A38_13"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/tixian_confir"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:layout_marginLeft="@dimen/distance_24"
+        android:layout_marginRight="@dimen/distance_24"
+        android:background="@drawable/bg_btn_red"
+        android:text="确认提现"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize18" />
+
+</LinearLayout>

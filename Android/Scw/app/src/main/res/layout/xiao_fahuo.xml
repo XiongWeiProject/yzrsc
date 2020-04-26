@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <include layout="@layout/head_layout"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:background="@color/background"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/orde_detall"/>
+
+            <Button
+                android:id="@+id/pa_button_send"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ll_height50"
+                android:layout_marginLeft="@dimen/distance_24"
+                android:layout_marginRight="@dimen/distance_24"
+                android:layout_marginTop="@dimen/ll_height50"
+                android:background="@drawable/bg_btn_red"
+                android:text="申请退款"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize18" />
+            <!--<Button
+                android:id="@+id/pa_button_shouhou"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ll_height50"
+                android:layout_marginLeft="@dimen/distance_24"
+                android:layout_marginRight="@dimen/distance_24"
+                android:layout_marginTop="19dp"
+                android:background="@drawable/shap_button_more"
+                android:text="售后服务"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/type_111A38"
+                android:textSize="@dimen/textsize18" />-->
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

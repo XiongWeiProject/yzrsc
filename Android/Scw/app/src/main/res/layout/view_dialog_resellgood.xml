@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_tuoyuanjiao_white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/distance_8">
+
+    <TextView
+        android:id="@+id/tv_dialog_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:paddingTop="10dp"
+        android:text="一键转售"
+        android:textColor="@color/co_3C3636"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divideline"
+        android:baselineAligned="false"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:padding="@dimen/distance_8"
+            android:text="填写您想出售的价格"
+            android:textColor="@color/co_111A3B"
+            android:textSize="@dimen/textsize14" />
+
+        <EditText
+            android:id="@+id/et_price"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center_vertical|right"
+            android:hint="0"
+            android:inputType="numberDecimal"
+            android:padding="@dimen/distance_8"
+            android:text=""
+            android:textColor="@color/co_FD713F"
+            android:textColorHint="@color/hint_black"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:paddingRight="@dimen/distance_8"
+            android:text="元"
+            android:textColor="@color/co_111A3B"
+            android:textSize="@dimen/textsize14" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/type_9F9F9"
+        android:gravity="center_vertical|left"
+        android:hint="0"
+        android:lineSpacingExtra="@dimen/distance_8"
+        android:padding="@dimen/distance_8"
+        android:text="建议零售价：¥3200\n预计利润：未知- ¥3200=差值"
+        android:textColor="@color/co_999999"
+        android:textColorHint="@color/hint_black"
+        android:textSize="@dimen/textsize14" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/distance_8">
+
+        <EditText
+            android:id="@+id/et_desc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_trim_white_bg"
+            android:gravity="left"
+            android:hint="商品描述"
+            android:minHeight="60dp"
+            android:padding="@dimen/distance_8"
+            android:text="新春超值巨献【冰福贝】完美无暇，水润起荧光，种水超好，冰润通透，超细腻，如水流淌"
+            android:textColor="@color/co_111A3B"
+            android:textColorHint="@color/hint_black"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:padding="@dimen/distance_8"
+        android:text="点击正文可修改宝贝描述"
+        android:textColor="@color/co_999999"
+        android:textSize="@dimen/textsize14" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_weight="1"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn_cancle"
+            android:layout_width="76dp"
+            android:layout_height="26dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/shape_trim_themecolor_white_bg"
+            android:text="返回"
+            android:textColor="@color/co_F95F3D"
+            android:textSize="@dimen/textsize14" />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="76dp"
+            android:layout_height="26dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_btn_red_on"
+            android:text="转售"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize14" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_weight="1"
+            android:visibility="visible" />
+    </LinearLayout>
+</LinearLayout>

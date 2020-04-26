@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <include layout="@layout/head_layout"/>
+    <EditText
+        android:background="@color/type_FFFFFF"
+        android:id="@+id/setting_shop_name"
+        android:hint="翡翠苑"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#FFBCBCBC"
+        android:textSize="16sp"
+        android:textColorHint="#FFBCBCBC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

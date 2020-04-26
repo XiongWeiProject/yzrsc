@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:layout_gravity="left"
+        android:onClick="back"
+        android:padding="@dimen/distance_16"
+        android:src="@drawable/back" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="@dimen/distance_24"
+        android:textColor="@color/white"
+        android:background="@drawable/ico_tubiao"
+        android:textSize="26sp" />
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:layout_marginLeft="@dimen/distance_24"
+        android:layout_marginRight="@dimen/distance_24"
+        android:layout_marginTop="40dp"
+        android:background="#00000000"
+        android:hint="你的手机号码"
+        android:textSize="@dimen/textsize14"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="@dimen/distance_24"
+        android:layout_marginRight="@dimen/distance_24"
+        android:background="@color/white" />
+
+    <EditText
+        android:id="@+id/et_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:layout_marginLeft="@dimen/distance_24"
+        android:layout_marginRight="@dimen/distance_24"
+        android:layout_marginTop="0dp"
+        android:background="#00000000"
+        android:textSize="@dimen/textsize14"
+        android:inputType="textPassword"
+        android:hint="你的登录密码"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="@dimen/distance_24"
+        android:layout_marginRight="@dimen/distance_24"
+        android:background="@color/white" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:layout_marginLeft="@dimen/distance_24"
+        android:layout_marginRight="@dimen/distance_24"
+        android:layout_marginTop="@dimen/ll_height50"
+        android:background="@drawable/btn_selector_trim_white_null_bg"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize18" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_regist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/distance_24"
+            android:textSize="@dimen/textsize12"
+            android:text="免费注册"
+            android:textColor="@color/white" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_changepwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/distance_24"
+            android:text="忘记密码"
+            android:textSize="@dimen/textsize12"
+            android:textColor="#88FFFFFF" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="其他社交账号快速登录"
+        android:textColor="#88FFFFFF" />
+
+    <View
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/distance_12"
+        android:layout_marginBottom="@dimen/distance_32"
+        android:background="@drawable/selector_weixin_login"
+        android:id="@+id/view_wxlogin_btn" />
+</LinearLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <include layout="@layout/head_layout"/>
+    <ScrollView
+        android:background="@color/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_marginTop="55dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:background="@drawable/icon_success"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" />
+                <TextView
+                    android:layout_marginLeft="13dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="恭喜，宝贝上传成功！"
+                    android:textColor="#FF111A38"
+                    android:textSize="16sp"
+                    />
+            </LinearLayout>
+            <TextView
+                android:gravity="center"
+                android:text="推广到你的朋友圈，成交更迅速"
+                android:textColor="#FF111A38"
+                android:textSize="14sp"
+                android:layout_marginTop="65dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <com.commodity.scw.ui.widget.specialview.MyGridView
+                android:id="@+id/upload_success_shard"
+                android:numColumns="4"
+                android:layout_marginTop="10dp"
+                android:listSelector="@drawable/icon_transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.commodity.scw.ui.widget.specialview.MyGridView>
+            <Button
+                android:id="@+id/success_proview"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ll_height50"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="@dimen/distance_24"
+                android:layout_marginRight="@dimen/distance_24"
+                android:background="@drawable/bg_btn_red"
+                android:text="预览宝贝"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize18" />
+            <Button
+                android:id="@+id/success_upload"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ll_height50"
+                android:layout_marginLeft="@dimen/distance_24"
+                android:layout_marginRight="@dimen/distance_24"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shap_button_more"
+                android:text="继续上传"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/co_111A3B"
+                android:textSize="@dimen/textsize18" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

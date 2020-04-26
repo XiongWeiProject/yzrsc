@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <RelativeLayout
+        android:id="@+id/ll_item"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_tab_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/schedule_normal" />
+
+        <TextView
+            android:id="@+id/tv_tip"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/num_tip"
+            android:layout_toRightOf="@+id/iv_tab_icon"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="2"
+            android:padding="2dp"
+            android:textSize="8sp"
+            android:textColor="#ffffff"
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_tab_icon"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_marginTop="2dp"
+            android:text="列表"
+            android:textSize="12sp"
+            android:textColor="@color/main_black"/>
+    </RelativeLayout>
+
+</LinearLayout>

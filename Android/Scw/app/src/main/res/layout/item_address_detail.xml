@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/background" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/distance_12"
+        android:gravity="center_vertical"
+        android:background="@drawable/one_line_bottom_white_bg"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_isselect"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:padding="8dp"
+            android:src="@drawable/icon_xzon" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_marginLeft="@dimen/distance_8"
+                android:text="李思思  13567890987"
+                android:textColor="@color/co_111A3B"
+                android:textSize="@dimen/textsize16" />
+            <TextView
+                android:id="@+id/tv_text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/distance_8"
+                android:gravity="left"
+                android:layout_marginTop="@dimen/distance_8"
+                android:text="上海市浦东新区东方路111号东方路111号"
+                android:textColor="@color/co_111A3B"
+                android:textSize="@dimen/textsize14" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/distance_16"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text=" "
+            android:textColor="@color/third_black"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            android:id="@+id/tv_text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/distance_8"
+            android:drawablePadding="4dp"
+            android:drawableLeft="@drawable/icon_bianji"
+            android:gravity="left|center_vertical"
+            android:text="编辑"
+            android:textColor="@color/co_F95F3D"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            android:id="@+id/tv_text4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/distance_8"
+            android:drawablePadding="4dp"
+            android:drawableLeft="@drawable/icon_shanchu"
+            android:gravity="left|center_vertical"
+            android:text="删除"
+            android:textColor="@color/co_F95F3D"
+            android:textSize="@dimen/textsize14" />
+    </LinearLayout>
+</LinearLayout>

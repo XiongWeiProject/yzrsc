@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="176dp"
+    android:background="@drawable/shap_shop_delete_bg"
+    android:gravity="center_vertical"
+    android:layout_height="40dp">
+    <ImageView
+        android:id="@+id/popup_all"
+        android:background="@drawable/icon_xzk"
+        android:layout_margin="10dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp" />
+    <TextView
+        android:text="全选"
+        style="@style/text_ffffff_14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:background="@drawable/icon_delete"
+        android:layout_marginLeft="20dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp" />
+    <TextView
+        android:id="@+id/popup_delete"
+        android:text="删除"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        style="@style/text_ffffff_14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

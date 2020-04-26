@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/distance_16">
+
+        <TextView
+            android:id="@+id/tv_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/distance_16"
+            android:text="会员名称"
+            android:textColor="@color/co_666666"
+            android:textSize="@dimen/textsize12" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/distance_16"
+            android:text="2017-2-26"
+            android:textColor="@color/co_666666"
+            android:textSize="@dimen/textsize12" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_text3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/distance_16"
+        android:padding="@dimen/distance_16"
+        android:text="吊坠不错，非常细腻，水润通透，物流也很快，昨天下单的，今天就到货了。赞一个。"
+        android:textColor="@color/co_3C3636"
+        android:textSize="@dimen/textsize13" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/distance_0.5"
+        android:background="@color/divideline" />
+</LinearLayout>

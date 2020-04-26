@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bannerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#E6404040" >
+
+    <com.commodity.scw.ui.widget.viewpage.CustomViewPager
+        android:id="@+id/pic_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:autoStart="true"
+        android:flipInterval="1000"
+        android:persistentDrawingCache="animation" />
+
+    <TextView
+        android:id="@+id/pic_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="40dp"
+        android:shadowColor="#88000000"
+        android:shadowDx="1"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text=""
+        android:background="@drawable/shape_pic_tip"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="20dp"
+        android:paddingTop="16dp"
+        android:visibility="gone"
+        android:src="@drawable/back" />
+
+</RelativeLayout>

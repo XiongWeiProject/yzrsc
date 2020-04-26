@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+    <include layout="@layout/head_layout"/>
+    <TextView
+        android:id="@+id/detaill_price"
+        android:gravity="center"
+        android:paddingTop="18dp"
+        android:text=""
+        android:textColor="#FFFFFFFF"
+        android:textSize="16sp"
+        android:background="#BA0008"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/detaill_state"
+        android:gravity="center"
+        android:paddingTop="6dp"
+        android:text=""
+        android:paddingBottom="14dp"
+        android:textColor="#FFFFFFFF"
+        android:textSize="16sp"
+        android:background="#BA0008"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_marginTop="9dp"
+        android:background="@color/type_FFFFFF"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="收款人："
+            android:paddingTop="17dp"
+            android:paddingLeft="10dp"
+            android:textColor="#FF111A38"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/detaill_name"
+            android:text=""
+            android:textColor="#FF111A38"
+            android:textSize="14sp"
+            android:layout_marginLeft="21dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:background="@color/type_FFFFFF"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="提现至："
+            android:paddingTop="17dp"
+            android:paddingLeft="10dp"
+            android:textColor="#FF111A38"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/detaill_number"
+            android:text=""
+            android:textColor="#FF111A38"
+            android:textSize="14sp"
+            android:layout_marginLeft="21dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:paddingBottom="19dp"
+        android:background="@color/type_FFFFFF"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="提现时间："
+            android:paddingTop="17dp"
+            android:paddingLeft="10dp"
+            android:textColor="#FF111A38"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/detaill_time"
+            android:text=""
+            android:textColor="#FF111A38"
+            android:textSize="14sp"
+            android:layout_marginLeft="21dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/selector_item_bg"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/distance_12"
+        android:paddingLeft="@dimen/distance_12"
+        android:paddingRight="@dimen/distance_12"
+        android:paddingTop="@dimen/distance_12"
+        android:background="@color/type_FAFAFA">
+
+        <TextView
+            android:id="@+id/tv_text1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="2017-02-30 19:28:28"
+            android:textColor="@color/type_666666"
+            android:textSize="@dimen/textsize12"
+            android:textStyle="normal" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:paddingTop="@dimen/distance_12"
+        android:paddingLeft="@dimen/distance_32"
+        android:paddingRight="@dimen/distance_12"
+        android:paddingBottom="@dimen/distance_16"
+        android:text="消息内容消息内容消息内容消息内容消息内容消息内容消息内容消息内容内容消息内容消息内容内容消息内容消息内容"
+        android:textColor="@color/main_black"
+        android:textSize="@dimen/textsize14"
+        android:textStyle="normal" />
+</LinearLayout>
