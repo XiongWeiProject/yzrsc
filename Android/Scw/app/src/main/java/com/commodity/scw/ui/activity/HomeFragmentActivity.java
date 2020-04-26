@@ -129,7 +129,7 @@ public class HomeFragmentActivity extends BaseFragmentActivity {
     }
 
     /**
-     * 点击tab事件哈哈
+     * 点击tab事件
      *
      * @param index
      * @param tipnum
