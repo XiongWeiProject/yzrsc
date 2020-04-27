@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.commodity.scw">
+    package="com.commodity.yzrsc">
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 获取用户手机的IMEI，用来唯一的标识用户 -->
@@ -43,24 +43,24 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- ⼩米 配置开始 < -->
     <permission
-        android:name="com.commodity.scw.permission.MIPUSH_RECEIVE"
+        android:name="com.commodity.yzrsc.permission.MIPUSH_RECEIVE"
         android:protectionLevel="signature" />
     <uses-permission android:name="com.commodity.scw.permission.MIPUSH_RECEIVE" />
     <!-- ⼩米 配置结束 < -->
     <!-- GCM 配置开始 < -->
     <permission
-        android:name="com.commodity.scw.permission.C2D_MESSAGE"
+        android:name="com.commodity.yzrsc.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
     <uses-permission android:name="com.commodity.scw.permission.C2D_MESSAGE" />
     <application
-        android:name=".MainApplication"
+        android:name="com.commodity.yzrsc.MainApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.SplashActivity"
+            android:name="com.commodity.yzrsc.ui.activity.SplashActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -78,84 +78,84 @@
         </meta-data>
         <!-- 主界面框架界面activity -->
        <activity
-            android:name=".ui.activity.HomeFragmentActivity"
+            android:name="com.commodity.yzrsc.ui.activity.HomeFragmentActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar"
             android:windowSoftInputMode="adjustResize|stateHidden"/>
         <!-- 测试activity -->
         <activity
-            android:name=".ui.activity.CeshiActivity"
+            android:name="com.commodity.yzrsc.ui.activity.CeshiActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!-- 测试activity -->
         <activity
-            android:name=".ui.demo.SqlLiteActivity"
+            android:name="com.commodity.yzrsc.ui.demo.SqlLiteActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!-- 登录界面 activity -->
         <activity
-            android:name=".ui.activity.user.LoginActivity"
+            android:name="com.commodity.yzrsc.ui.activity.user.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!-- 注册界面 activity -->
         <activity
-            android:name=".ui.activity.user.RegistActivity"
+            android:name="com.commodity.yzrsc.ui.activity.user.RegistActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
 
         <!-- 分类界面 activity -->
         <activity
-            android:name=".ui.activity.classify.TypeActivity"
+            android:name="com.commodity.yzrsc.ui.activity.classify.TypeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!-- 分类界面 activity -->
         <activity
-            android:name=".ui.activity.store.AlertUploadGoodsActivity"
+            android:name="com.commodity.yzrsc.ui.activity.store.AlertUploadGoodsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!-- 认证 activity -->
         <activity
-            android:name=".ui.activity.AuthenticationActivity"
+            android:name="com.commodity.yzrsc.ui.activity.AuthenticationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--店铺信息-->
         <activity
-            android:name=".ui.activity.store.StoreSettingActivity"
+            android:name="com.commodity.yzrsc.ui.activity.store.StoreSettingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--店铺名称-->
         <activity
-            android:name=".ui.activity.store.SettingShopName"
+            android:name="com.commodity.yzrsc.ui.activity.store.SettingShopName"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--店铺合作-->
         <activity
-            android:name=".ui.activity.store.ShopFriendActivity"
+            android:name="com.commodity.yzrsc.ui.activity.store.ShopFriendActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--修改-->
         <activity
-            android:name=".ui.activity.store.AlterOrderActivity"
+            android:name="com.commodity.yzrsc.ui.activity.store.AlterOrderActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--店铺合作-->
         <activity
-            android:name=".ui.activity.store.ProviewGoodsActivity"
+            android:name="com.commodity.yzrsc.ui.activity.store.ProviewGoodsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--已提交材料-->
         <activity
-            android:name=".ui.activity.store.YiTijiaoActivity"
+            android:name="com.commodity.yzrsc.ui.activity.store.YiTijiaoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--认证-->
         <activity
-            android:name=".ui.activity.store.RenzhengActivity"
+            android:name="com.commodity.yzrsc.ui.activity.store.RenzhengActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--大图片-->
         <activity
-            android:name=".ui.activity.general.BigPictureActivity"
+            android:name="com.commodity.yzrsc.ui.activity.general.BigPictureActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--上传宝贝-->
@@ -165,283 +165,283 @@
             android:theme="@style/My.Translucent" />
         <!--买家留言-->
         <activity
-            android:name=".ui.activity.personalcenter.BuyBackDetailActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.BuyBackDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--个人信心-->
         <activity
-            android:name=".ui.activity.personalcenter.MineInfoActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.MineInfoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--销售管理-->
         <activity
-            android:name=".ui.activity.personalcenter.XiaoShouActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.XiaoShouActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--商品详情-->
         <activity
-            android:name=".ui.activity.commodity.CommodityDetailActivity"
+            android:name="com.commodity.yzrsc.ui.activity.commodity.CommodityDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--转售订单管理-->
         <activity
-            android:name=".ui.activity.personalcenter.ZhuanShouActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.ZhuanShouActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--退货退款详情-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.BackDetailActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.BackDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--店铺预览-->
         <activity
-            android:name=".ui.activity.store.StoreProviewActivity"
+            android:name="com.commodity.yzrsc.ui.activity.store.StoreProviewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--卖家评价详情-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.SellerPActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.SellerPActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--卖家退货详情-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.BackActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.BackActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--转售订单管理详情-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.ZhuanShouMDetailActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.ZhuanShouMDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--我的订单-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.MyOrdeActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.MyOrdeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--待付款订单详情-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.DaiPayActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.DaiPayActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--支付-->
         <activity
-            android:name=".ui.pay.PayActivity"
+            android:name="com.commodity.yzrsc.ui.pay.PayActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--待发货订单详情-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.DaiSendActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.DaiSendActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--待已货订单详情-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.YiSendActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.YiSendActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--交易成功订单详情-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.JiaoYiSuccessActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.JiaoYiSuccessActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--退款订单详情-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.BackGoodsActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.BackGoodsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--评价-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.PingJiaActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.PingJiaActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--申请退款-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.BackMoneyActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.BackMoneyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--销售代付款-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.XiaoDaiPayActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.XiaoDaiPayActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--销售待发货-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.XiaoDaiSendActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.XiaoDaiSendActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--销售已发货-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.XiaoYiSendActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.XiaoYiSendActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--销售完成-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.XiaoJiaoYiSuccessActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.XiaoJiaoYiSuccessActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--我的钱包-->
         <activity
-            android:name=".ui.activity.personalcenter.money.MyMoneyActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.money.MyMoneyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--提现-->
         <activity
-            android:name=".ui.activity.personalcenter.money.TixianActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.money.TixianActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--提现管理-->
         <activity
-            android:name=".ui.activity.personalcenter.money.TixianManagerActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.money.TixianManagerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--提现记录-->
         <activity
-            android:name=".ui.activity.personalcenter.money.TixianJiluActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.money.TixianJiluActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--提现记录-->
         <activity
-            android:name=".ui.activity.personalcenter.money.MoneyDetailActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.money.MoneyDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--提现详情-->
         <activity
-            android:name=".ui.activity.personalcenter.money.TixianDetaillActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.money.TixianDetaillActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--编辑银行卡-->
         <activity
-            android:name=".ui.activity.personalcenter.money.EditCard"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.money.EditCard"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--添加银行卡-->
         <activity
-            android:name=".ui.activity.personalcenter.money.AddCard"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.money.AddCard"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--接受验证码，确认提现-->
         <activity
-            android:name=".ui.activity.personalcenter.money.ConfirmTixianActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.money.ConfirmTixianActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--订单详情-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.OrdeDetallActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.OrdeDetallActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--查看物流-->
         <activity
-            android:name=".ui.activity.personalcenter.SeeWuliu"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.SeeWuliu"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--搜索-->
         <activity
-            android:name=".ui.activity.classify.MSerachActivity"
+            android:name="com.commodity.yzrsc.ui.activity.classify.MSerachActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--确认订单-->
         <activity
-            android:name=".ui.activity.commodity.CommodityOrderActivity"
+            android:name="com.commodity.yzrsc.ui.activity.commodity.CommodityOrderActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--提交订单-->
         <activity
-            android:name=".ui.activity.personalcenter.orde.sellerTijiaoActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.orde.sellerTijiaoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--销售订单发货-->
         <activity
-            android:name=".ui.activity.personalcenter.XiaosouSendActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.XiaosouSendActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--引导页-->
         <activity
-            android:name=".ui.activity.GuideShowActivity"
+            android:name="com.commodity.yzrsc.ui.activity.GuideShowActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!-- 分类 -->
         <activity
-            android:name=".ui.activity.store.GoodsTypeActivity"
+            android:name="com.commodity.yzrsc.ui.activity.store.GoodsTypeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!-- 修改手机号 -->
         <activity
-            android:name=".ui.activity.personalcenter.AlertPhone"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.AlertPhone"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!-- 修改手机号 -->
         <activity
-            android:name=".ui.activity.personalcenter.InputPhoneActivity"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.InputPhoneActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--找回密码-->
         <activity
-            android:name=".ui.activity.user.ForgetPwdActivity"
+            android:name="com.commodity.yzrsc.ui.activity.user.ForgetPwdActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--我的收藏-->
         <activity
-            android:name=".ui.activity.user.MyFavoriteCommodActivity"
+            android:name="com.commodity.yzrsc.ui.activity.user.MyFavoriteCommodActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--使用帮助-->
         <activity
-            android:name=".ui.activity.user.UseHelpActivity"
+            android:name="com.commodity.yzrsc.ui.activity.user.UseHelpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--使用帮助的几个通用的详情界面-->
         <activity
-            android:name=".ui.activity.user.UseHelpDetailActivity"
+            android:name="com.commodity.yzrsc.ui.activity.user.UseHelpDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--消息管理-->
         <activity
-            android:name=".ui.activity.user.MessageManagerActivity"
+            android:name="com.commodity.yzrsc.ui.activity.user.MessageManagerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--提现成功-->
         <activity
-            android:name=".ui.activity.personalcenter.money.Tixiansuccess"
+            android:name="com.commodity.yzrsc.ui.activity.personalcenter.money.Tixiansuccess"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--系统设置-->
         <activity
-            android:name=".ui.activity.user.SettingActivity"
+            android:name="com.commodity.yzrsc.ui.activity.user.SettingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--添加收货地址-->
         <activity
-            android:name=".ui.activity.commodity.AddUserAdressActivity"
+            android:name="com.commodity.yzrsc.ui.activity.commodity.AddUserAdressActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--修改密码-->
         <activity
-            android:name=".ui.activity.user.ChangePwdActivity"
+            android:name="com.commodity.yzrsc.ui.activity.user.ChangePwdActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--联系人-->
         <activity
-            android:name=".ui.activity.user.ContactPersonActivity"
+            android:name="com.commodity.yzrsc.ui.activity.user.ContactPersonActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden"
             android:theme="@style/My.Translucent" />
         <!--系统通知-->
         <activity
-            android:name=".ui.activity.user.SystemNoticeActivity"
+            android:name="com.commodity.yzrsc.ui.activity.user.SystemNoticeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--关注-->
         <activity
-            android:name=".ui.activity.user.FocusOnActivity"
+            android:name="com.commodity.yzrsc.ui.activity.user.FocusOnActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--收货地址列表-->
         <activity
-            android:name=".ui.activity.user.UserAdressListActivity"
+            android:name="com.commodity.yzrsc.ui.activity.user.UserAdressListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--评论-->
         <activity
-            android:name=".ui.activity.user.CommentsActivity"
+            android:name="com.commodity.yzrsc.ui.activity.user.CommentsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--播放视频-->
@@ -457,31 +457,31 @@
             android:screenOrientation="portrait" />
         <!--图片选择-->
         <activity
-            android:name=".ui.activity.general.PhotoSelectActivity"
+            android:name="com.commodity.yzrsc.ui.activity.general.PhotoSelectActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--上传宝贝商品-->
         <activity
-            android:name=".ui.activity.store.UploadGoodsActivity"
+            android:name="com.commodity.yzrsc.ui.activity.store.UploadGoodsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--短视频录制-->
         <activity
-            android:name=".ui.activity.shortvideo.VideoRecorderActivity"
+            android:name="com.commodity.yzrsc.ui.activity.shortvideo.VideoRecorderActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--通用显示webview-->
         <activity
-            android:name=".ui.activity.general.GeneralWebViewActivity"
+            android:name="com.commodity.yzrsc.ui.activity.general.GeneralWebViewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--通用显示查看大图-->
         <activity
-            android:name=".ui.activity.general.PicShowActivity"
+            android:name="com.commodity.yzrsc.ui.activity.general.PicShowActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" />
         <!--微信分享-->
-        <activity android:name=".wxapi.WXEntryActivity"
+        <activity android:name="com.commodity.yzrsc.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -489,7 +489,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <!--微博-->
         <activity
-            android:name=".WBShareActivity"
+            android:name="com.commodity.yzrsc.WBShareActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -539,7 +539,7 @@
         </activity>
         <!-- 微信支付 -->
         <activity
-            android:name=".wxapi.WXPayEntryActivity"
+            android:name="com.commodity.yzrsc.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"/>
         <!-- 微信支付 -->
@@ -557,7 +557,7 @@
         </activity>-->
         <!--会话页面-->
         <activity
-            android:name=".rongyun.ui.activity.ConversationActivity"
+            android:name="com.commodity.yzrsc.rongyun.ui.activity.ConversationActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -581,7 +581,7 @@
             android:value="@integer/google_play_services_version" />
 
         <!-- 监听网络变化 -->
-        <receiver android:name=".boardcast.NetBroadcastReceiver" >
+        <receiver android:name="com.commodity.yzrsc.boardcast.NetBroadcastReceiver" >
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>

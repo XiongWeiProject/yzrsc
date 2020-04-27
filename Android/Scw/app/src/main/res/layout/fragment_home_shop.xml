@@ -79,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.commodity.scw.ui.widget.xlistView.XListView xmlns:pla="http://schemas.android.com/apk/res-auto"
+        <com.commodity.yzrsc.ui.widget.xlistView.XListView xmlns:pla="http://schemas.android.com/apk/res-auto"
             android:id="@+id/shop_listview"
             android:divider="@null"
             android:descendantFocusability="blocksDescendants"
@@ -89,7 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </com.commodity.scw.ui.widget.xlistView.XListView>
+        </com.commodity.yzrsc.ui.widget.xlistView.XListView>
         <ImageView
             android:id="@+id/shop_button_piliang"
             android:layout_gravity="right|bottom"
@@ -132,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-        <com.commodity.scw.ui.widget.textview.CenterDrawableTextView
+        <com.commodity.yzrsc.ui.widget.textview.CenterDrawableTextView
             android:id="@+id/tv_nodata"
             style="@style/nodata_style"
             android:background="#00000000"

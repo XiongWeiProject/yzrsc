@@ -95,14 +95,14 @@
             android:textSize="12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <com.commodity.scw.ui.widget.specialview.MyGridView
+        <com.commodity.yzrsc.ui.widget.specialview.MyGridView
             android:id="@+id/ren_grid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:numColumns="4"
             >
 
-        </com.commodity.scw.ui.widget.specialview.MyGridView>
+        </com.commodity.yzrsc.ui.widget.specialview.MyGridView>
     </LinearLayout>
     <Button
         android:id="@+id/ren_submit"

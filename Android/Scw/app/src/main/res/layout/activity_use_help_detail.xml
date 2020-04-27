@@ -45,12 +45,12 @@
         android:textColor="@color/co_FD713F"
         android:textSize="@dimen/textsize14"
         android:textStyle="bold" />
-    <com.commodity.scw.ui.widget.webview.CustomWebView
+    <com.commodity.yzrsc.ui.widget.webview.CustomWebView
         android:id="@+id/customwebview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.commodity.scw.ui.widget.webview.CustomWebView>
+    </com.commodity.yzrsc.ui.widget.webview.CustomWebView>
     <TextView
         android:id="@+id/tv_textinfo"
         android:layout_width="match_parent"

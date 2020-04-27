@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="#E6404040" >
 
-    <com.commodity.scw.ui.widget.viewpage.CustomViewPager
+    <com.commodity.yzrsc.ui.widget.viewpage.CustomViewPager
         android:id="@+id/pic_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

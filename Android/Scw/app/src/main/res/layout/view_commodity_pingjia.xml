@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/distance_commindityfragmenthight"
         android:orientation="vertical">
-        <com.commodity.scw.ui.widget.textview.CenterDrawableTextView
+        <com.commodity.yzrsc.ui.widget.textview.CenterDrawableTextView
             android:id="@+id/tv_nodata"
             style="@style/nodata_style"
             android:text="暂无评论"

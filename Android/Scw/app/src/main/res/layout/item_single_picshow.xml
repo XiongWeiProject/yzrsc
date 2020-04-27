@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
-    <com.commodity.scw.ui.widget.photoview.PhotoView
+    <com.commodity.yzrsc.ui.widget.photoview.PhotoView
         android:id="@+id/photoshow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

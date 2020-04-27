@@ -80,7 +80,7 @@
 
         </LinearLayout>
 
-        <com.commodity.scw.ui.widget.xlistView.XListView xmlns:pla="http://schemas.android.com/apk/res-auto"
+        <com.commodity.yzrsc.ui.widget.xlistView.XListView xmlns:pla="http://schemas.android.com/apk/res-auto"
             android:id="@+id/tixianjilu_listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -90,7 +90,7 @@
             pla:plaColumnNumber="1"
             pla:plaLandscapeColumnNumber="1">
 
-        </com.commodity.scw.ui.widget.xlistView.XListView>
+        </com.commodity.yzrsc.ui.widget.xlistView.XListView>
 
         <View
             android:id="@+id/bg"

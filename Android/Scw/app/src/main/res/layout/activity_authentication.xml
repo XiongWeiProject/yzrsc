@@ -55,13 +55,13 @@
         android:textSize="@dimen/textsize14"
         android:layout_width="match_parent"
         android:layout_height="40dp" />
-    <com.commodity.scw.ui.widget.webview.CustomWebView
+    <com.commodity.yzrsc.ui.widget.webview.CustomWebView
         android:id="@+id/customweb"
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="0dp">
 
-    </com.commodity.scw.ui.widget.webview.CustomWebView>
+    </com.commodity.yzrsc.ui.widget.webview.CustomWebView>
 
 
     <Button

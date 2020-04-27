@@ -70,7 +70,7 @@
         android:paddingBottom="@dimen/distance_8"
         android:visibility="gone">
 
-        <com.commodity.scw.ui.widget.imageview.XCRoundRectImageView
+        <com.commodity.yzrsc.ui.widget.imageview.XCRoundRectImageView
             android:id="@+id/iv_image"
             android:layout_width="60dp"
             android:layout_height="60dp"

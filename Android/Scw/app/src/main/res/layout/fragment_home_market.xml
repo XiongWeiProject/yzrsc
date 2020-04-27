@@ -58,7 +58,7 @@
             android:visibility="gone"/>
     </RelativeLayout>
 
-    <com.commodity.scw.ui.widget.xlistView.XListView xmlns:pla="http://schemas.android.com/apk/res-auto"
+    <com.commodity.yzrsc.ui.widget.xlistView.XListView xmlns:pla="http://schemas.android.com/apk/res-auto"
         android:id="@+id/xlistView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -68,7 +68,7 @@
         pla:plaLandscapeColumnNumber="1"/>
 
 
-    <com.commodity.scw.ui.widget.scrollView.DampingScrollView
+    <com.commodity.yzrsc.ui.widget.scrollView.DampingScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -83,7 +83,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/mainbanner" />
         </LinearLayout>
-    </com.commodity.scw.ui.widget.scrollView.DampingScrollView>
+    </com.commodity.yzrsc.ui.widget.scrollView.DampingScrollView>
 
 
 

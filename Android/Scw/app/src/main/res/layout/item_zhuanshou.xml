@@ -21,7 +21,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.commodity.scw.ui.widget.imageview.XCRoundRectImageView
+            <com.commodity.yzrsc.ui.widget.imageview.XCRoundRectImageView
                 android:id="@+id/zhuanshou_imag"
                 android:layout_margin="10dp"
                 android:background="@drawable/ico_pic_fail_defalt"

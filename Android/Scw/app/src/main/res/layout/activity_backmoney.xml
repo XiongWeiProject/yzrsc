@@ -116,12 +116,12 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp" />
             </LinearLayout>-->
-            <com.commodity.scw.ui.widget.specialview.MyGridView
+            <com.commodity.yzrsc.ui.widget.specialview.MyGridView
                 android:id="@+id/gridview_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:numColumns="4"
-                ></com.commodity.scw.ui.widget.specialview.MyGridView>
+                ></com.commodity.yzrsc.ui.widget.specialview.MyGridView>
 
         </LinearLayout>
         <Button

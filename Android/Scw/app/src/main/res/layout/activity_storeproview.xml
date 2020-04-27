@@ -3,11 +3,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/head_layout"/>
-    <com.commodity.scw.ui.widget.webview.AdvancedWebView
+    <com.commodity.yzrsc.ui.widget.webview.AdvancedWebView
         android:id="@+id/store_proview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.commodity.scw.ui.widget.webview.AdvancedWebView>
+    </com.commodity.yzrsc.ui.widget.webview.AdvancedWebView>
 
 </LinearLayout>

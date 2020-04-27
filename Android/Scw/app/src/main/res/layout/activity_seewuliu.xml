@@ -17,10 +17,10 @@
         android:layout_height="match_parent">
 
     </ListView>-->
-    <com.commodity.scw.ui.widget.webview.AdvancedWebView
+    <com.commodity.yzrsc.ui.widget.webview.AdvancedWebView
         android:id="@+id/express_webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.commodity.scw.ui.widget.webview.AdvancedWebView>
+    </com.commodity.yzrsc.ui.widget.webview.AdvancedWebView>
 </LinearLayout>

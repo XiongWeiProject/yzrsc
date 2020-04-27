@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
-        <com.commodity.scw.ui.widget.xlistView.XListView xmlns:pla="http://schemas.android.com/apk/res-auto"
+        <com.commodity.yzrsc.ui.widget.xlistView.XListView xmlns:pla="http://schemas.android.com/apk/res-auto"
             android:id="@+id/moneydetail_listview"
             android:dividerHeight="0dp"
             android:divider="@null"
@@ -38,7 +38,7 @@
             pla:plaLandscapeColumnNumber="1"
             android:layout_height="match_parent">
 
-        </com.commodity.scw.ui.widget.xlistView.XListView>
+        </com.commodity.yzrsc.ui.widget.xlistView.XListView>
     </FrameLayout>
 
 

@@ -13,7 +13,7 @@
         android:background="#FFFFFF"
         android:orientation="horizontal">
 
-        <com.commodity.scw.ui.widget.imageview.CircleImageView
+        <com.commodity.yzrsc.ui.widget.imageview.CircleImageView
             android:id="@+id/my_image_head"
             android:layout_width="40dp"
             android:layout_height="40dp"

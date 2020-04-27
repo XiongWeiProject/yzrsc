@@ -62,12 +62,12 @@
             android:textColor="#8F8F8F"
             android:textSize="@dimen/textsize14" />
     </LinearLayout>
-    <com.commodity.scw.ui.widget.textview.CenterDrawableTextView
+    <com.commodity.yzrsc.ui.widget.textview.CenterDrawableTextView
         android:id="@+id/tv_nodata"
         style="@style/nodata_style"
         android:background="@color/white"
         android:visibility="gone" />
-    <com.commodity.scw.ui.widget.xlistView.XListView xmlns:pla="http://schemas.android.com/apk/res-auto"
+    <com.commodity.yzrsc.ui.widget.xlistView.XListView xmlns:pla="http://schemas.android.com/apk/res-auto"
         android:id="@+id/xlistView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -73,7 +73,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="3"
                     android:layout_height="wrap_content">
-                    <com.commodity.scw.ui.widget.imageview.CircleImageView
+                    <com.commodity.yzrsc.ui.widget.imageview.CircleImageView
                         android:id="@+id/store_touxiang"
                         android:src="@drawable/ico_defalut_header"
                         android:layout_alignParentRight="true"

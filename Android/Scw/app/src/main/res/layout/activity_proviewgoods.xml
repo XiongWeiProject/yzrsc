@@ -39,7 +39,7 @@
                 android:layout_marginTop="65dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            <com.commodity.scw.ui.widget.specialview.MyGridView
+            <com.commodity.yzrsc.ui.widget.specialview.MyGridView
                 android:id="@+id/upload_success_shard"
                 android:numColumns="4"
                 android:layout_marginTop="10dp"
@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            </com.commodity.scw.ui.widget.specialview.MyGridView>
+            </com.commodity.yzrsc.ui.widget.specialview.MyGridView>
             <Button
                 android:id="@+id/success_proview"
                 android:layout_margin="20dp"

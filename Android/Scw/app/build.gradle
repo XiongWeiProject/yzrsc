@@ -16,7 +16,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
     defaultConfig {
-        applicationId "com.commodity.scw"
+        applicationId "com.commodity.yzrsc"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1

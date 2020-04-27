@@ -4,7 +4,7 @@
     android:background="@color/background"
     android:layout_height="match_parent">
 
-    <com.commodity.scw.ui.widget.scrollView.DampingScrollView
+    <com.commodity.yzrsc.ui.widget.scrollView.DampingScrollView
         android:id="@+id/alter_b"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -30,7 +30,7 @@
                     android:layout_marginTop="13dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <com.commodity.scw.ui.widget.specialview.MyGridView
+                <com.commodity.yzrsc.ui.widget.specialview.MyGridView
                     android:numColumns="4"
                     android:paddingLeft="19dp"
                     android:layout_marginTop="10dp"
@@ -39,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                </com.commodity.scw.ui.widget.specialview.MyGridView>
+                </com.commodity.yzrsc.ui.widget.specialview.MyGridView>
             </LinearLayout>
             <LinearLayout
                 android:gravity="center_vertical"
@@ -130,7 +130,7 @@
 
             </LinearLayout>
         </LinearLayout>
-    </com.commodity.scw.ui.widget.scrollView.DampingScrollView>
+    </com.commodity.yzrsc.ui.widget.scrollView.DampingScrollView>
     <View
         android:id="@+id/alter_bg"
         android:visibility="gone"

@@ -32,7 +32,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/titlebar_textsize" />
     </RelativeLayout>
-    <com.commodity.scw.ui.widget.scrollView.DampingScrollView
+    <com.commodity.yzrsc.ui.widget.scrollView.DampingScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -44,5 +44,5 @@
             android:orientation="vertical">
 
         </LinearLayout>
-    </com.commodity.scw.ui.widget.scrollView.DampingScrollView>
+    </com.commodity.yzrsc.ui.widget.scrollView.DampingScrollView>
 </LinearLayout>

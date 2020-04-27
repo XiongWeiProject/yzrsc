@@ -7,7 +7,7 @@
 
     <include layout="@layout/head_search" />
 
-    <com.commodity.scw.ui.widget.scrollView.DampingScrollView
+    <com.commodity.yzrsc.ui.widget.scrollView.DampingScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background">>
@@ -17,31 +17,31 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.commodity.scw.ui.widget.customview.PageFlipperLayout
+            <com.commodity.yzrsc.ui.widget.customview.PageFlipperLayout
                 android:id="@+id/type_slideshowView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></com.commodity.scw.ui.widget.customview.PageFlipperLayout>
+                android:layout_height="wrap_content"></com.commodity.yzrsc.ui.widget.customview.PageFlipperLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <com.commodity.scw.ui.widget.specialview.MyListView
+                <com.commodity.yzrsc.ui.widget.specialview.MyListView
                     android:id="@+id/guide_listview"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="90"></com.commodity.scw.ui.widget.specialview.MyListView>
+                    android:layout_weight="90"></com.commodity.yzrsc.ui.widget.specialview.MyListView>
 
-                <com.commodity.scw.ui.widget.specialview.MyGridView
+                <com.commodity.yzrsc.ui.widget.specialview.MyGridView
                     android:id="@+id/content_grid_v"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="285"
-                    android:numColumns="3"></com.commodity.scw.ui.widget.specialview.MyGridView>
+                    android:numColumns="3"></com.commodity.yzrsc.ui.widget.specialview.MyGridView>
             </LinearLayout>
         </LinearLayout>
-    </com.commodity.scw.ui.widget.scrollView.DampingScrollView>
+    </com.commodity.yzrsc.ui.widget.scrollView.DampingScrollView>
 </LinearLayout>
 
 

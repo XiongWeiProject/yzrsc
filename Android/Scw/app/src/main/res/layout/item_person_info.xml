@@ -14,7 +14,7 @@
         android:paddingRight="@dimen/distance_12"
         android:paddingTop="@dimen/distance_12">
 
-        <com.commodity.scw.ui.widget.imageview.CircleImageView
+        <com.commodity.yzrsc.ui.widget.imageview.CircleImageView
             android:id="@+id/view_ico1"
             android:layout_width="35dp"
             android:layout_height="35dp"

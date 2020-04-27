@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
 
-    <com.commodity.scw.ui.activity.shortvideo.MovieRecorderView xmlns:apMovieRecorderViewp="http://schemas.android.com/apk/res-auto"
+    <com.commodity.yzrsc.ui.activity.shortvideo.MovieRecorderView xmlns:apMovieRecorderViewp="http://schemas.android.com/apk/res-auto"
         android:id="@+id/movieRecorderView"
         android:layout_width="match_parent"
         android:layout_height="0dp"

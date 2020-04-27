@@ -3,7 +3,7 @@
      android:layout_width="match_parent"
     android:background="@color/type_FFFFFF"
     android:layout_height="match_parent">
-    <com.commodity.scw.ui.widget.layout.CircularView
+    <com.commodity.yzrsc.ui.widget.layout.CircularView
         android:id="@+id/view_line"
         android:layout_width="50dp"
         android:layout_height="match_parent"/>
