@@ -32,6 +32,7 @@ import com.commodity.yzrsc.ottobus.Event;
 import com.commodity.yzrsc.ui.BaseFragmentActivity;
 import com.commodity.yzrsc.ui.SwipeBackBaseActivity;
 import com.commodity.yzrsc.ui.activity.user.MessageManagerActivity;
+import com.commodity.yzrsc.ui.fragment.HomeFriendFragment;
 import com.commodity.yzrsc.ui.fragment.HomeMarketFragment;
 import com.commodity.yzrsc.ui.fragment.HomeMineFragment;
 import com.commodity.yzrsc.ui.fragment.HomeShopFragment;
@@ -57,7 +58,7 @@ public class HomeFragmentActivity extends BaseFragmentActivity {
     LinearLayout ll_menu;
     long exitTime = 0;
     int tab = 0;
-    int tabNum = 4;
+    int tabNum = 5;
     private Fragment[] fragments;
     @Override
     public boolean getNeedRemove() {
@@ -90,10 +91,13 @@ public class HomeFragmentActivity extends BaseFragmentActivity {
                 R.drawable.ico_home_press, R.string.first_home, 0, 0));
         ll_menu.addView(setMenuItem(R.drawable.ico_type_normal,
                 R.drawable.ico_type_press, R.string.second_home, 0, 1));
+        ll_menu.addView(setMenuItem(R.drawable.ico_mine_friend,
+                R.drawable.ico_mine_friend_no, R.string.friend_home, 0, 2));
         ll_menu.addView(setMenuItem(R.drawable.ico_shop_normal,
-                R.drawable.ico_shop_press, R.string.third_home, 0, 2));
+                R.drawable.ico_shop_press, R.string.third_home, 0, 3));
         ll_menu.addView(setMenuItem(R.drawable.ico_mine_normal,
-                R.drawable.ico_mine_press, R.string.fourth_home, 0, 3));
+                R.drawable.ico_mine_press, R.string.fourth_home, 0, 4));
+
         tabNum=ll_menu.getChildCount();
         //默认选择第几个tab
         doClickTabItem(tab,0);
@@ -138,8 +142,10 @@ public class HomeFragmentActivity extends BaseFragmentActivity {
             }else  if (index==1){
                 fragments[index]=new HomeTypeFragment();
             }else  if (index==2){
-                fragments[index]=new HomeShopFragment();
+                fragments[index]=new HomeFriendFragment();
             }else  if (index==3){
+                fragments[index]=new HomeShopFragment();
+            }else  if (index==4){
                 fragments[index]=new HomeMineFragment();
             }else {
                  fragments[index]=new HomeMarketFragment();

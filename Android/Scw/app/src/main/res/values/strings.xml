@@ -28,6 +28,7 @@
     <string name="second_home">分类</string>
     <string name="third_home">我的店</string>
     <string name="fourth_home">个人中心</string>
+    <string name="friend_home">朋友圈</string>
     <string name="app_exit_tip">再按一次退出程序</string>
     <string name="nostr">——</string>
     <string name="yuan">￥</string>
@@ -99,4 +100,7 @@
     <string name="update_app_model_success">下载成功(点击安装)</string>
     <string name="update_app_model_error">下载失败(点击浏览器下载)</string>
     <string name="downloading_apk">正在后台下载...</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

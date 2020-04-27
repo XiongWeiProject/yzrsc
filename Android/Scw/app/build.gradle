@@ -24,7 +24,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         ndk {
-            abiFilters "armeabi-v7a", "x86","armeabi"
+            abiFilters "armeabi-v7a", "x86", "armeabi"
         }
     }
     lintOptions {
@@ -44,7 +44,7 @@ android {
         abortOnError false
     }
     buildTypes {
-        debug{
+        debug {
             minifyEnabled false
             //signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -87,4 +87,3 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife:7.0.1'
 
 }
-

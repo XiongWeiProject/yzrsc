@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.HomeFriendFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:background="@color/co_FD713F">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="易州人动态"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/textsize17" />
+        <com.commodity.yzrsc.ui.widget.imageview.CircleImageView
+            android:id="@+id/my_image_head"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:layout_toLeftOf="@+id/iv_release_dynamic"
+            android:src="@drawable/ico_defalut_header" />
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/iv_release_dynamic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/release_dynamic"/>
+    </RelativeLayout>
+
+</LinearLayout>
