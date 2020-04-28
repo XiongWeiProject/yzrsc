@@ -22,7 +22,7 @@
     <color name="co_3C3636">#3C3636</color>
     <color name="co_F95F3D">#F95F3D</color>
     <color name="co_F7A926">#F7A926</color>
-    <color name="co_FD713F">#FD713F</color>
+    <color name="co_FD713F">#DE2A0F</color>
     <color name="co_BEBEBE">#BEBEBE</color>
     <color name="co_FF0000">#FF0000</color>
     <color name="co_FF5F49">#FF5F49</color>
@@ -31,6 +31,7 @@
     <color name="co_F2F2F2">#F2F2F2</color>
     <color name="co_F2D46E">#F2D46E</color>
     <color name="co_111A3B">#111A3B</color>
+    <color name="co_E7E7E7">#E7E7E7</color>
     <!--分类-->
     <color name="type_FFFFFF">#FFFFFF</color>
     <color name="type_BA0008">#BA0008</color>
@@ -40,6 +41,7 @@
     <color name="type_3C3636">#3C3636</color>
     <color name="type_666666">#666666</color>
     <color name="colorPrimary">#3F51B5</color>
+    <color name="color_type">#FF666666</color>
     <color name="province_line_border">#C7C7C7</color>
 
     <color name="seal_bg">#f0f0f6</color>

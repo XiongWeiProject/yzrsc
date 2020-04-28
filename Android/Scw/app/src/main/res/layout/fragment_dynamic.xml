@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.DynamicFragment">
+
+    <com.commodity.yzrsc.ui.widget.textview.CenterDrawableTextView
+        android:id="@+id/tv_nodata"
+        style="@style/nodata_style"
+        android:background="@color/white"
+        android:visibility="gone" />
+    <com.commodity.yzrsc.ui.widget.xlistView.XListView xmlns:pla="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/xlist_dynamic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fastScrollEnabled="true"
+        android:layout_marginTop="30dp"
+        android:scrollbars="vertical"
+        pla:plaColumnNumber="1"
+        pla:plaLandscapeColumnNumber="1"/>
+</FrameLayout>

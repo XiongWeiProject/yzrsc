@@ -5,6 +5,7 @@ package com.commodity.yzrsc.http;
  */
 public class IRequestConst {
     public static final String REQUEST_URL = "http://scw-api.83soft.cn/";//测试环境2 scw-web.83soft.cn
+    public static final String REQUEST_URLS = "https://yzrsc-api.83soft.cn:443/";//测试环境动态
     //public static final String REQUEST_URL = "http://api.soucangwang.com/";//正式环境
 
     // 请求类别
@@ -193,5 +194,7 @@ public class IRequestConst {
         // 获取水印图片
         public static final String GetWaterMarkImages = REQUEST_URL + "Common/GetWaterMarkImages";
 
+        //动态分类
+        public static final String GetDynamicCatalog  = REQUEST_URLS  +"UserDynamic/GetDynamicCatalog";
     }
 }

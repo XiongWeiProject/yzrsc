@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".ui.fragment.HomeFriendFragment">
 
     <RelativeLayout
@@ -18,10 +20,11 @@
             android:textSize="@dimen/textsize17" />
         <com.commodity.yzrsc.ui.widget.imageview.CircleImageView
             android:id="@+id/my_image_head"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
             android:layout_gravity="center_vertical"
-            android:layout_margin="10dp"
+            android:layout_marginRight="12dp"
+            android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/iv_release_dynamic"
             android:src="@drawable/ico_defalut_header" />
         <android.support.v7.widget.AppCompatImageView
@@ -29,10 +32,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="23dp"
             android:layout_gravity="center_vertical"
             android:layout_alignParentRight="true"
             android:src="@drawable/release_dynamic"/>
     </RelativeLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tl"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:tabIndicatorColor="@color/co_FD713F"
+        app:tabSelectedTextColor="@color/co_FD713F"
+        app:tabGravity="center"
+        app:tabMode="scrollable"
+        android:padding="5dp"
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/co_E7E7E7"
+        android:layout_height="1dp"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+
 
 </LinearLayout>
