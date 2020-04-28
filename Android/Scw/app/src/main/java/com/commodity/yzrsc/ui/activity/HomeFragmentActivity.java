@@ -91,8 +91,8 @@ public class HomeFragmentActivity extends BaseFragmentActivity {
                 R.drawable.ico_home_press, R.string.first_home, 0, 0));
         ll_menu.addView(setMenuItem(R.drawable.ico_type_normal,
                 R.drawable.ico_type_press, R.string.second_home, 0, 1));
-        ll_menu.addView(setMenuItem(R.drawable.ico_mine_friend,
-                R.drawable.ico_mine_friend_no, R.string.friend_home, 0, 2));
+        ll_menu.addView(setMenuItem(R.drawable.ico_mine_friend_no,
+                R.drawable.ico_mine_friend, R.string.friend_home, 0, 2));
         ll_menu.addView(setMenuItem(R.drawable.ico_shop_normal,
                 R.drawable.ico_shop_press, R.string.third_home, 0, 3));
         ll_menu.addView(setMenuItem(R.drawable.ico_mine_normal,
