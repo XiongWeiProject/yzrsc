@@ -14,6 +14,7 @@ import com.commodity.yzrsc.http.ServiceInfo;
 import com.commodity.yzrsc.manager.SPKeyManager;
 import com.commodity.yzrsc.model.DynamicAllListModel;
 import com.commodity.yzrsc.ui.BaseFragment;
+import com.commodity.yzrsc.ui.adapter.DynamicListAdapter;
 import com.commodity.yzrsc.ui.adapter.TypeAdapter;
 import com.commodity.yzrsc.ui.widget.textview.CenterDrawableTextView;
 import com.commodity.yzrsc.ui.widget.xlistView.XListView;
@@ -37,13 +38,14 @@ public class DynamicFragment extends BaseFragment {
     private static final String ARG_PARAM2 = "param2";
     @Bind(R.id.xlist_dynamic)
     XListView xlistDynamic;
-    TypeAdapter adapter;
     List<DynamicAllListModel> listModels = new ArrayList<>();
     @Bind(R.id.tv_nodata)
     CenterDrawableTextView tvNodata;
     // TODO: Rename and change types of parameters
     private int mParam1;
     private String mParam2;
+
+    DynamicAllListModel data;
 
     public DynamicFragment() {
         // Required empty public constructor
@@ -52,6 +54,11 @@ public class DynamicFragment extends BaseFragment {
     private int pageIndex = 1;
     private int totalPage = 1;
 
+    private String memberId = "0";
+    private String minId = "0";//页码的最小id
+
+
+    DynamicListAdapter dynamicListAdapter;
     public static DynamicFragment newInstance(int param1, String param2) {
         DynamicFragment fragment = new DynamicFragment();
         Bundle args = new Bundle();
@@ -79,8 +86,8 @@ public class DynamicFragment extends BaseFragment {
     @Override
     protected void initView() {
         xlistDynamic.setPullLoadEnable(true);
-//        adapter=new TypeModel(getActivity(),listModels);
-//        xlistDynamic.setAdapter(adapter);
+        dynamicListAdapter = new DynamicListAdapter(getActivity(),listModels);
+        xlistDynamic.setAdapter(dynamicListAdapter);
         sendRequest(1, "");
     }
 
@@ -94,6 +101,7 @@ public class DynamicFragment extends BaseFragment {
                     @Override
                     public void run() {
                         pageIndex = 1;
+                        minId = "0";
                         sendRequest(1, "");
                         xlistDynamic.setRefreshTime(SPKeyManager.dateFormat.format(new Date()));
                     }
@@ -107,6 +115,7 @@ public class DynamicFragment extends BaseFragment {
                     @Override
                     public void run() {
                         pageIndex++;
+                        minId = listModels.get(listModels.size()-1).getDynamicCatalog_Id()+"";
                         sendRequest(1, "");
                     }
                 }, SPKeyManager.delay_time);
@@ -120,12 +129,12 @@ public class DynamicFragment extends BaseFragment {
         if (tag == 1) {
             customLoadding.show();
             Map<String, String> parmMap = new HashMap<String, String>();
-            parmMap.put("memberId", "1");
-            parmMap.put("catalogId", "1");
-            parmMap.put("minId", "memberId");
+            parmMap.put("memberId", memberId);
+            parmMap.put("catalogId", mParam1+"");
+            parmMap.put("minId", minId);
             parmMap.put("pageSize", "" + SPKeyManager.pageSize);
             HttpManager httpManager = new HttpManager(tag, HttpMothed.GET,
-                    IRequestConst.RequestMethod.GetEvaluationNotificationList, parmMap, this);
+                    IRequestConst.RequestMethod.GetDynamicList, parmMap, this);
             httpManager.request();
         }
     }
@@ -139,24 +148,25 @@ public class DynamicFragment extends BaseFragment {
                 if (pageIndex == 1) {
                     listModels.clear();
                 }
-                totalPage = resultJson.optJSONObject("pageInfo").optInt("totalPage");
+//                totalPage = resultJson.optJSONObject("pageInfo").optInt("totalPage");
                 JSONArray dataArray = resultJson.optJSONArray("data");
                 if (dataArray != null) {
                     for (int i = 0; i < dataArray.length(); i++) {
                         try {
-                            DynamicAllListModel data = GsonUtils.jsonToObject(dataArray.getJSONObject(i).toString(), DynamicAllListModel.class);
+                            data = GsonUtils.jsonToObject(dataArray.getJSONObject(i).toString(), DynamicAllListModel.class);
                             listModels.add(data);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-                    if (pageIndex >= totalPage) {
+                    if (listModels.size() == SPKeyManager.delay_time) {
                         xlistDynamic.setPullLoadEnable(false);
                     } else {
                         xlistDynamic.setPullLoadEnable(true);
                     }
                 }
-                adapter.notifyDataSetChanged();
+                dynamicListAdapter.notifyDataSetChanged();
 
                 if (listModels.size() > 0) {
                     tvNodata.setVisibility(View.GONE);
@@ -179,5 +189,11 @@ public class DynamicFragment extends BaseFragment {
     public void OnFailedResponse(int tag, String code, String msg) {
         super.OnFailedResponse(tag, code, msg);
         tip(msg);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
     }
 }

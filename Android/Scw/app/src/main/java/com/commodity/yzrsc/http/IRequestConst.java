@@ -196,5 +196,6 @@ public class IRequestConst {
 
         //动态分类
         public static final String GetDynamicCatalog  = REQUEST_URLS  +"UserDynamic/GetDynamicCatalog";
+        public static final String GetDynamicList  = REQUEST_URLS  +"UserDynamic/GetDynamicInfoList";
     }
 }

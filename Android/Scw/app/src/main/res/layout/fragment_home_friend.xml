@@ -46,7 +46,6 @@
         app:tabSelectedTextColor="@color/co_FD713F"
         app:tabGravity="center"
         app:tabMode="scrollable"
-        android:padding="5dp"
         app:tabTextAppearance="@style/TabLayoutTextStyle"
         />
     <View
