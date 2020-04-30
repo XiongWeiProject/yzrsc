@@ -32,6 +32,7 @@
     <color name="co_F2D46E">#F2D46E</color>
     <color name="co_111A3B">#111A3B</color>
     <color name="co_E7E7E7">#E7E7E7</color>
+    <color name="co_line">#E2E2E2</color>
     <!--分类-->
     <color name="type_FFFFFF">#FFFFFF</color>
     <color name="type_BA0008">#BA0008</color>

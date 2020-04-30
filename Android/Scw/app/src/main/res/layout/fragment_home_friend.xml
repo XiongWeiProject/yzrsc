@@ -12,6 +12,7 @@
         android:layout_height="@dimen/ll_height50"
         android:background="@color/co_FD713F">
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

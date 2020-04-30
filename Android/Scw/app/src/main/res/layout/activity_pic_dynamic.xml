@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ren_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/type_FFFFFF">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/type_FFFFFF"
+        android:orientation="vertical">
+
+        <include layout="@layout/head_layout" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/pic_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/type_FFFFFF"
+                android:hint="请输入文字内容"
+                android:paddingLeft="30dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:textColor="#FFBCBCBC"
+                android:textColorHint="#FFBCBCBC"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+        <com.commodity.yzrsc.ui.widget.specialview.MyGridView
+            android:id="@+id/pic_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:numColumns="3">
+
+        </com.commodity.yzrsc.ui.widget.specialview.MyGridView>
+
+        <Button
+            android:id="@+id/pic_submit"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/bg_btn_red"
+            android:text="确认发布"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize18" />
+
+
+    </LinearLayout>
+        <View
+            android:id="@+id/bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#77777777"
+            android:visibility="gone" />
+
+</FrameLayout>
