@@ -1,5 +1,8 @@
 package com.commodity.yzrsc.http;
 
+import android.util.Log;
+
+import com.alibaba.fastjson.JSON;
 import com.commodity.yzrsc.manager.ConfigManager;
 
 import java.io.IOException;
@@ -7,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -70,6 +74,30 @@ public class UpLoadUtils {
             }
         });
     }
+    /*
+     *上传图片视频
+     */
+    public void uploadPicture1(String url,MultipartBody.Builder multiparBody, final Callback callback){
+
+        Request build = new Request.Builder().url(url)
+                .addHeader("Connection", "Keep-Alive")
+                .addHeader("Charset", "UTF-8")
+                .addHeader("Accept", "application/json")
+                .addHeader("scw-token", "309AA687789A2FFD47404D063005282D")
+                .post(multiparBody.build())
+                .build();
+        mOkHttpClient.newCall(build).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callback.onFailure(call,e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                callback.onResponse(call,response);
+            }
+        });
+    }
 
     /**
      * post请求
@@ -104,6 +132,28 @@ public class UpLoadUtils {
                 .addHeader("Content-type", "application/json")
                 .addHeader("Accept", "application/json")
                 .addHeader("scw-token", ConfigManager.instance().getUser().getDeviceToken())
+                .post(body)
+                .build();
+        mOkHttpClient.newCall(build).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callback.onFailure(call,e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                callback.onResponse(call,response);
+            }
+        });
+    }
+    /**
+     * 获取微信payid
+     */
+    public void requesDynamic(String url, FormBody body, final Callback callback){
+        Request build = new Request.Builder().url(url)
+                .addHeader("Content-type", "application/json")
+                .addHeader("Accept", "application/json")
+                .addHeader("scw-token", "309AA687789A2FFD47404D063005282D")
                 .post(body)
                 .build();
         mOkHttpClient.newCall(build).enqueue(new Callback() {

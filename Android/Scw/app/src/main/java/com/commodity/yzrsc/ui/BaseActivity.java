@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 
@@ -54,6 +56,10 @@ public abstract class BaseActivity extends SwipeBackBaseActivity implements Base
         customLoadding = new CustomLoadding(mContext);
         customLoadding.setCanceledOnTouchOutside(false);
         AppManager.getAppManager().addActivity(this);
+//        // 设置竖屏
+//        if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//        }
         if (getContentView() != 0) {
             setContentView(getContentView());
             ButterKnife.bind(this);

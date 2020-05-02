@@ -21,6 +21,7 @@ import com.commodity.yzrsc.rongyun.server.utils.NToast;
 import com.commodity.yzrsc.ui.BaseFragment;
 import com.commodity.yzrsc.ui.activity.commodity.CommodityOrderActivity;
 import com.commodity.yzrsc.ui.activity.friend.PicDynamicActivity;
+import com.commodity.yzrsc.ui.activity.friend.VideoDynamicActivity;
 import com.commodity.yzrsc.ui.adapter.FragmentViewPagerAdapter;
 import com.commodity.yzrsc.ui.widget.imageview.CircleImageView;
 import com.commodity.yzrsc.view.PopWinShare;
@@ -70,12 +71,10 @@ public class HomeFriendFragment extends BaseFragment {
     protected void initView() {
         sendRequest(1);
 
-
     }
 
     @Override
     protected void initListeners() {
-
     }
 
     private void setTab() {
@@ -146,7 +145,7 @@ public class HomeFriendFragment extends BaseFragment {
                 if (popWinShare == null) {
                     //自定义的单击事件
                     OnClickLintener paramOnClickListener = new OnClickLintener();
-                    popWinShare = new PopWinShare(getActivity(), paramOnClickListener, RongUtils.dip2px(110), RongUtils.dip2px(84));
+                    popWinShare = new PopWinShare(getActivity(), paramOnClickListener, RongUtils.dip2px(110), RongUtils.dip2px(84),1);
                     //监听窗口的焦点事件，点击窗口外面则取消显示
                     popWinShare.getContentView().setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
@@ -172,15 +171,18 @@ public class HomeFriendFragment extends BaseFragment {
 
         @Override
         public void onClick(View v) {
+            popWinShare.dismiss();
+
             switch (v.getId()) {
+
                 case R.id.pic:
 //                    Bundle bundle=new Bundle();
 //                    bundle.putString("userDynamicCatalog_Id",typeModel.get(i).getId());
-                    popWinShare.dismiss();
+
                     jumpActivity(PicDynamicActivity.class);
                     break;
                 case R.id.video:
-
+                    jumpActivity(VideoDynamicActivity.class);
                     break;
 
                 default:

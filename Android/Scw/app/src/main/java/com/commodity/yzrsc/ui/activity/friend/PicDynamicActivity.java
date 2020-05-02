@@ -29,13 +29,17 @@ import com.commodity.yzrsc.manager.SPKeyManager;
 import com.commodity.yzrsc.manager.SPManager;
 import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.activity.store.RenzhengActivity;
+import com.commodity.yzrsc.ui.activity.user.LoginActivity;
+import com.commodity.yzrsc.ui.activity.user.SettingActivity;
 import com.commodity.yzrsc.ui.adapter.PhotoPopupAdapter;
 import com.commodity.yzrsc.ui.adapter.UpLoadPictureAdapter;
+import com.commodity.yzrsc.ui.dialog.CommonDialog;
 import com.commodity.yzrsc.ui.dialog.RenzhengSuccessDialog;
 import com.commodity.yzrsc.ui.widget.layout.TakePopupWin;
 import com.commodity.yzrsc.ui.widget.specialview.MyGridView;
 import com.commodity.yzrsc.utils.FileUtil;
 import com.commodity.yzrsc.utils.PhotoUtils;
+import com.commodity.yzrsc.view.SuccessDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -77,7 +81,7 @@ public class PicDynamicActivity extends BaseActivity {
     public final int openCamera = 1;
     public final int openAblum = 2;
     public final int CROP_CODE = 3;
-
+    String desc;
     public String imgName = "";
     private List<String> data = new ArrayList<>();
     private static final String RENZHENG = ConfigManager.ROOT + "dongtai" + File.separator;
@@ -127,6 +131,22 @@ public class PicDynamicActivity extends BaseActivity {
                 setHeadPictrue();
             }
         });
+        headBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!TextUtils.isEmpty(desc)||pictrueData.size()!=1){
+                    CommonDialog commonDialog=new CommonDialog(PicDynamicActivity.this);
+                    commonDialog.show();
+                    commonDialog.setContext("放弃此次编辑？");
+                    commonDialog.setClickSubmitListener(new CommonDialog.OnClickSubmitListener() {
+                        @Override
+                        public void clickSubmit() {
+                            finish();
+                        }
+                    });
+                }
+            }
+        });
     }
 
     private void initData() {
@@ -143,7 +163,7 @@ public class PicDynamicActivity extends BaseActivity {
 
     @OnClick(R.id.pic_submit)
     public void onViewClicked() {
-        String desc = picDescription.getText().toString().trim();
+        desc = picDescription.getText().toString().trim();
         if (TextUtils.isEmpty(desc)){
             tip("请输入内容");
             return;
@@ -162,7 +182,7 @@ public class PicDynamicActivity extends BaseActivity {
             File file = new File(pictrueData.get(i));
             multiparBody.addFormDataPart("image",file.getName(), RequestBody.create(MEDIA_TYPE_PNG, file));
         }
-        UpLoadUtils.instance().uploadPicture(IRequestConst.RequestMethod.PostDynamic,multiparBody,new Callback(){
+        UpLoadUtils.instance().uploadPicture1(IRequestConst.RequestMethod.PostDynamic,multiparBody,new Callback(){
             @Override
             public void onFailure(Call call, IOException e) {
                 Looper.prepare();
@@ -178,45 +198,45 @@ public class PicDynamicActivity extends BaseActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 String responseStr=response.body().string();
                 Log.e("onResponse:****",responseStr);
-//                if(customLoadding.isShowing()){
-//                    customLoadding.dismiss();
-//                }
-//                JSONObject jsob= null;
-//                try {
-//                    jsob = new JSONObject(responseStr);
-//                    if (jsob!=null&&jsob.optBoolean("data")){
-//                        //提交成功
-//                        Looper.prepare();
-//                        RenzhengSuccessDialog renzhengSuccessDialog = new RenzhengSuccessDialog(PicDynamicActivity.this);
-//                        renzhengSuccessDialog.show();
-//                        renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-////                                            SPManager.put(RenzhengActivity.this, Constanct.RENZHENG,true);
-//                                SPManager.instance().setBoolean(Constanct.RENZHENG,true);
-//                                finish();
-//                            }
-//                        });
-//                        renzhengSuccessDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-//                            @Override
-//                            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-//                                switch (keyCode) {
-//                                    case KeyEvent.KEYCODE_BACK:
-//                                        return true;
-//                                    default:
-//                                        break;
-//                                }
-//                                return false;
-//                            }
-//                        });
-//                        Looper.loop();
-//                    }else {
-//                        tip(jsob.optString("msg"));
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                    tip("json解析异常");
-//                }
+                if(customLoadding.isShowing()){
+                    customLoadding.dismiss();
+                }
+                JSONObject jsob= null;
+                try {
+                    jsob = new JSONObject(responseStr);
+                    if (jsob!=null&&jsob.optBoolean("data")){
+                        //提交成功
+                        Looper.prepare();
+                        SuccessDialog renzhengSuccessDialog = new SuccessDialog(PicDynamicActivity.this);
+                        renzhengSuccessDialog.show();
+                        renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+//                                            SPManager.put(RenzhengActivity.this, Constanct.RENZHENG,true);
+                                SPManager.instance().setBoolean(Constanct.RENZHENG,true);
+                                finish();
+                            }
+                        });
+                        renzhengSuccessDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                            @Override
+                            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                                switch (keyCode) {
+                                    case KeyEvent.KEYCODE_BACK:
+                                        return true;
+                                    default:
+                                        break;
+                                }
+                                return false;
+                            }
+                        });
+                        Looper.loop();
+                    }else {
+                        tip(jsob.optString("msg"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    tip("json解析异常");
+                }
 
             }
         });
@@ -301,6 +321,24 @@ public class PicDynamicActivity extends BaseActivity {
     protected void onDestroy() {
         FileUtil.deleteFolderRecursively(new File(RENZHENG_DELETE));
         super.onDestroy();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // 是否触发按键为back键
+        if (!TextUtils.isEmpty(desc)||pictrueData.size()!=1){
+            CommonDialog commonDialog=new CommonDialog(PicDynamicActivity.this);
+            commonDialog.show();
+            commonDialog.setContext("放弃此次编辑？");
+            commonDialog.setClickSubmitListener(new CommonDialog.OnClickSubmitListener() {
+                @Override
+                public void clickSubmit() {
+                    finish();
+                }
+            });
+        }
+        // 如果不是back键正常响应
+        return super.onKeyDown(keyCode, event);
     }
 
 }

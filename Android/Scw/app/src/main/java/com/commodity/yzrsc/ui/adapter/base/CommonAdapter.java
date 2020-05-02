@@ -1,10 +1,12 @@
 package com.commodity.yzrsc.ui.adapter.base;
 
 import android.content.Context;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Toast;
 
 import com.commodity.yzrsc.utils.CustomToast;
 
@@ -61,5 +63,14 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
      */
     protected void tip(int tip) {
         tip(tip+"");
+    }
+
+    /**
+     * 方法名称：tip
+     */
+    protected void tips(String tipStr) {
+        Looper.prepare();
+        Toast.makeText(mContext.getApplicationContext(),tipStr,Toast.LENGTH_LONG).show();
+        Looper.loop();
     }
 }

@@ -975,6 +975,7 @@ public class HttpApacheClientExecutor implements com.commodity.yzrsc.http.HttpCl
         headerMap.put("User-Agent", useragent);
         if (ConfigManager.instance().isLogin()&&userInfo!=null){
             headerMap.put("scw-token", userInfo.getDeviceToken());
+//            headerMap.put("scw-token","3663B0267EEEFAB80A14C3438E97141A");//测试写死的token
             Log.e("scw-token",userInfo.getDeviceToken());
         }
         if (client != null) {

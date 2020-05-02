@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="34dp"
+    android:padding="5dp"
+    android:gravity="center"
+    android:background="#B3000000"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_like"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="赞"
+        android:gravity="center"
+        android:drawableLeft="@drawable/icon_like"
+        android:textColor="@color/white"
+        android:drawablePadding="5dp"
+        android:textSize="@dimen/textsize14" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_evalution"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:drawablePadding="5dp"
+        android:layout_height="match_parent"
+        android:text="评论"
+        android:drawableLeft="@drawable/evalution"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize14" />
+
+</LinearLayout>

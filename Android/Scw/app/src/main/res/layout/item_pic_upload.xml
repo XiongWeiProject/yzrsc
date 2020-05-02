@@ -2,19 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/type_FFFFFF"
     android:layout_width="wrap_content"
+    android:layout_margin="5dp"
     android:layout_height="wrap_content">
 
     <LinearLayout
         android:background="@color/type_FFFFFF"
         android:id="@+id/shop_linearlaout"
         android:orientation="horizontal"
-        android:layout_width="120dp"
-        android:layout_height="120dp">
+        android:layout_width="100dp"
+        android:layout_height="100dp">
 
         <ImageView
             android:id="@+id/upload_grid_imag"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="2dp"
             android:background="@drawable/ico_pic_fail_defalt"
             android:scaleType="fitXY" />
     </LinearLayout>
@@ -23,6 +25,6 @@
         android:id="@+id/item_delete"
         android:layout_alignRight="@id/shop_linearlaout"
         android:background="@drawable/umeng_socialize_delete"
-        android:layout_width="24dp"
-        android:layout_height="24dp" />
+        android:layout_width="20dp"
+        android:layout_height="20dp" />
 </RelativeLayout>
