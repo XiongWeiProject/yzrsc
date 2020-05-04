@@ -1,10 +1,9 @@
-package com.commodity.yzrsc.ui.fragment;
+package com.commodity.yzrsc.ui.activity.friend;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.commodity.yzrsc.R;
 import com.commodity.yzrsc.http.HttpManager;
@@ -13,9 +12,8 @@ import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.ServiceInfo;
 import com.commodity.yzrsc.manager.SPKeyManager;
 import com.commodity.yzrsc.model.DynamicAllListModel;
-import com.commodity.yzrsc.ui.BaseFragment;
+import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.adapter.DynamicListAdapter;
-import com.commodity.yzrsc.ui.adapter.TypeAdapter;
 import com.commodity.yzrsc.ui.widget.textview.CenterDrawableTextView;
 import com.commodity.yzrsc.ui.widget.xlistView.XListView;
 import com.commodity.yzrsc.utils.GsonUtils;
@@ -32,62 +30,38 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class DynamicFragment extends BaseFragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    @Bind(R.id.xlist_dynamic)
-    XListView xlistDynamic;
+public class OtherDynamicActivity extends BaseActivity {
+
+
     @Bind(R.id.tv_nodata)
     CenterDrawableTextView tvNodata;
+    @Bind(R.id.xlist_dynamic)
+    XListView xlistDynamic;
+    @Bind(R.id.head_back)
+    ImageView headBack;
 
-
-    // TODO: Rename and change types of parameters
-    private int mParam1;
-    private String mParam2;
     List<DynamicAllListModel> listModels = new ArrayList<>();
     DynamicAllListModel data;
-
-    public DynamicFragment() {
-        // Required empty public constructor
-    }
+    DynamicListAdapter dynamicListAdapter;
 
     private int pageIndex = 1;
     private int totalPage = 1;
-
     private String memberId = "0";
     private String minId = "0";//页码的最小id
 
-
-    DynamicListAdapter dynamicListAdapter;
-    public static DynamicFragment newInstance(int param1, String param2) {
-        DynamicFragment fragment = new DynamicFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getInt(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-
     @Override
     protected int getContentView() {
-        return R.layout.fragment_dynamic;
+        return R.layout.activity_my_dynamic;
     }
 
     @Override
     protected void initView() {
+        Bundle extras = getIntent().getExtras();
+        memberId = extras.getString("dynamicId");
         xlistDynamic.setPullLoadEnable(true);
-        dynamicListAdapter = new DynamicListAdapter(getActivity(),listModels);
+        dynamicListAdapter = new DynamicListAdapter(this, listModels);
         xlistDynamic.setAdapter(dynamicListAdapter);
         sendRequest(1, "");
     }
@@ -116,7 +90,7 @@ public class DynamicFragment extends BaseFragment {
                     @Override
                     public void run() {
                         pageIndex++;
-                        minId = listModels.get(listModels.size()-1).getId()+"";
+                        minId = listModels.get(listModels.size() - 1).getId() + "";
                         sendRequest(1, "");
                     }
                 }, SPKeyManager.delay_time);
@@ -131,7 +105,7 @@ public class DynamicFragment extends BaseFragment {
             customLoadding.show();
             Map<String, String> parmMap = new HashMap<String, String>();
             parmMap.put("memberId", memberId);
-            parmMap.put("catalogId", mParam1+"");
+            parmMap.put("catalogId", "");
             parmMap.put("minId", minId);
             parmMap.put("pageSize", "" + SPKeyManager.pageSize);
             HttpManager httpManager = new HttpManager(tag, HttpMothed.GET,
@@ -196,5 +170,17 @@ public class DynamicFragment extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.head_back)
+    public void onViewClicked() {
+        finish();
     }
 }

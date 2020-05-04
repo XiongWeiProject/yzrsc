@@ -34,7 +34,7 @@
         android:drawablePadding="5dp"
         android:layout_height="match_parent"
         android:text="评论"
-        android:drawableLeft="@drawable/evalution"
+        android:drawableLeft="@drawable/evalutions"
         android:textColor="@color/white"
         android:textSize="@dimen/textsize14" />
 

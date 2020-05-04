@@ -200,5 +200,7 @@ public class IRequestConst {
         public static final String PostDynamic  = REQUEST_URLS  +"UserDynamic/UploadDynamic";
         public static final String PostDynamicLike  = REQUEST_URLS  +"UserDynamic/DynamicLikeOrNot";
         public static final String PostDynamicEvaluate  = REQUEST_URLS  +"UserDynamic/AddComment";
+        public static final String PostDynamZanList  = REQUEST_URLS  +"UserDynamic/GetDynamicLikeList";
+        public static final String PostDynamEvalutionList  = REQUEST_URLS  +"UserDynamic/GetDynamicCommentList";
     }
 }

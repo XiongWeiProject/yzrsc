@@ -19,7 +19,7 @@ import de.greenrobot.event.EventBus;
  */
 public class FullScreenActivity extends Activity {
 
-    static void toActivityFromNormal(Context context, int state, String url, String thumb, String title) {
+    public static void toActivityFromNormal(Context context, int state, String url, String thumb, String title) {
         STATE = state;
         URL = url;
         THUMB = thumb;

@@ -41,10 +41,12 @@ import com.commodity.yzrsc.manager.ImageLoaderManager;
 import com.commodity.yzrsc.model.DynamicAllListModel;
 import com.commodity.yzrsc.model.Evalution;
 import com.commodity.yzrsc.ui.activity.friend.OtherDynamicActivity;
+import com.commodity.yzrsc.ui.activity.friend.PicDynamicActivity;
 import com.commodity.yzrsc.ui.activity.general.BigPictureActivity;
 import com.commodity.yzrsc.ui.adapter.base.BaseRecycleAdapter;
 import com.commodity.yzrsc.ui.adapter.base.CommonAdapter;
 import com.commodity.yzrsc.ui.adapter.base.ViewHolder;
+import com.commodity.yzrsc.ui.dialog.CommonDialog;
 import com.commodity.yzrsc.view.MoreEvalutionDialog;
 import com.commodity.yzrsc.view.PopWinShare;
 
@@ -70,7 +72,7 @@ import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.Response;
 
-public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
+public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
     private PopupWindow popupWindow;
     private View popupView = null;
     private EditText inputComment;
@@ -87,8 +89,8 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
     RelativeLayout rl_more;
     ShowPicAdapter showPicAdapter;
 
-    public DynamicListAdapter(Context context, List<DynamicAllListModel> datas) {
-        super(context, datas, R.layout.item_dynamic_list);
+    public MyDynamicListAdapter(Context context, List<DynamicAllListModel> datas) {
+        super(context, datas, R.layout.item_my_dynamic_list);
         data = datas;
     }
 
@@ -96,16 +98,19 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
     public void convert(final ViewHolder holder, final DynamicAllListModel dynamicAllListModel) {
         holder.setText(R.id.dynamic_name, dynamicAllListModel.getMemberNickname())
                 .setText(R.id.dynamic_content, dynamicAllListModel.getDescription())
-                .setText(R.id.dynamic_time, dynamicAllListModel.getCreateTime());
+                .setText(R.id.dynamic_time, dynamicAllListModel.getCreateTime()).setText(R.id.like_count, dynamicAllListModel.getLikeCount() + "")
+                .setText(R.id.evalution_count, dynamicAllListModel.getCommentCount() + "").setText(R.id.dynamic_dretime, dynamicAllListModel.getCreateTime());
         ImageView head = holder.getView(R.id.ll_head);
         final ImageView zan = holder.getView(R.id.dynamic_zan);
         final TextView time = holder.getView(R.id.dynamic_time);
+        final TextView dynamic_delete = holder.getView(R.id.dynamic_delete);
         rcv_pic = holder.getView(R.id.rcv_pic);
         rcv_zan = holder.getView(R.id.rcv_zan);
         rcv_evalution = holder.getView(R.id.rcv_evalution);
         View view_line = holder.getView(R.id.view_line);
         rl_more = holder.getView(R.id.rl_more);
         LinearLayout ll_evalution = holder.getView(R.id.ll_evalution);
+        LinearLayout ll_evalution1 = holder.getView(R.id.ll_evalution1);
         LinearLayout ll_zan = holder.getView(R.id.ll_zan);
         ImageLoaderManager.getInstance().displayImage(dynamicAllListModel.getMemberAvatar(), head,
                 R.drawable.ico_pic_fail_defalt);
@@ -144,16 +149,31 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
             getzanList(dynamicAllListModel.getId());
         } else if (dynamicAllListModel.getCommentCount() > 0) {
             ll_evalution.setVisibility(View.VISIBLE);
-            rcv_evalution.setVisibility(View.VISIBLE);
+            ll_evalution1.setVisibility(View.VISIBLE);
             view_line.setVisibility(View.GONE);
             rcv_evalution.setLayoutManager(new LinearLayoutManager(mContext));
             getEvalutionList(dynamicAllListModel.getId());
         } else {
             ll_evalution.setVisibility(View.VISIBLE);
             ll_zan.setVisibility(View.VISIBLE);
-            rcv_evalution.setVisibility(View.VISIBLE);
+            ll_evalution1.setVisibility(View.VISIBLE);
             view_line.setVisibility(View.VISIBLE);
         }
+        dynamic_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final CommonDialog commonDialog = new CommonDialog(mContext);
+                commonDialog.show();
+                commonDialog.setContext("是否删除此动态？");
+                commonDialog.setClickSubmitListener(new CommonDialog.OnClickSubmitListener() {
+                    @Override
+                    public void clickSubmit() {
+                        commonDialog.dismiss();
+                        deleteDynamic(data.get(position).getId());
+                    }
+                });
+            }
+        });
         head.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -218,6 +238,43 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                     VideoEvents videoEvents = new VideoEvents().setType(VideoEvents.POINT_CLICK_BLANK);
                     EventBus.getDefault().post(videoEvents);
                 }
+            }
+        });
+    }
+
+    private void deleteDynamic(int id) {
+        FormBody requestBody = new FormBody.Builder().add("id", String.valueOf(id)).build();
+        UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDynamicLike, requestBody, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("failure:", e.getMessage());
+                tips("e.getMessage()");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String string = response.body().string();
+                Log.e("onResponse:", string);
+                JSONObject jsob;
+                if (string != null) {
+                    try {
+                        jsob = new JSONObject(string);
+                        if (jsob != null && jsob.optBoolean("success")) {
+                            tips("删除成功");
+                            notifyDataSetChanged();
+
+                        } else {
+                            //提交失败
+                            tips("删除失败");
+
+                        }
+                    } catch (JSONException e) {
+
+                        e.printStackTrace();
+                        tips("json解析异常");
+                    }
+                }
+
             }
         });
     }
@@ -302,13 +359,13 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                 if (resultJson != null && resultJson.optBoolean("success")) {
                     try {
                         evalution = JSON.parseArray(resultJson.getString("data"), Evalution.class);
-                        if (evalution.size()>6){
+                        if (evalution.size() > 6) {
                             rl_more.setVisibility(View.VISIBLE);
                             rl_more.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     //提交成功
-                                    final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext,evalution);
+                                    final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext, evalution);
                                     renzhengSuccessDialog.show();
                                     renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
                                         @Override
@@ -331,7 +388,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                                     });
                                 }
                             });
-                        }else {
+                        } else {
                             rl_more.setVisibility(View.GONE);
                         }
                         EvalutionAdapter zanAdapter = new EvalutionAdapter(mContext, evalution, R.layout.item_evalution);

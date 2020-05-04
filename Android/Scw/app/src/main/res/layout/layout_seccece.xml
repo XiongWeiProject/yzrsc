@@ -5,21 +5,21 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center"
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content">
         <ImageView
-            android:background="@drawable/icon_success"
+            android:background="@drawable/sub_secce"
             android:layout_width="50dp"
             android:layout_height="50dp" />
         <TextView
-            android:layout_marginLeft="13dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="成功提交"
-            android:textColor="#FF111A38"
-            android:textSize="16sp"
+            android:layout_marginTop="20dp"
+            android:textColor="#111A38"
+            android:textSize="14sp"
             />
     </LinearLayout>
     <View

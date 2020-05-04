@@ -1,5 +1,7 @@
 package com.commodity.yzrsc.ui.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -16,10 +18,14 @@ import com.commodity.yzrsc.http.HttpManager;
 import com.commodity.yzrsc.http.HttpMothed;
 import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.ServiceInfo;
+import com.commodity.yzrsc.manager.ConfigManager;
+import com.commodity.yzrsc.manager.ImageLoaderManager;
 import com.commodity.yzrsc.model.TypeModel;
 import com.commodity.yzrsc.rongyun.server.utils.NToast;
 import com.commodity.yzrsc.ui.BaseFragment;
 import com.commodity.yzrsc.ui.activity.commodity.CommodityOrderActivity;
+import com.commodity.yzrsc.ui.activity.friend.MyDynamicActivity;
+import com.commodity.yzrsc.ui.activity.friend.OtherDynamicActivity;
 import com.commodity.yzrsc.ui.activity.friend.PicDynamicActivity;
 import com.commodity.yzrsc.ui.activity.friend.VideoDynamicActivity;
 import com.commodity.yzrsc.ui.adapter.FragmentViewPagerAdapter;
@@ -29,6 +35,7 @@ import com.commodity.yzrsc.view.PopWinShare;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,6 +76,7 @@ public class HomeFriendFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        ImageLoaderManager.getInstance().displayImage(ConfigManager.instance().getUser().getAvatar(),myImageHead);
         sendRequest(1);
 
     }
@@ -139,7 +147,11 @@ public class HomeFriendFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.my_image_head:
-                NToast.longToast(getActivity(), "点击了头衔进入个人动态");
+                Intent intent = new Intent(mContext, MyDynamicActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("dynamicId", "0");
+                intent.putExtras(bundle);
+                ((Activity) mContext).startActivity(intent);
                 break;
             case R.id.iv_release_dynamic:
                 if (popWinShare == null) {

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.friend.OtherDynamicActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="260dp">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/dynamic_bg" />
+
+        <ImageView
+            android:id="@+id/head_back"
+            android:layout_width="24dp"
+            android:src="@drawable/ico_back"
+            android:layout_margin="20dp"
+            android:layout_height="24dp" />
+    </RelativeLayout>
+
+
+    <com.commodity.yzrsc.ui.widget.textview.CenterDrawableTextView
+        android:id="@+id/tv_nodata"
+        style="@style/nodata_style"
+        android:background="@color/white"
+        android:visibility="gone" />
+    <com.commodity.yzrsc.ui.widget.xlistView.XListView xmlns:pla="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/xlist_dynamic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fastScrollEnabled="true"
+        android:scrollbars="vertical"
+        pla:plaColumnNumber="1"
+        pla:plaLandscapeColumnNumber="1"/>
+</LinearLayout>

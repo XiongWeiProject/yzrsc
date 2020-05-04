@@ -1,10 +1,10 @@
-package com.commodity.yzrsc.ui.fragment;
+package com.commodity.yzrsc.ui.activity.friend;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
+import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.commodity.yzrsc.R;
 import com.commodity.yzrsc.http.HttpManager;
@@ -13,12 +13,14 @@ import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.ServiceInfo;
 import com.commodity.yzrsc.manager.SPKeyManager;
 import com.commodity.yzrsc.model.DynamicAllListModel;
-import com.commodity.yzrsc.ui.BaseFragment;
+import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.adapter.DynamicListAdapter;
-import com.commodity.yzrsc.ui.adapter.TypeAdapter;
+import com.commodity.yzrsc.ui.adapter.MyDynamicListAdapter;
+import com.commodity.yzrsc.ui.fragment.HomeFriendFragment;
 import com.commodity.yzrsc.ui.widget.textview.CenterDrawableTextView;
 import com.commodity.yzrsc.ui.widget.xlistView.XListView;
 import com.commodity.yzrsc.utils.GsonUtils;
+import com.commodity.yzrsc.view.PopWinShare;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,62 +34,39 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import io.rong.imkit.utilities.RongUtils;
 
-public class DynamicFragment extends BaseFragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    @Bind(R.id.xlist_dynamic)
-    XListView xlistDynamic;
-    @Bind(R.id.tv_nodata)
-    CenterDrawableTextView tvNodata;
-
-
-    // TODO: Rename and change types of parameters
-    private int mParam1;
-    private String mParam2;
+public class MyDynamicActivity extends BaseActivity {
     List<DynamicAllListModel> listModels = new ArrayList<>();
     DynamicAllListModel data;
-
-    public DynamicFragment() {
-        // Required empty public constructor
-    }
+    MyDynamicListAdapter dynamicListAdapter;
+    @Bind(R.id.head_back)
+    ImageView headBack;
+    @Bind(R.id.iv_release_dynamic)
+    AppCompatImageView ivReleaseDynamic;
+    @Bind(R.id.tv_nodata)
+    CenterDrawableTextView tvNodata;
+    @Bind(R.id.xlist_dynamic)
+    XListView xlistDynamic;
 
     private int pageIndex = 1;
     private int totalPage = 1;
-
     private String memberId = "0";
     private String minId = "0";//页码的最小id
-
-
-    DynamicListAdapter dynamicListAdapter;
-    public static DynamicFragment newInstance(int param1, String param2) {
-        DynamicFragment fragment = new DynamicFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getInt(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+    PopWinShare popWinShare;
 
     @Override
     protected int getContentView() {
-        return R.layout.fragment_dynamic;
+        return R.layout.activity_my_dynamic2;
     }
 
     @Override
     protected void initView() {
+        Bundle extras = getIntent().getExtras();
+        memberId = extras.getString("dynamicId");
         xlistDynamic.setPullLoadEnable(true);
-        dynamicListAdapter = new DynamicListAdapter(getActivity(),listModels);
+        dynamicListAdapter = new MyDynamicListAdapter(this, listModels);
         xlistDynamic.setAdapter(dynamicListAdapter);
         sendRequest(1, "");
     }
@@ -116,7 +95,7 @@ public class DynamicFragment extends BaseFragment {
                     @Override
                     public void run() {
                         pageIndex++;
-                        minId = listModels.get(listModels.size()-1).getId()+"";
+                        minId = listModels.get(listModels.size() - 1).getId() + "";
                         sendRequest(1, "");
                     }
                 }, SPKeyManager.delay_time);
@@ -131,7 +110,7 @@ public class DynamicFragment extends BaseFragment {
             customLoadding.show();
             Map<String, String> parmMap = new HashMap<String, String>();
             parmMap.put("memberId", memberId);
-            parmMap.put("catalogId", mParam1+"");
+            parmMap.put("catalogId", "1");
             parmMap.put("minId", minId);
             parmMap.put("pageSize", "" + SPKeyManager.pageSize);
             HttpManager httpManager = new HttpManager(tag, HttpMothed.GET,
@@ -197,4 +176,70 @@ public class DynamicFragment extends BaseFragment {
         super.onDestroy();
 
     }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+
+    @OnClick({R.id.head_back, R.id.iv_release_dynamic})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.head_back:
+                finish();
+                break;
+            case R.id.iv_release_dynamic:
+                if (popWinShare == null) {
+                    //自定义的单击事件
+                    MyDynamicActivity.OnClickLintener paramOnClickListener = new MyDynamicActivity.OnClickLintener();
+                    popWinShare = new PopWinShare(MyDynamicActivity.this, paramOnClickListener, RongUtils.dip2px(110), RongUtils.dip2px(84), 1);
+                    //监听窗口的焦点事件，点击窗口外面则取消显示
+                    popWinShare.getContentView().setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+                        @Override
+                        public void onFocusChange(View v, boolean hasFocus) {
+                            if (!hasFocus) {
+                                popWinShare.dismiss();
+                            }
+                        }
+                    });
+                }
+//设置默认获取焦点
+                popWinShare.setFocusable(true);
+//以某个控件的x和y的偏移量位置开始显示窗口
+                popWinShare.showAsDropDown(ivReleaseDynamic, -175, 0);
+//如果窗口存在，则更新
+                popWinShare.update();
+                break;
+        }
+    }
+
+    class OnClickLintener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            popWinShare.dismiss();
+
+            switch (v.getId()) {
+
+                case R.id.pic:
+//                    Bundle bundle=new Bundle();
+//                    bundle.putString("userDynamicCatalog_Id",typeModel.get(i).getId());
+
+                    jumpActivity(PicDynamicActivity.class);
+                    break;
+                case R.id.video:
+                    jumpActivity(VideoDynamicActivity.class);
+                    break;
+
+                default:
+                    break;
+            }
+
+        }
+    }
+
 }

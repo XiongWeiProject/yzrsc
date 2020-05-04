@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import de.greenrobot.event.EventBus;
 
@@ -52,11 +53,19 @@ public class JCVideoPalyActivity extends Activity{
         if (start) {
             jcVideoPlayer.ivStart.performClick();
         }
+        jcVideoPlayer.ivBack.setVisibility(View.VISIBLE);
+        jcVideoPlayer.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 
     public void onEventMainThread(VideoEvents videoEvents) {
         if (videoEvents.type == VideoEvents.VE_SURFACEHOLDER_FINISH_FULLSCREEN || videoEvents.type == VideoEvents.VE_MEDIAPLAYER_FINISH_COMPLETE) {
-            finish();
+            //finish();
         }
     }
 

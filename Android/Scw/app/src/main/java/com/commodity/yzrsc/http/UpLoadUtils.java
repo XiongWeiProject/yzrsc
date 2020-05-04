@@ -147,7 +147,7 @@ public class UpLoadUtils {
         });
     }
     /**
-     * 获取微信payid
+     * 动态post表单请求
      */
     public void requesDynamic(String url, FormBody body, final Callback callback){
         Request build = new Request.Builder().url(url)

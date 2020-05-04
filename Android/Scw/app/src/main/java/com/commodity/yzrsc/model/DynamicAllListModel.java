@@ -4,37 +4,38 @@ import java.util.List;
 
 public class DynamicAllListModel  {
 
+
     /**
-     * id : 1
-     * memberId : 4080
+     * id : 5
+     * memberId : 4081
      * memberAvatar :
-     * memberNickname :
+     * memberNickname : Xxxx
+     * dynamicCatalog_Id : 1
+     * dynamicType : 1
+     * description : 哈哈
      * isLike : false
-     * pictures : []
+     * pictures : ["https://yzrsc-api.83soft.cn/UpLoadFiles/Image/20200502172252834025921174500.png"]
      * videoUrl :
      * commentCount : 0
      * likeCount : 0
-     * createTime : 2020-04-21
+     * createTime : 1小时前
      * ext1 :
-     * dynamicCatalog_Id : 1
-     * dynamicType : 0
-     * description : string
      */
 
     private int id;
     private int memberId;
     private String memberAvatar;
     private String memberNickname;
+    private int dynamicCatalog_Id;
+    private int dynamicType;
+    private String description;
     private boolean isLike;
     private String videoUrl;
     private int commentCount;
     private int likeCount;
     private String createTime;
     private String ext1;
-    private int dynamicCatalog_Id;
-    private int dynamicType;
-    private String description;
-    private List<?> pictures;
+    private List<String> pictures;
 
     public int getId() {
         return id;
@@ -66,6 +67,30 @@ public class DynamicAllListModel  {
 
     public void setMemberNickname(String memberNickname) {
         this.memberNickname = memberNickname;
+    }
+
+    public int getDynamicCatalog_Id() {
+        return dynamicCatalog_Id;
+    }
+
+    public void setDynamicCatalog_Id(int dynamicCatalog_Id) {
+        this.dynamicCatalog_Id = dynamicCatalog_Id;
+    }
+
+    public int getDynamicType() {
+        return dynamicType;
+    }
+
+    public void setDynamicType(int dynamicType) {
+        this.dynamicType = dynamicType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public boolean isIsLike() {
@@ -116,35 +141,11 @@ public class DynamicAllListModel  {
         this.ext1 = ext1;
     }
 
-    public int getDynamicCatalog_Id() {
-        return dynamicCatalog_Id;
-    }
-
-    public void setDynamicCatalog_Id(int dynamicCatalog_Id) {
-        this.dynamicCatalog_Id = dynamicCatalog_Id;
-    }
-
-    public int getDynamicType() {
-        return dynamicType;
-    }
-
-    public void setDynamicType(int dynamicType) {
-        this.dynamicType = dynamicType;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<?> getPictures() {
+    public List<String> getPictures() {
         return pictures;
     }
 
-    public void setPictures(List<?> pictures) {
+    public void setPictures(List<String> pictures) {
         this.pictures = pictures;
     }
 }

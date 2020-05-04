@@ -36,8 +36,12 @@ public class BigPictureActivity extends BaseActivity {
     protected void initView() {
         Bundle extras = getIntent().getExtras();
         urlList = (List<String>) extras.getSerializable("urls");
-        urlList.remove(urlList.size()-1);
+
         int index = extras.getInt("index");
+        int type = extras.getInt("type");
+        if (type!=0){
+            urlList.remove(urlList.size()-1);
+        }
         mAdapter adapter = new mAdapter();
         viewpager_.setAdapter(adapter);
         viewpager_.setCurrentItem(index);
