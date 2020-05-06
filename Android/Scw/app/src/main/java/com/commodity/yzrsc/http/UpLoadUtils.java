@@ -83,7 +83,7 @@ public class UpLoadUtils {
                 .addHeader("Connection", "Keep-Alive")
                 .addHeader("Charset", "UTF-8")
                 .addHeader("Accept", "application/json")
-                .addHeader("scw-token", "309AA687789A2FFD47404D063005282D")
+                .addHeader("scw-token", ConfigManager.instance().getUser().getDeviceToken())
                 .post(multiparBody.build())
                 .build();
         mOkHttpClient.newCall(build).enqueue(new Callback() {
@@ -153,7 +153,7 @@ public class UpLoadUtils {
         Request build = new Request.Builder().url(url)
                 .addHeader("Content-type", "application/json")
                 .addHeader("Accept", "application/json")
-                .addHeader("scw-token", "309AA687789A2FFD47404D063005282D")
+                .addHeader("scw-token", ConfigManager.instance().getUser().getDeviceToken())
                 .post(body)
                 .build();
         mOkHttpClient.newCall(build).enqueue(new Callback() {

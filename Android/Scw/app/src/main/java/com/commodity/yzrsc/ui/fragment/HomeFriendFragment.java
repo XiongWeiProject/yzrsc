@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.commodity.yzrsc.R;
@@ -30,7 +31,9 @@ import com.commodity.yzrsc.ui.activity.friend.PicDynamicActivity;
 import com.commodity.yzrsc.ui.activity.friend.VideoDynamicActivity;
 import com.commodity.yzrsc.ui.adapter.FragmentViewPagerAdapter;
 import com.commodity.yzrsc.ui.widget.imageview.CircleImageView;
+import com.commodity.yzrsc.utils.LogUtil;
 import com.commodity.yzrsc.view.PopWinShare;
+import com.yixia.camera.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -83,6 +86,13 @@ public class HomeFriendFragment extends BaseFragment {
 
     @Override
     protected void initListeners() {
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("test分类","这个方法");
+
     }
 
     private void setTab() {

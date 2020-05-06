@@ -28,13 +28,9 @@ import com.commodity.yzrsc.manager.Constanct;
 import com.commodity.yzrsc.manager.SPKeyManager;
 import com.commodity.yzrsc.manager.SPManager;
 import com.commodity.yzrsc.ui.BaseActivity;
-import com.commodity.yzrsc.ui.activity.store.RenzhengActivity;
-import com.commodity.yzrsc.ui.activity.user.LoginActivity;
-import com.commodity.yzrsc.ui.activity.user.SettingActivity;
 import com.commodity.yzrsc.ui.adapter.PhotoPopupAdapter;
 import com.commodity.yzrsc.ui.adapter.UpLoadPictureAdapter;
 import com.commodity.yzrsc.ui.dialog.CommonDialog;
-import com.commodity.yzrsc.ui.dialog.RenzhengSuccessDialog;
 import com.commodity.yzrsc.ui.widget.layout.TakePopupWin;
 import com.commodity.yzrsc.ui.widget.specialview.MyGridView;
 import com.commodity.yzrsc.utils.FileUtil;
@@ -93,6 +89,7 @@ public class PicDynamicActivity extends BaseActivity {
     private List<String> pictrueData = new ArrayList<>();
 
     String userDynamicCatalog_Id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,7 +108,7 @@ public class PicDynamicActivity extends BaseActivity {
 //        if (getIntent()!=null&&getIntent().getExtras().containsKey("userDynamicCatalog_Id")){
 //            userDynamicCatalog_Id=getIntent().getExtras().getString("userDynamicCatalog_Id");
 //        }
-        SPKeyManager.uploadmax = 9;
+        SPKeyManager.uploadmax = 10;
         data.add("拍照上传");
         data.add("从手机相册选择");
         data.add("取消");
@@ -134,8 +131,8 @@ public class PicDynamicActivity extends BaseActivity {
         headBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!TextUtils.isEmpty(desc)||pictrueData.size()!=1){
-                    CommonDialog commonDialog=new CommonDialog(PicDynamicActivity.this);
+                if (!TextUtils.isEmpty(desc) || pictrueData.size() != 1) {
+                    CommonDialog commonDialog = new CommonDialog(PicDynamicActivity.this);
                     commonDialog.show();
                     commonDialog.setContext("放弃此次编辑？");
                     commonDialog.setClickSubmitListener(new CommonDialog.OnClickSubmitListener() {
@@ -161,34 +158,25 @@ public class PicDynamicActivity extends BaseActivity {
         pictrueData.add("add");
     }
 
-    @OnClick(R.id.pic_submit)
-    public void onViewClicked() {
-        desc = picDescription.getText().toString().trim();
-        if (TextUtils.isEmpty(desc)){
-            tip("请输入内容");
-            return;
-        }
-        postPicDynamic(desc);
-    }
 
     private void postPicDynamic(String trim) {
         customLoadding.setTip("上传中...");
         customLoadding.show();
         MultipartBody.Builder multiparBody = new MultipartBody.Builder().setType(MultipartBody.FORM);
-        multiparBody.addFormDataPart("description",trim);
-        multiparBody.addFormDataPart("dynamicType","1");
-        multiparBody.addFormDataPart("userDynamicCatalog_Id","1");
-        for (int i=0;i<pictrueData.size()-1;i++){
+        multiparBody.addFormDataPart("description", trim);
+        multiparBody.addFormDataPart("dynamicType", "1");
+        multiparBody.addFormDataPart("userDynamicCatalog_Id", "1");
+        for (int i = 0; i < pictrueData.size() - 1; i++) {
             File file = new File(pictrueData.get(i));
-            multiparBody.addFormDataPart("image",file.getName(), RequestBody.create(MEDIA_TYPE_PNG, file));
+            multiparBody.addFormDataPart("image", file.getName(), RequestBody.create(MEDIA_TYPE_PNG, file));
         }
-        UpLoadUtils.instance().uploadPicture1(IRequestConst.RequestMethod.PostDynamic,multiparBody,new Callback(){
+        UpLoadUtils.instance().uploadPicture1(IRequestConst.RequestMethod.PostDynamic, multiparBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Looper.prepare();
                 tip(e.getMessage());
-                Log.e("failure:****",e.getMessage());
-                if(customLoadding.isShowing()){
+                Log.e("failure:****", e.getMessage());
+                if (customLoadding.isShowing()) {
                     customLoadding.dismiss();
                 }
                 Looper.loop();
@@ -196,15 +184,15 @@ public class PicDynamicActivity extends BaseActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                String responseStr=response.body().string();
-                Log.e("onResponse:****",responseStr);
-                if(customLoadding.isShowing()){
+                String responseStr = response.body().string();
+                Log.e("onResponse:****", responseStr);
+                if (customLoadding.isShowing()) {
                     customLoadding.dismiss();
                 }
-                JSONObject jsob= null;
+                JSONObject jsob = null;
                 try {
                     jsob = new JSONObject(responseStr);
-                    if (jsob!=null&&jsob.optBoolean("data")){
+                    if (jsob != null && jsob.optBoolean("data")) {
                         //提交成功
                         Looper.prepare();
                         SuccessDialog renzhengSuccessDialog = new SuccessDialog(PicDynamicActivity.this);
@@ -213,7 +201,7 @@ public class PicDynamicActivity extends BaseActivity {
                             @Override
                             public void onClick(View v) {
 //                                            SPManager.put(RenzhengActivity.this, Constanct.RENZHENG,true);
-                                SPManager.instance().setBoolean(Constanct.RENZHENG,true);
+                                SPManager.instance().setBoolean(Constanct.RENZHENG, true);
                                 finish();
                             }
                         });
@@ -230,12 +218,16 @@ public class PicDynamicActivity extends BaseActivity {
                             }
                         });
                         Looper.loop();
-                    }else {
+                    } else {
+                        Looper.prepare();
                         tip(jsob.optString("msg"));
+                        Looper.loop();
                     }
                 } catch (JSONException e) {
+                    Looper.prepare();
                     e.printStackTrace();
                     tip("json解析异常");
+                    Looper.loop();
                 }
 
             }
@@ -283,7 +275,7 @@ public class PicDynamicActivity extends BaseActivity {
             if (data == null) {
                 imgName = UUID.randomUUID().toString() + ".png";
                 File file = new File(savefile, PhotoUtils.tempPath);
-                PhotoUtils.cropImageUri(this, Uri.fromFile(file), 1, 1, 600, 600, CROP_CODE, savefile, imgName);
+                PhotoUtils.cropImageUri(this, Uri.fromFile(file), 1, 1, 1000, 1000, CROP_CODE, savefile, imgName);
 
             } else {
                 tip("请从新拍照");
@@ -293,7 +285,7 @@ public class PicDynamicActivity extends BaseActivity {
                 Uri uri = data.getData();
                 if (uri != null) {
                     imgName = UUID.randomUUID().toString() + ".png";
-                    PhotoUtils.cropImageUri(this, data.getData(), 1, 1, 600, 600, CROP_CODE, savefile, imgName);
+                    PhotoUtils.cropImageUri(this, data.getData(), 1, 1, 1000, 1000, CROP_CODE, savefile, imgName);
                 }
 
             } else {
@@ -326,8 +318,8 @@ public class PicDynamicActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // 是否触发按键为back键
-        if (!TextUtils.isEmpty(desc)||pictrueData.size()!=1){
-            CommonDialog commonDialog=new CommonDialog(PicDynamicActivity.this);
+        if (!TextUtils.isEmpty(desc) || pictrueData.size() != 1) {
+            CommonDialog commonDialog = new CommonDialog(PicDynamicActivity.this);
             commonDialog.show();
             commonDialog.setContext("放弃此次编辑？");
             commonDialog.setClickSubmitListener(new CommonDialog.OnClickSubmitListener() {
@@ -341,4 +333,24 @@ public class PicDynamicActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    @OnClick({R.id.head_back, R.id.pic_submit})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.head_back:
+                finish();
+                break;
+            case R.id.pic_submit:
+                desc = picDescription.getText().toString().trim();
+                if (TextUtils.isEmpty(desc)){
+                    tip("请输入内容");
+                    return;
+                }
+                if (pictrueData.size() == 1){
+                    tip("请上传图片");
+                    return;
+                }
+                postPicDynamic(desc);
+                break;
+        }
+    }
 }
