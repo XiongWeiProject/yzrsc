@@ -159,7 +159,7 @@ public class HomeFriendFragment extends BaseFragment {
             case R.id.my_image_head:
                 Intent intent = new Intent(mContext, MyDynamicActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("dynamicId", "0");
+                bundle.putSerializable("dynamicId",ConfigManager.instance().getUser().getId());
                 intent.putExtras(bundle);
                 ((Activity) mContext).startActivity(intent);
                 break;

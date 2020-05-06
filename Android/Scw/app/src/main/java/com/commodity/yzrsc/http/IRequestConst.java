@@ -196,11 +196,17 @@ public class IRequestConst {
 
         //动态分类
         public static final String GetDynamicCatalog  = REQUEST_URLS  +"UserDynamic/GetDynamicCatalog";
+        //动态列表
         public static final String GetDynamicList  = REQUEST_URLS  +"UserDynamic/GetDynamicInfoList";
+        //动态上传
         public static final String PostDynamic  = REQUEST_URLS  +"UserDynamic/UploadDynamic";
+        //动态点赞
         public static final String PostDynamicLike  = REQUEST_URLS  +"UserDynamic/DynamicLikeOrNot";
+        //动态添加评论
         public static final String PostDynamicEvaluate  = REQUEST_URLS  +"UserDynamic/AddComment";
+        //点赞列表
         public static final String PostDynamZanList  = REQUEST_URLS  +"UserDynamic/GetDynamicLikeList";
+        //评论列表
         public static final String PostDynamEvalutionList  = REQUEST_URLS  +"UserDynamic/GetDynamicCommentList";
     }
 }
