@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.text.TextUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -25,21 +25,16 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.commodity.yzrsc.MainApplication;
 import com.commodity.yzrsc.R;
 import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.UpLoadUtils;
-import com.commodity.yzrsc.manager.ConfigManager;
 import com.commodity.yzrsc.manager.Constanct;
 import com.commodity.yzrsc.manager.SPManager;
 import com.commodity.yzrsc.ui.BaseActivity;
-import com.commodity.yzrsc.ui.activity.general.PhotoSelectActivity;
 import com.commodity.yzrsc.ui.activity.shortvideo.VideoRecorderActivity;
-import com.commodity.yzrsc.ui.activity.store.AlertUploadGoodsActivity;
 import com.commodity.yzrsc.ui.activity.store.GoodsTypeActivity;
 import com.commodity.yzrsc.ui.adapter.PhotoPopupAdapter;
 import com.commodity.yzrsc.ui.widget.layout.TakePopupWin;
-import com.commodity.yzrsc.utils.FileUtil;
 import com.commodity.yzrsc.utils.KeyBoardUtils;
 import com.commodity.yzrsc.utils.PhotoUtils;
 import com.commodity.yzrsc.utils.VideoUtils;
@@ -53,12 +48,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.yohoutils.StringUtil;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -282,8 +275,8 @@ public class VideoDynamicActivity extends BaseActivity {
             PhotoPopupAdapter photoPopupAdapter = new PhotoPopupAdapter(mContext, moreData, R.layout.item_photo_button);
             final TakePopupWin takePopupWin = new TakePopupWin(mContext, R.layout.item_photo, R.id.photo_contorl, R.id.photo_listview, photoPopupAdapter);
             backage.setVisibility(View.VISIBLE);
-            final WindowManager.LayoutParams attributes = ((Activity) mContext).getWindow().getAttributes();
-            takePopupWin.showAtLocation(((Activity) mContext).findViewById(bg_id), Gravity.BOTTOM, 0, attributes.height - takePopupWin.getHeight());
+            final WindowManager.LayoutParams attributes = ((AppCompatActivity) mContext).getWindow().getAttributes();
+            takePopupWin.showAtLocation(((AppCompatActivity) mContext).findViewById(bg_id), Gravity.BOTTOM, 0, attributes.height - takePopupWin.getHeight());
             //点击时间
             takePopupWin.setOnItemClickListener(new TakePopupWin.OnItemClickListener() {
                 @Override

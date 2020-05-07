@@ -1,17 +1,15 @@
 package com.commodity.yzrsc.ui.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.core.app.Fragment;
+import androidx.core.view.ViewPager;
 
 import com.alibaba.fastjson.JSON;
 import com.commodity.yzrsc.R;
@@ -22,23 +20,17 @@ import com.commodity.yzrsc.http.ServiceInfo;
 import com.commodity.yzrsc.manager.ConfigManager;
 import com.commodity.yzrsc.manager.ImageLoaderManager;
 import com.commodity.yzrsc.model.TypeModel;
-import com.commodity.yzrsc.rongyun.server.utils.NToast;
 import com.commodity.yzrsc.ui.BaseFragment;
-import com.commodity.yzrsc.ui.activity.commodity.CommodityOrderActivity;
 import com.commodity.yzrsc.ui.activity.friend.MyDynamicActivity;
-import com.commodity.yzrsc.ui.activity.friend.OtherDynamicActivity;
 import com.commodity.yzrsc.ui.activity.friend.PicDynamicActivity;
 import com.commodity.yzrsc.ui.activity.friend.VideoDynamicActivity;
 import com.commodity.yzrsc.ui.adapter.FragmentViewPagerAdapter;
 import com.commodity.yzrsc.ui.widget.imageview.CircleImageView;
-import com.commodity.yzrsc.utils.LogUtil;
 import com.commodity.yzrsc.view.PopWinShare;
-import com.yixia.camera.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -91,7 +83,6 @@ public class HomeFriendFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("test分类","这个方法");
 
     }
 
@@ -159,9 +150,9 @@ public class HomeFriendFragment extends BaseFragment {
             case R.id.my_image_head:
                 Intent intent = new Intent(mContext, MyDynamicActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("dynamicId",ConfigManager.instance().getUser().getId());
+                bundle.putString("dynamicId",ConfigManager.instance().getUser().getId());
                 intent.putExtras(bundle);
-                ((Activity) mContext).startActivity(intent);
+                ((AppCompatActivity) mContext).startActivity(intent);
                 break;
             case R.id.iv_release_dynamic:
                 if (popWinShare == null) {

@@ -49,6 +49,7 @@ public class OtherDynamicActivity extends BaseActivity {
     private int pageIndex = 1;
     private int totalPage = 1;
     private String memberId = "0";
+    private String TypeId = "0";
     private String minId = "0";//页码的最小id
 
     @Override
@@ -60,6 +61,7 @@ public class OtherDynamicActivity extends BaseActivity {
     protected void initView() {
         Bundle extras = getIntent().getExtras();
         memberId = extras.getString("dynamicId");
+        TypeId = extras.getString("TypeId");
         xlistDynamic.setPullLoadEnable(true);
         dynamicListAdapter = new DynamicListAdapter(this, listModels);
         xlistDynamic.setAdapter(dynamicListAdapter);
@@ -92,6 +94,7 @@ public class OtherDynamicActivity extends BaseActivity {
                         pageIndex++;
                         minId = listModels.get(listModels.size() - 1).getId() + "";
                         sendRequest(1, "");
+
                     }
                 }, SPKeyManager.delay_time);
             }
@@ -105,7 +108,7 @@ public class OtherDynamicActivity extends BaseActivity {
             customLoadding.show();
             Map<String, String> parmMap = new HashMap<String, String>();
             parmMap.put("memberId", memberId);
-            parmMap.put("catalogId", "");
+            parmMap.put("catalogId", TypeId);
             parmMap.put("minId", minId);
             parmMap.put("pageSize", "" + SPKeyManager.pageSize);
             HttpManager httpManager = new HttpManager(tag, HttpMothed.GET,
@@ -135,7 +138,7 @@ public class OtherDynamicActivity extends BaseActivity {
                             e.printStackTrace();
                         }
                     }
-                    if (listModels.size() == SPKeyManager.delay_time) {
+                    if (listModels.size() < SPKeyManager.pageSize) {
                         xlistDynamic.setPullLoadEnable(false);
                     } else {
                         xlistDynamic.setPullLoadEnable(true);

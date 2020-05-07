@@ -118,6 +118,7 @@ public class DynamicFragment extends BaseFragment {
                         pageIndex++;
                         minId = listModels.get(listModels.size()-1).getId()+"";
                         sendRequest(1, "");
+
                     }
                 }, SPKeyManager.delay_time);
             }
@@ -129,6 +130,9 @@ public class DynamicFragment extends BaseFragment {
         super.sendRequest(tag, params);
         if (tag == 1) {
             customLoadding.show();
+            if (  pageIndex ==1){
+                minId = "0";
+            }
             Map<String, String> parmMap = new HashMap<String, String>();
             parmMap.put("memberId", memberId);
             parmMap.put("catalogId", mParam1+"");
@@ -155,13 +159,15 @@ public class DynamicFragment extends BaseFragment {
                     for (int i = 0; i < dataArray.length(); i++) {
                         try {
                             data = GsonUtils.jsonToObject(dataArray.getJSONObject(i).toString(), DynamicAllListModel.class);
-                            listModels.add(data);
+                            if (data!=null){
+                                listModels.add(data);
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-                    if (listModels.size() == SPKeyManager.delay_time) {
+                    if (listModels.size() < SPKeyManager.pageSize) {
                         xlistDynamic.setPullLoadEnable(false);
                     } else {
                         xlistDynamic.setPullLoadEnable(true);

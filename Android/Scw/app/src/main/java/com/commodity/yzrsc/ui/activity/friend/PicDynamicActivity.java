@@ -20,13 +20,18 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.commodity.yzrsc.R;
+import com.commodity.yzrsc.http.HttpManager;
+import com.commodity.yzrsc.http.HttpMothed;
 import com.commodity.yzrsc.http.IRequestConst;
+import com.commodity.yzrsc.http.ServiceInfo;
 import com.commodity.yzrsc.http.UpLoadUtils;
 import com.commodity.yzrsc.manager.ConfigManager;
 import com.commodity.yzrsc.manager.Constanct;
 import com.commodity.yzrsc.manager.SPKeyManager;
 import com.commodity.yzrsc.manager.SPManager;
+import com.commodity.yzrsc.model.TypeModel;
 import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.adapter.PhotoPopupAdapter;
 import com.commodity.yzrsc.ui.adapter.UpLoadPictureAdapter;
@@ -36,6 +41,7 @@ import com.commodity.yzrsc.ui.widget.specialview.MyGridView;
 import com.commodity.yzrsc.utils.FileUtil;
 import com.commodity.yzrsc.utils.PhotoUtils;
 import com.commodity.yzrsc.view.SuccessDialog;
+import com.donkingliang.imageselector.utils.ImageSelector;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,7 +49,9 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import butterknife.Bind;
@@ -79,17 +87,22 @@ public class PicDynamicActivity extends BaseActivity {
     public final int CROP_CODE = 3;
     String desc;
     public String imgName = "";
+    @Bind(R.id.tv_type)
+    TextView tvType;
     private List<String> data = new ArrayList<>();
+    private List<String> dataType = new ArrayList<>();
+    private List<String> dataTypeId = new ArrayList<>();
     private static final String RENZHENG = ConfigManager.ROOT + "dongtai" + File.separator;
     private static final String RENZHENG_DELETE = ConfigManager.ROOT + "dongtai";
     private File savefile;
     private UpLoadPictureAdapter uploadPictureAdapter;
     public MediaType MEDIA_TYPE_PNG = MediaType.parse("image/*");
-
+    private String typeId;
     private List<String> pictrueData = new ArrayList<>();
-
+    List<TypeModel> typeModel = new ArrayList<>();
     String userDynamicCatalog_Id;
-
+    private static final int REQUEST_CODE = 0x00000011;
+    private static final int PERMISSION_WRITE_EXTERNAL_REQUEST_CODE = 0x00000012;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +129,7 @@ public class PicDynamicActivity extends BaseActivity {
         initData();
         uploadPictureAdapter = new UpLoadPictureAdapter(mContext, pictrueData, R.layout.item_pic_upload);
         picGrid.setAdapter(uploadPictureAdapter);
+        sendRequest(1);
 
     }
 
@@ -158,6 +172,45 @@ public class PicDynamicActivity extends BaseActivity {
         pictrueData.add("add");
     }
 
+    @Override
+    public void sendRequest(int tag) {
+        super.sendRequest(tag);
+        if (tag == 1) {
+            customLoadding.show();
+            Map<String, String> parmMap = new HashMap<String, String>();
+            HttpManager httpManager = new HttpManager(tag, HttpMothed.GET,
+                    IRequestConst.RequestMethod.GetDynamicCatalog, parmMap, this);
+            httpManager.request();
+        }
+    }
+
+    @Override
+    public void onSuccess(int tag, ServiceInfo result) {
+        super.onSuccess(tag, result);
+
+        JSONObject response = (JSONObject) result.getResponse();
+        if (response.optBoolean("success")) {
+            try {
+                typeModel = JSON.parseArray(response.getString("data"), TypeModel.class);
+                for (int i = 0; i < typeModel.size(); i++) {
+                    dataType.add(typeModel.get(i).getName());
+                    dataTypeId.add(typeModel.get(i).getId() + "");
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            tip(response.optString("msg"));
+        }
+    }
+
+    @Override
+    public void OnFailedResponse(int tag, String code, String msg) {
+        super.OnFailedResponse(tag, code, msg);
+        tip(msg);
+    }
 
     private void postPicDynamic(String trim) {
         customLoadding.setTip("上传中...");
@@ -165,7 +218,7 @@ public class PicDynamicActivity extends BaseActivity {
         MultipartBody.Builder multiparBody = new MultipartBody.Builder().setType(MultipartBody.FORM);
         multiparBody.addFormDataPart("description", trim);
         multiparBody.addFormDataPart("dynamicType", "1");
-        multiparBody.addFormDataPart("userDynamicCatalog_Id", "1");
+        multiparBody.addFormDataPart("userDynamicCatalog_Id", typeId);
         for (int i = 0; i < pictrueData.size() - 1; i++) {
             File file = new File(pictrueData.get(i));
             multiparBody.addFormDataPart("image", file.getName(), RequestBody.create(MEDIA_TYPE_PNG, file));
@@ -238,6 +291,32 @@ public class PicDynamicActivity extends BaseActivity {
     /**
      * popupwindow
      */
+    private void setType() {
+        PhotoPopupAdapter photoPopupAdapter = new PhotoPopupAdapter(mContext, dataType, R.layout.item_photo_button);
+        final TakePopupWin takePopupWin = new TakePopupWin(mContext, R.layout.item_photo, R.id.photo_contorl, R.id.photo_listview, photoPopupAdapter);
+        bg.setVisibility(View.VISIBLE);
+        final WindowManager.LayoutParams attributes = getWindow().getAttributes();
+        takePopupWin.showAtLocation(findViewById(R.id.ren_bg), Gravity.BOTTOM, 0, attributes.height - takePopupWin.getHeight());
+        //点击时间
+        takePopupWin.setOnItemClickListener(new TakePopupWin.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                typeId = dataTypeId.get(position);
+                tvType.setText(dataType.get(position));
+            }
+        });
+        takePopupWin.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                bg.setVisibility(View.GONE);
+            }
+        });
+
+    }
+
+    /**
+     * popupwindow
+     */
     private void setHeadPictrue() {
         PhotoPopupAdapter photoPopupAdapter = new PhotoPopupAdapter(mContext, data, R.layout.item_photo_button);
         final TakePopupWin takePopupWin = new TakePopupWin(mContext, R.layout.item_photo, R.id.photo_contorl, R.id.photo_listview, photoPopupAdapter);
@@ -253,7 +332,13 @@ public class PicDynamicActivity extends BaseActivity {
                         PhotoUtils.openCamera(PicDynamicActivity.this, openCamera, savefile, PhotoUtils.tempPath);
                         break;
                     case 1://相册
-                        PhotoUtils.openAlbum(PicDynamicActivity.this, openAblum);
+                       // PhotoUtils.openAlbum(PicDynamicActivity.this, openAblum);
+                        ImageSelector.builder()
+                                .useCamera(true) // 设置是否使用拍照
+                                .setSingle(false)  //设置是否单选
+                                .canPreview(true) //是否点击放大图片查看,，默认为true
+                                .setMaxSelectCount(9) // 图片的最大选择数量，小于等于0时，不限数量。
+                                .start(PicDynamicActivity.this, REQUEST_CODE); // 打开相册
                         break;
                 }
             }
@@ -285,7 +370,11 @@ public class PicDynamicActivity extends BaseActivity {
                 Uri uri = data.getData();
                 if (uri != null) {
                     imgName = UUID.randomUUID().toString() + ".png";
-                    PhotoUtils.cropImageUri(this, data.getData(), 1, 1, 1000, 1000, CROP_CODE, savefile, imgName);
+                    pictrueData.remove(pictrueData.size() - 1);
+                    pictrueData.add(RENZHENG + imgName);
+                    pictrueData.add("add");
+                    uploadPictureAdapter.notifyDataSetChanged();
+                    //PhotoUtils.cropImageUri(this, data.getData(), 1, 1, 1000, 1000, CROP_CODE, savefile, imgName);
                 }
 
             } else {
@@ -333,7 +422,7 @@ public class PicDynamicActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    @OnClick({R.id.head_back, R.id.pic_submit})
+    @OnClick({R.id.head_back, R.id.pic_submit,R.id.tv_type})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.head_back:
@@ -341,15 +430,22 @@ public class PicDynamicActivity extends BaseActivity {
                 break;
             case R.id.pic_submit:
                 desc = picDescription.getText().toString().trim();
-                if (TextUtils.isEmpty(desc)){
+                if (TextUtils.isEmpty(desc)) {
                     tip("请输入内容");
                     return;
                 }
-                if (pictrueData.size() == 1){
+                if (pictrueData.size() == 1) {
                     tip("请上传图片");
                     return;
                 }
+                if (TextUtils.isEmpty(typeId)){
+                    tip("请选择分类");
+                    return;
+                }
                 postPicDynamic(desc);
+                break;
+            case R.id.tv_type:
+                setType();
                 break;
         }
     }

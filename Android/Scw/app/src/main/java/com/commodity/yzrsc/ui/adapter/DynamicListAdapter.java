@@ -37,9 +37,11 @@ import com.commodity.yzrsc.http.HttpMothed;
 import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.ServiceInfo;
 import com.commodity.yzrsc.http.UpLoadUtils;
+import com.commodity.yzrsc.manager.ConfigManager;
 import com.commodity.yzrsc.manager.ImageLoaderManager;
 import com.commodity.yzrsc.model.DynamicAllListModel;
 import com.commodity.yzrsc.model.Evalution;
+import com.commodity.yzrsc.ui.activity.friend.MyDynamicActivity;
 import com.commodity.yzrsc.ui.activity.friend.OtherDynamicActivity;
 import com.commodity.yzrsc.ui.activity.general.BigPictureActivity;
 import com.commodity.yzrsc.ui.adapter.base.BaseRecycleAdapter;
@@ -157,11 +159,22 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
         head.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, OtherDynamicActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("dynamicId", (Serializable) data.get(position).getId());
-                intent.putExtras(bundle);
-                ((Activity) mContext).startActivity(intent);
+                if (data.get(position).getMemberId()==Integer.parseInt(ConfigManager.instance().getUser().getId())){
+                    Intent intent = new Intent(mContext, MyDynamicActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("dynamicId", ConfigManager.instance().getUser().getId());
+                    bundle.putString("TypeId", data.get(position).getDynamicCatalog_Id() + "");
+                    intent.putExtras(bundle);
+                    ((Activity) mContext).startActivity(intent);
+                }else {
+                    //跳转他人动态
+                    Intent intent = new Intent(mContext, OtherDynamicActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("dynamicId", data.get(position).getMemberId() + "");
+                    bundle.putString("TypeId", data.get(position).getDynamicCatalog_Id() + "");
+                    intent.putExtras(bundle);
+                    ((Activity) mContext).startActivity(intent);
+                }
             }
         });
 
@@ -250,12 +263,23 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                         zanAdapter.setOnItemClickListener(new BaseRecycleAdapter.ItemClickListener() {
                                                               @Override
                                                               public void itemClick(View v, int position) {
-                                                                  //跳转他人动态
-                                                                  Intent intent = new Intent(mContext, OtherDynamicActivity.class);
-                                                                  Bundle bundle = new Bundle();
-                                                                  bundle.putSerializable("dynamicId", (Serializable) data.get(position).getId());
-                                                                  intent.putExtras(bundle);
-                                                                  ((Activity) mContext).startActivity(intent);
+                                                                  if (data.get(position).getMemberId()==Integer.parseInt(ConfigManager.instance().getUser().getId())){
+                                                                      Intent intent = new Intent(mContext, MyDynamicActivity.class);
+                                                                      Bundle bundle = new Bundle();
+                                                                      bundle.putString("dynamicId", ConfigManager.instance().getUser().getId());
+                                                                      bundle.putString("TypeId", data.get(position).getDynamicCatalog_Id() + "");
+                                                                      intent.putExtras(bundle);
+                                                                      ((Activity) mContext).startActivity(intent);
+                                                                  }else {
+                                                                      //跳转他人动态
+                                                                      Intent intent = new Intent(mContext, OtherDynamicActivity.class);
+                                                                      Bundle bundle = new Bundle();
+                                                                      bundle.putString("dynamicId", data.get(position).getMemberId() + "");
+                                                                      bundle.putString("TypeId", data.get(position).getDynamicCatalog_Id() + "");
+                                                                      intent.putExtras(bundle);
+                                                                      ((Activity) mContext).startActivity(intent);
+                                                                  }
+
                                                               }
                                                           }
                         );
@@ -302,13 +326,13 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                 if (resultJson != null && resultJson.optBoolean("success")) {
                     try {
                         evalution = JSON.parseArray(resultJson.getString("data"), Evalution.class);
-                        if (evalution.size()>6){
+                        if (evalution.size() > 6) {
                             rl_more.setVisibility(View.VISIBLE);
                             rl_more.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     //提交成功
-                                    final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext,evalution);
+                                    final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext, evalution);
                                     renzhengSuccessDialog.show();
                                     renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
                                         @Override
@@ -331,7 +355,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                                     });
                                 }
                             });
-                        }else {
+                        } else {
                             rl_more.setVisibility(View.GONE);
                         }
                         EvalutionAdapter zanAdapter = new EvalutionAdapter(mContext, evalution, R.layout.item_evalution);

@@ -55,6 +55,7 @@ public class MyDynamicActivity extends BaseActivity {
     private String memberId = "0";
     private String minId = "0";//页码的最小id
     PopWinShare popWinShare;
+    private String catalogId;
 
     @Override
     protected int getContentView() {
@@ -65,6 +66,7 @@ public class MyDynamicActivity extends BaseActivity {
     protected void initView() {
         Bundle extras = getIntent().getExtras();
         memberId = extras.getString("dynamicId");
+        catalogId = extras.getString("TypeId");
         xlistDynamic.setPullLoadEnable(true);
         dynamicListAdapter = new MyDynamicListAdapter(this, listModels);
         xlistDynamic.setAdapter(dynamicListAdapter);
@@ -97,6 +99,7 @@ public class MyDynamicActivity extends BaseActivity {
                         pageIndex++;
                         minId = listModels.get(listModels.size() - 1).getId() + "";
                         sendRequest(1, "");
+
                     }
                 }, SPKeyManager.delay_time);
             }
@@ -108,9 +111,12 @@ public class MyDynamicActivity extends BaseActivity {
         super.sendRequest(tag, params);
         if (tag == 1) {
             customLoadding.show();
+            if (  pageIndex ==1){
+                minId = "0";
+            }
             Map<String, String> parmMap = new HashMap<String, String>();
             parmMap.put("memberId", memberId);
-            parmMap.put("catalogId", "1");
+            parmMap.put("catalogId", catalogId);
             parmMap.put("minId", minId);
             parmMap.put("pageSize", "" + SPKeyManager.pageSize);
             HttpManager httpManager = new HttpManager(tag, HttpMothed.GET,
@@ -134,13 +140,15 @@ public class MyDynamicActivity extends BaseActivity {
                     for (int i = 0; i < dataArray.length(); i++) {
                         try {
                             data = GsonUtils.jsonToObject(dataArray.getJSONObject(i).toString(), DynamicAllListModel.class);
-                            listModels.add(data);
+                            if (data!=null){
+                                listModels.add(data);
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-                    if (listModels.size() == SPKeyManager.delay_time) {
+                    if (listModels.size() < SPKeyManager.pageSize) {
                         xlistDynamic.setPullLoadEnable(false);
                     } else {
                         xlistDynamic.setPullLoadEnable(true);

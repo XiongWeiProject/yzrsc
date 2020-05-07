@@ -177,11 +177,12 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
         head.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, OtherDynamicActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("dynamicId", (Serializable) data.get(position).getId());
-                intent.putExtras(bundle);
-                ((Activity) mContext).startActivity(intent);
+//                Intent intent = new Intent(mContext, OtherDynamicActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("dynamicId", data.get(position).getMemberId()+"");
+//                bundle.putString("TypeId", data.get(position).getDynamicCatalog_Id()+"");
+//                intent.putExtras(bundle);
+//                ((Activity) mContext).startActivity(intent);
             }
         });
 
@@ -244,7 +245,7 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
 
     private void deleteDynamic(int id) {
         FormBody requestBody = new FormBody.Builder().add("id", String.valueOf(id)).build();
-        UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDynamicLike, requestBody, new Callback() {
+        UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDynamDelete, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e("failure:", e.getMessage());
@@ -308,11 +309,12 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                                                               @Override
                                                               public void itemClick(View v, int position) {
                                                                   //跳转他人动态
-                                                                  Intent intent = new Intent(mContext, OtherDynamicActivity.class);
-                                                                  Bundle bundle = new Bundle();
-                                                                  bundle.putSerializable("dynamicId", (Serializable) data.get(position).getId());
-                                                                  intent.putExtras(bundle);
-                                                                  ((Activity) mContext).startActivity(intent);
+//                                                                  Intent intent = new Intent(mContext, OtherDynamicActivity.class);
+//                                                                  Bundle bundle = new Bundle();
+//                                                                  bundle.putString("dynamicId",  data.get(position).getMemberId()+"");
+//                                                                  bundle.putString("TypeId",  data.get(position).getDynamicCatalog_Id()+"");
+//                                                                  intent.putExtras(bundle);
+//                                                                  ((Activity) mContext).startActivity(intent);
                                                               }
                                                           }
                         );
