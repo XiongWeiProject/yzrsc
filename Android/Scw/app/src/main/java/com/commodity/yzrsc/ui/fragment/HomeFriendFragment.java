@@ -3,13 +3,13 @@ package com.commodity.yzrsc.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.core.app.Fragment;
-import androidx.core.view.ViewPager;
 
 import com.alibaba.fastjson.JSON;
 import com.commodity.yzrsc.R;
@@ -152,7 +152,7 @@ public class HomeFriendFragment extends BaseFragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("dynamicId",ConfigManager.instance().getUser().getId());
                 intent.putExtras(bundle);
-                ((AppCompatActivity) mContext).startActivity(intent);
+                mContext.startActivity(intent);
                 break;
             case R.id.iv_release_dynamic:
                 if (popWinShare == null) {

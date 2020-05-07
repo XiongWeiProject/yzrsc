@@ -41,7 +41,6 @@ import com.commodity.yzrsc.ui.widget.specialview.MyGridView;
 import com.commodity.yzrsc.utils.FileUtil;
 import com.commodity.yzrsc.utils.PhotoUtils;
 import com.commodity.yzrsc.view.SuccessDialog;
-import com.donkingliang.imageselector.utils.ImageSelector;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -332,13 +331,7 @@ public class PicDynamicActivity extends BaseActivity {
                         PhotoUtils.openCamera(PicDynamicActivity.this, openCamera, savefile, PhotoUtils.tempPath);
                         break;
                     case 1://相册
-                       // PhotoUtils.openAlbum(PicDynamicActivity.this, openAblum);
-                        ImageSelector.builder()
-                                .useCamera(true) // 设置是否使用拍照
-                                .setSingle(false)  //设置是否单选
-                                .canPreview(true) //是否点击放大图片查看,，默认为true
-                                .setMaxSelectCount(9) // 图片的最大选择数量，小于等于0时，不限数量。
-                                .start(PicDynamicActivity.this, REQUEST_CODE); // 打开相册
+                        PhotoUtils.openAlbum(PicDynamicActivity.this, openAblum);
                         break;
                 }
             }

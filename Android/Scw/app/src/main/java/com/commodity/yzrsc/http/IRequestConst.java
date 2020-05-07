@@ -4,7 +4,7 @@ package com.commodity.yzrsc.http;
  * 请求的基本数据
  */
 public class IRequestConst {
-    public static final String REQUEST_URL = "http://scw-api.83soft.cn/";//测试环境2 scw-web.83soft.cn
+    public static final String REQUEST_URL = "https://yzrsc-api.83soft.cn/";//测试环境2 scw-web.83soft.cn
     public static final String REQUEST_URLS = "https://yzrsc-api.83soft.cn:443/";//测试环境动态
     //public static final String REQUEST_URL = "http://api.soucangwang.com/";//正式环境
 
@@ -208,5 +208,7 @@ public class IRequestConst {
         public static final String PostDynamZanList  = REQUEST_URLS  +"UserDynamic/GetDynamicLikeList";
         //评论列表
         public static final String PostDynamEvalutionList  = REQUEST_URLS  +"UserDynamic/GetDynamicCommentList";
+        //删除动态
+        public static final String PostDynamDelete  = REQUEST_URLS  +"UserDynamic/DeleteDynamic";
     }
 }
