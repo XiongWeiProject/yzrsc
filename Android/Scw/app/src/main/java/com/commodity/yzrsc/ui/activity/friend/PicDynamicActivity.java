@@ -3,9 +3,12 @@ package com.commodity.yzrsc.ui.activity.friend;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -328,10 +331,12 @@ public class PicDynamicActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0://拍照
-                        PhotoUtils.openCamera(PicDynamicActivity.this, openCamera, savefile, PhotoUtils.tempPath);
+                        toCamera();
+                        //PhotoUtils.openCamera(PicDynamicActivity.this, openCamera, savefile, PhotoUtils.tempPath);
                         break;
                     case 1://相册
-                        PhotoUtils.openAlbum(PicDynamicActivity.this, openAblum);
+                        toAlbum();
+                       // PhotoUtils.openAlbum(PicDynamicActivity.this, openAblum);
                         break;
                 }
             }
@@ -345,28 +350,51 @@ public class PicDynamicActivity extends BaseActivity {
 
     }
 
+    private void toCamera() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, openCamera);
+    }
+
+    private void toAlbum() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, openAblum);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == openCamera && resultCode == Activity.RESULT_OK) {
-            if (data == null) {
+        if (requestCode == openCamera ) {
+//            if (data == null) {
+                Bitmap photo = data.getParcelableExtra("data");
                 imgName = UUID.randomUUID().toString() + ".png";
-                File file = new File(savefile, PhotoUtils.tempPath);
-                PhotoUtils.cropImageUri(this, Uri.fromFile(file), 1, 1, 1000, 1000, CROP_CODE, savefile, imgName);
+                File file = FileUtil.bitmapToFile(this, photo, RENZHENG,imgName);
+//                File file = new File(savefile, imgName);
+                pictrueData.remove(pictrueData.size() - 1);
+                pictrueData.add(file.getPath());
+                pictrueData.add("add");
+                uploadPictureAdapter.notifyDataSetChanged();
+                deleteTemp();
+               // PhotoUtils.cropImageUri(this, Uri.fromFile(file), 1, 1, 1000, 1000, CROP_CODE, savefile, imgName);
 
-            } else {
-                tip("请从新拍照");
-            }
+//            } else {
+//                tip("请从新拍照");
+//            }
         } else if (requestCode == openAblum) {
             if (data != null) {
                 Uri uri = data.getData();
                 if (uri != null) {
-                    imgName = UUID.randomUUID().toString() + ".png";
-                    pictrueData.remove(pictrueData.size() - 1);
-                    pictrueData.add(RENZHENG + imgName);
-                    pictrueData.add("add");
-                    uploadPictureAdapter.notifyDataSetChanged();
+                    Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+                    if (cursor != null && cursor.moveToFirst()) {
+                        String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+                        imgName = UUID.randomUUID().toString() + ".png";
+                        pictrueData.remove(pictrueData.size() - 1);
+                        pictrueData.add(path);
+                        pictrueData.add("add");
+                        uploadPictureAdapter.notifyDataSetChanged();
+                        deleteTemp();
+                    }
+
                     //PhotoUtils.cropImageUri(this, data.getData(), 1, 1, 1000, 1000, CROP_CODE, savefile, imgName);
                 }
 

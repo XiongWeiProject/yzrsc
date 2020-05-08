@@ -19,7 +19,10 @@ import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.ServiceInfo;
 import com.commodity.yzrsc.manager.ConfigManager;
 import com.commodity.yzrsc.manager.ImageLoaderManager;
+import com.commodity.yzrsc.manager.SPKeyManager;
 import com.commodity.yzrsc.model.TypeModel;
+import com.commodity.yzrsc.ottobus.BusProvider;
+import com.commodity.yzrsc.ottobus.Event;
 import com.commodity.yzrsc.ui.BaseFragment;
 import com.commodity.yzrsc.ui.activity.friend.MyDynamicActivity;
 import com.commodity.yzrsc.ui.activity.friend.PicDynamicActivity;
@@ -27,6 +30,7 @@ import com.commodity.yzrsc.ui.activity.friend.VideoDynamicActivity;
 import com.commodity.yzrsc.ui.adapter.FragmentViewPagerAdapter;
 import com.commodity.yzrsc.ui.widget.imageview.CircleImageView;
 import com.commodity.yzrsc.view.PopWinShare;
+import com.squareup.otto.Subscribe;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -73,7 +77,6 @@ public class HomeFriendFragment extends BaseFragment {
     protected void initView() {
         ImageLoaderManager.getInstance().displayImage(ConfigManager.instance().getUser().getAvatar(),myImageHead);
         sendRequest(1);
-
     }
 
     @Override
@@ -112,6 +115,29 @@ public class HomeFriendFragment extends BaseFragment {
                     IRequestConst.RequestMethod.GetDynamicCatalog, parmMap, this);
             httpManager.request();
         }
+    }
+
+
+
+    //获取传递过来信息进行相关操作
+    @Subscribe
+    public void NotifyChangedView(Event.NotifyChangedView event) {
+        if (event.getDataObject().equals("HomeFriendFragment")){
+            refreshList();
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        BusProvider.getInstance().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        BusProvider.getInstance().unregister(this);
+        BusProvider.disposeInstance();
     }
 
     @Override
@@ -179,7 +205,9 @@ public class HomeFriendFragment extends BaseFragment {
                 break;
         }
     }
-
+    public void refreshList(){
+        sendRequest(1);
+    }
     class OnClickLintener implements View.OnClickListener {
 
         @Override

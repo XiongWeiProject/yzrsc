@@ -60,6 +60,7 @@ public class HomeFragmentActivity extends BaseFragmentActivity {
     int tab = 0;
     int tabNum = 5;
     private Fragment[] fragments;
+    private  boolean isSend = false;
     @Override
     public boolean getNeedRemove() {
         return false;
@@ -166,9 +167,10 @@ public class HomeFragmentActivity extends BaseFragmentActivity {
                         .hide(mCurFragment).show(fragment).commit();
             }
             mCurFragment = fragment;
-//            if(fragment instanceof HomeShopFragment){
-//                ((HomeShopFragment) fragment).refreshList();
-//            }
+            if(fragment instanceof HomeFriendFragment){
+                    BusProvider.getInstance().post(new Event.NotifyChangedView("HomeFriendFragment"));
+
+            }
         }
     }
 

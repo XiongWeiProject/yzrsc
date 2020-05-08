@@ -1,13 +1,16 @@
 package com.commodity.yzrsc.utils;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -16,6 +19,7 @@ import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import org.apache.commons.io.FilenameUtils;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -459,7 +463,32 @@ public final class FileUtil {
 		}
 		return degree;
 	}
+	public static File bitmapToFile(Activity activity, Bitmap bitmap, String imgName, String fileName) {
+		File myCaptureFile = null;
+		try {
+			String subForder = imgName;
+			File foder = new File(subForder);
+			if (!foder.exists()) {
+				foder.mkdirs();
+			}
+			myCaptureFile = new File(subForder, fileName);
+			if (!myCaptureFile.exists()) {
+				myCaptureFile.createNewFile();
+			}
+			BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(myCaptureFile));
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+			bos.flush();
+			bos.close();
 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+		Uri uri = Uri.fromFile(myCaptureFile);
+		intent.setData(uri);
+		activity.sendBroadcast(intent);
+		return myCaptureFile;
+	}
 	/*
 	 * 旋转图片
 	 *
