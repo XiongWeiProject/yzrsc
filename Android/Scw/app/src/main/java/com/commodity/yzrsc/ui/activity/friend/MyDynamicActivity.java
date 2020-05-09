@@ -13,6 +13,8 @@ import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.ServiceInfo;
 import com.commodity.yzrsc.manager.SPKeyManager;
 import com.commodity.yzrsc.model.DynamicAllListModel;
+import com.commodity.yzrsc.ottobus.BusProvider;
+import com.commodity.yzrsc.ottobus.Event;
 import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.adapter.DynamicListAdapter;
 import com.commodity.yzrsc.ui.adapter.MyDynamicListAdapter;
@@ -21,6 +23,8 @@ import com.commodity.yzrsc.ui.widget.textview.CenterDrawableTextView;
 import com.commodity.yzrsc.ui.widget.xlistView.XListView;
 import com.commodity.yzrsc.utils.GsonUtils;
 import com.commodity.yzrsc.view.PopWinShare;
+import com.squareup.otto.Subscribe;
+import com.yixia.camera.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -178,11 +182,26 @@ public class MyDynamicActivity extends BaseActivity {
         super.OnFailedResponse(tag, code, msg);
         tip(msg);
     }
+    //获取传递过来信息进行相关操作
+    @Subscribe
+    public void NotifyChangedView(Event.NotifyChangedView event) {
+        if (event.getDataObject().equals("MyDynamicActivity")){
+            Log.d("MyDynamicActivity","传递过来的数据"+event.getDataObject());
+            sendRequest(1, "");
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        BusProvider.getInstance().register(this);
+    }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-
+        BusProvider.getInstance().unregister(this);
+        BusProvider.disposeInstance();
     }
 
     @Override

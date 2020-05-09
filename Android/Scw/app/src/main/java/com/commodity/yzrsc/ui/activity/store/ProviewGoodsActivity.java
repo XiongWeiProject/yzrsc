@@ -91,7 +91,7 @@ public class ProviewGoodsActivity extends BaseActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String content="文巴掌商城";
+                String content="易州人商城";
                 if(file.exists()){
                     bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
                     umImage = new UMImage(ProviewGoodsActivity.this, bitmap);

@@ -181,9 +181,9 @@ public class IRequestConst {
         public static final String GetAdvers = REQUEST_URL + "Adver/GetAdvers";
         // 获取商品评价列表
         public static final String GetEvaluationList = REQUEST_URL + "Goods/GetEvaluationList";
-        // 关于文巴掌商城静态页面
+        // 关于易州人商城静态页面
         public static final String about_staticPage = "http://scw-web.83soft.cn/web/staticPage/about";
-        // 用户协议文巴掌商城静态页面
+        // 用户协议易州人商城静态页面
         public static final String license_staticPage = "http://scw-web.83soft.cn/web/staticPage/license";
         // 读消息
         public static final String ReadNotification = REQUEST_URL + "Notification/ReadNotification";
@@ -210,5 +210,9 @@ public class IRequestConst {
         public static final String PostDynamEvalutionList  = REQUEST_URLS  +"UserDynamic/GetDynamicCommentList";
         //删除动态
         public static final String PostDynamDelete  = REQUEST_URLS  +"UserDynamic/DeleteDynamic";
+        //修改个人信息
+        public static final String PostChangeInfo  = REQUEST_URLS  +"Member/ModifyMemberInfo";
+        //获取个人信息
+        public static final String PostGetnfo  = REQUEST_URLS  +"Member/GetMemberInfo";
     }
 }

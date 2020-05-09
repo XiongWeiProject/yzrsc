@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical"
     android:padding="18dp">
@@ -16,13 +17,14 @@
             android:layout_height="wrap_content"
             android:text="6小时前"
             android:textColor="@color/co_999999" />
-
-        <ImageView
+        <com.commodity.yzrsc.view.RoundAngleImageView
             android:id="@+id/ll_head"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/ico_pic_fail_defalt" />
+            android:scaleType="centerCrop"
+            android:background="@color/color_f7f7f7"
+            app:roundHeight="5dp"
+            app:roundWidth="5dp" />
 
         <LinearLayout
             android:layout_width="match_parent"

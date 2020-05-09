@@ -527,7 +527,7 @@ public class CommodityDetailActivity extends BaseFragmentActivity implements Vie
                                     @Override
                                     public void clickSubmit() {
 //                                        SharetUtil.toShare(mContext,commodityBean.getImages().get(0),
-//                                                goodsSaleurl,"文巴掌商城",description,commodityBean.getImages());
+//                                                goodsSaleurl,"易州人商城",description,commodityBean.getImages());
 //                                        ShareEntity shareEntity = new ShareEntity();
 //                                        shareEntity.desc=description+"\n"+"【 批发价格 】"+resellPrice+"\n"+"【 购买地址 】"+goodsSaleurl;
 //                                        shareEntity.images=commodityBean.getImages();

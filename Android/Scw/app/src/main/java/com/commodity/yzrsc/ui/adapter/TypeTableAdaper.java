@@ -89,7 +89,7 @@ public class TypeTableAdaper extends CommonAdapter<TypeDataEntity> {
                                                 @Override
                                                 public void clickSubmit() {
 //                                                    SharetUtil.toShare(mContext,typeTableEntity.getImages()[0],
-//                                                            goodsSaleurl,"文巴掌商城",description, Arrays.asList(typeTableEntity.getImages()));
+//                                                            goodsSaleurl,"易州人商城",description, Arrays.asList(typeTableEntity.getImages()));
                                                     SharetUtil.shareMoreImage(Arrays.asList(typeTableEntity.getImages()),mContext,typeTableEntity.getDescription()+"\n"+"【 批发价格 】"+typeTableEntity.getPrice()+"元"+"\n"+"【 购买地址 】"+goodsSaleurl);
 
                                                 }

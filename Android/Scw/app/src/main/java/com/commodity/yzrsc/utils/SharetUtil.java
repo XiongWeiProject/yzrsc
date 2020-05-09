@@ -207,7 +207,7 @@ public class SharetUtil {
     }
     public static void share(final Activity activity, SHARE_MEDIA media, final String content,UMImage UMImage,String url){
 //        UMWeb web = new UMWeb(url);
-//        web.setTitle("文巴掌商城");
+//        web.setTitle("易州人商城");
 //        web.setDescription(content);
 //        web.setThumb(UMImage);
         new ShareAction(activity).setPlatform(media)
@@ -234,7 +234,7 @@ public class SharetUtil {
         UMWeb web = new UMWeb(url);
         web.setThumb(umimage);
         web.setDescription(desc);
-        web.setTitle("文巴掌商城");
+        web.setTitle("易州人商城");
         new ShareAction(activity).setPlatform(media)
                 .withMedia(web)
                 .setCallback(new CustomShareListener(activity, new ShareCallBack() {
@@ -259,7 +259,7 @@ public class SharetUtil {
         UMWeb web = new UMWeb(url);
         web.setThumb(umimage);
         web.setDescription(desc);
-        web.setTitle("文巴掌商城");
+        web.setTitle("易州人商城");
         new ShareAction(activity).setPlatform(media)
                 .withMedia(web)
                 .setCallback(new CustomShareListener(activity, new ShareCallBack() {

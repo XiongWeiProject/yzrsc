@@ -115,7 +115,7 @@ public class ZhuanshouAdapter extends CommonAdapter<ZhuanshouItemEntity> {
                                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
 //                                    List<String> array = new ArrayList<>();
 //                                    array.add(zhuanshouEntity.getImage());
-//                                    SharetUtil.show(mContext,"http://www.soucangwang.com",loadedImage,"文巴掌商城",zhuanshouEntity.getDescription(), new ShareCallBack() {
+//                                    SharetUtil.show(mContext,"http://www.soucangwang.com",loadedImage,"易州人商城",zhuanshouEntity.getDescription(), new ShareCallBack() {
 //                                        @Override
 //                                        public void onResult() {
 //

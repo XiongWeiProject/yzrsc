@@ -250,7 +250,7 @@ public class MarketGoodsAdapter extends CommonAdapter<MarketGoods> {
                                                 imgpath=imgType.getImgpath();
                                             }
 //                                            SharetUtil.toShare(mContext,imgpath,
-//                                                    goodsSaleurl,"文巴掌商城",description,urls);
+//                                                    goodsSaleurl,"易州人商城",description,urls);
 //                                            ShareEntity shareEntity = new ShareEntity();
 //                                            shareEntity.desc=description+"\n"+"【 批发价格 】"+resellPrice+"元"+"\n"+"【 购买地址 】"+goodsSaleurl;
 //                                            shareEntity.images=urls;

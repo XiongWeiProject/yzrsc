@@ -53,4 +53,10 @@
         <!-- 视频分辨率高度 -->
         <attr name="video_height" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="RoundAngleImageView">
+        <attr name="roundWidth" format="dimension" />
+        <attr name="roundHeight" format="dimension" />
+        <attr name="bottomShow" format="boolean" />
+    </declare-styleable>
 </resources>

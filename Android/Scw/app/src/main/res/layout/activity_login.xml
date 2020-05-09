@@ -16,10 +16,10 @@
 
     <TextView
         android:layout_width="100dp"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:layout_marginTop="@dimen/distance_24"
         android:textColor="@color/white"
-        android:background="@drawable/ico_tubiao"
+        android:background="@mipmap/ic_launcher_new"
         android:textSize="26sp" />
 
     <EditText

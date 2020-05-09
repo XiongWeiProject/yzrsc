@@ -82,7 +82,7 @@
                 android:layout_height="20dp"
                 android:button="@drawable/bg_checkbox_style"
                 android:checked="true"
-                android:text="  同意《文巴掌商城用户协议》"
+                android:text="  同意《易州人商城用户协议》"
                 android:textColor="@color/co_BEBEBE"
                 android:textSize="@dimen/textsize14" />
             <TextView

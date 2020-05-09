@@ -96,7 +96,7 @@ public class ShareImageDialog extends Dialog implements AdapterView.OnItemClickL
                     public void onClick(View v) {
                         Bundle params = new Bundle();
                         params.putString(QQShare.SHARE_TO_QQ_IMAGE_LOCAL_URL, data.imageUrl);
-                        params.putString(QQShare.SHARE_TO_QQ_APP_NAME, "文巴掌商城");
+                        params.putString(QQShare.SHARE_TO_QQ_APP_NAME, "易州人商城");
                         params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_IMAGE);
                         params.putInt(QQShare.SHARE_TO_QQ_EXT_INT, QQShare.
                                 SHARE_TO_QQ_FLAG_QZONE_AUTO_OPEN);

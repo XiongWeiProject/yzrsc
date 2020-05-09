@@ -35,6 +35,8 @@ import com.commodity.yzrsc.manager.Constanct;
 import com.commodity.yzrsc.manager.SPKeyManager;
 import com.commodity.yzrsc.manager.SPManager;
 import com.commodity.yzrsc.model.TypeModel;
+import com.commodity.yzrsc.ottobus.BusProvider;
+import com.commodity.yzrsc.ottobus.Event;
 import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.adapter.PhotoPopupAdapter;
 import com.commodity.yzrsc.ui.adapter.UpLoadPictureAdapter;
@@ -256,7 +258,7 @@ public class PicDynamicActivity extends BaseActivity {
                             @Override
                             public void onClick(View v) {
 //                                            SPManager.put(RenzhengActivity.this, Constanct.RENZHENG,true);
-                                SPManager.instance().setBoolean(Constanct.RENZHENG, true);
+                                BusProvider.getInstance().post(new Event.NotifyChangedView("MyDynamicActivity"));
                                 finish();
                             }
                         });

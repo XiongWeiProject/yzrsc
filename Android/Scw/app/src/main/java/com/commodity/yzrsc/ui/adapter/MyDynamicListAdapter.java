@@ -40,6 +40,8 @@ import com.commodity.yzrsc.http.UpLoadUtils;
 import com.commodity.yzrsc.manager.ImageLoaderManager;
 import com.commodity.yzrsc.model.DynamicAllListModel;
 import com.commodity.yzrsc.model.Evalution;
+import com.commodity.yzrsc.ottobus.BusProvider;
+import com.commodity.yzrsc.ottobus.Event;
 import com.commodity.yzrsc.ui.activity.friend.OtherDynamicActivity;
 import com.commodity.yzrsc.ui.activity.friend.PicDynamicActivity;
 import com.commodity.yzrsc.ui.activity.general.BigPictureActivity;
@@ -144,7 +146,7 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
             ll_evalution.setVisibility(View.VISIBLE);
             ll_zan.setVisibility(View.VISIBLE);
             view_line.setVisibility(View.GONE);
-            rcv_zan.setLayoutManager(new GridLayoutManager(mContext, 7));
+            rcv_zan.setLayoutManager(new GridLayoutManager(mContext, 3));
             //获取点赞列表
             getzanList(dynamicAllListModel.getId());
         } else if (dynamicAllListModel.getCommentCount() > 0) {
@@ -170,6 +172,7 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                     public void clickSubmit() {
                         commonDialog.dismiss();
                         deleteDynamic(data.get(position).getId());
+                        BusProvider.getInstance().post(new Event.NotifyChangedView("MyDynamicActivity"));
                     }
                 });
             }
@@ -262,7 +265,6 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                         jsob = new JSONObject(string);
                         if (jsob != null && jsob.optBoolean("success")) {
                             tips("删除成功");
-                            notifyDataSetChanged();
 
                         } else {
                             //提交失败

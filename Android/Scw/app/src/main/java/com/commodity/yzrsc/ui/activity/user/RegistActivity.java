@@ -163,7 +163,7 @@ public class RegistActivity extends BaseActivity {
                         return;
                     }
                     if (!checkbox.isChecked()) {
-                        tip("请同意文巴掌商城用户协议！");
+                        tip("请同意易州人商城用户协议！");
                         return;
                     }
                     if (isOtherLogin) {

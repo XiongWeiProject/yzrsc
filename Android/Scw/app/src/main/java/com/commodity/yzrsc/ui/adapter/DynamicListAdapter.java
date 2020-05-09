@@ -141,7 +141,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
             ll_evalution.setVisibility(View.VISIBLE);
             ll_zan.setVisibility(View.VISIBLE);
             view_line.setVisibility(View.GONE);
-            rcv_zan.setLayoutManager(new GridLayoutManager(mContext, 7));
+            rcv_zan.setLayoutManager(new GridLayoutManager(mContext, 3));
             //获取点赞列表
             getzanList(dynamicAllListModel.getId());
         } else if (dynamicAllListModel.getCommentCount() > 0) {
@@ -218,7 +218,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
 
             @Override
             public void itemClick(View v, int position, int type) {
-                if (type != 1) {
+                if (dynamicAllListModel.getDynamicType() == 1) {
                     Intent intent = new Intent(mContext, BigPictureActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("urls", (Serializable) data.get(holder.getPosition()).getPictures());
