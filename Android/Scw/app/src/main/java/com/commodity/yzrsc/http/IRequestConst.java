@@ -214,5 +214,7 @@ public class IRequestConst {
         public static final String PostChangeInfo  = REQUEST_URLS  +"Member/ModifyMemberInfo";
         //获取个人信息
         public static final String PostGetnfo  = REQUEST_URLS  +"Member/GetMemberInfo";
+        //删除自己的评论
+        public static final String PostDetect  = REQUEST_URLS  +"UserDynamic/DeleteComment";
     }
 }

@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/stroe_zuiwai"
     tools:context=".ui.activity.friend.OtherDynamicActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="260dp">
         <ImageView
+            android:id="@+id/iv_change_bg"
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:scaleType="fitXY"
@@ -44,4 +46,10 @@
         android:scrollbars="vertical"
         pla:plaColumnNumber="1"
         pla:plaLandscapeColumnNumber="1"/>
+    <View
+        android:id="@+id/backage"
+        android:visibility="gone"
+        android:background="#66000000"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

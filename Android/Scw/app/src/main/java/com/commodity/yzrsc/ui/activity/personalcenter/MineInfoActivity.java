@@ -103,6 +103,7 @@ public class MineInfoActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        sendRequest(1);
         mine_phone_text.setText(ConfigManager.instance().getUser().getMobile());
         data.add("拍照上传");
         data.add("从手机相册选择");
@@ -133,7 +134,6 @@ public class MineInfoActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        sendRequest(1);
     }
     @Override
     public void sendRequest(int tag) {
@@ -270,6 +270,7 @@ public class MineInfoActivity extends BaseActivity {
         customLoadding.show();
         MultipartBody.Builder multiparBody = new MultipartBody.Builder().setType(MultipartBody.FORM);
         multiparBody.addFormDataPart("Avatar", headFile.getName(), RequestBody.create(MediaType.parse("image/*"), headFile));
+        multiparBody.addFormDataPart("picType", "Avatar");
         UpLoadUtils.instance().uploadPicture(IRequestConst.RequestMethod.PostChangeInfo, multiparBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -291,6 +292,7 @@ public class MineInfoActivity extends BaseActivity {
                         if (jsob.optBoolean("data")) {
                             Looper.prepare();
                             tip("头像上传成功");
+                            sendRequest(1);
                             Looper.loop();
                         }
                     }

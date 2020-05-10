@@ -23,7 +23,7 @@ public class EvalutionAdapter extends BaseRecycleAdapter<Evalution> {
         if (evalution.getCommentType()==0){
             textView.setText(Html.fromHtml("<font color=\"#516490\">"+evalution.getMemberNickname()+":"+"</font>"+evalution.getComment()));
         }else {
-            textView.setText("<font color=\"#516490\">"+evalution.getMemberNickname()+":"+"</font>"+"回复"+"<font color=\"#516490\">"+evalution.getReplyiedNickname()+":"+"</font>"+evalution.getComment());
+            textView.setText(Html.fromHtml("<font color=\"#516490\">"+evalution.getMemberNickname()+":"+"</font>"+"回复"+"<font color=\"#516490\">"+evalution.getReplyiedNickname()+":"+"</font>"+evalution.getComment()));
         }
 
     }
