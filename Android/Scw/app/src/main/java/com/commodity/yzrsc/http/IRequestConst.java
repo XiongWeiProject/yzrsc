@@ -197,7 +197,9 @@ public class IRequestConst {
         //动态分类
         public static final String GetDynamicCatalog  = REQUEST_URLS  +"UserDynamic/GetDynamicCatalog";
         //动态列表
-        public static final String GetDynamicList  = REQUEST_URLS  +"UserDynamic/GetDynamicInfoList";
+        public static final String GetDynamicList  = REQUEST_URLS  +"UserDynamic/GetDynamicInfoList2";
+        //动态列表
+        public static final String GetDynamicList1  = REQUEST_URLS  +"UserDynamic/GetDynamicInfoList";
         //动态上传
         public static final String PostDynamic  = REQUEST_URLS  +"UserDynamic/UploadDynamic";
         //动态点赞

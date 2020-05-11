@@ -14,6 +14,7 @@ import com.commodity.yzrsc.manager.SPKeyManager;
 import com.commodity.yzrsc.model.DynamicAllListModel;
 import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.adapter.DynamicListAdapter;
+import com.commodity.yzrsc.ui.adapter.OtherDynamicListAdapter;
 import com.commodity.yzrsc.ui.widget.textview.CenterDrawableTextView;
 import com.commodity.yzrsc.ui.widget.xlistView.XListView;
 import com.commodity.yzrsc.utils.GsonUtils;
@@ -44,7 +45,7 @@ public class OtherDynamicActivity extends BaseActivity {
 
     List<DynamicAllListModel> listModels = new ArrayList<>();
     DynamicAllListModel data;
-    DynamicListAdapter dynamicListAdapter;
+    OtherDynamicListAdapter dynamicListAdapter;
 
     private int pageIndex = 1;
     private int totalPage = 1;
@@ -63,7 +64,7 @@ public class OtherDynamicActivity extends BaseActivity {
         memberId = extras.getString("dynamicId");
         TypeId = extras.getString("TypeId");
         xlistDynamic.setPullLoadEnable(true);
-        dynamicListAdapter = new DynamicListAdapter(this, listModels);
+        dynamicListAdapter = new OtherDynamicListAdapter(this, listModels);
         xlistDynamic.setAdapter(dynamicListAdapter);
         sendRequest(1, "");
     }

@@ -13,6 +13,7 @@ import android.widget.Button;
 
 import com.commodity.yzrsc.MainApplication;
 import com.commodity.yzrsc.R;
+import com.commodity.yzrsc.model.DynamicAllListModel;
 import com.commodity.yzrsc.model.Evalution;
 import com.commodity.yzrsc.ui.adapter.EvalutionAdapter;
 
@@ -21,8 +22,8 @@ import java.util.List;
 public class MoreEvalutionDialog extends Dialog {
     private Context context;
     private View.OnClickListener listener;
-    List<Evalution>datas ;
-    public MoreEvalutionDialog(Context context , List<Evalution>data) {
+    List<DynamicAllListModel.commentList>datas ;
+    public MoreEvalutionDialog(Context context , List<DynamicAllListModel.commentList>data) {
         super(context, R.style.CommonDialogStyle);
         this.context = context;
         datas = data;

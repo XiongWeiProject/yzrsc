@@ -86,7 +86,6 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
     PopWinShare popWinShare;
     private boolean isLike = false;
     List<DynamicAllListModel> data;
-    List<Evalution> evalution = new ArrayList<>();
     int itemposition = 0;
     RecyclerView rcv_pic, rcv_zan, rcv_evalution;
     RelativeLayout rl_more;
@@ -140,19 +139,96 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
         }
         if (dynamicAllListModel.getLikeCount() == 0 && dynamicAllListModel.getCommentCount() == 0) {
             ll_evalution.setVisibility(View.GONE);
-        } else if (dynamicAllListModel.getLikeCount() > 0) {
+        } else if (dynamicAllListModel.getLikeList() != null || dynamicAllListModel.getLikeCount() > 0) {
             ll_evalution.setVisibility(View.VISIBLE);
             ll_zan.setVisibility(View.VISIBLE);
             view_line.setVisibility(View.GONE);
             rcv_zan.setLayoutManager(new GridLayoutManager(mContext, 3));
             //获取点赞列表
-            getzanList(dynamicAllListModel.getId());
-        } else if (dynamicAllListModel.getCommentCount() > 0) {
+            ZanAdapter zanAdapter = new ZanAdapter(mContext, dynamicAllListModel.getLikeList(), R.layout.item_zan);
+            rcv_zan.setAdapter(zanAdapter);
+            zanAdapter.setOnItemClickListener(new BaseRecycleAdapter.ItemClickListener() {
+                                                  @Override
+                                                  public void itemClick(View v, int position) {
+                                                      if (data.get(itemposition).getMemberId() == Integer.parseInt(ConfigManager.instance().getUser().getId())) {
+                                                          Intent intent = new Intent(mContext, MyDynamicActivity.class);
+                                                          Bundle bundle = new Bundle();
+                                                          bundle.putString("dynamicId", ConfigManager.instance().getUser().getId());
+                                                          bundle.putString("TypeId", data.get(position).getDynamicCatalog_Id() + "");
+                                                          intent.putExtras(bundle);
+                                                          ((Activity) mContext).startActivity(intent);
+                                                      } else {
+                                                          //跳转他人动态
+                                                          Intent intent = new Intent(mContext, OtherDynamicActivity.class);
+                                                          Bundle bundle = new Bundle();
+                                                          bundle.putString("dynamicId", data.get(position).getMemberId() + "");
+                                                          bundle.putString("TypeId", data.get(position).getDynamicCatalog_Id() + "");
+                                                          intent.putExtras(bundle);
+                                                          ((Activity) mContext).startActivity(intent);
+                                                      }
+
+                                                  }
+                                              }
+            );
+        } else if (dynamicAllListModel.getCommentList() != null && dynamicAllListModel.getCommentCount() > 0) {
             ll_evalution.setVisibility(View.VISIBLE);
             rcv_evalution.setVisibility(View.VISIBLE);
             view_line.setVisibility(View.GONE);
+            if (dynamicAllListModel.getCommentList().size() > 5) {
+                rl_more.setVisibility(View.VISIBLE);
+                rl_more.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //提交成功
+                        final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext, dynamicAllListModel.getCommentList());
+                        renzhengSuccessDialog.show();
+                        renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                renzhengSuccessDialog.dismiss();
+                            }
+                        });
+                        renzhengSuccessDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                            @Override
+                            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                                switch (keyCode) {
+                                    case KeyEvent.KEYCODE_BACK:
+                                        return true;
+                                    default:
+                                        break;
+                                }
+                                return false;
+                            }
+                        });
+                    }
+                });
+            } else {
+                rl_more.setVisibility(View.GONE);
+            }
             rcv_evalution.setLayoutManager(new LinearLayoutManager(mContext));
-            getEvalutionList(dynamicAllListModel.getId());
+            EvalutionAdapter evalutionAdapter = new EvalutionAdapter(mContext, dynamicAllListModel.getCommentList(), R.layout.item_evalution);
+            rcv_evalution.setAdapter(evalutionAdapter);
+            evalutionAdapter.setOnItemClickListener(new BaseRecycleAdapter.ItemClickListener() {
+                                                        @Override
+                                                        public void itemClick(View v, final int position) {
+                                                            if (data.get(itemposition).getMemberId() == Integer.parseInt(ConfigManager.instance().getUser().getId())) {
+                                                                final CommonDialog commonDialog = new CommonDialog(mContext);
+                                                                commonDialog.show();
+                                                                commonDialog.setContext("是否删除此评论？");
+                                                                commonDialog.setClickSubmitListener(new CommonDialog.OnClickSubmitListener() {
+                                                                    @Override
+                                                                    public void clickSubmit() {
+                                                                        commonDialog.dismiss();
+                                                                        deleteDynamic(dynamicAllListModel.getCommentList().get(position).getId());
+                                                                    }
+                                                                });
+                                                            } else {
+                                                                showPopupcomment(dynamicAllListModel.getCommentList().get(position).getId() + "", 1 + "");
+                                                            }
+
+                                                        }
+                                                    }
+            );
         } else {
             ll_evalution.setVisibility(View.VISIBLE);
             ll_zan.setVisibility(View.VISIBLE);
@@ -238,177 +314,6 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
         });
     }
 
-    private void getzanList(int id) {
-        final List<String> list = new ArrayList<>();
-        final List<Integer> listId = new ArrayList<>();
-        Map<String, String> parmMap = new HashMap<String, String>();
-        parmMap.put("id", id + "");
-        parmMap.put("minId", "0");
-        parmMap.put("pageSize", "20");
-        HttpManager httpManager = new HttpManager(0, HttpMothed.GET,
-                IRequestConst.RequestMethod.PostDynamZanList, parmMap, new BaseHttpManager.IRequestListener() {
-            @Override
-            public void onPreExecute(int Tag) {
-            }
-
-            @Override
-            public void onSuccess(int Tag, ServiceInfo result) {
-                JSONObject resultJson = (JSONObject) result.getResponse();
-                if (resultJson != null && resultJson.optBoolean("success")) {
-                    try {
-                        JSONArray jsonArray = resultJson.getJSONArray("data");
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            list.add(jsonArray.getJSONObject(i).optString("memberNickname"));
-                            listId.add(jsonArray.getJSONObject(i).optInt("memberId"));
-                        }
-                        ZanAdapter zanAdapter = new ZanAdapter(mContext, list, R.layout.item_zan);
-                        rcv_zan.setAdapter(zanAdapter);
-                        zanAdapter.setOnItemClickListener(new BaseRecycleAdapter.ItemClickListener() {
-                                                              @Override
-                                                              public void itemClick(View v, int position) {
-                                                                  if (data.get(itemposition).getMemberId() == Integer.parseInt(ConfigManager.instance().getUser().getId())) {
-                                                                      Intent intent = new Intent(mContext, MyDynamicActivity.class);
-                                                                      Bundle bundle = new Bundle();
-                                                                      bundle.putString("dynamicId", ConfigManager.instance().getUser().getId());
-                                                                      bundle.putString("TypeId", data.get(position).getDynamicCatalog_Id() + "");
-                                                                      intent.putExtras(bundle);
-                                                                      ((Activity) mContext).startActivity(intent);
-                                                                  } else {
-                                                                      //跳转他人动态
-                                                                      Intent intent = new Intent(mContext, OtherDynamicActivity.class);
-                                                                      Bundle bundle = new Bundle();
-                                                                      bundle.putString("dynamicId", data.get(position).getMemberId() + "");
-                                                                      bundle.putString("TypeId", data.get(position).getDynamicCatalog_Id() + "");
-                                                                      intent.putExtras(bundle);
-                                                                      ((Activity) mContext).startActivity(intent);
-                                                                  }
-
-                                                              }
-                                                          }
-                        );
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    tip(resultJson.optString("msg"));
-                }
-            }
-
-            @Override
-            public void onError(int Tag, String code, String msg) {
-                tip(msg);
-            }
-
-            @Override
-            public void OnTimeOut(int Tag, boolean isShowTip) {
-
-            }
-
-            @Override
-            public void OnNetError(int Tag, boolean isShowTip) {
-
-            }
-        });
-        httpManager.request();
-    }
-
-    private void getEvalutionList(int id) {
-        Map<String, String> parmMap = new HashMap<String, String>();
-        parmMap.put("id", id + "");
-        parmMap.put("minId", "0");
-        parmMap.put("pageSize", "30");
-        HttpManager httpManager = new HttpManager(0, HttpMothed.GET,
-                IRequestConst.RequestMethod.PostDynamEvalutionList, parmMap, new BaseHttpManager.IRequestListener() {
-            @Override
-            public void onPreExecute(int Tag) {
-            }
-
-            @Override
-            public void onSuccess(int Tag, ServiceInfo result) {
-                JSONObject resultJson = (JSONObject) result.getResponse();
-                if (resultJson != null && resultJson.optBoolean("success")) {
-                    try {
-                        evalution = JSON.parseArray(resultJson.getString("data"), Evalution.class);
-                        if (evalution.size() > 5) {
-                            rl_more.setVisibility(View.VISIBLE);
-                            rl_more.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    //提交成功
-                                    final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext, evalution);
-                                    renzhengSuccessDialog.show();
-                                    renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            renzhengSuccessDialog.dismiss();
-                                        }
-                                    });
-                                    renzhengSuccessDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                                        @Override
-                                        public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                                            switch (keyCode) {
-                                                case KeyEvent.KEYCODE_BACK:
-                                                    return true;
-                                                default:
-                                                    break;
-                                            }
-                                            return false;
-                                        }
-                                    });
-                                }
-                            });
-                        } else {
-
-                            rl_more.setVisibility(View.GONE);
-                        }
-                        EvalutionAdapter evalutionAdapter = new EvalutionAdapter(mContext, evalution, R.layout.item_evalution);
-                        rcv_evalution.setAdapter(evalutionAdapter);
-                        evalutionAdapter.setOnItemClickListener(new BaseRecycleAdapter.ItemClickListener() {
-                                                                    @Override
-                                                                    public void itemClick(View v, final int position) {
-                                                                        if (data.get(itemposition).getMemberId() == Integer.parseInt(ConfigManager.instance().getUser().getId())) {
-                                                                            final CommonDialog commonDialog = new CommonDialog(mContext);
-                                                                            commonDialog.show();
-                                                                            commonDialog.setContext("是否删除此评论？");
-                                                                            commonDialog.setClickSubmitListener(new CommonDialog.OnClickSubmitListener() {
-                                                                                @Override
-                                                                                public void clickSubmit() {
-                                                                                    commonDialog.dismiss();
-                                                                                    deleteDynamic(evalution.get(position).getId());
-                                                                                }
-                                                                            });
-                                                                        } else {
-                                                                            showPopupcomment(evalution.get(position).getId() + "", 1 + "");
-                                                                        }
-
-                                                                    }
-                                                                }
-                        );
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    tip(resultJson.optString("msg"));
-                }
-            }
-
-            @Override
-            public void onError(int Tag, String code, String msg) {
-                tip(msg);
-            }
-
-            @Override
-            public void OnTimeOut(int Tag, boolean isShowTip) {
-
-            }
-
-            @Override
-            public void OnNetError(int Tag, boolean isShowTip) {
-
-            }
-        });
-        httpManager.request();
-    }
 
     class OnClickLintener implements View.OnClickListener {
 
@@ -473,6 +378,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
 
     private void isLikes(String goodsSaleId) {
         FormBody requestBody = new FormBody.Builder().add("flag", goodsSaleId).add("id", data.get(itemposition).getId() + "").build();
+        Log.e("failure:", "\"flag\", goodsSaleId"+ goodsSaleId+"id"+data.get(itemposition).getId() + "");
         UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDynamicLike, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
