@@ -108,6 +108,8 @@ public class OtherDynamicActivity extends BaseActivity {
         if (tag == 1) {
             customLoadding.show();
             Map<String, String> parmMap = new HashMap<String, String>();
+            parmMap.put("likeCount", 6+"");
+            parmMap.put("commentCount", 6+"");
             parmMap.put("memberId", memberId);
             parmMap.put("catalogId", TypeId);
             parmMap.put("minId", minId);

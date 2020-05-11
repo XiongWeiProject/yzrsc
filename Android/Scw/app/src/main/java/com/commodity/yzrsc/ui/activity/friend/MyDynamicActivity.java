@@ -169,6 +169,8 @@ public class MyDynamicActivity extends BaseActivity {
                 minId = "0";
             }
             Map<String, String> parmMap = new HashMap<String, String>();
+            parmMap.put("likeCount", 6+"");
+            parmMap.put("commentCount", 6+"");
             parmMap.put("memberId", memberId);
             parmMap.put("catalogId", catalogId);
             parmMap.put("minId", minId);

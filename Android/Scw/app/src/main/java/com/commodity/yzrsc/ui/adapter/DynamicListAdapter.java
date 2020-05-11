@@ -139,11 +139,19 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
         }
         if (dynamicAllListModel.getLikeCount() == 0 && dynamicAllListModel.getCommentCount() == 0) {
             ll_evalution.setVisibility(View.GONE);
-        } else if (dynamicAllListModel.getLikeList() != null || dynamicAllListModel.getLikeCount() > 0) {
+        } else {
+            ll_evalution.setVisibility(View.VISIBLE);
+            ll_zan.setVisibility(View.VISIBLE);
+            rcv_evalution.setVisibility(View.VISIBLE);
+            view_line.setVisibility(View.VISIBLE);
+        }
+        if (dynamicAllListModel.getLikeList() != null && dynamicAllListModel.getLikeCount() > 0) {
             ll_evalution.setVisibility(View.VISIBLE);
             ll_zan.setVisibility(View.VISIBLE);
             view_line.setVisibility(View.GONE);
-            rcv_zan.setLayoutManager(new GridLayoutManager(mContext, 3));
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            rcv_zan.setLayoutManager(linearLayoutManager);
             //获取点赞列表
             ZanAdapter zanAdapter = new ZanAdapter(mContext, dynamicAllListModel.getLikeList(), R.layout.item_zan);
             rcv_zan.setAdapter(zanAdapter);
@@ -161,8 +169,8 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                                                           //跳转他人动态
                                                           Intent intent = new Intent(mContext, OtherDynamicActivity.class);
                                                           Bundle bundle = new Bundle();
-                                                          bundle.putString("dynamicId", data.get(position).getMemberId() + "");
-                                                          bundle.putString("TypeId", data.get(position).getDynamicCatalog_Id() + "");
+                                                          bundle.putString("dynamicId", data.get(itemposition).getMemberId() + "");
+                                                          bundle.putString("TypeId", data.get(itemposition).getDynamicCatalog_Id() + "");
                                                           intent.putExtras(bundle);
                                                           ((Activity) mContext).startActivity(intent);
                                                       }
@@ -170,7 +178,12 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                                                   }
                                               }
             );
-        } else if (dynamicAllListModel.getCommentList() != null && dynamicAllListModel.getCommentCount() > 0) {
+        } else {
+            ll_evalution.setVisibility(View.VISIBLE);
+            ll_zan.setVisibility(View.GONE);
+            view_line.setVisibility(View.GONE);
+        }
+        if (dynamicAllListModel.getCommentList() != null && dynamicAllListModel.getCommentCount() > 0) {
             ll_evalution.setVisibility(View.VISIBLE);
             rcv_evalution.setVisibility(View.VISIBLE);
             view_line.setVisibility(View.GONE);
@@ -211,7 +224,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
             evalutionAdapter.setOnItemClickListener(new BaseRecycleAdapter.ItemClickListener() {
                                                         @Override
                                                         public void itemClick(View v, final int position) {
-                                                            if (data.get(itemposition).getMemberId() == Integer.parseInt(ConfigManager.instance().getUser().getId())) {
+                                                            if (dynamicAllListModel.getCommentList().get(position).getMemberId() == Integer.parseInt(ConfigManager.instance().getUser().getId())) {
                                                                 final CommonDialog commonDialog = new CommonDialog(mContext);
                                                                 commonDialog.show();
                                                                 commonDialog.setContext("是否删除此评论？");
@@ -223,17 +236,16 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                                                                     }
                                                                 });
                                                             } else {
-                                                                showPopupcomment(dynamicAllListModel.getCommentList().get(position).getId() + "", 1 + "");
+                                                                showPopupcomment(dynamicAllListModel.getCommentList().get(position).getMemberId() + "", 1 + "");
                                                             }
 
                                                         }
                                                     }
             );
-        } else {
+        }else {
             ll_evalution.setVisibility(View.VISIBLE);
-            ll_zan.setVisibility(View.VISIBLE);
-            rcv_evalution.setVisibility(View.VISIBLE);
-            view_line.setVisibility(View.VISIBLE);
+            rcv_evalution.setVisibility(View.GONE);
+            view_line.setVisibility(View.GONE);
         }
         head.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -378,7 +390,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
 
     private void isLikes(String goodsSaleId) {
         FormBody requestBody = new FormBody.Builder().add("flag", goodsSaleId).add("id", data.get(itemposition).getId() + "").build();
-        Log.e("failure:", "\"flag\", goodsSaleId"+ goodsSaleId+"id"+data.get(itemposition).getId() + "");
+        Log.e("failure:", "\"flag\", goodsSaleId" + goodsSaleId + "id" + data.get(itemposition).getId() + "");
         UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDynamicLike, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

@@ -134,8 +134,8 @@ public class DynamicFragment extends BaseFragment {
                 minId = "0";
             }
             Map<String, String> parmMap = new HashMap<String, String>();
-            parmMap.put("likeCount", 5+"");
-            parmMap.put("commentCount", 5+"");
+            parmMap.put("likeCount", 6+"");
+            parmMap.put("commentCount", 6+"");
             parmMap.put("memberId", memberId);
             parmMap.put("catalogId", mParam1+"");
             parmMap.put("minId", minId);

@@ -142,7 +142,8 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
         }
         if (dynamicAllListModel.getLikeCount() == 0 && dynamicAllListModel.getCommentCount() == 0) {
             ll_evalution.setVisibility(View.GONE);
-        } else if (dynamicAllListModel.getLikeList()!=null||dynamicAllListModel.getLikeCount() > 0) {
+        }
+        if (dynamicAllListModel.getLikeList()!=null&&dynamicAllListModel.getLikeCount() > 0) {
             ll_evalution.setVisibility(View.VISIBLE);
             ll_zan.setVisibility(View.VISIBLE);
             view_line.setVisibility(View.GONE);
@@ -150,7 +151,8 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
             //获取点赞列表
             ZanAdapter zanAdapter = new ZanAdapter(mContext, dynamicAllListModel.getLikeList(), R.layout.item_zan);
             rcv_zan.setAdapter(zanAdapter);
-        }  else if (dynamicAllListModel.getCommentList()!=null&&dynamicAllListModel.getCommentCount() > 0) {
+        }
+        if (dynamicAllListModel.getCommentList()!=null&&dynamicAllListModel.getCommentCount() > 0) {
             ll_evalution.setVisibility(View.VISIBLE);
             rcv_evalution.setVisibility(View.VISIBLE);
             view_line.setVisibility(View.GONE);
@@ -188,12 +190,13 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
             rcv_evalution.setLayoutManager(new LinearLayoutManager(mContext));
             EvalutionAdapter evalutionAdapter = new EvalutionAdapter(mContext, dynamicAllListModel.getCommentList(), R.layout.item_evalution);
             rcv_evalution.setAdapter(evalutionAdapter);
-        } else {
-            ll_evalution.setVisibility(View.VISIBLE);
-            ll_zan.setVisibility(View.VISIBLE);
-            ll_evalution1.setVisibility(View.VISIBLE);
-            view_line.setVisibility(View.VISIBLE);
         }
+//        else {
+//            ll_evalution.setVisibility(View.VISIBLE);
+//            ll_zan.setVisibility(View.VISIBLE);
+//            ll_evalution1.setVisibility(View.VISIBLE);
+//            view_line.setVisibility(View.VISIBLE);
+//        }
         dynamic_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
