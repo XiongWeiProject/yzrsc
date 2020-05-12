@@ -208,7 +208,7 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                     @Override
                     public void clickSubmit() {
                         commonDialog.dismiss();
-                        deleteDynamic(data.get(position).getId());
+                        deleteDynamic(dynamicAllListModel.getId());
                         BusProvider.getInstance().post(new Event.NotifyChangedView("MyDynamicActivity"));
                     }
                 });
@@ -290,18 +290,18 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                     try {
                         jsob = new JSONObject(string);
                         if (jsob != null && jsob.optBoolean("success")) {
-                            tips("删除成功");
+//                            tips("删除成功");
 
                         } else {
                             //提交失败
-                            tips("删除失败");
+//                            tips("删除失败");
 
                         }
                     } catch (JSONException e) {
 
                         e.printStackTrace();
-                        tips("json解析异常");
-                    }
+//                        tips("json解析异常");
+                }
                 }
 
             }
@@ -352,23 +352,23 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                     try {
                         jsob = new JSONObject(string);
                         if (jsob != null && jsob.optBoolean("success")) {
-                            //提交成功
-                            if (isLike) {
-                                tips("取消成功");
-                            } else {
-                                tips("点赞成功");
-
-                            }
+//                            //提交成功
+//                            if (isLike) {
+//                                tips("取消成功");
+//                            } else {
+//                                tips("点赞成功");
+//
+//                            }
 
                         } else {
                             //提交失败
-                            tips("提交失败");
+//                            tips("提交失败");
 
                         }
                     } catch (JSONException e) {
 
                         e.printStackTrace();
-                        tips("json解析异常");
+//                        tips("json解析异常");
                     }
                 }
 
@@ -485,15 +485,15 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                         jsob = new JSONObject(string);
                         if (jsob != null && jsob.optBoolean("success")) {
                             //提交成功
-                            tips("评论成功");
+//                            tips("评论成功");
 
                         } else {
                             //提交失败
-                            tips("评论失败");
+//                            tips("评论失败");
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        tips("json解析异常");
+//                        tips("json解析异常");
                     }
                 }
 

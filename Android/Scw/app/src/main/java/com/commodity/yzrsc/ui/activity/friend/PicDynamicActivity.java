@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -107,6 +108,7 @@ public class PicDynamicActivity extends BaseActivity {
     String userDynamicCatalog_Id;
     private static final int REQUEST_CODE = 0x00000011;
     private static final int PERMISSION_WRITE_EXTERNAL_REQUEST_CODE = 0x00000012;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -230,13 +232,13 @@ public class PicDynamicActivity extends BaseActivity {
         UpLoadUtils.instance().uploadPicture1(IRequestConst.RequestMethod.PostDynamic, multiparBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Looper.prepare();
-                tip(e.getMessage());
+//                Looper.prepare();
+//                tip(e.getMessage());
                 Log.e("failure:****", e.getMessage());
                 if (customLoadding.isShowing()) {
                     customLoadding.dismiss();
                 }
-                Looper.loop();
+//                Looper.loop();
             }
 
             @Override
@@ -250,42 +252,51 @@ public class PicDynamicActivity extends BaseActivity {
                 try {
                     jsob = new JSONObject(responseStr);
                     if (jsob != null && jsob.optBoolean("data")) {
+                        BusProvider.getInstance().post(new Event.NotifyChangedView("MyDynamicActivity"));
+                        BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
+                        finish();
+//                       new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                SuccessDialog renzhengSuccessDialog = new SuccessDialog(PicDynamicActivity.this);
+//                                renzhengSuccessDialog.show();
+//                                renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+////                                            SPManager.put(RenzhengActivity.this, Constanct.RENZHENG,true);
+//                                        BusProvider.getInstance().post(new Event.NotifyChangedView("MyDynamicActivity"));
+//                                        BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
+//                                        finish();
+//                                    }
+//                                });
+//                                renzhengSuccessDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+//                                    @Override
+//                                    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+//                                        switch (keyCode) {
+//                                            case KeyEvent.KEYCODE_BACK:
+//                                                return true;
+//                                            default:
+//                                                break;
+//                                        }
+//                                        return false;
+//                                    }
+//                                });
+//                            }
+//                        };
                         //提交成功
-                        Looper.prepare();
-                        SuccessDialog renzhengSuccessDialog = new SuccessDialog(PicDynamicActivity.this);
-                        renzhengSuccessDialog.show();
-                        renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-//                                            SPManager.put(RenzhengActivity.this, Constanct.RENZHENG,true);
-                                BusProvider.getInstance().post(new Event.NotifyChangedView("MyDynamicActivity"));
-                                BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
-                                finish();
-                            }
-                        });
-                        renzhengSuccessDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                            @Override
-                            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                                switch (keyCode) {
-                                    case KeyEvent.KEYCODE_BACK:
-                                        return true;
-                                    default:
-                                        break;
-                                }
-                                return false;
-                            }
-                        });
-                        Looper.loop();
+//                        Looper.prepare();
+
+//                        Looper.loop();
                     } else {
-                        Looper.prepare();
-                        tip(jsob.optString("msg"));
-                        Looper.loop();
+//                        Looper.prepare();
+//                        tip(jsob.optString("msg"));
+//                        Looper.loop();
                     }
                 } catch (JSONException e) {
-                    Looper.prepare();
-                    e.printStackTrace();
-                    tip("json解析异常");
-                    Looper.loop();
+//                    Looper.prepare();
+//                    e.printStackTrace();
+//                    tip("json解析异常");
+//                    Looper.loop();
                 }
 
             }
@@ -339,7 +350,7 @@ public class PicDynamicActivity extends BaseActivity {
                         break;
                     case 1://相册
                         toAlbum();
-                       // PhotoUtils.openAlbum(PicDynamicActivity.this, openAblum);
+                        // PhotoUtils.openAlbum(PicDynamicActivity.this, openAblum);
                         break;
                 }
             }
@@ -367,18 +378,18 @@ public class PicDynamicActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == openCamera ) {
+        if (requestCode == openCamera) {
 //            if (data == null) {
-                Bitmap photo = data.getParcelableExtra("data");
-                imgName = UUID.randomUUID().toString() + ".png";
-                File file = FileUtil.bitmapToFile(this, photo, RENZHENG,imgName);
+            Bitmap photo = data.getParcelableExtra("data");
+            imgName = UUID.randomUUID().toString() + ".png";
+            File file = FileUtil.bitmapToFile(this, photo, RENZHENG, imgName);
 //                File file = new File(savefile, imgName);
-                pictrueData.remove(pictrueData.size() - 1);
-                pictrueData.add(file.getPath());
-                pictrueData.add("add");
-                uploadPictureAdapter.notifyDataSetChanged();
-                deleteTemp();
-               // PhotoUtils.cropImageUri(this, Uri.fromFile(file), 1, 1, 1000, 1000, CROP_CODE, savefile, imgName);
+            pictrueData.remove(pictrueData.size() - 1);
+            pictrueData.add(file.getPath());
+            pictrueData.add("add");
+            uploadPictureAdapter.notifyDataSetChanged();
+            deleteTemp();
+            // PhotoUtils.cropImageUri(this, Uri.fromFile(file), 1, 1, 1000, 1000, CROP_CODE, savefile, imgName);
 
 //            } else {
 //                tip("请从新拍照");
@@ -446,7 +457,7 @@ public class PicDynamicActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    @OnClick({R.id.head_back, R.id.pic_submit,R.id.tv_type})
+    @OnClick({R.id.head_back, R.id.pic_submit, R.id.tv_type})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.head_back:
@@ -462,7 +473,7 @@ public class PicDynamicActivity extends BaseActivity {
                     tip("请上传图片");
                     return;
                 }
-                if (TextUtils.isEmpty(typeId)){
+                if (TextUtils.isEmpty(typeId)) {
                     tip("请选择分类");
                     return;
                 }

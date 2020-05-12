@@ -205,7 +205,22 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                                                                     public void clickSubmit() {
                                                                         commonDialog.dismiss();
                                                                         deleteDynamic(dynamicAllListModel.getCommentList().get(position).getId());
-                                                                        BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
+                                                                        new Thread() {
+                                                                            @Override
+                                                                            public void run() {
+                                                                                super.run();
+                                                                                try {
+                                                                                    Thread.sleep(1000);//休眠3秒
+                                                                                    BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
+                                                                                } catch (InterruptedException e) {
+                                                                                    e.printStackTrace();
+                                                                                }
+                                                                                /**
+                                                                                 * 要执行的操作
+                                                                                 */
+                                                                            }
+                                                                        }.start();
+//                                                                        BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
                                                                     }
                                                                 });
                                                             } else {
@@ -345,11 +360,24 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                 case R.id.tv_like:
                     if (isLike) {
                         isLikes("0",dynamicIds+"");
-                        BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
                     } else {
                         isLikes("1",dynamicIds+"");
-                        BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
                     }
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            super.run();
+                            try {
+                                Thread.sleep(1000);//休眠3秒
+                                BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            /**
+                             * 要执行的操作
+                             */
+                        }
+                    }.start();
                     break;
                 case R.id.tv_evalution:
                     showPopupcomment(0 + "", 0 + "");
@@ -368,8 +396,8 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
         UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDetect, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e("failure:", e.getMessage());
-                tips("e.getMessage()");
+                Log.e("xiongwei", e.getMessage());
+//                tips("e.getMessage()");
             }
 
             @Override
@@ -381,16 +409,16 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                     try {
                         jsob = new JSONObject(string);
                         if (jsob != null && jsob.optBoolean("success")) {
-                            tips("删除成功");
+//                            tips("删除成功");
                         } else {
                             //提交失败
-                            tips("删除失败");
+//                            tips("删除失败");
 
                         }
                     } catch (JSONException e) {
 
                         e.printStackTrace();
-                        tips("json解析异常");
+//                        tips("json解析异常");
                     }
                 }
 
@@ -404,14 +432,14 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
         UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDynamicLike, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e("failure:", e.getMessage());
-                tips("e.getMessage()");
+                Log.e("xiongwei", e.getMessage());
+//                tips("e.getMessage()");
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String string = response.body().string();
-                Log.e("onResponse:", string);
+                Log.e("xiongwei", string);
                 JSONObject jsob;
                 if (string != null) {
                     try {
@@ -419,14 +447,13 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                         if (jsob != null && jsob.optBoolean("success")) {
                             //提交成功
                             if (isLike) {
-                                tips("取消成功");
+                                Log.e("xiongwei", "取消成功");
                             } else {
-                                tips("点赞成功");
+                                Log.e("xiongwei", "点赞成功");
+//                                tips("点赞成功");
 
                             }
-                            Looper.prepare();
                             BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
-                            Looper.loop();
 
                         } else {
                             //提交失败
@@ -567,14 +594,13 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                         jsob = new JSONObject(string);
                         if (jsob != null && jsob.optBoolean("success")) {
                             //提交成功
-                            tips("评论成功");
+                            Log.e("xiongwei", "评论成功");
                         } else {
                             //提交失败
-                            tips("评论失败");
+                            Log.e("xiongwei", "评论失败");
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        tips("json解析异常");
                     }
                 }
 
