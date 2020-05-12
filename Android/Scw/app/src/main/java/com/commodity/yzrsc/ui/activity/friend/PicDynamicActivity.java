@@ -259,6 +259,7 @@ public class PicDynamicActivity extends BaseActivity {
                             public void onClick(View v) {
 //                                            SPManager.put(RenzhengActivity.this, Constanct.RENZHENG,true);
                                 BusProvider.getInstance().post(new Event.NotifyChangedView("MyDynamicActivity"));
+                                BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
                                 finish();
                             }
                         });

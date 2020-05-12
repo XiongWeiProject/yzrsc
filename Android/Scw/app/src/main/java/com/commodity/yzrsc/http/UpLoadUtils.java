@@ -38,6 +38,7 @@ public class UpLoadUtils {
                 .connectTimeout(CONNECT_TIME_OUT, TimeUnit.SECONDS)
                 .writeTimeout(WRITE_TIME_OUT, TimeUnit.SECONDS)
                 .readTimeout(READ_TIME_OUT, TimeUnit.SECONDS)
+                .followRedirects(true)
                 .build();
     }
     public static UpLoadUtils instance(){
