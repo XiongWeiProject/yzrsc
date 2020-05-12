@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.commodity.yzrsc.R;
@@ -187,37 +189,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
             ll_evalution.setVisibility(View.VISIBLE);
             rcv_evalution.setVisibility(View.VISIBLE);
             view_line.setVisibility(View.GONE);
-            if (dynamicAllListModel.getCommentList().size() > 5) {
-                rl_more.setVisibility(View.VISIBLE);
-                rl_more.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        //提交成功
-                        final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext, dynamicAllListModel.getCommentList());
-                        renzhengSuccessDialog.show();
-                        renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                renzhengSuccessDialog.dismiss();
-                            }
-                        });
-                        renzhengSuccessDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                            @Override
-                            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                                switch (keyCode) {
-                                    case KeyEvent.KEYCODE_BACK:
-                                        return true;
-                                    default:
-                                        break;
-                                }
-                                return false;
-                            }
-                        });
-                    }
-                });
-            } else {
-                rl_more.setVisibility(View.GONE);
-            }
+
             rcv_evalution.setLayoutManager(new LinearLayoutManager(mContext));
             EvalutionAdapter evalutionAdapter = new EvalutionAdapter(mContext, dynamicAllListModel.getCommentList(), R.layout.item_evalution);
             rcv_evalution.setAdapter(evalutionAdapter);
@@ -233,6 +205,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                                                                     public void clickSubmit() {
                                                                         commonDialog.dismiss();
                                                                         deleteDynamic(dynamicAllListModel.getCommentList().get(position).getId());
+                                                                        BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
                                                                     }
                                                                 });
                                                             } else {
@@ -246,6 +219,37 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
             ll_evalution.setVisibility(View.VISIBLE);
             rcv_evalution.setVisibility(View.GONE);
             view_line.setVisibility(View.GONE);
+        }
+        if (dynamicAllListModel.getCommentCount() > 5) {
+            rl_more.setVisibility(View.VISIBLE);
+            rl_more.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //提交成功
+                    final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext, dynamicAllListModel.getCommentList());
+                    renzhengSuccessDialog.show();
+                    renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            renzhengSuccessDialog.dismiss();
+                        }
+                    });
+                    renzhengSuccessDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                        @Override
+                        public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                            switch (keyCode) {
+                                case KeyEvent.KEYCODE_BACK:
+                                    return true;
+                                default:
+                                    break;
+                            }
+                            return false;
+                        }
+                    });
+                }
+            });
+        } else {
+            rl_more.setVisibility(View.GONE);
         }
         head.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -274,7 +278,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
             public void onClick(View view) {
                 if (popWinShare == null) {
                     //自定义的单击事件
-                    OnClickLintener paramOnClickListener = new OnClickLintener();
+                    OnClickLintener paramOnClickListener = new OnClickLintener(dynamicAllListModel.getId());
                     popWinShare = new PopWinShare((Activity) mContext, paramOnClickListener, RongUtils.dip2px(163), RongUtils.dip2px(34), 2);
                     TextView isIsLike = (TextView) popWinShare.getContentView().findViewById(R.id.tv_like);
                     if (dynamicAllListModel.isIsLike()) {
@@ -329,15 +333,22 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
 
     class OnClickLintener implements View.OnClickListener {
 
+        int dynamicIds ;
+        public OnClickLintener(int id) {
+            dynamicIds = id;
+        }
+
         @Override
         public void onClick(View v) {
             popWinShare.dismiss();
             switch (v.getId()) {
                 case R.id.tv_like:
                     if (isLike) {
-                        isLikes("0");
+                        isLikes("0",dynamicIds+"");
+                        BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
                     } else {
-                        isLikes("1");
+                        isLikes("1",dynamicIds+"");
+                        BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
                     }
                     break;
                 case R.id.tv_evalution:
@@ -371,7 +382,6 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                         jsob = new JSONObject(string);
                         if (jsob != null && jsob.optBoolean("success")) {
                             tips("删除成功");
-
                         } else {
                             //提交失败
                             tips("删除失败");
@@ -388,8 +398,8 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
         });
     }
 
-    private void isLikes(String goodsSaleId) {
-        FormBody requestBody = new FormBody.Builder().add("flag", goodsSaleId).add("id", data.get(itemposition).getId() + "").build();
+    private void isLikes(String goodsSaleId,String dynamicId) {
+        FormBody requestBody = new FormBody.Builder().add("flag", goodsSaleId).add("id", dynamicId).build();
         Log.e("failure:", "\"flag\", goodsSaleId" + goodsSaleId + "id" + data.get(itemposition).getId() + "");
         UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDynamicLike, requestBody, new Callback() {
             @Override
@@ -414,6 +424,9 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                                 tips("点赞成功");
 
                             }
+                            Looper.prepare();
+                            BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
+                            Looper.loop();
 
                         } else {
                             //提交失败
@@ -516,7 +529,21 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                 mInputManager.hideSoftInputFromWindow(inputComment.getWindowToken(), 0);
                 popupWindow.dismiss();
                 subEvalution(nInputContentText, memberId, commentType);
-
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        try {
+                            Thread.sleep(1000);//休眠3秒
+                            BusProvider.getInstance().post(new Event.NotifyChangedView("DynamicFragment"));
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        /**
+                         * 要执行的操作
+                         */
+                    }
+                }.start();
             }
         });
     }
@@ -541,7 +568,6 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                         if (jsob != null && jsob.optBoolean("success")) {
                             //提交成功
                             tips("评论成功");
-
                         } else {
                             //提交失败
                             tips("评论失败");

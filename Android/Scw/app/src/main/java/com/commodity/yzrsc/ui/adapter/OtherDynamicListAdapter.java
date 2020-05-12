@@ -161,37 +161,6 @@ public class OtherDynamicListAdapter extends CommonAdapter<DynamicAllListModel> 
             ll_evalution.setVisibility(View.VISIBLE);
             rcv_evalution.setVisibility(View.VISIBLE);
             view_line.setVisibility(View.GONE);
-            if (dynamicAllListModel.getCommentList().size()>5){
-                rl_more.setVisibility(View.VISIBLE);
-                rl_more.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        //提交成功
-                        final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext, dynamicAllListModel.getCommentList());
-                        renzhengSuccessDialog.show();
-                        renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                renzhengSuccessDialog.dismiss();
-                            }
-                        });
-                        renzhengSuccessDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                            @Override
-                            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                                switch (keyCode) {
-                                    case KeyEvent.KEYCODE_BACK:
-                                        return true;
-                                    default:
-                                        break;
-                                }
-                                return false;
-                            }
-                        });
-                    }
-                });
-            }else {
-                rl_more.setVisibility(View.GONE);
-            }
             rcv_evalution.setLayoutManager(new LinearLayoutManager(mContext));
             EvalutionAdapter evalutionAdapter = new EvalutionAdapter(mContext, dynamicAllListModel.getCommentList(), R.layout.item_evalution);
             rcv_evalution.setAdapter(evalutionAdapter);
@@ -200,7 +169,37 @@ public class OtherDynamicListAdapter extends CommonAdapter<DynamicAllListModel> 
             rcv_evalution.setVisibility(View.GONE);
             view_line.setVisibility(View.GONE);
         }
-
+        if (dynamicAllListModel.getCommentCount()>5){
+            rl_more.setVisibility(View.VISIBLE);
+            rl_more.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //提交成功
+                    final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext, dynamicAllListModel.getCommentList());
+                    renzhengSuccessDialog.show();
+                    renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            renzhengSuccessDialog.dismiss();
+                        }
+                    });
+                    renzhengSuccessDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                        @Override
+                        public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                            switch (keyCode) {
+                                case KeyEvent.KEYCODE_BACK:
+                                    return true;
+                                default:
+                                    break;
+                            }
+                            return false;
+                        }
+                    });
+                }
+            });
+        }else {
+            rl_more.setVisibility(View.GONE);
+        }
         zan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

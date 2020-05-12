@@ -97,14 +97,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:orientation="vertical"
         android:background="@drawable/shap_evalution"
         android:layout_marginLeft="66dp">
         <LinearLayout
             android:id="@+id/ll_zan"
             android:visibility="gone"
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
@@ -130,11 +130,14 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rcv_evalution"
             android:visibility="gone"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <RelativeLayout
             android:id="@+id/rl_more"
             android:visibility="gone"
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
