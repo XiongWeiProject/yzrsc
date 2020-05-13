@@ -20,6 +20,7 @@ import com.commodity.yzrsc.http.ServiceInfo;
 import com.commodity.yzrsc.manager.ConfigManager;
 import com.commodity.yzrsc.manager.ImageLoaderManager;
 import com.commodity.yzrsc.manager.SPKeyManager;
+import com.commodity.yzrsc.model.PresonInfoModel;
 import com.commodity.yzrsc.model.TypeModel;
 import com.commodity.yzrsc.ottobus.BusProvider;
 import com.commodity.yzrsc.ottobus.Event;
@@ -64,7 +65,7 @@ public class HomeFriendFragment extends BaseFragment {
 
     String userDynamicCatalog_Id;
 
-
+    private PresonInfoModel presonInfoModel;
     private List<Fragment> fragmentList = new ArrayList<>();
     private List<String> titles = new ArrayList<>();
 
@@ -75,7 +76,6 @@ public class HomeFriendFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        ImageLoaderManager.getInstance().displayImage(ConfigManager.instance().getUser().getAvatar(),myImageHead);
         sendRequest(1);
     }
 
@@ -86,7 +86,7 @@ public class HomeFriendFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-
+        sendRequest(2);//获取头像
     }
 
     private void setTab() {
@@ -108,21 +108,27 @@ public class HomeFriendFragment extends BaseFragment {
     @Override
     public void sendRequest(int tag) {
         super.sendRequest(tag);
+        customLoadding.show();
         if (tag == 1) {
-            customLoadding.show();
             Map<String, String> parmMap = new HashMap<String, String>();
             HttpManager httpManager = new HttpManager(tag, HttpMothed.GET,
                     IRequestConst.RequestMethod.GetDynamicCatalog, parmMap, this);
+            httpManager.request();
+        } else {
+
+            Map<String, String> parmMap = new HashMap<String, String>();
+            parmMap.put("memberId", ConfigManager.instance().getUser().getId());
+            HttpManager httpManager = new HttpManager(tag, HttpMothed.GET,
+                    IRequestConst.RequestMethod.PostGetnfo, parmMap, this);
             httpManager.request();
         }
     }
 
 
-
     //获取传递过来信息进行相关操作
     @Subscribe
     public void NotifyChangedView(Event.NotifyChangedView event) {
-        if (event.getDataObject().equals("HomeFriendFragment")){
+        if (event.getDataObject().equals("HomeFriendFragment")) {
             refreshList();
         }
     }
@@ -143,19 +149,36 @@ public class HomeFriendFragment extends BaseFragment {
     @Override
     public void onSuccess(int tag, ServiceInfo result) {
         super.onSuccess(tag, result);
+        if (tag == 1) {
 
-        JSONObject response = (JSONObject) result.getResponse();
-        if (response.optBoolean("success")) {
-            try {
-                typeModel = JSON.parseArray(response.getString("data"), TypeModel.class);
-                setTab();
-            } catch (JSONException e) {
-                e.printStackTrace();
+            JSONObject response = (JSONObject) result.getResponse();
+            if (response.optBoolean("success")) {
+                try {
+                    typeModel = JSON.parseArray(response.getString("data"), TypeModel.class);
+                    setTab();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+                tip(response.optString("msg"));
             }
 
         } else {
-            tip(response.optString("msg"));
+            JSONObject response = (JSONObject) result.getResponse();
+            if (response.optBoolean("success")) {
+                try {
+                    presonInfoModel = JSON.parseObject(response.getString("data"), PresonInfoModel.class);
+                    ImageLoaderManager.getInstance().displayImage(presonInfoModel.getMemberAvatar(), myImageHead);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+                tip(response.optString("msg"));
+            }
         }
+
     }
 
     @Override
@@ -176,7 +199,7 @@ public class HomeFriendFragment extends BaseFragment {
             case R.id.my_image_head:
                 Intent intent = new Intent(mContext, MyDynamicActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("dynamicId",ConfigManager.instance().getUser().getId());
+                bundle.putString("dynamicId", ConfigManager.instance().getUser().getId());
                 intent.putExtras(bundle);
                 mContext.startActivity(intent);
                 break;
@@ -184,7 +207,7 @@ public class HomeFriendFragment extends BaseFragment {
                 if (popWinShare == null) {
                     //自定义的单击事件
                     OnClickLintener paramOnClickListener = new OnClickLintener();
-                    popWinShare = new PopWinShare(getActivity(), paramOnClickListener, RongUtils.dip2px(110), RongUtils.dip2px(84),1);
+                    popWinShare = new PopWinShare(getActivity(), paramOnClickListener, RongUtils.dip2px(110), RongUtils.dip2px(84), 1);
                     //监听窗口的焦点事件，点击窗口外面则取消显示
                     popWinShare.getContentView().setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
@@ -205,9 +228,11 @@ public class HomeFriendFragment extends BaseFragment {
                 break;
         }
     }
-    public void refreshList(){
+
+    public void refreshList() {
         sendRequest(1);
     }
+
     class OnClickLintener implements View.OnClickListener {
 
         @Override
