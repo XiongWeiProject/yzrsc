@@ -37,6 +37,7 @@ import com.commodity.yzrsc.http.HttpMothed;
 import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.ServiceInfo;
 import com.commodity.yzrsc.http.UpLoadUtils;
+import com.commodity.yzrsc.manager.ConfigManager;
 import com.commodity.yzrsc.manager.ImageLoaderManager;
 import com.commodity.yzrsc.model.DynamicAllListModel;
 import com.commodity.yzrsc.model.Evalution;
@@ -141,10 +142,10 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
 
         }
         if (dynamicAllListModel.getLikeCount() == 0 && dynamicAllListModel.getCommentCount() == 0) {
-            ll_evalution.setVisibility(View.GONE);
+            ll_evalution1.setVisibility(View.GONE);
         }
         if (dynamicAllListModel.getLikeList()!=null&&dynamicAllListModel.getLikeCount() > 0) {
-            ll_evalution.setVisibility(View.VISIBLE);
+            ll_evalution1.setVisibility(View.VISIBLE);
             ll_zan.setVisibility(View.VISIBLE);
             view_line.setVisibility(View.GONE);
             rcv_zan.setLayoutManager(new GridLayoutManager(mContext, 3));
@@ -167,7 +168,7 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                 @Override
                 public void onClick(View view) {
                     //提交成功
-                    final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext, dynamicAllListModel.getCommentList());
+                    final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext, dynamicAllListModel.getId()+"");
                     renzhengSuccessDialog.show();
                     renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
                         @Override
@@ -273,7 +274,8 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
     }
 
     private void deleteDynamic(int id) {
-        FormBody requestBody = new FormBody.Builder().add("id", String.valueOf(id)).build();
+        FormBody requestBody = new FormBody.Builder().add("id", String.valueOf(id))
+                .add("scw-token",ConfigManager.instance().getUser().getDeviceToken()).build();
         UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDynamDelete, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -335,7 +337,8 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
     }
 
     private void isLikes(String goodsSaleId) {
-        FormBody requestBody = new FormBody.Builder().add("flag", goodsSaleId).add("id", data.get(position).getId() + "").build();
+        FormBody requestBody = new FormBody.Builder().add("flag", goodsSaleId).add("id", data.get(position).getId() + "")
+                .add("scw-token",ConfigManager.instance().getUser().getDeviceToken()).build();
         UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDynamicLike, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -468,7 +471,8 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
 
     private void subEvalution(String nInputContentText) {
         FormBody requestBody = new FormBody.Builder().add("memberId", String.valueOf(0)).add("commentType", String.valueOf(0))
-                .add("comment", nInputContentText).add("dynamicId", data.get(position).getId() + "").build();
+                .add("comment", nInputContentText).add("dynamicId", data.get(position).getId() + "")
+                .add("scw-token",ConfigManager.instance().getUser().getDeviceToken()).build();
         UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDynamicEvaluate, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

@@ -11,6 +11,7 @@ import com.commodity.yzrsc.http.HttpManager;
 import com.commodity.yzrsc.http.HttpMothed;
 import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.ServiceInfo;
+import com.commodity.yzrsc.manager.ConfigManager;
 import com.commodity.yzrsc.manager.SPKeyManager;
 import com.commodity.yzrsc.model.DynamicAllListModel;
 import com.commodity.yzrsc.ottobus.BusProvider;
@@ -156,6 +157,8 @@ public class DynamicFragment extends BaseFragment {
             parmMap.put("catalogId", mParam1+"");
             parmMap.put("minId", minId);
             parmMap.put("pageSize", "" + SPKeyManager.pageSize);
+            parmMap.put("pageSize", "" + SPKeyManager.pageSize);
+            parmMap.put("scw-token", ConfigManager.instance().getUser().getDeviceToken());
             HttpManager httpManager = new HttpManager(tag, HttpMothed.GET,
                     IRequestConst.RequestMethod.GetDynamicList, parmMap, this);
             httpManager.request();

@@ -175,7 +175,7 @@ public class OtherDynamicListAdapter extends CommonAdapter<DynamicAllListModel> 
                 @Override
                 public void onClick(View view) {
                     //提交成功
-                    final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext, dynamicAllListModel.getCommentList());
+                    final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext, dynamicAllListModel.getId()+"");
                     renzhengSuccessDialog.show();
                     renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
                         @Override

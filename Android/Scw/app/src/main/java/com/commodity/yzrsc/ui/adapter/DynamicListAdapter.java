@@ -160,19 +160,19 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
             zanAdapter.setOnItemClickListener(new BaseRecycleAdapter.ItemClickListener() {
                                                   @Override
                                                   public void itemClick(View v, int position) {
-                                                      if (data.get(itemposition).getMemberId() == Integer.parseInt(ConfigManager.instance().getUser().getId())) {
+                                                      if ( dynamicAllListModel.getLikeList().get(position).getMemberId() == Integer.parseInt(ConfigManager.instance().getUser().getId())) {
                                                           Intent intent = new Intent(mContext, MyDynamicActivity.class);
                                                           Bundle bundle = new Bundle();
                                                           bundle.putString("dynamicId", ConfigManager.instance().getUser().getId());
-                                                          bundle.putString("TypeId", data.get(position).getDynamicCatalog_Id() + "");
+                                                          bundle.putString("TypeId", dynamicAllListModel.getDynamicCatalog_Id() + "");
                                                           intent.putExtras(bundle);
                                                           ((Activity) mContext).startActivity(intent);
                                                       } else {
                                                           //跳转他人动态
                                                           Intent intent = new Intent(mContext, OtherDynamicActivity.class);
                                                           Bundle bundle = new Bundle();
-                                                          bundle.putString("dynamicId", data.get(itemposition).getMemberId() + "");
-                                                          bundle.putString("TypeId", data.get(itemposition).getDynamicCatalog_Id() + "");
+                                                          bundle.putString("dynamicId", dynamicAllListModel.getLikeList().get(position).getMemberId() + "");
+                                                          bundle.putString("TypeId", dynamicAllListModel.getDynamicCatalog_Id() + "");
                                                           intent.putExtras(bundle);
                                                           ((Activity) mContext).startActivity(intent);
                                                       }
@@ -230,7 +230,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                                                         }
                                                     }
             );
-        }else {
+        } else {
             ll_evalution.setVisibility(View.VISIBLE);
             rcv_evalution.setVisibility(View.GONE);
             view_line.setVisibility(View.GONE);
@@ -241,7 +241,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                 @Override
                 public void onClick(View view) {
                     //提交成功
-                    final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext, dynamicAllListModel.getCommentList());
+                    final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext, dynamicAllListModel.getId() + "");
                     renzhengSuccessDialog.show();
                     renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
                         @Override
@@ -269,19 +269,19 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
         head.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (data.get(itemposition).getMemberId() == Integer.parseInt(ConfigManager.instance().getUser().getId())) {
+                if (dynamicAllListModel.getMemberId() == Integer.parseInt(ConfigManager.instance().getUser().getId())) {
                     Intent intent = new Intent(mContext, MyDynamicActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("dynamicId", ConfigManager.instance().getUser().getId());
-                    bundle.putString("TypeId", data.get(itemposition).getDynamicCatalog_Id() + "");
+                    bundle.putString("TypeId", dynamicAllListModel.getDynamicCatalog_Id() + "");
                     intent.putExtras(bundle);
                     ((Activity) mContext).startActivity(intent);
                 } else {
                     //跳转他人动态
                     Intent intent = new Intent(mContext, OtherDynamicActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putString("dynamicId", data.get(itemposition).getMemberId() + "");
-                    bundle.putString("TypeId", data.get(itemposition).getDynamicCatalog_Id() + "");
+                    bundle.putString("dynamicId", dynamicAllListModel.getMemberId() + "");
+                    bundle.putString("TypeId", dynamicAllListModel.getDynamicCatalog_Id() + "");
                     intent.putExtras(bundle);
                     ((Activity) mContext).startActivity(intent);
                 }
@@ -291,7 +291,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
         zan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (popWinShare == null) {
+//                if (popWinShare == null) {
                     //自定义的单击事件
                     OnClickLintener paramOnClickListener = new OnClickLintener(dynamicAllListModel.getId());
                     popWinShare = new PopWinShare((Activity) mContext, paramOnClickListener, RongUtils.dip2px(163), RongUtils.dip2px(34), 2);
@@ -315,7 +315,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                     });
 
 
-                }
+//                }
 //设置默认获取焦点
                 popWinShare.setFocusable(true);
 //以某个控件的x和y的偏移量位置开始显示窗口
@@ -348,7 +348,8 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
 
     class OnClickLintener implements View.OnClickListener {
 
-        int dynamicIds ;
+        int dynamicIds;
+
         public OnClickLintener(int id) {
             dynamicIds = id;
         }
@@ -359,9 +360,9 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
             switch (v.getId()) {
                 case R.id.tv_like:
                     if (isLike) {
-                        isLikes("0",dynamicIds+"");
+                        isLikes("0", dynamicIds + "");
                     } else {
-                        isLikes("1",dynamicIds+"");
+                        isLikes("1", dynamicIds + "");
                     }
                     new Thread() {
                         @Override
@@ -392,7 +393,8 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
     }
 
     private void deleteDynamic(int id) {
-        FormBody requestBody = new FormBody.Builder().add("id", String.valueOf(id)).build();
+        FormBody requestBody = new FormBody.Builder().add("id", String.valueOf(id))
+                .add("scw-token",ConfigManager.instance().getUser().getDeviceToken()).build();
         UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDetect, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -426,8 +428,9 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
         });
     }
 
-    private void isLikes(String goodsSaleId,String dynamicId) {
-        FormBody requestBody = new FormBody.Builder().add("flag", goodsSaleId).add("id", dynamicId).build();
+    private void isLikes(String goodsSaleId, String dynamicId) {
+        FormBody requestBody = new FormBody.Builder().add("flag", goodsSaleId).add("id", dynamicId)
+                .add("scw-token",ConfigManager.instance().getUser().getDeviceToken()).build();
         Log.e("failure:", "\"flag\", goodsSaleId" + goodsSaleId + "id" + data.get(itemposition).getId() + "");
         UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDynamicLike, requestBody, new Callback() {
             @Override
@@ -577,7 +580,8 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
 
     private void subEvalution(String nInputContentText, String memberId, String commentType) {
         FormBody requestBody = new FormBody.Builder().add("memberId", memberId).add("commentType", commentType)
-                .add("comment", nInputContentText).add("dynamicId", data.get(itemposition).getId() + "").build();
+                .add("comment", nInputContentText).add("dynamicId", data.get(itemposition).getId() + "")
+                .add("scw-token",ConfigManager.instance().getUser().getDeviceToken()).build();
         UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDynamicEvaluate, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
