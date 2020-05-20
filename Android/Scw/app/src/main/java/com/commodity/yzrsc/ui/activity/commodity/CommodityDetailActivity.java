@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
@@ -178,7 +179,12 @@ public class CommodityDetailActivity extends BaseFragmentActivity implements Vie
                     tip("本店铺商品，无法发起会话！");
                     return;
                 }
-                RongIMUtil.startConversation(CommodityDetailActivity.this, sellerImId, "货主");
+                try{
+                    RongIMUtil.startConversation(CommodityDetailActivity.this, sellerImId, "货主");
+                }catch (Exception e){
+                    tip(e.getMessage());
+                }
+
                 RongIMUtil.updateUserInfo(commodityBean.getSellerImId(),commodityBean.getShopName(),commodityBean.getSellerAvatar());
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {

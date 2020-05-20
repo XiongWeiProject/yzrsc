@@ -138,7 +138,7 @@ public class UpdateService extends Service {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         if (Build.VERSION.SDK_INT > 23) {
             intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            Uri contentUri = FileProvider.getUriForFile(context, "com.commodity.scw.fileprovider", filePath);
+            Uri contentUri = FileProvider.getUriForFile(context, "com.commodity.yzrsc.fileprovider", filePath);
             intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
         } else {
             intent.setDataAndType(Uri.fromFile(filePath), "application/vnd.android.package-archive");

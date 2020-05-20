@@ -28,7 +28,7 @@ public class CustomWebView extends WebView {
         getSettings().setSaveFormData(true);// 保存表单数据
         getSettings().setJavaScriptEnabled(true);
         getSettings().setGeolocationEnabled(true);// 启用地理定位
-//        getSettings().setGeolocationDatabasePath("/data/data/com.commodity.scw/databases/");
+//        getSettings().setGeolocationDatabasePath("/data/data/com.commodity.yzrsc/databases/");
         getSettings().setDomStorageEnabled(true);
         getSettings().setAppCacheEnabled(true);
         getSettings().setAppCachePath(this.getContext().getCacheDir().getAbsolutePath());

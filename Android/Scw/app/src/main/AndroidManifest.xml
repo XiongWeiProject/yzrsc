@@ -34,13 +34,13 @@
         android:name="com.commodity.yzrsc.permission.MIPUSH_RECEIVE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.commodity.scw.permission.MIPUSH_RECEIVE" /> <!-- ⼩米 配置结束 < -->
+    <uses-permission android:name="com.commodity.yzrsc.permission.MIPUSH_RECEIVE" /> <!-- ⼩米 配置结束 < -->
     <!-- GCM 配置开始 < -->
     <permission
         android:name="com.commodity.yzrsc.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.commodity.scw.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.commodity.yzrsc.permission.C2D_MESSAGE" />
 
     <application
         android:name=".MainApplication"
@@ -471,7 +471,7 @@
         -->
         <!-- 会话页面 -->
         <activity
-            android:name=".rongyun.ui.activity.ConversationActivity"
+            android:name="com.commodity.yzrsc.rongyun.ui.activity.ConversationActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -482,7 +482,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data
-                    android:host="com.commodity.scw"
+                    android:host="com.commodity.yzrsc"
                     android:pathPrefix="/conversation/"
                     android:scheme="rong" />
             </intent-filter>
