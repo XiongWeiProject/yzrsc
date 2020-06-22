@@ -1,9 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.activity.friend.PayMoneNumActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/head_layout" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:text="设置金额，充值到钱包"
+        android:paddingLeft="10dp"
+        android:textSize="@dimen/textsize18"
+        android:gravity="center"
+        android:textColor="@color/default_bg"
+        android:layout_marginRight="12dp" />
+    <com.commodity.yzrsc.view.flowLayout.TagFlowLayout
+        android:id="@+id/tag_money"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="12dp" />
+
+    
+    <EditText
+        android:id="@+id/et_money"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:hint="自定义金额"
+        android:paddingLeft="10dp"
+        android:textSize="@dimen/textsize14"
+        android:background="@drawable/shap_evalution"
+        android:layout_marginRight="12dp" />
+
+    <TextView
+        android:id="@+id/btn_pay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ll_height50"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/rc_cs_button_bg"
+        android:gravity="center"
+        android:text="立即支付"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize18" />
+</LinearLayout>

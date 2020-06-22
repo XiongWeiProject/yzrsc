@@ -1,4 +1,4 @@
-package com.softtek.lai.widgets.flowLayout;
+package com.commodity.yzrsc.view.flowLayout;
 
 import android.content.Context;
 import android.view.View;

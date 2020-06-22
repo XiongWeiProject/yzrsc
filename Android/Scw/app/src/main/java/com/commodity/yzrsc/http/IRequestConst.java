@@ -149,6 +149,15 @@ public class IRequestConst {
         public static final String GetUnreadNotificationCounts = REQUEST_URL + "Notification/GetUnreadNotificationCounts";
         // 获取使用帮助信息
         public static final String GetGuides = REQUEST_URL + "Guide/GetGuides";
+        // 添加购物车商品
+        public static final String AddCart = REQUEST_URL + "ShoppingCart/AddShoppingCart";
+        // 删除购物车商品
+        public static final String DeleteCart = REQUEST_URL + "ShoppingCart/RemoveShoppingCarts";
+        // 修改购物车商品数量
+        public static final String ChangeCartQuantity = REQUEST_URL + "ShoppingCart/ChangeGoodsQuantity";
+        // 购物车商品列表
+        public static final String GetCartList = REQUEST_URL + "ShoppingCart/GetShoppingCarts";
+        public static final String OrderCartList = REQUEST_URL + "ShoppingCart/ToplaceByShoppingCart";
         // 添加联系人
         public static final String AddContact = REQUEST_URL + "MemberContact/AddContact";
         // 删除联系人

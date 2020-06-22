@@ -30,6 +30,7 @@ import com.commodity.yzrsc.ottobus.BusProvider;
 import com.commodity.yzrsc.ottobus.Event;
 import com.commodity.yzrsc.ui.BaseFragmentActivity;
 import com.commodity.yzrsc.ui.activity.general.GeneralWebViewActivity;
+import com.commodity.yzrsc.ui.activity.user.MyCartActivity;
 import com.commodity.yzrsc.ui.dialog.ResellGoodsDialog;
 import com.commodity.yzrsc.ui.dialog.ResellSuccessDialog;
 import com.commodity.yzrsc.ui.fragment.CommodityGuigeFragment;
@@ -89,6 +90,10 @@ public class CommodityDetailActivity extends BaseFragmentActivity implements Vie
     TextView tv_isfavored;
     @Bind(R.id.tv_resell_goods)
     TextView tv_resell_goods;
+    @Bind(R.id.tv_cart)
+    TextView tv_cart;
+    @Bind(R.id.tv_cart_num)
+    TextView tv_cart_num;
 
     @Bind(R.id.img_avator)
     CircleImageView img_avator;
@@ -111,6 +116,7 @@ public class CommodityDetailActivity extends BaseFragmentActivity implements Vie
     private String sellerImId = "";//融云聊天id
     private CommodityBean commodityBean;
     private String url=IRequestConst.RequestMethod.GetGoodsDetail;
+    private int numberInCard = 0;
     @Override
     protected int getContentView() {
         return R.layout.activity_commodity_detail;
@@ -155,6 +161,7 @@ public class CommodityDetailActivity extends BaseFragmentActivity implements Vie
         getSupportFragmentManager().beginTransaction().add(R.id.tabMainContainer, mCurFragment).commit();
         switchFragment(mCurFragment);
         sendRequest(1, "");
+        sendRequest(5, "");
     }
 
     @Override
@@ -166,9 +173,7 @@ public class CommodityDetailActivity extends BaseFragmentActivity implements Vie
                     tip("无法购买自己店铺的宝贝！");
                     return;
                 }
-                Bundle bundle = new Bundle();
-                bundle.putString("goodsDetailStr", goodsDetailStr);
-                jumpActivity(CommodityOrderActivity.class, bundle);
+                sendRequest(4, "");
             }
         });
         initListeners2();
@@ -199,6 +204,14 @@ public class CommodityDetailActivity extends BaseFragmentActivity implements Vie
             @Override
             public void onClick(View view) {
                 sendRequest(2, "");
+            }
+        });
+        tv_cart.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                //bundle.putString("goodsDetailStr", goodsDetailStr);
+                jumpActivity(MyCartActivity.class, bundle);
             }
         });
         tv_resell_goods.setOnClickListener(new View.OnClickListener() {
@@ -262,6 +275,20 @@ public class CommodityDetailActivity extends BaseFragmentActivity implements Vie
             HttpManager httpManager = new HttpManager(tag, HttpMothed.POST,
                     IRequestConst.RequestMethod.AddContact, parmMap, this);
             httpManager.request();
+        } else if (tag == 4) {//加入购物车
+            Map<String, String> parmMap = new HashMap<String, String>();
+            parmMap.put("memberId",ConfigManager.instance().getUser().getId());
+            parmMap.put("goodsSaleId", goodsSaleId);
+            parmMap.put("quantity", "1");
+            HttpManager httpManager = new HttpManager(tag, HttpMothed.POST,
+                    IRequestConst.RequestMethod.AddCart, parmMap, this);
+            httpManager.request();
+        } else if (tag == 5) {
+            Map<String, String> parmMap = new HashMap<String, String>();
+
+            HttpManager httpManager = new HttpManager(tag, HttpMothed.GET,IRequestConst.RequestMethod.GetCartList
+                    , parmMap, this);
+            httpManager.request();
         }
     }
 
@@ -299,8 +326,30 @@ public class CommodityDetailActivity extends BaseFragmentActivity implements Vie
                     tip(resultJson.optString("msg"));
                 }
             }
+        } else if (tag == 4){//加入购物车
+            JSONObject resultJson = (JSONObject) resultInfo.getResponse();
+            if (resultJson != null && resultJson.optBoolean("success")) {
+                tip("成功加入购物车");
+                numberInCard++;
+                tv_cart_num.setText(Integer.valueOf(numberInCard).toString());
+            }
+            else{
+                tip("加入购物车失败");
+            }
+        } else if (tag == 5) {//购物车数量
+            JSONObject resultJson = (JSONObject) resultInfo.getResponse();
+            numberInCard = ParseCartNumber(resultJson);
+            tv_cart_num.setText(Integer.valueOf(numberInCard).toString());
         }
 
+    }
+
+    public static int ParseCartNumber(JSONObject resultJson){
+        if (resultJson != null && resultJson.optBoolean("success")) {
+            return 0;
+        }
+        else
+            return 0;
     }
 
     @Override

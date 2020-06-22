@@ -1,4 +1,4 @@
-package com.softtek.lai.widgets.flowLayout;
+package com.commodity.yzrsc.view.flowLayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.softtek.lai.R;
+import com.commodity.yzrsc.R;
 
 import java.util.HashSet;
 import java.util.Iterator;

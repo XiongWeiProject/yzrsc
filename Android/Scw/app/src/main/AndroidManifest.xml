@@ -50,7 +50,8 @@
         android:supportsRtl="true"
         android:theme="@style/MyAppTheme"
         tools:replace="android:theme">
-        <activity android:name=".ui.activity.friend.MyDynamicActivity"></activity>
+        <activity android:name=".ui.activity.friend.PayMoneNumActivity"></activity>
+        <activity android:name=".ui.activity.friend.MyDynamicActivity" />
         <activity android:name=".ui.activity.friend.OtherDynamicActivity" />
         <activity
             android:name=".ui.activity.friend.VideoDynamicActivity"
@@ -317,6 +318,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" /> <!-- 我的收藏 -->
         <activity
+            android:name=".ui.activity.user.MyCartActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/My.Translucent" /> <!-- 我的购物车 -->
+        <activity
             android:name=".ui.activity.user.MyFavoriteCommodActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" /> <!-- 使用帮助 -->
@@ -344,6 +349,10 @@
             android:name=".ui.activity.commodity.AddUserAdressActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" /> <!-- 修改密码 -->
+        <activity
+            android:name=".ui.activity.commodity.OrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/My.Translucent" /> <!-- 下单 -->
         <activity
             android:name=".ui.activity.user.ChangePwdActivity"
             android:screenOrientation="portrait"
@@ -471,7 +480,7 @@
         -->
         <!-- 会话页面 -->
         <activity
-            android:name="com.commodity.yzrsc.rongyun.ui.activity.ConversationActivity"
+            android:name=".rongyun.ui.activity.ConversationActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"

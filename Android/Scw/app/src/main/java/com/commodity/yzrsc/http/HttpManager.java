@@ -7,6 +7,7 @@ import com.commodity.yzrsc.manager.NetworkManager;
 import com.commodity.yzrsc.model.UploadFile;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Map;
@@ -289,6 +290,9 @@ public class HttpManager extends BaseHttpManager {
 		}
 	}
 
+	public void setmRequest(JSONObject mRequest) {
+		mHttpParam.setmRequest(mRequest);
+	}
 	/**
 	 * 触发请求
 	 */

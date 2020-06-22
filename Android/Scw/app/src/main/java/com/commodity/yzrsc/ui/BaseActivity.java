@@ -18,6 +18,8 @@ import com.commodity.yzrsc.utils.CustomToast;
 import com.commodity.yzrsc.utils.FileUtil;
 import com.umeng.socialize.UMShareAPI;
 
+import org.json.JSONException;
+
 import butterknife.ButterKnife;
 
 /**
@@ -147,7 +149,7 @@ public abstract class BaseActivity extends SwipeBackBaseActivity implements Base
      *
      * @param ：要传入请求的某类对象
      */
-    public void sendRequest(int tag, Object... params) {
+    public void sendRequest(int tag, Object... params){
         if (params == null || params.length == 0) {
             this.sendRequest(tag);
         }

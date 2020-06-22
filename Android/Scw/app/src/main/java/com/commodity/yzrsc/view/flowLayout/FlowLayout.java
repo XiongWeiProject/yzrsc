@@ -1,4 +1,4 @@
-package com.softtek.lai.widgets.flowLayout;
+package com.commodity.yzrsc.view.flowLayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.softtek.lai.R;
+import com.commodity.yzrsc.R;
 
 import java.util.ArrayList;
 import java.util.List;

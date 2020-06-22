@@ -1,0 +1,89 @@
+select * from AddressInfo --客户收货地址
+select * from  Advertisement--广告链接地址
+select * from  Role ??
+select *  from BankCard
+select *  from DeviceToken  --登陆token表
+select * from PayNotify
+
+
+
+delete  from ArbitrationResult
+delete from  RoleLoginAccount 
+delete  from AppVersion--app版本号
+delete from FavorList
+delete from GoodsVideoFile
+delete from LoginAccount --登陆账号
+delete from MemberInfo  --用户列表
+delete from shop
+delete from GoodsSale
+delete from OrderGoods
+delete from GoodsEvaluation
+delete from EvaluationNotification
+delete FROM [83soft_yzrsc].[dbo].[Order]
+delete from OrderRefundment
+delete from MediaFile
+delete from Advertisement
+delete from GoodsKind
+delete from ArbitrationMessage
+delete from MemberPropagationLog
+delete from MemberSystemNotification
+delete from MobileVaildCode
+delete from OrderGoods
+delete from OrderPayment
+delete from OrderRefundment
+delete from MediaFile
+delete from Seller
+delete from  ReceiverAddress
+delete from  ResellOrder
+delete from Seller
+delete from ShippingInfo
+delete FROM [83soft_yzrsc].[dbo].[Order]
+delete from OrderRefundment
+delete from MediaFile
+delete from Advertisement
+delete from GoodsKind
+delete from ArbitrationMessage
+delete  from AppVersion--app版本号
+delete from  Goods--商品主
+delete from GoodsEvaluation
+delete from OrderGoods
+delete from GoodsEvaluation
+delete from EvaluationNotification
+delete FROM [83soft_yzrsc].[dbo].[Order]
+delete from OrderRefundment
+delete from MediaFile
+delete from Advertisement
+delete from GoodsKind
+delete from ArbitrationMessage
+delete from MemberPropagationLog
+delete from MemberSystemNotification
+delete from MobileVaildCode
+delete from OrderGoods
+delete from OrderPayment
+delete from OrderRefundment
+delete from MediaFile
+delete from Seller
+delete from  ReceiverAddress
+delete from  ResellOrder
+delete from Seller
+delete from ShippingInfo
+delete from shop
+delete FROM [83soft_yzrsc].[dbo].[Order]
+delete from OrderRefundment
+delete from MediaFile
+delete from Advertisement
+delete from GoodsKind
+delete from ArbitrationMessage
+delete from Wallet
+delete from [83soft_yzrsc].[dbo].[Transaction]
+delete from WalletWithdraw
+delete from WithdrawLog
+delete  from SystemNotification
+delete from GoodsEvaluation
+delete from GoodsImageFile
+delete from Wallet
+delete from AddressInfo
+delete from FollowNotification
+delete from UserDynamicComment
+delete from UserDynamicInfo
+delete from UserDynamicLike

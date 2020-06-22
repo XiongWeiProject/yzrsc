@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alipay.sdk.app.PayTask;
@@ -59,8 +60,13 @@ public class PayActivity extends BaseActivity {
     ImageView pay_zfb_img;
     @Bind(R.id.pay_pay_button)
     Button pay_pay_button;
+    @Bind(R.id.pay_qianbao_img)
+    ImageView pay_qianbao_img;
+    @Bind(R.id.pay_qianbao_line)
+    LinearLayout pay_qianbao_line;
 
-    private boolean payFlag;//默认是微信
+
+    private int payFlag;//默认是微信0
     private String ordeId;
     private String total;
     private SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");;
@@ -98,18 +104,23 @@ public class PayActivity extends BaseActivity {
             case R.id.pay_zfb_button:
                 switchZFBPay();
                 break;
+            case R.id.pay_qianbao_line:
+                switchQianaoPay();
+                break;
             case R.id.pay_pay_button://支付
                 customLoadding.setTip("支付中...");
                 customLoadding.show();
-                if(payFlag){//支付宝
+                if(payFlag == 1){//支付宝
                     new ZFBUtils(this,null,ordeId,"alipay",handler).startPay();
 //                    if(ZFBUtils.isZfbAvilible(this)){
 //                        new ZFBUtils(this,null,ordeId,total,handler);
 //                    }else {
 //                        tip("请安装支付宝");
 //                    }
-                }else {//微信 wxpay
+                }else if (payFlag == 0){//微信 wxpay
                     new WXUtils(this,ordeId).startPay();
+                } else if (payFlag == 2){//钱包余额
+                    //TODO
                 }
                 break;
         }
@@ -166,15 +177,24 @@ public class PayActivity extends BaseActivity {
     });
 
     private void switchZFBPay() {
-        payFlag=true;
+        payFlag=1;
         pay_zfb_img.setBackgroundResource(R.drawable.icon_xzoff);
         pay_weixin_img.setBackgroundResource(R.drawable.icon_xzon);
+        pay_qianbao_img.setBackgroundResource(R.drawable.icon_xzon);
     }
 
     private void switchWeixnPay() {
-            payFlag=false;
+            payFlag=0;
             pay_zfb_img.setBackgroundResource(R.drawable.icon_xzon);
             pay_weixin_img.setBackgroundResource(R.drawable.icon_xzoff);
+            pay_qianbao_img.setBackgroundResource(R.drawable.icon_xzon);
+    }
+
+    private void switchQianaoPay() {
+        payFlag=2;
+        pay_zfb_img.setBackgroundResource(R.drawable.icon_xzon);
+        pay_weixin_img.setBackgroundResource(R.drawable.icon_xzon);
+        pay_qianbao_img.setBackgroundResource(R.drawable.icon_xzoff);
     }
 
     @Override
@@ -201,9 +221,9 @@ public class PayActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if(!payFlag){
-            finish();
-        }
+//        if(!payFlag){
+//            finish();
+//        }
 
     }
 
