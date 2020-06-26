@@ -327,7 +327,9 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                 case R.id.tv_evalution:
                     showPopupcomment();
                     break;
-
+                case R.id.tv_forwarding://转发逻辑
+//                    showPopupcomment();
+                    break;
                 default:
                     break;
             }

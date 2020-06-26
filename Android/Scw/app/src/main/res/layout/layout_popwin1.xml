@@ -37,5 +37,30 @@
         android:drawableLeft="@drawable/evalutions"
         android:textColor="@color/white"
         android:textSize="@dimen/textsize14" />
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/black" />
+    <LinearLayout
+        android:id="@+id/tv_forwarding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/zhuanfa"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:text="转发"
+            android:layout_marginLeft="2dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize14" />
+    </LinearLayout>
 
 </LinearLayout>

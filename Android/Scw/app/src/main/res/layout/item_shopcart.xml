@@ -11,13 +11,12 @@
         android:id="@+id/ll_shopcart_header"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp">
+        android:orientation="horizontal">
 
-        <ImageView
+        <com.commodity.yzrsc.view.RoundAngleImageView
             android:id="@+id/iv_shopImag"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:src="@drawable/ico_defalut_header" />
 
         <TextView
@@ -34,7 +33,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginLeft="10dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -43,11 +41,11 @@
             android:gravity="right"
             android:orientation="horizontal">
 
-            <ImageView
+            <com.commodity.yzrsc.view.RoundAngleImageView
                 android:id="@+id/iv_goodsImage"
                 android:layout_width="120dp"
+                android:paddingLeft="10dp"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
                 android:src="@drawable/icon_data_no" />
 
             <RelativeLayout

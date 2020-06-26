@@ -15,6 +15,7 @@ public class PopWinShare extends PopupWindow {
     private View mainView1;
     private TextView layoutShare, layoutCopy;
     private TextView layoutShare1, layoutCopy1;
+    private LinearLayout linearLayout;
 
     public PopWinShare(Activity paramActivity, View.OnClickListener paramOnClickListener, int paramInt1, int paramInt2,int type){
         super(paramActivity);
@@ -38,10 +39,12 @@ public class PopWinShare extends PopupWindow {
             layoutShare1 = ((TextView)mainView1.findViewById(R.id.tv_like));
             //复制布局
             layoutCopy1 = (TextView)mainView1.findViewById(R.id.tv_evalution);
+            linearLayout = (LinearLayout)mainView1.findViewById(R.id.tv_forwarding);
             //设置每个子布局的事件监听器
             if (paramOnClickListener != null){
                 layoutShare1.setOnClickListener(paramOnClickListener);
                 layoutCopy1.setOnClickListener(paramOnClickListener);
+                linearLayout.setOnClickListener(paramOnClickListener);
             }
             setContentView(mainView1);
         }
