@@ -44,6 +44,11 @@ public class HttpParam {
 	 * 传入的请求参数
 	 */
 	private Map<String, String> mRequestParams;
+
+	/**
+	 * 传入的请求参数
+	 */
+	private String jsons;
 	/**
 	 * 参数键值对
 	 */
@@ -90,7 +95,22 @@ public class HttpParam {
 			mUrl = url;
 		}
 	}
+	public HttpParam(HttpMothed mothed, String url,
+					 String json, boolean hasSecurityCertificate,
+					 List<UploadFile> fileList, boolean isExternalLink,String ss) throws Exception {
+		mMothed = mothed;
+		jsons = json;
+		mHasSecurityCertificate = hasSecurityCertificate;
+		mFileList = fileList;
+		mIsExternalLink = isExternalLink;
 
+		if (!isExternalLink) {
+			mUrl = url;
+			constructParameters();
+		} else {
+			mUrl = url;
+		}
+	}
 	/**
 	 * 构造参数列表
 	 * 

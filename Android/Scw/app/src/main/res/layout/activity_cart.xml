@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pla="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/titlebar_height"
         android:background="@color/co_FD713F">
@@ -34,54 +36,61 @@
             android:textColor="@color/white"
             android:textSize="@dimen/titlebar_textsize" />
     </RelativeLayout>
-
-    <com.commodity.yzrsc.ui.widget.xlistView.XListView xmlns:pla="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/recycleview"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:fastScrollEnabled="true"
-        android:scrollbars="vertical"
-        pla:plaColumnNumber="1"
-        pla:plaLandscapeColumnNumber="1">
+        android:layout_height="match_parent">
 
-    </com.commodity.yzrsc.ui.widget.xlistView.XListView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_allPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="合计：17.0元"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/co_name" />
-
-        <TextView
+        <ListView
+            android:id="@+id/recycleview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.3" />
+            android:divider="@null"
+            android:focusable="false"
+            android:listSelector="#00000000"
+            android:scrollbars="none">
+
+        </ListView>
 
         <LinearLayout
+            android:id="@+id/ll_item"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.4">
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_commit"
+            <TextView
+                android:id="@+id/tv_allPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="合计：17.0元"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/co_name" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:background="@drawable/rc_cs_button_bg"
-                android:gravity="center"
-                android:text="去结算"
-                android:textColor="@color/white" />
+                android:layout_weight="0.4">
+
+                <Button
+                    android:id="@+id/btn_commit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/rc_cs_button_bg"
+                    android:gravity="center"
+                    android:text="去结算"
+                    android:textColor="@color/white" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+
+    </RelativeLayout>
+
 
 </LinearLayout>

@@ -4,7 +4,7 @@ package com.commodity.scw.http;
  * 请求的基本数据
  */
 public class IRequestConst {
-    public static final String REQUEST_URL = "http://scw-api.83soft.cn/";//测试环境2 scw-web.83soft.cn
+    public static final String REQUEST_URL = "https://scw-api.83soft.cn/";//测试环境2 scw-web.83soft.cn
     //public static final String REQUEST_URL = "http://api.soucangwang.com/";//正式环境
 
     // 请求类别
@@ -192,6 +192,10 @@ public class IRequestConst {
         public static final String SearchGoodsSale = REQUEST_URL + "Goods/SearchGoodsSale";
         // 获取水印图片
         public static final String GetWaterMarkImages = REQUEST_URL + "Common/GetWaterMarkImages";
+        // 删除商品
+        public static final String POSTDELETESHOP= "https://yzrsc-api.83soft.cn/ShoppingCart/RemoveShoppingCarts";
+        public static final String POSTREDUCESHOP= "https://yzrsc-api.83soft.cn/ShoppingCart/ChangeGoodsQuantity";
+        public static final String POSTORDER= "https://yzrsc-api.83soft.cn/ShoppingCart/ToplaceByShoppingCart";
 
     }
 }

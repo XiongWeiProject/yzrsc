@@ -2,6 +2,7 @@ package com.commodity.yzrsc.ui.activity.commodity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,23 +26,32 @@ import com.commodity.yzrsc.http.UpLoadUtils;
 import com.commodity.yzrsc.manager.ConfigManager;
 import com.commodity.yzrsc.manager.ImageLoaderManager;
 import com.commodity.yzrsc.model.AdressDetail;
+import com.commodity.yzrsc.model.OrderModel;
+import com.commodity.yzrsc.model.ShopCardModel;
 import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.activity.user.UserAdressListActivity;
 import com.commodity.yzrsc.ui.dialog.CommonDialog;
 import com.commodity.yzrsc.ui.pay.PayActivity;
 import com.commodity.yzrsc.ui.widget.imageview.XCRoundRectImageView;
 import com.commodity.yzrsc.utils.ResultUtil;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 /**
  * Created by liyushen on 2017/3/29 22:08
@@ -63,7 +73,7 @@ public class OrderActivity extends BaseActivity{
     //JSONObject dataJson;
     AdressDetail adressDetail;
     //private String goodsSaleId="";
-    private String goodsSaleIds;
+    private List<Integer> goodsSaleIds;
     private Double total;
     private Double postage;
     private RequestQueue mQueue;
@@ -80,7 +90,7 @@ public class OrderActivity extends BaseActivity{
         String goodsDetailStr = "";
         if (getIntent()!=null){
             if(getIntent().getExtras().containsKey("ids")) {
-                goodsSaleIds = getIntent().getExtras().getString("ids");
+                goodsSaleIds = getIntent().getIntegerArrayListExtra("ids");
             }
             if(getIntent().getExtras().containsKey("total")) {
                 total = getIntent().getExtras().getDouble("total");
@@ -136,6 +146,7 @@ public class OrderActivity extends BaseActivity{
                     tip("请添加收货地址");
                     return;
                 }
+                subOrder();
 //                if (dataJson==null){
 //                    tip("当前商品状态异常");
 //                    return;
@@ -147,13 +158,47 @@ public class OrderActivity extends BaseActivity{
 //                comm.setClickSubmitListener(new CommonDialog.OnClickSubmitListener() {
 //                    @Override
 //                    public void clickSubmit() {
-                        sendRequest(2,"");
+//                        sendRequest(2,"");
 //                    }
 //                });
             }
         });
     }
+    private void subOrder() {
+        Gson gson = new Gson();
+        OrderModel shopCardModel = new OrderModel();
+        shopCardModel.setIds(goodsSaleIds);
+        shopCardModel.setAddressInfoId(adressDetail.getId());
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), gson.toJson(shopCardModel));
+        UpLoadUtils.instance().jsonRequest(com.commodity.scw.http.IRequestConst.RequestMethod.POSTORDER, requestBody, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Toast.makeText(mContext, "请求失败", Toast.LENGTH_LONG).show();
+            }
 
+            @Override
+            public void onResponse(Call call, okhttp3.Response response) throws IOException {
+                try {
+                    JSONObject resultJson = new JSONObject(response.body().string());
+                    if (resultJson.getBoolean("success")) {
+                        //跳到支付界面
+                        Bundle bundle = new Bundle();
+                        bundle.putString("total",String.valueOf(total+postage));
+                        bundle.putString("orderId",resultJson.optString("data"));
+                        jumpActivity(PayActivity.class,bundle);
+                        //                tip("确认下单成功");
+                        finish();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "错误："+resultJson.getString("message"), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
     @Override
     public void sendRequest(int tag, Object... params) {
         super.sendRequest(tag, params);
@@ -175,7 +220,7 @@ public class OrderActivity extends BaseActivity{
             catch (JSONException e){
 
             }
-            String url = IRequestConst.RequestMethod.AddContact;
+            String url = IRequestConst.RequestMethod.OrderCartList;
             JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, jsonParam,
                     new Response.Listener<JSONObject>() {
                         @Override

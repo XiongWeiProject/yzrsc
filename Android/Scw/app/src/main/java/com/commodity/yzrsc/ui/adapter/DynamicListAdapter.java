@@ -45,8 +45,10 @@ import com.commodity.yzrsc.model.DynamicAllListModel;
 import com.commodity.yzrsc.model.Evalution;
 import com.commodity.yzrsc.ottobus.BusProvider;
 import com.commodity.yzrsc.ottobus.Event;
+import com.commodity.yzrsc.ui.activity.friend.DynamicDetailsActivity;
 import com.commodity.yzrsc.ui.activity.friend.MyDynamicActivity;
 import com.commodity.yzrsc.ui.activity.friend.OtherDynamicActivity;
+import com.commodity.yzrsc.ui.activity.friend.WebviewActivity;
 import com.commodity.yzrsc.ui.activity.general.BigPictureActivity;
 import com.commodity.yzrsc.ui.adapter.base.BaseRecycleAdapter;
 import com.commodity.yzrsc.ui.adapter.base.CommonAdapter;
@@ -382,6 +384,9 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                     break;
                 case R.id.tv_evalution:
                     showPopupcomment(0 + "", 0 + "");
+                    break;
+                case R.id.tv_forwarding:
+                    DynamicDetailsActivity.startAction(mContext,dynamicIds+"","动态详情");
                     break;
 
                 default:

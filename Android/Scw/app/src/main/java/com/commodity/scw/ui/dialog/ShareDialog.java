@@ -52,9 +52,9 @@ public class ShareDialog<T> extends Dialog implements AdapterView.OnItemClickLis
         GridView gridview = (GridView) view.findViewById(R.id.share_gridview);
         List<Object> list=new ArrayList<>();
 //        list.add(data);
-        list.add(data);
-        list.add(data);
-        list.add(data);
+//        list.add(data);
+//        list.add(data);
+//        list.add(data);
         list.add(data);
         list.add(data);
         list.add(data);
@@ -91,21 +91,22 @@ public class ShareDialog<T> extends Dialog implements AdapterView.OnItemClickLis
                 SharetUtil.shareUrl((Activity)context,SHARE_MEDIA.QQ,data.shareURL,data.desc,umImage);
                 break;
             case 3:
-                SharetUtil.shareUrl((Activity)context,SHARE_MEDIA.QZONE,data.shareURL,data.desc,umImage);
-                break;
-            case 4:
-                SharetUtil.shareUrl((Activity)context,SHARE_MEDIA.SINA,data.shareURL,data.desc,umImage);
-                break;
-            case 5:
-                SharetUtil.saveImages(context,data.images);
-                break;
-            case 6:
                 ClipboardManager clipboardManager = (ClipboardManager) MainApplication.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clipurl = ClipData.newPlainText("url", data.shareURL);
                 clipboardManager.setPrimaryClip(clipurl);
 
                 Toast.makeText((Activity) context, "复制链接成功", Toast.LENGTH_LONG).show();
+//                SharetUtil.shareUrl((Activity)context,SHARE_MEDIA.QZONE,data.shareURL,data.desc,umImage);
                 break;
+//            case 4:
+//                SharetUtil.shareUrl((Activity)context,SHARE_MEDIA.SINA,data.shareURL,data.desc,umImage);
+//                break;
+//            case 5:
+//                SharetUtil.saveImages(context,data.images);
+//                break;
+//            case 6:
+//
+//                break;
         }
         dismiss();
     }

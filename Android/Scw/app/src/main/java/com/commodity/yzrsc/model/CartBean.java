@@ -8,78 +8,27 @@ import java.util.List;
  */
 public class CartBean {
 
+
     /**
-     {
-     "id": 0,
-     "goodsSaleId": 0,
-     "goodsSaleName": "string",
-     "goodsImage": "string",
-     "quantity": 0,
-     "shopId": 0,
-     "goodsPrice": 0,
-     "shopName": "string",
-     "sellerAvatar": "string"
-     }
+     * shopId : 5087
+     * shopName : 店铺5087
+     * sellerAvatar : https://yzrsc-api.83soft.cn/UpLoadFiles/Image/202005162347557413881811190036.jpg
+     * shoppingCartGoods : [{"shoppingCartId":27,"goodsSaleId":4238,"goodsSaleName":"铁轨，小鸟，人，自然好看","goodsImage":"https://yzrsc-api.83soft.cn/UpLoadFiles/Image/202006152303485913891029941652.jpeg","goodsPrice":0.01,"quantity":1,"postage":0.01},{"shoppingCartId":43,"goodsSaleId":4236,"goodsSaleName":"啤酒好看也好喝,来吧来吧","goodsImage":"https://yzrsc-api.83soft.cn/UpLoadFiles/Image/202006152301294351522107228942.jpeg","goodsPrice":0.01,"quantity":5,"postage":0.01},{"shoppingCartId":44,"goodsSaleId":4236,"goodsSaleName":"啤酒好看也好喝,来吧来吧","goodsImage":"https://yzrsc-api.83soft.cn/UpLoadFiles/Image/202006152301294351522107228942.jpeg","goodsPrice":0.01,"quantity":1,"postage":0.01}]
      */
 
-    private int id;
     private int shopId;
     private String shopName;
     private String sellerAvatar;
 
-    private String goodsSaleId;
-    private String goodsSaleName;
-    private String goodsImage;
-    private Integer quantity;
-    private Double goodsPrice;
-    private Double postage;
 
-    public Double getPostage() {
-        return postage;
+    private List<ShoppingCartGoodsBean> shoppingCartGoods;
+
+    public int getShopId() {
+        return shopId;
     }
 
-    public void setPostage(Double postage) {
-        this.postage = postage;
-    }
-
-    public Double getGoodsPrice() {
-        return goodsPrice;
-    }
-
-    public void setGoodsPrice(Double goodsPrice) {
-        this.goodsPrice = goodsPrice;
-    }
-
-    public String getGoodsImage() {
-        return goodsImage;
-    }
-
-    public void setGoodsImage(String goodsImage) {
-        this.goodsImage = goodsImage;
-    }
-
-    public String getGoodsSaleId() {
-        return goodsSaleId;
-    }
-
-    public void setGoodsSaleId(String goodsSaleId) {
-        this.goodsSaleId = goodsSaleId;
-    }
-
-    public String getGoodsSaleName() {
-        return goodsSaleName;
-    }
-
-    public void setGoodsSaleName(String goodsSaleName) {
-        this.goodsSaleName = goodsSaleName;
-    }
-
-    public String getSellerAvatar() {
-        return sellerAvatar;
-    }
-
-    public void setSellerAvatar(String sellerAvatar) {
-        this.sellerAvatar = sellerAvatar;
+    public void setShopId(int shopId) {
+        this.shopId = shopId;
     }
 
     public String getShopName() {
@@ -90,27 +39,95 @@ public class CartBean {
         this.shopName = shopName;
     }
 
-    public int getShopId() {
-        return shopId;
+    public String getSellerAvatar() {
+        return sellerAvatar;
     }
 
-    public void setShopId(int shopId) {
-        this.shopId = shopId;
+    public void setSellerAvatar(String sellerAvatar) {
+        this.sellerAvatar = sellerAvatar;
     }
 
-    public int getId() {
-        return id;
+    public List<ShoppingCartGoodsBean> getShoppingCartGoods() {
+        return shoppingCartGoods;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setShoppingCartGoods(List<ShoppingCartGoodsBean> shoppingCartGoods) {
+        this.shoppingCartGoods = shoppingCartGoods;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
+    public static class ShoppingCartGoodsBean {
+        /**
+         * shoppingCartId : 27
+         * goodsSaleId : 4238
+         * goodsSaleName : 铁轨，小鸟，人，自然好看
+         * goodsImage : https://yzrsc-api.83soft.cn/UpLoadFiles/Image/202006152303485913891029941652.jpeg
+         * goodsPrice : 0.01
+         * quantity : 1
+         * postage : 0.01
+         */
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        private int shoppingCartId;
+        private int goodsSaleId;
+        private String goodsSaleName;
+        private String goodsImage;
+        private double goodsPrice;
+        private int quantity;
+        private double postage;
+
+        public int getShoppingCartId() {
+            return shoppingCartId;
+        }
+
+        public void setShoppingCartId(int shoppingCartId) {
+            this.shoppingCartId = shoppingCartId;
+        }
+
+        public int getGoodsSaleId() {
+            return goodsSaleId;
+        }
+
+        public void setGoodsSaleId(int goodsSaleId) {
+            this.goodsSaleId = goodsSaleId;
+        }
+
+        public String getGoodsSaleName() {
+            return goodsSaleName;
+        }
+
+        public void setGoodsSaleName(String goodsSaleName) {
+            this.goodsSaleName = goodsSaleName;
+        }
+
+        public String getGoodsImage() {
+            return goodsImage;
+        }
+
+        public void setGoodsImage(String goodsImage) {
+            this.goodsImage = goodsImage;
+        }
+
+        public double getGoodsPrice() {
+            return goodsPrice;
+        }
+
+        public void setGoodsPrice(double goodsPrice) {
+            this.goodsPrice = goodsPrice;
+        }
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        public void setQuantity(int quantity) {
+            this.quantity = quantity;
+        }
+
+        public double getPostage() {
+            return postage;
+        }
+
+        public void setPostage(double postage) {
+            this.postage = postage;
+        }
     }
 }

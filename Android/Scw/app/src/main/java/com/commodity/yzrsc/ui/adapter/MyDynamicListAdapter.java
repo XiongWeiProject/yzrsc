@@ -43,6 +43,7 @@ import com.commodity.yzrsc.model.DynamicAllListModel;
 import com.commodity.yzrsc.model.Evalution;
 import com.commodity.yzrsc.ottobus.BusProvider;
 import com.commodity.yzrsc.ottobus.Event;
+import com.commodity.yzrsc.ui.activity.friend.DynamicDetailsActivity;
 import com.commodity.yzrsc.ui.activity.friend.OtherDynamicActivity;
 import com.commodity.yzrsc.ui.activity.friend.PicDynamicActivity;
 import com.commodity.yzrsc.ui.activity.general.BigPictureActivity;
@@ -327,8 +328,8 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                 case R.id.tv_evalution:
                     showPopupcomment();
                     break;
-                case R.id.tv_forwarding://转发逻辑
-//                    showPopupcomment();
+                case R.id.tv_forwarding:
+                    DynamicDetailsActivity.startAction(mContext,data.get(position).getId() +"","动态详情");
                     break;
                 default:
                     break;

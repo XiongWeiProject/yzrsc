@@ -50,9 +50,9 @@ public class ShareShopDialog<T> extends Dialog implements AdapterView.OnItemClic
         Button cancle = (Button) view.findViewById(R.id.share_cancle);
         GridView gridview = (GridView) view.findViewById(R.id.share_gridview);
         List<Object> list=new ArrayList<>();
-        list.add(data);
-        list.add(data);
-        list.add(data);
+//        list.add(data);
+//        list.add(data);
+//        list.add(data);
         list.add(data);
         list.add(data);
         list.add(data);

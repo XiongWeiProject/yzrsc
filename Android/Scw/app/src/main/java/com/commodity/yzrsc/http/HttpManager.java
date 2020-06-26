@@ -5,6 +5,7 @@ import android.os.Build;
 import com.commodity.yzrsc.http.excutor.PoolExecutor;
 import com.commodity.yzrsc.manager.NetworkManager;
 import com.commodity.yzrsc.model.UploadFile;
+import com.commodity.yzrsc.ui.activity.user.MyCartActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,7 +64,7 @@ public class HttpManager extends BaseHttpManager {
 	private HttpClient mClient;// 通信渠道
 	/**
 	 * 初始URL（默认用GET方式请求）
-	 * 
+	 *
 	 * @param url
 	 *            URL
 	 */
@@ -117,7 +118,7 @@ public class HttpManager extends BaseHttpManager {
 	/*
 	 * public HttpManager(HttpMothed mothed, String url, JSONArray jsonArray,
 	 * IRequestListener listener){
-	 * 
+	 *
 	 * }
 	 */
 	/**
@@ -203,6 +204,19 @@ public class HttpManager extends BaseHttpManager {
 			mClient = HttpClientFactory.instance();
 			mHttpParam = new HttpParam(HttpMothed.POST, url, null, false, null,
 					true);
+			initHttpResponse(tag,listener);
+		} catch (JSONException e) {
+			Logger.d(TAG, "construct http param json error");
+		} catch (Exception e) {
+			Logger.d(TAG, "construct http param error");
+		}
+	}
+
+	public HttpManager(int tag, HttpMothed mothed, String url, String obj, MyCartActivity listener) {
+		try {
+			mClient = HttpClientFactory.instance();
+			mHttpParam = new HttpParam(mothed, url, obj, false, null,
+					true,"");
 			initHttpResponse(tag,listener);
 		} catch (JSONException e) {
 			Logger.d(TAG, "construct http param json error");

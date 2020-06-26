@@ -109,6 +109,7 @@ public class UpLoadUtils {
     public void jsonRequest(String url,RequestBody body,final Callback callback){
         Request build = new Request.Builder().url(url)
                 .addHeader("Charset", "UTF-8")
+                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
                 .addHeader("scw-token", ConfigManager.instance().getUser().getDeviceToken())
                 .post(body)

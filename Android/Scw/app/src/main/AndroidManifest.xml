@@ -50,7 +50,8 @@
         android:supportsRtl="true"
         android:theme="@style/MyAppTheme"
         tools:replace="android:theme">
-        <activity android:name=".ui.activity.friend.PayMoneNumActivity"></activity>
+        <activity android:name=".ui.activity.friend.DynamicDetailsActivity"></activity>
+        <activity android:name=".ui.activity.friend.PayMoneNumActivity" />
         <activity android:name=".ui.activity.friend.MyDynamicActivity" />
         <activity android:name=".ui.activity.friend.OtherDynamicActivity" />
         <activity
@@ -255,6 +256,10 @@
             android:theme="@style/My.Translucent" /> <!-- 提现记录 -->
         <activity
             android:name=".ui.activity.personalcenter.money.MoneyDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/My.Translucent" /> <!-- 提现详情 -->
+        <activity
+            android:name=".ui.activity.friend.WebviewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/My.Translucent" /> <!-- 提现详情 -->
         <activity
