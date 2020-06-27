@@ -170,7 +170,7 @@ public class OrderActivity extends BaseActivity{
         shopCardModel.setIds(goodsSaleIds);
         shopCardModel.setAddressInfoId(adressDetail.getId());
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), gson.toJson(shopCardModel));
-        UpLoadUtils.instance().jsonRequest(com.commodity.scw.http.IRequestConst.RequestMethod.POSTORDER, requestBody, new Callback() {
+        UpLoadUtils.instance().jsonRequest(IRequestConst.RequestMethod.POSTORDER, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Toast.makeText(mContext, "请求失败", Toast.LENGTH_LONG).show();

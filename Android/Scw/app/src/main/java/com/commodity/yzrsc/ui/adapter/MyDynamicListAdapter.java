@@ -329,7 +329,7 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                     showPopupcomment();
                     break;
                 case R.id.tv_forwarding:
-                    DynamicDetailsActivity.startAction(mContext,data.get(position).getId() +"","动态详情");
+                    DynamicDetailsActivity.startAction(mContext,data.get(position).getId() +"","动态详情",data.get(position));
                     break;
                 default:
                     break;

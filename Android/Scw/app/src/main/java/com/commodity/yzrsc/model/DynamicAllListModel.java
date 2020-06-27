@@ -1,8 +1,9 @@
 package com.commodity.yzrsc.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class DynamicAllListModel  {
+public class DynamicAllListModel implements Serializable {
 
 
     /**

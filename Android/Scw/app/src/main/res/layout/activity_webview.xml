@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".ui.main.activity.WebviewActivity">
+    tools:context=".ui.main.activity.WebviewActivity"
+    tools:ignore="MissingDefaultResource">
 
     <include layout="@layout/head_layout"></include>
 

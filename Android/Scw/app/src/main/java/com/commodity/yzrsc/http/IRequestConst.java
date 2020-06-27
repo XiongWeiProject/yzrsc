@@ -227,5 +227,9 @@ public class IRequestConst {
         public static final String PostGetnfo  = REQUEST_URLS  +"Member/GetMemberInfo";
         //删除自己的评论
         public static final String PostDetect  = REQUEST_URLS  +"UserDynamic/DeleteComment";
+        // 删除商品
+        public static final String POSTDELETESHOP= "https://yzrsc-api.83soft.cn/ShoppingCart/RemoveShoppingCarts";
+        public static final String POSTREDUCESHOP= "https://yzrsc-api.83soft.cn/ShoppingCart/ChangeGoodsQuantity";
+        public static final String POSTORDER= "https://yzrsc-api.83soft.cn/ShoppingCart/ToplaceByShoppingCart";
     }
 }

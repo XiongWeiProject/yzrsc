@@ -2,9 +2,15 @@ package com.commodity.yzrsc.ui.activity.friend;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -12,13 +18,22 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.commodity.scw.ui.widget.webview.AdvancedWebView;
-import com.commodity.scw.utils.SharetUtil;
 import com.commodity.yzrsc.R;
+import com.commodity.yzrsc.manager.ImageLoaderManager;
+import com.commodity.yzrsc.model.DynamicAllListModel;
 import com.commodity.yzrsc.ui.BaseActivity;
+import com.commodity.yzrsc.ui.adapter.EvalutionAdapter;
+import com.commodity.yzrsc.ui.adapter.ShowPicAdapter;
+import com.commodity.yzrsc.ui.adapter.ZanAdapter;
+import com.commodity.yzrsc.utils.SharetUtil;
+import com.commodity.yzrsc.view.MoreEvalutionDialog;
 import com.commodity.yzrsc.view.RoundAngleImageView;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -69,11 +84,15 @@ public class DynamicDetailsActivity extends BaseActivity {
     ImageView tvAndroid;
     @Bind(R.id.iv_ios)
     ImageView ivIos;
-
-    public static void startAction(Context activity, String id, String title) {
+    DynamicAllListModel dynamicAllListModels;
+    ShowPicAdapter showPicAdapter;
+    public static void startAction(Context activity, String id, String title, DynamicAllListModel dynamicAllListModel) {
         Intent intent = new Intent(activity, DynamicDetailsActivity.class);
-        intent.putExtra("id", id);
-        intent.putExtra("title", title);
+        Bundle bundle = new Bundle();
+        bundle.putString("id", id);
+        bundle.putString("title", title);
+        bundle.putSerializable("dynamicAllListModel", dynamicAllListModel);
+        intent.putExtras(bundle);
         activity.startActivity(intent);
     }
     @Override
@@ -83,7 +102,86 @@ public class DynamicDetailsActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        dynamicAllListModels = (DynamicAllListModel) getIntent().getSerializableExtra("dynamicAllListModel");
+        dynamicName.setText(dynamicAllListModels.getMemberNickname()+"");
+        dynamicContent.setText(dynamicAllListModels.getDescription()+"");
+        dynamicTime.setText(dynamicAllListModels.getCreateTime()+"");
+        ImageLoaderManager.getInstance().displayImage(dynamicAllListModels.getMemberAvatar(), llHead,R.drawable.ico_pic_fail_defalt);
+        if (dynamicAllListModels.getPictures().size() == 0) {
+            if (TextUtils.isEmpty(dynamicAllListModels.getVideoUrl())) {
+                rcvPic.setVisibility(View.GONE);
+            } else {
+                rcvPic.setVisibility(View.VISIBLE);
+                List<String> list = new ArrayList<>();
+                list.add(dynamicAllListModels.getExt1());
+                showPicAdapter = new ShowPicAdapter(mContext, list, R.layout.item_show_pic, 1);
+                rcvPic.setLayoutManager(new GridLayoutManager(mContext, 2));
+                rcvPic.setAdapter(showPicAdapter);
+            }
+        } else {
+            rcvPic.setVisibility(View.VISIBLE);
+            if (dynamicAllListModels.getPictures().size() == 1) {
+                showPicAdapter = new ShowPicAdapter(mContext, dynamicAllListModels.getPictures(), R.layout.item_show_pic, 0);
+                rcvPic.setLayoutManager(new GridLayoutManager(mContext, 2));
+            } else {
+                showPicAdapter = new ShowPicAdapter(mContext, dynamicAllListModels.getPictures(), R.layout.item_shows_pic, 0);
+                rcvPic.setLayoutManager(new GridLayoutManager(mContext, 3));
+            }
+            rcvPic.setAdapter(showPicAdapter);
 
+        }
+        if (dynamicAllListModels.getLikeCount() == 0 && dynamicAllListModels.getCommentCount() == 0) {
+            llEvalution.setVisibility(View.GONE);
+        }
+        if (dynamicAllListModels.getLikeList()!=null&&dynamicAllListModels.getLikeCount() > 0) {
+            llEvalution.setVisibility(View.VISIBLE);
+            llZan.setVisibility(View.VISIBLE);
+            viewLine.setVisibility(View.GONE);
+            rcvZan.setLayoutManager(new GridLayoutManager(mContext, 3));
+            //获取点赞列表
+            ZanAdapter zanAdapter = new ZanAdapter(mContext, dynamicAllListModels.getLikeList(), R.layout.item_zan);
+            rcvZan.setAdapter(zanAdapter);
+        }
+        if (dynamicAllListModels.getCommentList()!=null&&dynamicAllListModels.getCommentCount() > 0) {
+            llEvalution.setVisibility(View.VISIBLE);
+            rcvEvalution.setVisibility(View.VISIBLE);
+            viewLine.setVisibility(View.GONE);
+
+            rcvEvalution.setLayoutManager(new LinearLayoutManager(mContext));
+            EvalutionAdapter evalutionAdapter = new EvalutionAdapter(mContext, dynamicAllListModels.getCommentList(), R.layout.item_evalution);
+            rcvEvalution.setAdapter(evalutionAdapter);
+        }
+        if (dynamicAllListModels.getCommentCount()>5){
+            rlMore.setVisibility(View.VISIBLE);
+            rlMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //提交成功
+                    final MoreEvalutionDialog renzhengSuccessDialog = new MoreEvalutionDialog(mContext, dynamicAllListModels.getId()+"");
+                    renzhengSuccessDialog.show();
+                    renzhengSuccessDialog.setOnclickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            renzhengSuccessDialog.dismiss();
+                        }
+                    });
+                    renzhengSuccessDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                        @Override
+                        public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                            switch (keyCode) {
+                                case KeyEvent.KEYCODE_BACK:
+                                    return true;
+                                default:
+                                    break;
+                            }
+                            return false;
+                        }
+                    });
+                }
+            });
+        }else {
+            rlMore.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -105,16 +203,16 @@ public class DynamicDetailsActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_weixin:
-                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.WEIXIN,"www.baidu.com","",null);
+                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.WEIXIN,"https://www.baidu.com/","",null);
                 break;
             case R.id.iv_qq:
-                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.QQ,"www.baidu.com","",null);
+                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.QQ,"https://www.baidu.com/","",null);
                 break;
             case R.id.tv_android:
-                WebviewActivity.startAction(DynamicDetailsActivity.this,"www.baidu.com","安卓下载");
+                WebviewActivity.startAction(DynamicDetailsActivity.this,"https://www.baidu.com/","安卓下载");
                 break;
             case R.id.iv_ios:
-                WebviewActivity.startAction(DynamicDetailsActivity.this,"www.baidu.com","IOS下载");
+                WebviewActivity.startAction(DynamicDetailsActivity.this,"https://www.baidu.com/","IOS下载");
                 break;
         }
     }

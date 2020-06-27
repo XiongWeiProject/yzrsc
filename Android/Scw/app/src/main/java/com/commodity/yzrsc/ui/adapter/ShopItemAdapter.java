@@ -12,17 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.commodity.scw.http.BaseHttpManager;
-import com.commodity.scw.http.HttpManager;
-import com.commodity.scw.http.HttpMothed;
-import com.commodity.scw.http.IRequestConst;
-import com.commodity.scw.http.ServiceInfo;
-import com.commodity.scw.ottobus.BusProvider;
-import com.commodity.scw.ottobus.Event;
-import com.commodity.scw.ui.dialog.ResellSuccessDialog;
-import com.commodity.scw.utils.LogUtil;
-import com.commodity.scw.utils.SharetUtil;
 import com.commodity.yzrsc.R;
+import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.UpLoadUtils;
 import com.commodity.yzrsc.manager.ConfigManager;
 import com.commodity.yzrsc.manager.SPKeyManager;
@@ -32,6 +23,7 @@ import com.commodity.yzrsc.model.UserInfo;
 import com.commodity.yzrsc.ui.activity.user.MyCartActivity;
 import com.commodity.yzrsc.ui.adapter.base.CommonAdapter;
 import com.commodity.yzrsc.ui.adapter.base.ViewHolder;
+import com.commodity.yzrsc.utils.LogUtil;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
