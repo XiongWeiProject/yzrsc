@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="合计：17.0元"
+                android:text="合计：0元"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/co_name" />
 

@@ -62,6 +62,7 @@ public class ShopItemAdapter extends CommonAdapter<CartBean.ShoppingCartGoodsBea
             super.handleMessage(msg);
             if (msg.what==1){
                 ((MyCartActivity) mContext).deleteCart();
+                ((MyCartActivity) mContext).ShowTotal(0,0);
             }
 
         }
@@ -92,6 +93,7 @@ public class ShopItemAdapter extends CommonAdapter<CartBean.ShoppingCartGoodsBea
                     ((MyCartActivity) mContext).ShowTotal(totals,0);
                 }else {
                     handler.sendEmptyMessage(1);
+                    ((MyCartActivity) mContext).ShowTotal(0,0);
                 }
             }
         }).setOnClickListener(R.id.iv_goodsAdd, new View.OnClickListener() {

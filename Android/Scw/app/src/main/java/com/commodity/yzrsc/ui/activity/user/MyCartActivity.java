@@ -77,6 +77,10 @@ public class MyCartActivity extends BaseActivity {
                         ids.add(marketGoodsList.get(i).getShoppingCartGoods().get(j).getShoppingCartId());
                     }
                 }
+                if (ids.size()==0){
+                    tip("购物车不能为空");
+                    return;
+                }
                 Bundle bundle = new Bundle();
                 bundle.putDouble("total", Double.valueOf(total));
                 bundle.putDouble("postage", Double.valueOf(yunfei));

@@ -86,12 +86,11 @@ public class DynamicDetailsActivity extends BaseActivity {
     ImageView ivIos;
     DynamicAllListModel dynamicAllListModels;
     ShowPicAdapter showPicAdapter;
-    public static void startAction(Context activity, String id, String title, DynamicAllListModel dynamicAllListModel) {
+    public static void startAction(Context activity, String id, String title) {
         Intent intent = new Intent(activity, DynamicDetailsActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("id", id);
         bundle.putString("title", title);
-        bundle.putSerializable("dynamicAllListModel", dynamicAllListModel);
         intent.putExtras(bundle);
         activity.startActivity(intent);
     }
@@ -102,7 +101,7 @@ public class DynamicDetailsActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        dynamicAllListModels = (DynamicAllListModel) getIntent().getSerializableExtra("dynamicAllListModel");
+        dynamicAllListModels = (DynamicAllListModel) WeakDataHolder.getInstance().getData("dynamicAllListModels");
         dynamicName.setText(dynamicAllListModels.getMemberNickname()+"");
         dynamicContent.setText(dynamicAllListModels.getDescription()+"");
         dynamicTime.setText(dynamicAllListModels.getCreateTime()+"");
@@ -203,10 +202,10 @@ public class DynamicDetailsActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_weixin:
-                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.WEIXIN,"https://www.baidu.com/","",null);
+                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.WEIXIN,"http://yzrsc.83soft.cn//m/UserDynamic/Detail?id="+dynamicAllListModels.getId(),dynamicAllListModels.getDescription(),null);
                 break;
             case R.id.iv_qq:
-                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.QQ,"https://www.baidu.com/","",null);
+                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.QQ,"http://yzrsc.83soft.cn//m/UserDynamic/Detail?id="+dynamicAllListModels.getId(),dynamicAllListModels.getDescription(),null);
                 break;
             case R.id.tv_android:
                 WebviewActivity.startAction(DynamicDetailsActivity.this,"https://www.baidu.com/","安卓下载");

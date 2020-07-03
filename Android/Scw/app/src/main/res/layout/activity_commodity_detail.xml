@@ -263,7 +263,7 @@
                 android:layout_marginLeft="@dimen/distance_16"
                 android:layout_marginRight="@dimen/distance_8"
                 android:drawablePadding="4dp"
-                android:drawableTop="@drawable/ico_weixin"
+                android:drawableTop="@drawable/shop_car"
                 android:gravity="left"
                 android:text="购物车"
                 android:textColor="@color/third_black"

@@ -576,11 +576,11 @@ public class CommodityDetailActivity extends BaseFragmentActivity implements Vie
                                 tv_resell_goods.setText("已转售");
                                 BusProvider.getInstance().post(new Event.NotifyChangedView("HomeShopFragment"));
                                 final String goodsSaleurl=jsonObject.optString("data");
-                                ResellSuccessDialog resellSuccessDialog=new ResellSuccessDialog(mContext);
-                                resellSuccessDialog.show();
-                                resellSuccessDialog.setClickSubmitListener(new ResellSuccessDialog.OnClickSubmitListener() {
-                                    @Override
-                                    public void clickSubmit() {
+//                                ResellSuccessDialog resellSuccessDialog=new ResellSuccessDialog(mContext);
+//                                resellSuccessDialog.show();
+                                //resellSuccessDialog.setClickSubmitListener(new ResellSuccessDialog.OnClickSubmitListener() {
+//                                    @Override
+//                                    public void clickSubmit() {
 //                                        SharetUtil.toShare(mContext,commodityBean.getImages().get(0),
 //                                                goodsSaleurl,"易州人商城",description,commodityBean.getImages());
 //                                        ShareEntity shareEntity = new ShareEntity();
@@ -590,9 +590,9 @@ public class CommodityDetailActivity extends BaseFragmentActivity implements Vie
 //                                        shareEntity.shareURL= commodityBean.getGoodsSaleUrl();
 //                                        ShareImageDialog shareDialog = new ShareImageDialog(mContext,shareEntity);
 //                                        shareDialog.show();
-                                        SharetUtil.shareMoreImage(commodityBean.getImages(),mContext,commodityBean.getDescription()+"\n"+"【 批发价格 】"+commodityBean.getPrice()+"\n"+"【 购买地址 】"+commodityBean.getGoodsSaleUrl());
-                                    }
-                                });
+                                        //SharetUtil.shareMoreImage(commodityBean.getImages(),mContext,commodityBean.getDescription()+"\n"+"【 批发价格 】"+commodityBean.getPrice()+"\n"+"【 购买地址 】"+commodityBean.getGoodsSaleUrl());
+//                                    }
+//                                });
                             } else {
                                 tip(jsonObject.optString("msg"));
                             }
