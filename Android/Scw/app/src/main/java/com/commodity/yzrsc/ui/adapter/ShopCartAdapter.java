@@ -28,9 +28,12 @@ import com.commodity.yzrsc.view.RoundAngleImageView;
  */
 public class ShopCartAdapter extends CommonAdapter<CartBean> {
 
+    List<CartBean> data ;
+    private  boolean isxunhua  = false;
     //构造方法
     public ShopCartAdapter(Context context, List<CartBean> datas, int layoutId) {
         super(context, datas, layoutId);
+        data = datas;
     }
 
     @Override
@@ -39,7 +42,10 @@ public class ShopCartAdapter extends CommonAdapter<CartBean> {
         ImageView iv_shopImag = holder.getView(R.id.iv_shopImag);
         holder.setText(R.id.tv_shopName, cartBean.getShopName());
         Glide.with(mContext).load(cartBean.getSellerAvatar()).error(R.drawable.rc_image_error).into(iv_shopImag);
-        recyclerView.setAdapter(new ShopItemAdapter(mContext, cartBean.getShoppingCartGoods(), R.layout.item_shop_card));
+        if (holder.getPosition() == data.size()-1){
+            isxunhua =true;
+        }
+        recyclerView.setAdapter(new ShopItemAdapter(mContext, cartBean.getShoppingCartGoods(), R.layout.item_shop_card,isxunhua));
         DateUtil.setListViewHeightBasedOnChildren(recyclerView);
     }
 

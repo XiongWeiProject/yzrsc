@@ -70,9 +70,9 @@ public class ProviewGoodsActivity extends BaseActivity {
         data.add(new ShardGridEntity(R.drawable.icon_wx_f,"微信好友"));
         data.add(new ShardGridEntity(R.drawable.icon_weixi_f,"朋友圈链接"));
         data.add(new ShardGridEntity(R.drawable.icon_qq_,"QQ"));
-        data.add(new ShardGridEntity(R.drawable.icon_qq_work,"QQ空间"));
-        data.add(new ShardGridEntity(R.drawable.icon_weibo_,"新浪微博"));
-        data.add(new ShardGridEntity(R.drawable.icon_download,"保存图片"));
+//        data.add(new ShardGridEntity(R.drawable.icon_qq_work,"QQ空间"));
+//        data.add(new ShardGridEntity(R.drawable.icon_weibo_,"新浪微博"));
+//        data.add(new ShardGridEntity(R.drawable.icon_download,"保存图片"));
         data.add(new ShardGridEntity(R.drawable.icon_copy,"复制链接"));
 
         shardGridAdapter = new ShardGridAdapter(mContext, data, R.layout.item_grid_proview);
@@ -123,8 +123,13 @@ public class ProviewGoodsActivity extends BaseActivity {
                         SharetUtil.shareUrl(ProviewGoodsActivity.this,SHARE_MEDIA.QQ,goodsSaleUrl,desc,umImage);
                         break;
                     case 3:
+                        ClipboardManager clipboardManager = (ClipboardManager) MainApplication.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                        ClipData clipurl = ClipData.newPlainText("url", goodsSaleUrl);
+                        clipboardManager.setPrimaryClip(clipurl);
+
+                        Toast.makeText((Activity) mContext, "复制链接成功", Toast.LENGTH_LONG).show();
 //                        SharetUtil.share(ProviewGoodsActivity.this, SHARE_MEDIA.QZONE,content,umImage,goodsSaleUrl);
-                        SharetUtil.shareUrl(ProviewGoodsActivity.this,SHARE_MEDIA.QZONE,goodsSaleUrl,desc,umImage);
+//                        SharetUtil.shareUrl(ProviewGoodsActivity.this,SHARE_MEDIA.QZONE,goodsSaleUrl,desc,umImage);
                         break;
                     case 4:
 //                        SharetUtil.share(ProviewGoodsActivity.this, SHARE_MEDIA.SINA,content,umImage,goodsSaleUrl);
@@ -135,11 +140,11 @@ public class ProviewGoodsActivity extends BaseActivity {
                         ImageUtil.saveImageToGallery(ProviewGoodsActivity.this,bitmap);
                         break;
                     case 6:
-                        ClipboardManager clipboardManager = (ClipboardManager) MainApplication.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                        ClipData clipurl = ClipData.newPlainText("url", goodsSaleUrl);
-                        clipboardManager.setPrimaryClip(clipurl);
-
-                        Toast.makeText((Activity) mContext, "复制链接成功", Toast.LENGTH_LONG).show();
+//                        ClipboardManager clipboardManager = (ClipboardManager) MainApplication.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+//                        ClipData clipurl = ClipData.newPlainText("url", goodsSaleUrl);
+//                        clipboardManager.setPrimaryClip(clipurl);
+//
+//                        Toast.makeText((Activity) mContext, "复制链接成功", Toast.LENGTH_LONG).show();
                         break;
                 }
             }

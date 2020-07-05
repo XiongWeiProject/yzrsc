@@ -22,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -78,7 +79,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                                     if(data!=null&&data){
                                         SPKeyManager.curDetailMyOrdeEntity.setState(Constanct.orderPay);
                                         Bundle bundle = new Bundle();
-                                        bundle.putString("orderId",WXUtils.ordeId);
+                                        bundle.putIntegerArrayList("orderId", (ArrayList<Integer>) WXUtils.ordeId);
                                         Intent intent = new Intent(WXPayEntryActivity.this, DaiSendActivity.class);
                                         intent.putExtras(bundle);
                                         WXPayEntryActivity.this.startActivity(intent);

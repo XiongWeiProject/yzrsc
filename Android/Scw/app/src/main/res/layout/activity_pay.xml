@@ -136,6 +136,7 @@
             android:layout_width="28dp"
             android:layout_height="28dp" />
         <TextView
+            android:id="@+id/momey_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="钱包余额（￥10）"

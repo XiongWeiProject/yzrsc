@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.commodity.yzrsc.AppConst;
 import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.UpLoadUtils;
+import com.google.gson.Gson;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -16,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -34,10 +36,10 @@ public class WXUtils {
     private final Context context;
     private IWXAPI wxapi;
     private PayReq req;
-    public static String ordeId;
+    public static List<Integer> ordeId;
     public static String wxpay="wxpay";
 
-    public WXUtils(Context context,String ordeId) {
+    public WXUtils(Context context, List<Integer> ordeId) {
         this.context=context;
         this.ordeId=ordeId;
     }
@@ -52,11 +54,12 @@ public class WXUtils {
     }
 
     public void getPrepayId() {
+        Gson gson = new Gson();
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), "{\n" +
-                "  \"orderId\": "+ordeId+",\n" +
+                "  \"orderIds\": "+gson.toJson(ordeId)+",\n" +
                 "  \"payment\": \""+wxpay+"\"\n" +
                 "}");
-        UpLoadUtils.instance().requestPayId(IRequestConst.RequestMethod.OnlinePayOrder, requestBody, new Callback() {
+        UpLoadUtils.instance().requestPayId(IRequestConst.RequestMethod.POSTPAY, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e("failure:",e.getMessage());

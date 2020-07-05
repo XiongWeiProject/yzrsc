@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.alipay.sdk.app.PayTask;
 import com.commodity.yzrsc.R;
+import com.commodity.yzrsc.http.HttpManageNew;
 import com.commodity.yzrsc.http.HttpManager;
 import com.commodity.yzrsc.http.HttpMothed;
 import com.commodity.yzrsc.http.IRequestConst;
@@ -18,6 +19,8 @@ import com.commodity.yzrsc.http.ServiceInfo;
 import com.commodity.yzrsc.http.UpLoadUtils;
 import com.commodity.yzrsc.manager.Constanct;
 import com.commodity.yzrsc.manager.SPKeyManager;
+import com.commodity.yzrsc.model.NewOrderModel;
+import com.commodity.yzrsc.model.PayModel;
 import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.activity.personalcenter.orde.DaiSendActivity;
 import com.commodity.yzrsc.ui.pay.wx.WXUtils;
@@ -25,6 +28,7 @@ import com.commodity.yzrsc.ui.pay.zfb.PayResult;
 import com.commodity.yzrsc.ui.pay.zfb.ZFBHandler;
 import com.commodity.yzrsc.ui.pay.zfb.ZFBUtils;
 import com.commodity.yzrsc.ui.pay.zfb.ZFCallBack;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,8 +36,10 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
@@ -65,9 +71,9 @@ public class PayActivity extends BaseActivity {
     @Bind(R.id.pay_qianbao_line)
     LinearLayout pay_qianbao_line;
 
-
+    List<Integer> oderList = new ArrayList<>();
+    NewOrderModel newOrderModel;
     private int payFlag;//默认是微信0
-    private String ordeId;
     private String total;
     private SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");;
     private SimpleDateFormat format2;
@@ -80,9 +86,12 @@ public class PayActivity extends BaseActivity {
     @Override
     protected void initView() {
         title.setText("支付订单");
+        Gson gson = new Gson();
         Bundle extras = getIntent().getExtras();
-        ordeId = extras.getString("ordeId");
+        newOrderModel = (NewOrderModel) extras.getSerializable("orderId");
         total=extras.getString("total");
+        oderList = newOrderModel.getData();
+        Log.e("orderId",oderList+"");
         String format = String.format("%.2f", Double.valueOf(total));
         pay_money.setText(format);
         sendRequest(0,"");
@@ -110,15 +119,18 @@ public class PayActivity extends BaseActivity {
             case R.id.pay_pay_button://支付
                 customLoadding.setTip("支付中...");
                 customLoadding.show();
+                PayModel payModel = new PayModel();
+                payModel.setOrderIds(oderList);
+                payModel.setPayment("alipay");
                 if(payFlag == 1){//支付宝
-                    new ZFBUtils(this,null,ordeId,"alipay",handler).startPay();
+                    new ZFBUtils(this,null,payModel,handler).startPay();
 //                    if(ZFBUtils.isZfbAvilible(this)){
 //                        new ZFBUtils(this,null,ordeId,total,handler);
 //                    }else {
 //                        tip("请安装支付宝");
 //                    }
                 }else if (payFlag == 0){//微信 wxpay
-                    new WXUtils(this,ordeId).startPay();
+                    new WXUtils(this,oderList).startPay();
                 } else if (payFlag == 2){//钱包余额
                     //TODO
                 }
@@ -132,10 +144,11 @@ public class PayActivity extends BaseActivity {
 //            tip((String)obj);
 //            PayResult payResult = new PayResult((String) obj);
             PayResult payResult = new PayResult((Map<String, String>) obj);
+            Log.e("payResult",payResult.getResultStatus());
             switch (payResult.getResultStatus()){
                 case "9000"://成功
                 case "8000":
-                        UpLoadUtils.instance().confirmOrder(ordeId, "alipay", new Callback() {@Override
+                        UpLoadUtils.instance().confirmOrder(oderList, "alipay", new Callback() {@Override
                         public void onFailure(Call call, IOException e) {
                             tip("支付失败");
                                 Log.e("failure:",e.getMessage());
@@ -151,7 +164,7 @@ public class PayActivity extends BaseActivity {
                                         if(data!=null&&data){
                                             SPKeyManager.curDetailMyOrdeEntity.setState(Constanct.orderPay);
                                             Bundle bundle = new Bundle();
-                                            bundle.putString("orderId",ordeId);
+                                            bundle.putIntegerArrayList("orderId", (ArrayList<Integer>) oderList);
                                             jumpActivity(DaiSendActivity.class,bundle);
                                             finish();
                                         }else {
@@ -233,8 +246,10 @@ public class PayActivity extends BaseActivity {
         customLoadding.show();
         if(tag==0){
             HashMap<String, String> map = new HashMap<>();
-            map.put("orderId",ordeId);
-            new HttpManager(tag, HttpMothed.GET, IRequestConst.RequestMethod.GetOrderExpireTime,map,this).request();
+            map.put("orderId",oderList.get(0)+"");
+            HttpManager httpManager = new HttpManager(tag, HttpMothed.GET,
+                    IRequestConst.RequestMethod.GetOrderExpireTime, map, this);
+            httpManager.request();
         }
     }
 

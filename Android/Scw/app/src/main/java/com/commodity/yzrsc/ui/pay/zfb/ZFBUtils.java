@@ -15,6 +15,8 @@ import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.UpLoadUtils;
 import com.commodity.yzrsc.manager.ConfigManager;
 import com.commodity.yzrsc.model.OrderInfo;
+import com.commodity.yzrsc.model.PayModel;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,20 +49,17 @@ public class ZFBUtils {
     private final Activity activity;
     private final OrderInfo ordeInfo;
     private final Handler handler;
-    private final String ordeId;
-    private final String total;
     private Object signType;
     //加密方式
     private boolean rsa2=false;
     public static final String RSA2_PRIVATE = "";
     public static final String RSA_PRIVATE = "";
-
-    public ZFBUtils(Activity activity, OrderInfo orderInfo,String ordeId,String total, Handler handler) {
+    PayModel payModels;
+    public ZFBUtils(Activity activity, OrderInfo orderInfo,PayModel payModel, Handler handler) {
         this.activity=activity;
         this.ordeInfo=orderInfo;
         this.handler=handler;
-        this.ordeId=ordeId;
-        this.total=total;
+        this.payModels=payModel;
     }
 
     public void startPay() {
@@ -68,13 +67,11 @@ public class ZFBUtils {
     }
 
     private void singlData() {
-
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), "{\n" +
-                "  \"orderId\": "+ordeId+",\n" +
-                "  \"payment\": \""+total+"\"\n" +
-                "}");
+        Gson gson = new Gson();
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), gson.toJson(payModels));
+        Log.e("orderId",gson.toJson(payModels));
         String deviceToken = ConfigManager.instance().getUser().getDeviceToken();
-        UpLoadUtils.instance().jsonRequest(IRequestConst.RequestMethod.OnlinePayOrderSimple, requestBody, new Callback() {
+        UpLoadUtils.instance().jsonRequest(IRequestConst.RequestMethod.POSTPAY, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e("failure:",e.getMessage());

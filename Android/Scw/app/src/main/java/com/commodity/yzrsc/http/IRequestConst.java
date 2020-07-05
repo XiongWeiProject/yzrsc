@@ -231,5 +231,7 @@ public class IRequestConst {
         public static final String POSTDELETESHOP= "https://yzrsc-api.83soft.cn/ShoppingCart/RemoveShoppingCarts";
         public static final String POSTREDUCESHOP= "https://yzrsc-api.83soft.cn/ShoppingCart/ChangeGoodsQuantity";
         public static final String POSTORDER= "https://yzrsc-api.83soft.cn/ShoppingCart/ToplaceByShoppingCart";
+        public static final String POSTPAY= "https://yzrsc-api.83soft.cn/MemberOrder/OnlinePayNOrders";
+        public static final String POSTPAYWEIXIN= "https://yzrsc-api.83soft.cn/MemberOrder/OnlinePayNOrdersSimple";
     }
 }

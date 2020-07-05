@@ -26,6 +26,7 @@ import com.commodity.yzrsc.http.UpLoadUtils;
 import com.commodity.yzrsc.manager.ConfigManager;
 import com.commodity.yzrsc.manager.ImageLoaderManager;
 import com.commodity.yzrsc.model.AdressDetail;
+import com.commodity.yzrsc.model.NewOrderModel;
 import com.commodity.yzrsc.model.OrderModel;
 import com.commodity.yzrsc.model.ShopCardModel;
 import com.commodity.yzrsc.ui.BaseActivity;
@@ -165,7 +166,7 @@ public class OrderActivity extends BaseActivity{
         });
     }
     private void subOrder() {
-        Gson gson = new Gson();
+        final Gson gson = new Gson();
         OrderModel shopCardModel = new OrderModel();
         shopCardModel.setIds(goodsSaleIds);
         shopCardModel.setAddressInfoId(adressDetail.getId());
@@ -178,24 +179,21 @@ public class OrderActivity extends BaseActivity{
 
             @Override
             public void onResponse(Call call, okhttp3.Response response) throws IOException {
-                try {
-                    JSONObject resultJson = new JSONObject(response.body().string());
-                    if (resultJson.getBoolean("success")) {
-                        //跳到支付界面
-                        Bundle bundle = new Bundle();
-                        bundle.putString("total",String.valueOf(total+postage));
-                        bundle.putString("orderId",resultJson.optString("data"));
-                        jumpActivity(PayActivity.class,bundle);
-                        //                tip("确认下单成功");
-                        finish();
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(), "错误："+resultJson.getString("message"), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+
+                NewOrderModel newOrderModel = gson.fromJson(response.body().string(),NewOrderModel.class);
+                if (newOrderModel.isSuccess()){
+                    //跳到支付界面
+                    Bundle bundle = new Bundle();
+                    bundle.putString("total",String.valueOf(total+postage));
+                    bundle.putSerializable("orderId", newOrderModel);
+                    Log.e("orderId",String.valueOf(newOrderModel.getData()));
+                    jumpActivity(PayActivity.class,bundle);
+                    //                tip("确认下单成功");
+                    finish();
+                }else {
+                    tip("重复下单");
                 }
+
             }
         });
     }

@@ -23,6 +23,7 @@ import com.commodity.yzrsc.ui.adapter.ShopCartAdapter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,8 +54,10 @@ public class MyCartActivity extends BaseActivity {
     LinearLayout llItem;
     private int curpostion = -1;
     private int current_quantity = 0;
-    private double total = 0;
-    private double yunfei = 0;
+    private double total  = 0;
+    private double yunfei  =  0;
+    BigDecimal totalsss;
+    BigDecimal yunfeiddd;
     ArrayList<Integer> ids = new ArrayList<>();
 
     @Override
@@ -82,8 +85,8 @@ public class MyCartActivity extends BaseActivity {
                     return;
                 }
                 Bundle bundle = new Bundle();
-                bundle.putDouble("total", Double.valueOf(total));
-                bundle.putDouble("postage", Double.valueOf(yunfei));
+                bundle.putDouble("total", totalsss.doubleValue());
+                bundle.putDouble("postage", yunfeiddd.doubleValue());
                 bundle.putIntegerArrayList("ids", ids);
                 jumpActivity(OrderActivity.class, bundle);
             }
@@ -117,6 +120,18 @@ public class MyCartActivity extends BaseActivity {
                     marketGoodsList = JSON.parseArray(dataArray.toString(), CartBean.class);
                     marketGoodsAdapter = new ShopCartAdapter(this, marketGoodsList, R.layout.item_shopcart);
                     rl_shopproducts.setAdapter(marketGoodsAdapter);
+                    BigDecimal b1 = new BigDecimal(Double.toString(total));
+                    BigDecimal b2 = new BigDecimal(Double.toString(yunfei) );
+                    for (int i = 0; i < marketGoodsList.size(); i++) {
+                        for (int j = 0; j < marketGoodsList.get(i).getShoppingCartGoods().size(); j++) {
+                            b1 = b1 .add(new BigDecimal(Double.toString(marketGoodsList.get(i).getShoppingCartGoods().get(j).getGoodsPrice())).multiply(new BigDecimal(Double.toString( marketGoodsList.get(i).getShoppingCartGoods().get(j).getQuantity()))));
+                            b2 =b2.add(new BigDecimal(Double.toString(marketGoodsList.get(i).getShoppingCartGoods().get(j).getPostage())));
+                        }
+
+                    }
+                    totalsss  = b1;
+                    yunfeiddd = b2;
+                    tvAllPrice.setText("总价："+(b1.add(b2).doubleValue()));
                 }
             } else {
                 if (resultJson != null && !resultJson.optBoolean("success")) {
@@ -138,8 +153,8 @@ public class MyCartActivity extends BaseActivity {
         return;
     }
     public void ShowTotal(double totals,double Yun) {
-        total = totals;
-        yunfei = Yun ;
+        total = total - totals;
+        yunfei = yunfei - Yun ;
         double zongjia  = total+yunfei;
         tvAllPrice.setText("总价："+zongjia);
         return;

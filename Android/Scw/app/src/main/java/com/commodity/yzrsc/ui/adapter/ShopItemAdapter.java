@@ -52,9 +52,7 @@ import okhttp3.Response;
 public class ShopItemAdapter extends CommonAdapter<CartBean.ShoppingCartGoodsBean> {
     List<CartBean.ShoppingCartGoodsBean> data;
     double totals =0;//总价
-    double oneprice = 0;
-    double Yuntotals =0;//总运费
-    double oneYune = 0;
+    boolean counts ;
     private Handler handler = new Handler()
     {
         @Override
@@ -67,9 +65,10 @@ public class ShopItemAdapter extends CommonAdapter<CartBean.ShoppingCartGoodsBea
 
         }
     };
-    public ShopItemAdapter(Context context, List<CartBean.ShoppingCartGoodsBean> datas, int layoutId) {
+    public ShopItemAdapter(Context context, List<CartBean.ShoppingCartGoodsBean> datas, int layoutId,boolean xunhuan) {
         super(context, datas, layoutId);
         data = datas;
+        counts = xunhuan;
     }
 
     @Override
@@ -89,29 +88,20 @@ public class ShopItemAdapter extends CommonAdapter<CartBean.ShoppingCartGoodsBea
                 textView.setText((shoppingCartGoodsBean.getQuantity()-1)+"");
                 if (shoppingCartGoodsBean.getQuantity() > 0) {
                     reduceShopcar(holder.getPosition(),shoppingCartGoodsBean.getQuantity()-1);
-                    totals = totals -  shoppingCartGoodsBean.getGoodsPrice()+shoppingCartGoodsBean.getPostage();
-                    ((MyCartActivity) mContext).ShowTotal(totals,0);
+                    ((MyCartActivity) mContext).deleteCart();
                 }else {
-                    handler.sendEmptyMessage(1);
-                    ((MyCartActivity) mContext).ShowTotal(0,0);
+//                    handler.sendEmptyMessage(1);
+                    ((MyCartActivity) mContext).finish();
                 }
             }
         }).setOnClickListener(R.id.iv_goodsAdd, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 reduceShopcar(holder.getPosition(),shoppingCartGoodsBean.getQuantity()+1);
-                totals = totals+  shoppingCartGoodsBean.getGoodsPrice();
-                ((MyCartActivity) mContext).ShowTotal(totals,shoppingCartGoodsBean.getPostage());
+                ((MyCartActivity) mContext).deleteCart();
             }
         });
-        oneprice = shoppingCartGoodsBean.getGoodsPrice()*shoppingCartGoodsBean.getQuantity();
-        totals = totals +oneprice ;
-        oneYune = shoppingCartGoodsBean.getPostage();
-        Yuntotals = oneYune + shoppingCartGoodsBean.getPostage();
 
-        if (holder.getPosition() == data.size()-1){
-            ((MyCartActivity) mContext).ShowTotal(totals,Yuntotals);
-        }
         textView.setText(shoppingCartGoodsBean.getQuantity()+"");
         Glide.with(mContext).load(shoppingCartGoodsBean.getGoodsImage()).error(R.drawable.rc_image_error).into(imageView);
     }
