@@ -37,11 +37,19 @@ public class WXUtils {
     private IWXAPI wxapi;
     private PayReq req;
     public static List<Integer> ordeId;
+    public static String oneordeId;
     public static String wxpay="wxpay";
-
-    public WXUtils(Context context, List<Integer> ordeId) {
+    int types;
+    public WXUtils(Context context, List<Integer> ordeId,int type) {
         this.context=context;
         this.ordeId=ordeId;
+        this.types=type;
+    }
+
+    public WXUtils(Context context, String ordeId,int type) {
+        this.context=context;
+        this.oneordeId=ordeId;
+        this.types=type;
     }
     public void startPay(){
         wxapi = WXAPIFactory.createWXAPI(context, WX_APP_ID);
@@ -54,12 +62,35 @@ public class WXUtils {
     }
 
     public void getPrepayId() {
+        String Json = "";
+        String url = "";
+        String iorderIds = "";
         Gson gson = new Gson();
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), "{\n" +
-                "  \"orderIds\": "+gson.toJson(ordeId)+",\n" +
-                "  \"payment\": \""+wxpay+"\"\n" +
-                "}");
-        UpLoadUtils.instance().requestPayId(IRequestConst.RequestMethod.POSTPAY, requestBody, new Callback() {
+        if (types==0){
+            Json = gson.toJson(ordeId);
+            iorderIds ="{\n" +
+                    "  \"orderIds\": "+Json+",\n" +
+                    "  \"payment\": \""+wxpay+"\"\n" +
+                    "}";
+            url = IRequestConst.RequestMethod.POSTPAY;
+        }else if (types==3){
+            Json = gson.toJson(oneordeId);
+            iorderIds = "{\n" +
+                    "  \"orderId\": "+Json+",\n" +
+                    "  \"payment\": \""+wxpay+"\"\n" +
+                    "}";
+            url = IRequestConst.RequestMethod.POSTWALLORDERPAY;
+        }else {
+            Json = gson.toJson(oneordeId);
+            iorderIds ="{\n" +
+                    "  \"orderId\": "+Json+",\n" +
+                    "  \"payment\": \""+wxpay+"\"\n" +
+                    "}";
+            url = IRequestConst.RequestMethod.POSTPAY;
+        }
+        Log.e("Json",Json + url);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), iorderIds);
+        UpLoadUtils.instance().requestPayId(url, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e("failure:",e.getMessage());

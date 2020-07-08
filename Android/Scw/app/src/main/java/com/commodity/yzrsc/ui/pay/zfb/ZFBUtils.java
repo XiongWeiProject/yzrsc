@@ -16,6 +16,7 @@ import com.commodity.yzrsc.http.UpLoadUtils;
 import com.commodity.yzrsc.manager.ConfigManager;
 import com.commodity.yzrsc.model.OrderInfo;
 import com.commodity.yzrsc.model.PayModel;
+import com.commodity.yzrsc.model.ZhifubaoModel;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -55,23 +56,44 @@ public class ZFBUtils {
     public static final String RSA2_PRIVATE = "";
     public static final String RSA_PRIVATE = "";
     PayModel payModels;
-    public ZFBUtils(Activity activity, OrderInfo orderInfo,PayModel payModel, Handler handler) {
+    ZhifubaoModel zhifubaoModel;
+    int types ;
+    public ZFBUtils(Activity activity, OrderInfo orderInfo,PayModel payModel,int type, Handler handler) {
         this.activity=activity;
         this.ordeInfo=orderInfo;
         this.handler=handler;
+        this.types = type;
         this.payModels=payModel;
     }
-
+    public ZFBUtils(Activity activity, OrderInfo orderInfo,ZhifubaoModel zhifubaoModel, int type, Handler handler) {
+        this.activity=activity;
+        this.ordeInfo=orderInfo;
+        this.handler=handler;
+        this.types = type;
+        this.zhifubaoModel=zhifubaoModel;
+    }
     public void startPay() {
         singlData();
     }
 
     private void singlData() {
+        String josn = "";
+        String url = "";
         Gson gson = new Gson();
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), gson.toJson(payModels));
-        Log.e("orderId",gson.toJson(payModels));
+        if (types==0){
+            josn = gson.toJson(payModels);
+            url = IRequestConst.RequestMethod.POSTPAY;
+        }else if (types==3){
+            josn = gson.toJson(zhifubaoModel);
+            url = IRequestConst.RequestMethod.POSTWALLORDERPAY;
+        }else {
+            josn = gson.toJson(zhifubaoModel);
+            url = IRequestConst.RequestMethod.POSTPAY;
+        }
+        Log.e("Json",josn + url);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),josn);
         String deviceToken = ConfigManager.instance().getUser().getDeviceToken();
-        UpLoadUtils.instance().jsonRequest(IRequestConst.RequestMethod.POSTPAY, requestBody, new Callback() {
+        UpLoadUtils.instance().jsonRequest(url, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e("failure:",e.getMessage());

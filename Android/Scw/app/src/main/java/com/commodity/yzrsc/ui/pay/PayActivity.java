@@ -21,6 +21,7 @@ import com.commodity.yzrsc.manager.Constanct;
 import com.commodity.yzrsc.manager.SPKeyManager;
 import com.commodity.yzrsc.model.NewOrderModel;
 import com.commodity.yzrsc.model.PayModel;
+import com.commodity.yzrsc.model.ZhifubaoModel;
 import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.activity.personalcenter.orde.DaiSendActivity;
 import com.commodity.yzrsc.ui.pay.wx.WXUtils;
@@ -75,6 +76,8 @@ public class PayActivity extends BaseActivity {
     NewOrderModel newOrderModel;
     private int payFlag;//默认是微信0
     private String total;
+    private String OneordeId;
+    private int type = 1;
     private SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");;
     private SimpleDateFormat format2;
 
@@ -90,7 +93,11 @@ public class PayActivity extends BaseActivity {
         Bundle extras = getIntent().getExtras();
         newOrderModel = (NewOrderModel) extras.getSerializable("orderId");
         total=extras.getString("total");
-        oderList = newOrderModel.getData();
+        OneordeId=extras.getString("ordeId");
+        type=extras.getInt("type",1);
+        if (newOrderModel!=null){
+            oderList = newOrderModel.getData();
+        }
         Log.e("orderId",oderList+"");
         String format = String.format("%.2f", Double.valueOf(total));
         pay_money.setText(format);
@@ -119,18 +126,32 @@ public class PayActivity extends BaseActivity {
             case R.id.pay_pay_button://支付
                 customLoadding.setTip("支付中...");
                 customLoadding.show();
-                PayModel payModel = new PayModel();
-                payModel.setOrderIds(oderList);
-                payModel.setPayment("alipay");
+
                 if(payFlag == 1){//支付宝
-                    new ZFBUtils(this,null,payModel,handler).startPay();
+                    if (type== 0){
+                        PayModel payModel = new PayModel();
+                        payModel.setOrderIds(oderList);
+                        payModel.setPayment("alipay");
+                        new ZFBUtils(this,null,payModel,type,handler).startPay();
+                    }else {
+                        ZhifubaoModel payModel = new ZhifubaoModel();
+                        payModel.setOrderId(OneordeId);
+                        payModel.setPayment("alipay");
+                        new ZFBUtils(this,null,payModel,type,handler).startPay();
+                    }
+
 //                    if(ZFBUtils.isZfbAvilible(this)){
 //                        new ZFBUtils(this,null,ordeId,total,handler);
 //                    }else {
 //                        tip("请安装支付宝");
 //                    }
                 }else if (payFlag == 0){//微信 wxpay
-                    new WXUtils(this,oderList).startPay();
+                    if (type== 0){
+                        new WXUtils(this,oderList,type).startPay();
+                    }else {
+                        new WXUtils(this,OneordeId,type).startPay();
+                    }
+
                 } else if (payFlag == 2){//钱包余额
                     //TODO
                 }
@@ -244,9 +265,15 @@ public class PayActivity extends BaseActivity {
     public void sendRequest(int tag, Object... params) {
         super.sendRequest(tag, params);
         customLoadding.show();
+        String onderid = "";
+        if (type==0){
+            onderid  =  oderList.get(0)+"";
+        }else {
+            onderid  =  OneordeId;
+        }
         if(tag==0){
             HashMap<String, String> map = new HashMap<>();
-            map.put("orderId",oderList.get(0)+"");
+            map.put("orderId",onderid);
             HttpManager httpManager = new HttpManager(tag, HttpMothed.GET,
                     IRequestConst.RequestMethod.GetOrderExpireTime, map, this);
             httpManager.request();

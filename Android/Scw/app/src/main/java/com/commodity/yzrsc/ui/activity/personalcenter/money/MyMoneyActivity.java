@@ -6,8 +6,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.commodity.yzrsc.R;
+import com.commodity.yzrsc.http.HttpManager;
+import com.commodity.yzrsc.http.HttpMothed;
+import com.commodity.yzrsc.http.IRequestConst;
+import com.commodity.yzrsc.http.ServiceInfo;
 import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.activity.friend.PayMoneNumActivity;
+import com.commodity.yzrsc.ui.dialog.CommonDialog;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -46,7 +57,7 @@ public class MyMoneyActivity extends BaseActivity {
     @Override
     protected void initView() {
         title.setText("我的钱包");
-
+        sendRequest(0);
     }
 
     @Override
@@ -77,9 +88,32 @@ public class MyMoneyActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    public void sendRequest(int tag) {
+        super.sendRequest(tag);
+        if (tag==0){
+            HashMap<String, String> map = new HashMap<>();
+            HttpManager httpManager = new HttpManager(tag, HttpMothed.GET, IRequestConst.RequestMethod.GetWalletAmount,map,this );
+            httpManager.request();
+        }
+    }
+    @Override
+    public void OnSuccessResponse(int tag, ServiceInfo resultInfo) {
+        super.OnSuccessResponse(tag, resultInfo);
+        JSONObject response = (JSONObject) resultInfo.getResponse();
+        if(response.optBoolean("success")){
+            if(tag==0){
+                JSONObject data = response.optJSONObject("data");
+                tvMoney.setText("￥"+data.optString("avialableAmount")+"元");
+//                tixian_dong.setText("￥"+data.optString("frozenAmount"));
+            }
+        }else {
+            tip(response.optString("msg"));
+        }
+    }
+
+    @Override
+    public void OnFailedResponse(int tag, String code, String msg) {
+        super.OnFailedResponse(tag, code, msg);
+        tip(msg);
     }
 }

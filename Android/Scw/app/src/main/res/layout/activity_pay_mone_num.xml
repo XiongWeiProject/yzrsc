@@ -35,6 +35,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="16dp"
         android:hint="自定义金额"
+        android:inputType="number"
         android:paddingLeft="10dp"
         android:textSize="@dimen/textsize14"
         android:background="@drawable/shap_evalution"

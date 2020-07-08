@@ -186,6 +186,7 @@ public class OrderActivity extends BaseActivity{
                     Bundle bundle = new Bundle();
                     bundle.putString("total",String.valueOf(total+postage));
                     bundle.putSerializable("orderId", newOrderModel);
+                    bundle.putInt("type", 0);
                     Log.e("orderId",String.valueOf(newOrderModel.getData()));
                     jumpActivity(PayActivity.class,bundle);
                     //                tip("确认下单成功");
