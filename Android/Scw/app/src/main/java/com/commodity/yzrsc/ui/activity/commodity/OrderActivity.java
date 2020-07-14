@@ -231,6 +231,7 @@ public class OrderActivity extends BaseActivity{
                                     //跳到支付界面
                                     Bundle bundle = new Bundle();
                                     bundle.putString("total",String.valueOf(total+postage));
+                                    bundle.putInt("type",0);
                                     bundle.putString("orderId",jsonResponse.optString("data"));
                                     jumpActivity(PayActivity.class,bundle);
             //                tip("确认下单成功");

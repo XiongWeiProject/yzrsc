@@ -118,9 +118,33 @@ public class PayMoneNumActivity extends BaseActivity {
             tip("请输入充值金额");
             return;
         }
+//        if (!isNumeric(momey)){
+//            tip("请输入正确的充值金额");
+//            return;
+//        }
         postWall(momey);
     }
+    /**
+     * 1.判断字符串是否仅为数字:
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isNumeric(String str) {
 
+        for (int i = str.length(); --i >= 0; ) {
+
+            if (!Character.isDigit(str.charAt(i))) {
+
+                return false;
+
+            }
+
+        }
+
+        return true;
+
+    }
     private void postWall(final String momey) {
         Map<String, Object> parmMap = new HashMap<String, Object>();
         parmMap.put("amount",momey);

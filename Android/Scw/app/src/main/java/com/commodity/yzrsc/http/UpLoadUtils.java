@@ -174,7 +174,7 @@ public class UpLoadUtils {
     /**
      * 确认订单支付成功
      */
-    public void confirmOrder(List<Integer> ordeId, String payment, final Callback callback){
+    public void confirmOrder(String ordeId, String payment, final Callback callback){
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), "{\n" +
                 "  \"orderId\": " + ordeId + "\n" +
                 "}");

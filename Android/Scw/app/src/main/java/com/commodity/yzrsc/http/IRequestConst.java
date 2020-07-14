@@ -235,5 +235,7 @@ public class IRequestConst {
         public static final String POSTPAYWEIXIN= "https://yzrsc-api.83soft.cn/MemberOrder/OnlinePayNOrdersSimple";
         public static final String POSTWALLORDER= "https://yzrsc-api.83soft.cn/MyWallet/Recharge";
         public static final String POSTWALLORDERPAY= "https://yzrsc-api.83soft.cn/MyWallet/WallentRechargeOrderOnlinePay";
+        public static final String POSTISPAY= "https://yzrsc-api.83soft.cn/MyWallet/IsWalletRechargePaid";//钱包的
+        public static final String POSTISPAYMoney= "https://yzrsc-api.83soft.cn/MyWallet/Consume";//钱包的扣款
     }
 }

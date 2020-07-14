@@ -1,26 +1,41 @@
 package com.commodity.yzrsc.ui.activity.personalcenter.orde;
 
 import android.os.Bundle;
+import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.commodity.yzrsc.R;
 import com.commodity.yzrsc.http.HttpManager;
 import com.commodity.yzrsc.http.HttpMothed;
 import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.ServiceInfo;
+import com.commodity.yzrsc.http.UpLoadUtils;
+import com.commodity.yzrsc.manager.Constanct;
 import com.commodity.yzrsc.manager.ImageLoaderManager;
+import com.commodity.yzrsc.manager.SPKeyManager;
+import com.commodity.yzrsc.model.MyWallModel;
 import com.commodity.yzrsc.ui.BaseActivity;
+import com.commodity.yzrsc.ui.pay.PayActivity;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * 待发货
@@ -63,6 +78,7 @@ public class DaiSendActivity extends BaseActivity {
     TextView send_item_express;//运费
     @Bind(R.id.send_item_total)
     TextView send_item_total;//总价
+    int payFlag = 0;
 
     @Override
     protected int getContentView() {
@@ -74,16 +90,59 @@ public class DaiSendActivity extends BaseActivity {
         title.setText("订单详情");
         Bundle bundle = getIntent().getExtras();
         id = bundle.getString("orderId");
-        sendRequest(0,"");
+        payFlag = bundle.getInt("type", 0);
+        if (payFlag == 2) {
+            //获取钱包支付的详情
+            postWallDetails();
+        } else {
+            sendRequest(0, "");
+        }
+
+    }
+
+    private void postWallDetails() {
+        Gson gson = new Gson();
+        String json = "{\n" + "\"orderId\": " + id + "}";
+        Log.e("Json", json);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), json);
+        UpLoadUtils.instance().requestPayId(IRequestConst.RequestMethod.POSTISPAY, requestBody, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("failure:", e.getMessage());
+                Toast.makeText(DaiSendActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String string = response.body().string();
+                Log.e("onResponse:", string);
+
+                if (string != null) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(string);
+                        if (jsonObject.optBoolean("success")) {
+                            sendRequest(0, "");
+                        } else {
+                            Toast.makeText(DaiSendActivity.this, jsonObject.optString("msg"), Toast.LENGTH_LONG).show();
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(DaiSendActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        });
     }
 
     @Override
     protected void initListeners() {
 
     }
-    @OnClick({R.id.head_back,R.id.pa_button_send})
-    public void onClick(View v){
-        switch (v.getId()){
+
+    @OnClick({R.id.head_back, R.id.pa_button_send})
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.head_back://返回
                 finish();
                 break;
@@ -91,9 +150,9 @@ public class DaiSendActivity extends BaseActivity {
 //                break;
             case R.id.pa_button_send://申请退款
                 Bundle bundle = new Bundle();
-                bundle.putString("ordeId",String.valueOf(ordeId));
-                bundle.putInt("flag",0);
-                jumpActivity(BackMoneyActivity.class,bundle);
+                bundle.putString("ordeId", String.valueOf(ordeId));
+                bundle.putInt("flag", 0);
+                jumpActivity(BackMoneyActivity.class, bundle);
                 finish();
                 break;
         }
@@ -102,11 +161,10 @@ public class DaiSendActivity extends BaseActivity {
     @Override
     public void sendRequest(int tag, Object... params) {
         super.sendRequest(tag, params);
-        customLoadding.show();
-        if(tag==0){
+        if (tag == 0) {
             HashMap<String, String> map = new HashMap<>();
-            map.put("orderId",String.valueOf(id));
-            new HttpManager(tag, HttpMothed.GET, IRequestConst.RequestMethod.BuyGetOrderDetail,map,this).request();
+            map.put("orderId", String.valueOf(id));
+            new HttpManager(tag, HttpMothed.GET, IRequestConst.RequestMethod.BuyGetOrderDetail, map, this).request();
         }
     }
 
@@ -114,8 +172,8 @@ public class DaiSendActivity extends BaseActivity {
     public void OnSuccessResponse(int tag, ServiceInfo resultInfo) {
         super.OnSuccessResponse(tag, resultInfo);
         JSONObject response = (JSONObject) resultInfo.getResponse();
-        if(response.optBoolean("success")){
-            if(tag==0){
+        if (response.optBoolean("success")) {
+            if (tag == 0) {
                 JSONObject data = response.optJSONObject("data");
                 send_item_mai.setText(data.optString("seller"));//卖家
                 send_item_comprin.setText(data.optString("logisticsName"));//快递公司
@@ -124,19 +182,19 @@ public class DaiSendActivity extends BaseActivity {
                 send_item_address.setText(data.optString("receiverAddress"));//收件人地址
                 send_item_waybill.setText(data.optString("code"));//订单号
                 send_item_value.setText(data.optString("createTime"));//时间
-                send_jiage.setText("¥"+data.optString("goodsAmount"));//价格
-                send_item_price.setText("¥"+data.optString("goodsAmount"));//价格
-                send_item_express.setText("¥"+data.optString("postage"));//运费
-                send_item_total.setText("¥"+data.optString("total"));//总价
+                send_jiage.setText("¥" + data.optString("goodsAmount"));//价格
+                send_item_price.setText("¥" + data.optString("goodsAmount"));//价格
+                send_item_express.setText("¥" + data.optString("postage"));//运费
+                send_item_total.setText("¥" + data.optString("total"));//总价
 
                 send_item_state.setText(data.optString("state"));//订单状态
-                ordeId=data.optInt("id");
+                ordeId = data.optInt("id");
 
 
                 JSONArray orderGoods = data.optJSONArray("orderGoods");
                 try {
                     JSONObject order = (JSONObject) orderGoods.get(0);
-                    ImageLoaderManager.getInstance().displayImage(order.optString("image"),send_image);
+                    ImageLoaderManager.getInstance().displayImage(order.optString("image"), send_image);
 
                     send_text.setText(order.optString("description"));
                 } catch (JSONException e) {

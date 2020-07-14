@@ -3,12 +3,15 @@ package com.commodity.yzrsc.wxapi;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.widget.Toast;
 
 import com.commodity.yzrsc.R;
 import com.commodity.yzrsc.http.UpLoadUtils;
 import com.commodity.yzrsc.manager.Constanct;
 import com.commodity.yzrsc.manager.SPKeyManager;
+import com.commodity.yzrsc.model.mine.DetailMyOrdeEntity;
+import com.commodity.yzrsc.ui.activity.personalcenter.money.MyMoneyActivity;
 import com.commodity.yzrsc.ui.activity.personalcenter.orde.DaiSendActivity;
 import com.commodity.yzrsc.ui.pay.wx.WXUtils;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
@@ -27,6 +30,8 @@ import java.util.ArrayList;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
+
+import static com.commodity.yzrsc.ui.pay.wx.WXUtils.types;
 
 /**
  * 微信
@@ -63,7 +68,13 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
             int errCode = baseResp.errCode;
             switch (errCode){
                 case BaseResp.ErrCode.ERR_OK://支付成功
-                    UpLoadUtils.instance().confirmOrder(WXUtils.ordeId, WXUtils.wxpay, new Callback() {
+                    String ordeId = "";
+                    if (types== 0){
+                        ordeId = WXUtils.ordeId.get(0)+"";
+                    }else {
+                        ordeId =WXUtils.oneordeId;
+                    }
+                    UpLoadUtils.instance().confirmOrder(ordeId, WXUtils.wxpay, new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
                             Toast.makeText(WXPayEntryActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -78,14 +89,31 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                                     Boolean data = result.optBoolean("success");
                                     if(data!=null&&data){
                                         SPKeyManager.curDetailMyOrdeEntity.setState(Constanct.orderPay);
-                                        Bundle bundle = new Bundle();
-                                        bundle.putIntegerArrayList("orderId", (ArrayList<Integer>) WXUtils.ordeId);
-                                        Intent intent = new Intent(WXPayEntryActivity.this, DaiSendActivity.class);
-                                        intent.putExtras(bundle);
-                                        WXPayEntryActivity.this.startActivity(intent);
-                                        WXPayEntryActivity.this.finish();
+                                        if (types==3){
+                                            Intent intent = new Intent(WXPayEntryActivity.this, MyMoneyActivity.class);
+                                            WXPayEntryActivity.this.startActivity(intent);
+                                            WXPayEntryActivity.this.finish();
+                                            finish();
+                                        }else {
+                                            Bundle bundle = new Bundle();
+                                            if (types==0){
+                                                bundle.putString("orderId",WXUtils.ordeId.get(0)+"");
+                                            }else {
+                                                bundle.putString("orderId", WXUtils.oneordeId+"");
+                                            }
+
+                                            Intent intent = new Intent(WXPayEntryActivity.this, DaiSendActivity.class);
+                                            intent.putExtras(bundle);
+                                            WXPayEntryActivity.this.startActivity(intent);
+                                            WXPayEntryActivity.this.finish();
+                                            finish();
+                                        }
+
                                     }else {
+                                        Looper.prepare();
                                         Toast.makeText(WXPayEntryActivity.this,result.optString("msg"),Toast.LENGTH_SHORT).show();
+                                        Looper.loop();
+
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();

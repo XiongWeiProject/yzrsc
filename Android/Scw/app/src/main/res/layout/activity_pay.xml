@@ -139,7 +139,7 @@
             android:id="@+id/momey_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="钱包余额（￥10）"
+            android:text="钱包余额（￥0.0）"
             android:textColor="#FF111A38"
             android:textSize="16sp"
             android:layout_marginLeft="12dp"

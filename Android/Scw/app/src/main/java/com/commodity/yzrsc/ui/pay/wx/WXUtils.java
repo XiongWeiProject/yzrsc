@@ -39,7 +39,7 @@ public class WXUtils {
     public static List<Integer> ordeId;
     public static String oneordeId;
     public static String wxpay="wxpay";
-    int types;
+    public static int types;
     public WXUtils(Context context, List<Integer> ordeId,int type) {
         this.context=context;
         this.ordeId=ordeId;

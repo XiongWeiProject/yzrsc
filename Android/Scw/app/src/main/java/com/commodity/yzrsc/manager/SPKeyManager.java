@@ -42,7 +42,7 @@ public class SPKeyManager {
     public static final String CURACTIVITYNAME = "curactivityname"; //当前activity的名字
     public static final String PHOTO_MODE = "photo_mode";
     public static final String INDEX = "idx";
-    public static DetailMyOrdeEntity curDetailMyOrdeEntity = null;
+    public static DetailMyOrdeEntity curDetailMyOrdeEntity = new DetailMyOrdeEntity();
     public static DetailMyOrdeEntity XiaoShouDetailMyOrdeEntity = null;
     public static List<TextView> messageTipTextViewList=new ArrayList<>();
     public static int uploadmax=13;

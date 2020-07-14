@@ -12,6 +12,7 @@ import com.commodity.yzrsc.http.HttpMothed;
 import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.ServiceInfo;
 import com.commodity.yzrsc.manager.ImageLoaderManager;
+import com.commodity.yzrsc.model.NewOrderModel;
 import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.pay.PayActivity;
 
@@ -19,7 +20,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -71,7 +74,8 @@ public class DaiPayActivity extends BaseActivity {
     private String url;
     private int ordeId;
     private String total;
-
+    List<Integer> oderList = new ArrayList<>();
+    NewOrderModel newOrderModel;
     @Override
     protected int getContentView() {
         return R.layout.activity_daipay;
@@ -110,9 +114,14 @@ public class DaiPayActivity extends BaseActivity {
 //            case R.id.send_button_shouhou://售后
 //                break;
             case R.id.send_button_send://支付
+                oderList.clear();
+                oderList.add(ordeId);
+                newOrderModel = new NewOrderModel();
+                newOrderModel.setData(oderList);
                 Bundle bundle = new Bundle();
-                bundle.putString("ordeId",String.valueOf(ordeId));
+                bundle.putSerializable("orderId",newOrderModel);
                 bundle.putString("total",total);
+                bundle.putInt("type",0);
                 jumpActivity(PayActivity.class,bundle);
                 finish();
                 break;

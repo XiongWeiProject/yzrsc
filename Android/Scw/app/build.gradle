@@ -8,9 +8,9 @@ android {
     signingConfigs {
         config {
             keyAlias 'scw'
-            keyPassword 'scwscw123'
+            keyPassword 'scw123456'
             storeFile file('../scw.jks')
-            storePassword 'scwscw123'
+            storePassword '123456'
         }
     }
     compileSdkVersion 23
@@ -46,12 +46,12 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            //signingConfig signingConfigs.config
+            signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
             minifyEnabled false
-            //signingConfig signingConfigs.config
+            signingConfig signingConfigs.config
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
