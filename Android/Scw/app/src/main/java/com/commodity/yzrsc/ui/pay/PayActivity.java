@@ -309,7 +309,7 @@ public class PayActivity extends BaseActivity {
 //            tip((String)obj);
 //            PayResult payResult = new PayResult((String) obj);
             PayResult payResult = new PayResult((Map<String, String>) obj);
-            Log.e("payResult", payResult.getResultStatus());
+            Log.e("payResult", payResult.getResultStatus()+payResult.getResult());
             switch (payResult.getResultStatus()) {
                 case "9000"://成功
                 case "8000":

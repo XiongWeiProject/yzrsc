@@ -7,10 +7,10 @@ android {
     }
     signingConfigs {
         config {
-            keyAlias 'scw'
-            keyPassword 'scw123456'
-            storeFile file('../scw.jks')
-            storePassword '123456'
+            keyAlias 'key0'
+            keyPassword '123456'
+            storeFile file('F:\\androidstudio\\yzrsc\\项目管理\\签名文件\\scw.jks')
+            storePassword 'scw123456'
         }
     }
     compileSdkVersion 23
@@ -60,6 +60,17 @@ android {
             jniLibs.srcDirs = ['libs']  // <-- Set your folder here!
         }
     }
+    allprojects {
+        repositories {
+
+            // 添加下面的内容
+            flatDir {
+                dirs 'libs'
+            }
+
+            // ... jcenter() 等其他仓库
+        }
+    }
     useLibrary 'org.apache.http.legacy' //compileSdkView修改为23后找不到org.apache.http下的类
 }
 
@@ -90,5 +101,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:3.5.2'
     annotationProcessor 'com.jakewharton:butterknife:7.0.1'
     implementation 'com.android.volley:volley:1.1.1'
+    // 添加下面的内容
+    implementation files('libs\\alipaySdk-15.7.7-20200702160044.aar')
 
 }

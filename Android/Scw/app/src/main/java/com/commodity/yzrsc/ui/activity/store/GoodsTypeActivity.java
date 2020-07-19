@@ -18,7 +18,7 @@ import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.adapter.ItemResultAdapter;
 import com.commodity.yzrsc.ui.adapter.TypeGuideAdapter;
 import com.commodity.yzrsc.utils.GsonUtils;
-import com.ta.utdid2.android.utils.StringUtils;
+import com.yixia.camera.util.StringUtils;
 
 import org.json.JSONObject;
 

@@ -16,6 +16,7 @@ import com.commodity.yzrsc.http.UpLoadUtils;
 import com.commodity.yzrsc.manager.ConfigManager;
 import com.commodity.yzrsc.model.OrderInfo;
 import com.commodity.yzrsc.model.PayModel;
+import com.commodity.yzrsc.model.PayParemsModel;
 import com.commodity.yzrsc.model.ZhifubaoModel;
 import com.google.gson.Gson;
 
@@ -23,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -79,7 +81,7 @@ public class ZFBUtils {
     private void singlData() {
         String josn = "";
         String url = "";
-        Gson gson = new Gson();
+        final Gson gson = new Gson();
         if (types==0){
             josn = gson.toJson(payModels);
             url = IRequestConst.RequestMethod.POSTPAY;
@@ -103,20 +105,26 @@ public class ZFBUtils {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String string = response.body().string();
-                Log.e("request:",string);
-
                 try {
                     JSONObject jsonObject = new JSONObject(string);
                     final String orderInfo=jsonObject.optString("data");
 //                    final String orderInfo=URLEncoder.encode(orderInfos,"UTF-8");
 //                    final String orderInfo= URLDecoder.decode(orderInfos,"UTF-8");
                     if(orderInfo!=null){
+                        Log.e("jsonObject",orderInfo);
                         Runnable payRunnable = new Runnable() {
 
                             @Override
                             public void run() {
+                                PayParemsModel payParemsModel = gson.fromJson(orderInfo,PayParemsModel.class);
+//                                String orderInfo = "app_id="+payParemsModel.getApp_id()+"&notify_url="+payParemsModel.getNotify_url()
+//                                        +"&timestamp="+payParemsModel.getTimestamp()+"&biz_content="+payParemsModel.getBiz_content()
+//                                        +"&method="+payParemsModel.getMethod()+"&charset="+payParemsModel.getCharset()
+//                                        +"&sign_type="+payParemsModel.getSign_type()+"@version="+payParemsModel.getVersion()
+//                                        +"&sign="+payParemsModel.getSign()+"&out_trade_no="+payParemsModel.getOut_trade_no()
+//                                        +"&payment_link="+payParemsModel.getPayment_link();
                                 PayTask alipay = new PayTask(activity);
-                                Map<String,String> result = alipay.payV2(orderInfo, true);
+                                Map<String, String> result = alipay.payV2(payParemsModel.getPayment_link(), true);
                                 Message msg = new Message();
                                 msg.what = SDK_PAY_FLAG;
                                 msg.obj = result;

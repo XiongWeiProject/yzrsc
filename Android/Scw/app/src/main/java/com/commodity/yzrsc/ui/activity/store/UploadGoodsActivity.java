@@ -39,7 +39,7 @@ import com.commodity.yzrsc.utils.FileUtil;
 import com.commodity.yzrsc.utils.KeyBoardUtils;
 import com.commodity.yzrsc.utils.PhotoUtils;
 import com.commodity.yzrsc.utils.VideoUtils;
-import com.ta.utdid2.android.utils.StringUtils;
+import com.yixia.camera.util.StringUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

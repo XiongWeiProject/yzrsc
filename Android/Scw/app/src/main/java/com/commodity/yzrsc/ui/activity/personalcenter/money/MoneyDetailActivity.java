@@ -104,10 +104,10 @@ public class MoneyDetailActivity extends BaseActivity {
         listView.setOnItemClickListener(new PLA_AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(PLA_AdapterView<?> parent, View view, int position, long id) {
-                TixianjiluDataEntity tixianjiluDataEntity = data.get(position-1);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("entity",tixianjiluDataEntity);
-                jumpActivity(TixianDetaillActivity.class,bundle);
+//                TixianjiluDataEntity tixianjiluDataEntity = data.get(position-1);
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("entity",tixianjiluDataEntity);
+//                jumpActivity(TixianDetaillActivity.class,bundle);
             }
         });
         right.setOnClickListener(new View.OnClickListener() {

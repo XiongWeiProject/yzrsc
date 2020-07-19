@@ -37,7 +37,7 @@ import com.commodity.yzrsc.ui.widget.imageview.CircleImageView;
 import com.commodity.yzrsc.ui.widget.layout.TakePopupWin;
 import com.commodity.yzrsc.utils.KeyBoardUtils;
 import com.commodity.yzrsc.utils.PhotoUtils;
-import com.ta.utdid2.android.utils.StringUtils;
+import com.yixia.camera.util.StringUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -39,7 +39,7 @@ import com.commodity.yzrsc.ui.widget.xlistView.PLA_AdapterView;
 import com.commodity.yzrsc.ui.widget.xlistView.XListView;
 import com.commodity.yzrsc.utils.DateUtil;
 import com.commodity.yzrsc.utils.GsonUtils;
-import com.ta.utdid2.android.utils.StringUtils;
+import com.yixia.camera.util.StringUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;

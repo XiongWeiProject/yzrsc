@@ -110,12 +110,13 @@ public class WXEntryActivity extends WXCallbackActivity {
                 if(resp.getType()==ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX){
                     Toast.makeText(this,"分享成功了",Toast.LENGTH_SHORT).show();
                     finish();
-                }else {
+                }else if (resp.getType()==ConstantsAPI.COMMAND_SENDAUTH){
                     // 获取code
                     String code = ((SendAuth.Resp) resp).code;
                     // 通过code获取授权口令access_token
                     Log.e(TAG, "onResp: " +code );
                     getAccessToken(code);
+                    finish();
                 }
 
                 break;

@@ -28,7 +28,7 @@ import com.commodity.yzrsc.ui.adapter.TypeContentAdapter;
 import com.commodity.yzrsc.ui.adapter.TypeGuideAdapter;
 import com.commodity.yzrsc.ui.widget.customview.PageFlipperLayout;
 import com.commodity.yzrsc.utils.GsonUtils;
-import com.ta.utdid2.android.utils.StringUtils;
+import com.yixia.camera.util.StringUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;

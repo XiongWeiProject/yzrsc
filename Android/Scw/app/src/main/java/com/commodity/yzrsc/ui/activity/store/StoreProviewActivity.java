@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.commodity.yzrsc.R;
 import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.widget.webview.AdvancedWebView;
-import com.ta.utdid2.android.utils.StringUtils;
+import com.yixia.camera.util.StringUtils;
 
 import butterknife.Bind;
 import butterknife.OnClick;
