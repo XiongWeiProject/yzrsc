@@ -105,7 +105,7 @@ public class HomeMineFragment  extends BaseFragment {
             case R.id.user_phone://电话
                 final CommonDialog commonDialog = new CommonDialog(mContext);
                 commonDialog.show();
-                commonDialog.setContext("是否呼叫：0755-86570026");
+                commonDialog.setContext("是否呼叫：13197979118");
                 commonDialog.setClickCancelListener(new CommonDialog.OnClickCancelListener() {
                     @Override
                     public void clickCance() {
@@ -115,7 +115,7 @@ public class HomeMineFragment  extends BaseFragment {
                 commonDialog.setClickSubmitListener(new CommonDialog.OnClickSubmitListener() {
                     @Override
                     public void clickSubmit() {
-                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+"0755-86570026"));
+                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+"13197979118"));
                         startActivity(intent);
                     }
                 });

@@ -4,8 +4,8 @@ package com.commodity.yzrsc.http;
  * 请求的基本数据
  */
 public class IRequestConst {
-    public static final String REQUEST_URL = "https://yzrsc-api.83soft.cn/";//测试环境2 scw-web.83soft.cn
-    public static final String REQUEST_URLS = "https://yzrsc-api.83soft.cn:443/";//测试环境动态
+    public static final String REQUEST_URL = "https://api.acb.wang/";//测试环境2 scw-web.83soft.cn
+    public static final String REQUEST_URLS = "https://api.acb.wang:443/";//测试环境动态
     //public static final String REQUEST_URL = "http://api.soucangwang.com/";//正式环境
 
     // 请求类别
@@ -228,14 +228,17 @@ public class IRequestConst {
         //删除自己的评论
         public static final String PostDetect  = REQUEST_URLS  +"UserDynamic/DeleteComment";
         // 删除商品
-        public static final String POSTDELETESHOP= "https://yzrsc-api.83soft.cn/ShoppingCart/RemoveShoppingCarts";
-        public static final String POSTREDUCESHOP= "https://yzrsc-api.83soft.cn/ShoppingCart/ChangeGoodsQuantity";
-        public static final String POSTORDER= "https://yzrsc-api.83soft.cn/ShoppingCart/ToplaceByShoppingCart";
-        public static final String POSTPAY= "https://yzrsc-api.83soft.cn/MemberOrder/OnlinePayNOrders";
-        public static final String POSTPAYWEIXIN= "https://yzrsc-api.83soft.cn/MemberOrder/OnlinePayNOrdersSimple";
-        public static final String POSTWALLORDER= "https://yzrsc-api.83soft.cn/MyWallet/Recharge";
-        public static final String POSTWALLORDERPAY= "https://yzrsc-api.83soft.cn/MyWallet/WallentRechargeOrderOnlinePay";
-        public static final String POSTISPAY= "https://yzrsc-api.83soft.cn/MyWallet/IsWalletRechargePaid";//钱包的
-        public static final String POSTISPAYMoney= "https://yzrsc-api.83soft.cn/MyWallet/Consume";//钱包的扣款
+        public static final String POSTDELETESHOP= "https://api.acb.wang/ShoppingCart/RemoveShoppingCarts";
+        public static final String POSTREDUCESHOP= "https://api.acb.wang/ShoppingCart/ChangeGoodsQuantity";
+        public static final String POSTORDER= "https://api.acb.wang/ShoppingCart/ToplaceByShoppingCart";
+        public static final String POSTPAY= "https://api.acb.wang/MemberOrder/OnlinePayNOrders";
+        public static final String POSTPAYWEIXIN= "https://api.acb.wang/MemberOrder/OnlinePayNOrdersSimple";
+        public static final String POSTWALLORDER= "https://api.acb.wang/MyWallet/Recharge";
+        public static final String POSTWALLORDERPAY= "https://api.acb.wang/MyWallet/WallentRechargeOrderOnlinePay";
+        public static final String POSTISPAY= "https://api.acb.wang/MyWallet/IsWalletRechargePaid";//钱包的
+        public static final String POSTISPAYMoney= "https://api.acb.wang/MyWallet/Consume";//钱包的扣款
+        public static final String GETANDROID= "https://api.acb.wang/Common/GetAndriodAppDownloadURL";//安卓下载地址
+        public static final String GETANDROIOS= "https://api.acb.wang/Common/GetiOSAppDownloadURL";//IOS下载地址
+
     }
 }

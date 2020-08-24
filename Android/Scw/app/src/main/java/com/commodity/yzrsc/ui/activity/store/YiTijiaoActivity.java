@@ -74,7 +74,7 @@ public class YiTijiaoActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.shenhe_phone:
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+"0755-86570026"));
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+"13197979118"));
                 startActivity(intent);
                 break;
         }

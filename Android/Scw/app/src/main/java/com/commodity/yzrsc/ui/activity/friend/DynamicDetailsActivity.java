@@ -19,26 +19,41 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.commodity.yzrsc.R;
+import com.commodity.yzrsc.http.HttpManager;
+import com.commodity.yzrsc.http.HttpMothed;
+import com.commodity.yzrsc.http.IRequestConst;
+import com.commodity.yzrsc.http.ServiceInfo;
+import com.commodity.yzrsc.manager.Constanct;
 import com.commodity.yzrsc.manager.ImageLoaderManager;
+import com.commodity.yzrsc.manager.SPKeyManager;
 import com.commodity.yzrsc.model.DynamicAllListModel;
+import com.commodity.yzrsc.model.SeeWuliuEntity;
 import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.adapter.EvalutionAdapter;
 import com.commodity.yzrsc.ui.adapter.ShowPicAdapter;
 import com.commodity.yzrsc.ui.adapter.ZanAdapter;
+import com.commodity.yzrsc.utils.GsonUtils;
 import com.commodity.yzrsc.utils.SharetUtil;
 import com.commodity.yzrsc.view.MoreEvalutionDialog;
 import com.commodity.yzrsc.view.RoundAngleImageView;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.rong.imkit.tools.RongWebviewActivity;
+
+import static com.commodity.yzrsc.http.IRequestConst.REQUEST_URL;
 
 public class DynamicDetailsActivity extends BaseActivity {
 
@@ -202,17 +217,50 @@ public class DynamicDetailsActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_weixin:
-                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.WEIXIN,"http://yzrsc.83soft.cn//m/UserDynamic/Detail?id="+dynamicAllListModels.getId(),dynamicAllListModels.getDescription(),null);
+                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.WEIXIN,REQUEST_URL+"/m/UserDynamic/Detail?id="+dynamicAllListModels.getId(),dynamicAllListModels.getDescription(),null);
                 break;
             case R.id.iv_qq:
-                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.QQ,"http://yzrsc.83soft.cn//m/UserDynamic/Detail?id="+dynamicAllListModels.getId(),dynamicAllListModels.getDescription(),null);
+                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.QQ,REQUEST_URL+"/m/UserDynamic/Detail?id="+dynamicAllListModels.getId(),dynamicAllListModels.getDescription(),null);
                 break;
             case R.id.tv_android:
-                WebviewActivity.startAction(DynamicDetailsActivity.this,"https://www.baidu.com/","安卓下载");
+                sendRequest(1);
                 break;
             case R.id.iv_ios:
-                WebviewActivity.startAction(DynamicDetailsActivity.this,"https://www.baidu.com/","IOS下载");
+                sendRequest(2);
                 break;
         }
+    }
+
+    @Override
+    public void sendRequest(int tag) {
+        super.sendRequest(tag);
+        customLoadding.show();
+        if(tag==1){
+            HashMap<String, String> map = new HashMap<>();
+            new HttpManager(tag, HttpMothed.GET, IRequestConst.RequestMethod.GETANDROID,map,this).request();
+        }else if(tag==2){
+            new HttpManager(tag, HttpMothed.GET, IRequestConst.RequestMethod.GETANDROIOS,null,this).request();
+        }
+    }
+    @Override
+    public void OnSuccessResponse(int tag, ServiceInfo resultInfo) {
+        super.OnSuccessResponse(tag, resultInfo);
+        JSONObject response = (JSONObject) resultInfo.getResponse();
+        if(response.optBoolean("success")){
+            String data = response.optString("data");
+            if (tag==1){
+                WebviewActivity.startAction(DynamicDetailsActivity.this,data,"安卓下载");
+            }else {
+                WebviewActivity.startAction(DynamicDetailsActivity.this,data,"IOS下载");
+            }
+
+        }
+
+    }
+
+    @Override
+    public void OnFailedResponse(int tag, String code, String msg) {
+        super.OnFailedResponse(tag, code, msg);
+        tip(msg);
     }
 }

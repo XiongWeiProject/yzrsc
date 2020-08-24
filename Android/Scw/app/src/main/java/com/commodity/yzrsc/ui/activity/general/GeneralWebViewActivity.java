@@ -11,6 +11,9 @@ import com.commodity.yzrsc.R;
 import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.widget.webview.CustomWebView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import butterknife.Bind;
 import butterknife.OnClick;
 
@@ -40,9 +43,17 @@ public class GeneralWebViewActivity extends BaseActivity {
         customwebview.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                String referer = "http://yzrsc.83soft.cn";
                 if(url.startsWith("http:") || url.startsWith("https:") ) {
+                    if (url.contains("https://wx.tenpay.com")) {
+                        Map<String, String> extraHeaders = new HashMap<>();
+                        extraHeaders.put("Referer", referer);
+                        view.loadUrl(url, extraHeaders);
+                        referer = url;
+                        return true;
+                    }
                     view.loadUrl(url);
-                    return false;
+                    return true;
                 }else{
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
