@@ -69,7 +69,7 @@ public class GuideShowActivity extends BaseActivity {
 		mGuideList = new ArrayList<Integer>();
 		mGuideList.add(R.drawable.ydy12x);
 		mGuideList.add(R.drawable.ydy22x);
-		mGuideList.add(R.drawable.ydy32x);
+//		mGuideList.add(R.drawable.ydy32x);
 		mGuideList.add(R.drawable.ydy42x);
 
 		mViewpagerAdapter = new ViewpagerAdapter();

@@ -119,7 +119,6 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
         LinearLayout ll_zan = holder.getView(R.id.ll_zan);
         ImageLoaderManager.getInstance().displayImage(dynamicAllListModel.getMemberAvatar(), head,
                 R.drawable.ico_pic_fail_defalt);
-        position = holder.getPosition();
         if (dynamicAllListModel.getPictures().size() == 0) {
             if (TextUtils.isEmpty(dynamicAllListModel.getVideoUrl())) {
                 rcv_pic.setVisibility(View.GONE);
@@ -221,8 +220,10 @@ public class MyDynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
         zan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                position = holder.getPosition();
                 if (popWinShare == null) {
                     //自定义的单击事件
+
                     OnClickLintener paramOnClickListener = new OnClickLintener();
                     popWinShare = new PopWinShare((Activity) mContext, paramOnClickListener, RongUtils.dip2px(163), RongUtils.dip2px(34), 2);
                     TextView isIsLike = (TextView) popWinShare.getContentView().findViewById(R.id.tv_like);

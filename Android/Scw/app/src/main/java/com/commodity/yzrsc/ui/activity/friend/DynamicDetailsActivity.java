@@ -53,8 +53,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.rong.imkit.tools.RongWebviewActivity;
 
-import static com.commodity.yzrsc.http.IRequestConst.REQUEST_URL;
-
 public class DynamicDetailsActivity extends BaseActivity {
 
     @Bind(R.id.head_back)
@@ -217,10 +215,10 @@ public class DynamicDetailsActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_weixin:
-                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.WEIXIN,REQUEST_URL+"/m/UserDynamic/Detail?id="+dynamicAllListModels.getId(),dynamicAllListModels.getDescription(),null);
+                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.WEIXIN,"http://back.acb.wang//m/UserDynamic/Detail?id="+dynamicAllListModels.getId(),dynamicAllListModels.getDescription(),null);
                 break;
             case R.id.iv_qq:
-                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.QQ,REQUEST_URL+"/m/UserDynamic/Detail?id="+dynamicAllListModels.getId(),dynamicAllListModels.getDescription(),null);
+                SharetUtil.shareUrl(DynamicDetailsActivity.this, SHARE_MEDIA.QQ,"http://back.acb.wang//m/UserDynamic/Detail?id="+dynamicAllListModels.getId(),dynamicAllListModels.getDescription(),null);
                 break;
             case R.id.tv_android:
                 sendRequest(1);

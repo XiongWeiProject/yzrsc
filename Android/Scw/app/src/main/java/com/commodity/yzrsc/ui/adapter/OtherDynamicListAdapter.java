@@ -50,6 +50,7 @@ import com.commodity.yzrsc.ui.adapter.base.BaseRecycleAdapter;
 import com.commodity.yzrsc.ui.adapter.base.CommonAdapter;
 import com.commodity.yzrsc.ui.adapter.base.ViewHolder;
 import com.commodity.yzrsc.ui.dialog.CommonDialog;
+import com.commodity.yzrsc.utils.CustomToast;
 import com.commodity.yzrsc.view.MoreEvalutionDialog;
 import com.commodity.yzrsc.view.PopWinShare;
 
@@ -114,7 +115,7 @@ public class OtherDynamicListAdapter extends CommonAdapter<DynamicAllListModel> 
         LinearLayout ll_zan = holder.getView(R.id.ll_zan);
         ImageLoaderManager.getInstance().displayImage(dynamicAllListModel.getMemberAvatar(), head,
                 R.drawable.ico_pic_fail_defalt);
-        itemposition = holder.getPosition();
+
         if (dynamicAllListModel.getPictures().size() == 0) {
             if (TextUtils.isEmpty(dynamicAllListModel.getVideoUrl())) {
                 rcv_pic.setVisibility(View.GONE);
@@ -205,6 +206,7 @@ public class OtherDynamicListAdapter extends CommonAdapter<DynamicAllListModel> 
         zan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                itemposition = holder.getPosition();
                 if (popWinShare == null) {
                     //自定义的单击事件
                     OnClickLintener paramOnClickListener = new OnClickLintener();

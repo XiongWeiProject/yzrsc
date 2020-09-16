@@ -118,7 +118,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
         LinearLayout ll_zan = holder.getView(R.id.ll_zan);
         ImageLoaderManager.getInstance().displayImage(dynamicAllListModel.getMemberAvatar(), head,
                 R.drawable.ico_pic_fail_defalt);
-        itemposition = holder.getPosition();
+
         if (dynamicAllListModel.getPictures().size() == 0) {
             if (TextUtils.isEmpty(dynamicAllListModel.getVideoUrl())) {
                 rcv_pic.setVisibility(View.GONE);
@@ -163,7 +163,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
             zanAdapter.setOnItemClickListener(new BaseRecycleAdapter.ItemClickListener() {
                                                   @Override
                                                   public void itemClick(View v, int position) {
-                                                      if ( dynamicAllListModel.getLikeList().get(position).getMemberId() == Integer.parseInt(ConfigManager.instance().getUser().getId())) {
+                                                      if (dynamicAllListModel.getLikeList().get(position).getMemberId() == Integer.parseInt(ConfigManager.instance().getUser().getId())) {
                                                           Intent intent = new Intent(mContext, MyDynamicActivity.class);
                                                           Bundle bundle = new Bundle();
                                                           bundle.putString("dynamicId", ConfigManager.instance().getUser().getId());
@@ -295,27 +295,28 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
             @Override
             public void onClick(View view) {
 //                if (popWinShare == null) {
-                    //自定义的单击事件
-                    OnClickLintener paramOnClickListener = new OnClickLintener(dynamicAllListModel.getId());
-                    popWinShare = new PopWinShare((Activity) mContext, paramOnClickListener, RongUtils.dip2px(163), RongUtils.dip2px(34), 2);
-                    TextView isIsLike = (TextView) popWinShare.getContentView().findViewById(R.id.tv_like);
-                    if (dynamicAllListModel.isIsLike()) {
-                        isLike = true;
-                        isIsLike.setText("取消");
-                    } else {
-                        isLike = false;
-                        isIsLike.setText("赞");
-                    }
-                    //监听窗口的焦点事件，点击窗口外面则取消显示
-                    popWinShare.getContentView().setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                //自定义的单击事件
+                itemposition = holder.getPosition();
+                OnClickLintener paramOnClickListener = new OnClickLintener(dynamicAllListModel.getId());
+                popWinShare = new PopWinShare((Activity) mContext, paramOnClickListener, RongUtils.dip2px(163), RongUtils.dip2px(34), 2);
+                TextView isIsLike = (TextView) popWinShare.getContentView().findViewById(R.id.tv_like);
+                if (dynamicAllListModel.isIsLike()) {
+                    isLike = true;
+                    isIsLike.setText("取消");
+                } else {
+                    isLike = false;
+                    isIsLike.setText("赞");
+                }
+                //监听窗口的焦点事件，点击窗口外面则取消显示
+                popWinShare.getContentView().setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
-                        @Override
-                        public void onFocusChange(View v, boolean hasFocus) {
-                            if (!hasFocus) {
-                                popWinShare.dismiss();
-                            }
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        if (!hasFocus) {
+                            popWinShare.dismiss();
                         }
-                    });
+                    }
+                });
 
 
 //                }
@@ -387,8 +388,8 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
                     showPopupcomment(0 + "", 0 + "");
                     break;
                 case R.id.tv_forwarding:
-                    WeakDataHolder.getInstance().saveData("dynamicAllListModels",data.get(itemposition));
-                    DynamicDetailsActivity.startAction(mContext,dynamicIds+"","动态详情");
+                    WeakDataHolder.getInstance().saveData("dynamicAllListModels", data.get(itemposition));
+                    DynamicDetailsActivity.startAction(mContext, itemposition + "", "动态详情");
                     break;
 
                 default:
@@ -401,7 +402,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
 
     private void deleteDynamic(int id) {
         FormBody requestBody = new FormBody.Builder().add("id", String.valueOf(id))
-                .add("scw-token",ConfigManager.instance().getUser().getDeviceToken()).build();
+                .add("scw-token", ConfigManager.instance().getUser().getDeviceToken()).build();
         UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDetect, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -437,7 +438,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
 
     private void isLikes(String goodsSaleId, String dynamicId) {
         FormBody requestBody = new FormBody.Builder().add("flag", goodsSaleId).add("id", dynamicId)
-                .add("scw-token",ConfigManager.instance().getUser().getDeviceToken()).build();
+                .add("scw-token", ConfigManager.instance().getUser().getDeviceToken()).build();
         Log.e("failure:", "\"flag\", goodsSaleId" + goodsSaleId + "id" + data.get(itemposition).getId() + "");
         UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDynamicLike, requestBody, new Callback() {
             @Override
@@ -588,7 +589,7 @@ public class DynamicListAdapter extends CommonAdapter<DynamicAllListModel> {
     private void subEvalution(String nInputContentText, String memberId, String commentType) {
         FormBody requestBody = new FormBody.Builder().add("memberId", memberId).add("commentType", commentType)
                 .add("comment", nInputContentText).add("dynamicId", data.get(itemposition).getId() + "")
-                .add("scw-token",ConfigManager.instance().getUser().getDeviceToken()).build();
+                .add("scw-token", ConfigManager.instance().getUser().getDeviceToken()).build();
         UpLoadUtils.instance().requesDynamic(IRequestConst.RequestMethod.PostDynamicEvaluate, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
