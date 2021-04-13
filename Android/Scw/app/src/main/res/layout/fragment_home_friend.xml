@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="易州人动态"
+            android:text="易州人商城动态"
             android:textColor="#FFFFFF"
             android:textSize="@dimen/textsize17" />
         <com.commodity.yzrsc.ui.widget.imageview.CircleImageView

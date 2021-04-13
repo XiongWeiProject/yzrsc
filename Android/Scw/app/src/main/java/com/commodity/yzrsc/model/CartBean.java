@@ -12,8 +12,8 @@ public class CartBean {
     /**
      * shopId : 5087
      * shopName : 店铺5087
-     * sellerAvatar : https://yzrsc-api.83soft.cn/UpLoadFiles/Image/202005162347557413881811190036.jpg
-     * shoppingCartGoods : [{"shoppingCartId":27,"goodsSaleId":4238,"goodsSaleName":"铁轨，小鸟，人，自然好看","goodsImage":"https://yzrsc-api.83soft.cn/UpLoadFiles/Image/202006152303485913891029941652.jpeg","goodsPrice":0.01,"quantity":1,"postage":0.01},{"shoppingCartId":43,"goodsSaleId":4236,"goodsSaleName":"啤酒好看也好喝,来吧来吧","goodsImage":"https://yzrsc-api.83soft.cn/UpLoadFiles/Image/202006152301294351522107228942.jpeg","goodsPrice":0.01,"quantity":5,"postage":0.01},{"shoppingCartId":44,"goodsSaleId":4236,"goodsSaleName":"啤酒好看也好喝,来吧来吧","goodsImage":"https://yzrsc-api.83soft.cn/UpLoadFiles/Image/202006152301294351522107228942.jpeg","goodsPrice":0.01,"quantity":1,"postage":0.01}]
+     * sellerAvatar : https://api.acb.wang/UpLoadFiles/Image/202005162347557413881811190036.jpg
+     * shoppingCartGoods : [{"shoppingCartId":27,"goodsSaleId":4238,"goodsSaleName":"铁轨，小鸟，人，自然好看","goodsImage":"https://api.acb.wang/UpLoadFiles/Image/202006152303485913891029941652.jpeg","goodsPrice":0.01,"quantity":1,"postage":0.01},{"shoppingCartId":43,"goodsSaleId":4236,"goodsSaleName":"啤酒好看也好喝,来吧来吧","goodsImage":"https://api.acb.wang/UpLoadFiles/Image/202006152301294351522107228942.jpeg","goodsPrice":0.01,"quantity":5,"postage":0.01},{"shoppingCartId":44,"goodsSaleId":4236,"goodsSaleName":"啤酒好看也好喝,来吧来吧","goodsImage":"https://api.acb.wang/UpLoadFiles/Image/202006152301294351522107228942.jpeg","goodsPrice":0.01,"quantity":1,"postage":0.01}]
      */
 
     private int shopId;
@@ -60,7 +60,7 @@ public class CartBean {
          * shoppingCartId : 27
          * goodsSaleId : 4238
          * goodsSaleName : 铁轨，小鸟，人，自然好看
-         * goodsImage : https://yzrsc-api.83soft.cn/UpLoadFiles/Image/202006152303485913891029941652.jpeg
+         * goodsImage : https://api.acb.wang/UpLoadFiles/Image/202006152303485913891029941652.jpeg
          * goodsPrice : 0.01
          * quantity : 1
          * postage : 0.01

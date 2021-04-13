@@ -53,7 +53,7 @@ public class SwipeBackBaseActivity extends FragmentActivity implements NetBroadc
                     public void onScrollToClose() {//当滑动关闭
                     }
                 });
-        MainApplication.USER_AGENT= SystemPermissUtil.instance().getUserAgent(this);
+//        MainApplication.USER_AGENT= SystemPermissUtil.instance().getUserAgent(this);
         evevt = this;
     }
 

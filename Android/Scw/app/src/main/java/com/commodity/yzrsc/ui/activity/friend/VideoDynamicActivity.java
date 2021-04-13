@@ -40,12 +40,14 @@ import com.commodity.yzrsc.ottobus.Event;
 import com.commodity.yzrsc.ui.BaseActivity;
 import com.commodity.yzrsc.ui.activity.shortvideo.VideoRecorderActivity;
 import com.commodity.yzrsc.ui.activity.store.GoodsTypeActivity;
+import com.commodity.yzrsc.ui.activity.store.UploadGoodsActivity;
 import com.commodity.yzrsc.ui.adapter.PhotoPopupAdapter;
 import com.commodity.yzrsc.ui.widget.layout.TakePopupWin;
 import com.commodity.yzrsc.utils.KeyBoardUtils;
 import com.commodity.yzrsc.utils.PhotoUtils;
 import com.commodity.yzrsc.utils.VideoUtils;
 import com.commodity.yzrsc.view.SuccessDialog;
+import com.sh.shvideolibrary.VideoInputDialog;
 import com.yixia.camera.util.StringUtils;
 
 import org.json.JSONException;
@@ -381,8 +383,9 @@ public class VideoDynamicActivity extends BaseActivity {
                             tip("请插入内存卡");
                             return;
                         }
-                        jumpActivityForResult(1002, VideoRecorderActivity.class);
-                        //  VideoUtils.openVideo(UploadGoodsActivity.this, openVideo);
+                        recordVideo();
+//                        jumpActivityForResult(1002, VideoRecorderActivity.class);
+//                          VideoUtils.openVideo(UploadGoodsActivity.this, openVideo);
                         break;
                     case 1://从文件中选择
 
@@ -403,7 +406,19 @@ public class VideoDynamicActivity extends BaseActivity {
             }
         });
     }
-
+    private void recordVideo() {
+        //显示视频录制控件
+        VideoInputDialog.show(getSupportFragmentManager(), new VideoInputDialog.VideoCall() {
+            @Override
+            public void videoPathCall(String path) {
+                videoPath = path;
+                Bitmap thumbnail = VideoUtils.getThumbnail(videoPath);
+                uploadAddVdio.setImageBitmap(thumbnail);
+                itemVideoDelete.setVisibility(View.VISIBLE);
+                saveVideoPath(videoPath);
+            }
+        }, VideoInputDialog.Q720, VideoDynamicActivity.this);
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

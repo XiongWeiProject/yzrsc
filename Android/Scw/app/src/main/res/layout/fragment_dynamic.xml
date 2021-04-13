@@ -4,7 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.DynamicFragment">
-
+    <TextView
+        android:id="@+id/tv_tips"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="11dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/bg_circular_red_point"
+        android:gravity="center"
+        android:text="99"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize9"
+        android:visibility="gone"/>
     <com.commodity.yzrsc.ui.widget.textview.CenterDrawableTextView
         android:id="@+id/tv_nodata"
         style="@style/nodata_style"

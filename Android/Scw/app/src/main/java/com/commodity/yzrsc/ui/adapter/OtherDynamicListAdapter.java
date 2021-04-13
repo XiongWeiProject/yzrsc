@@ -67,9 +67,9 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import de.greenrobot.event.EventBus;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPalyActivity;
 import fm.jiecao.jcvideoplayer_lib.VideoEvents;
+import io.rong.eventbus.EventBus;
 import io.rong.imkit.utilities.RongUtils;
 import okhttp3.Call;
 import okhttp3.Callback;

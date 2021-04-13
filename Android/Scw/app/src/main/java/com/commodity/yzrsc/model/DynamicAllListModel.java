@@ -9,13 +9,13 @@ public class DynamicAllListModel implements Serializable {
     /**
      * id : 40
      * memberId : 4082
-     * memberAvatar : https://yzrsc-api.83soft.cn/UpLoadFiles/Image/202005042154492571062125040331.jpg
+     * memberAvatar : https://api.acb.wang/UpLoadFiles/Image/202005042154492571062125040331.jpg
      * memberNickname : Wee888
      * dynamicCatalog_Id : 5
      * dynamicType : 1
      * description : Eeeeeeee
      * isLike : false
-     * pictures : ["https://yzrsc-api.83soft.cn/UpLoadFiles/Image/202005081947084044041688072905.jpg","https://yzrsc-api.83soft.cn/UpLoadFiles/Image/202005081947084044041688072905.jpg","https://yzrsc-api.83soft.cn/UpLoadFiles/Image/20200508194708420100311117186.jpg","https://yzrsc-api.83soft.cn/UpLoadFiles/Image/202005081947084356572107228942.jpg","https://yzrsc-api.83soft.cn/UpLoadFiles/Image/20200508194708451284730273223.jpg"]
+     * pictures : ["https://api.acb.wang/UpLoadFiles/Image/202005081947084044041688072905.jpg","https://api.acb.wang/UpLoadFiles/Image/202005081947084044041688072905.jpg","https://api.acb.wang/UpLoadFiles/Image/20200508194708420100311117186.jpg","https://api.acb.wang/UpLoadFiles/Image/202005081947084356572107228942.jpg","https://api.acb.wang/UpLoadFiles/Image/20200508194708451284730273223.jpg"]
      * videoUrl :
      * commentCount : 0
      * likeCount : 0

@@ -2,6 +2,8 @@ package com.commodity.yzrsc.ui.adapter;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -28,9 +30,12 @@ public class MyordeAdapter extends CommonAdapter<DetailMyOrdeEntity> implements 
     private int index;
     private OnitemListener onitemListener;
     private int position;
+    private Context contexts;
+    OrderListAdapter orderListAdapter;
 
     public MyordeAdapter(Context context, List<DetailMyOrdeEntity> datas, int layoutId) {
         super(context, datas, layoutId);
+        contexts = context;
     }
 
     @Override
@@ -63,6 +68,7 @@ public class MyordeAdapter extends CommonAdapter<DetailMyOrdeEntity> implements 
         LinearLayout item_linera1 = holder.getView(R.id.item_linera1);
         LinearLayout item_linear2 = holder.getView(R.id.item_linear2);
         LinearLayout item_content = holder.getView(R.id.item_content);
+        RecyclerView item_rcv = holder.getView(R.id.rcv_oder_list);
         TextView zhaunshoumanager_yuji = holder.getView(R.id.zhaunshoumanager_yuji2);
         zhaunshoumanager_yuji.setVisibility(View.INVISIBLE);
 //        zhaunshoumanager_yuji.setText("¥ "+detailMyOrdeEntity.);//预计利润
@@ -70,17 +76,16 @@ public class MyordeAdapter extends CommonAdapter<DetailMyOrdeEntity> implements 
         zhaunshoumanager_yuanjia.setVisibility(View.INVISIBLE);
 //        zhaunshoumanager_yuanjia.setText(detailMyOrdeEntity.);
         TextView zhaunshoumanager_price = holder.getView(R.id.zhaunshoumanager_price2);//合计
-        zhaunshoumanager_price.setText("¥"+detailMyOrdeEntity.getTotal());
+        zhaunshoumanager_price.setText("¥" + detailMyOrdeEntity.getTotal());
 
         holder.getView(R.id.yuan).setVisibility(View.INVISIBLE);
         holder.getView(R.id.li).setVisibility(View.INVISIBLE);
 
-        TextView zhaunshoumanager_content = holder.getView(R.id.zhaunshoumanager_content2);//描述
         List<MyOrdeGoodsEntity> orderGoods = detailMyOrdeEntity.getOrderGoods();
-        if(orderGoods!=null&&orderGoods.size()!=0){
-            zhaunshoumanager_content.setText(orderGoods.get(0).getDescription());
-            ImageView zhaunshoumanager_imag = holder.getView(R.id.zhaunshoumanager_imag2);//图片
-            ImageLoaderManager.getInstance().displayImage(orderGoods.get(0).getImage(),zhaunshoumanager_imag);
+        if (orderGoods != null && orderGoods.size() != 0) {
+            item_rcv.setLayoutManager(new LinearLayoutManager(contexts));
+            orderListAdapter = new OrderListAdapter(contexts, orderGoods, R.layout.item_order_list);
+            item_rcv.setAdapter(orderListAdapter);
         }
 
         TextView zhaunshoumanager_state = holder.getView(R.id.zhaunshoumanager_state2);//状态
@@ -90,11 +95,11 @@ public class MyordeAdapter extends CommonAdapter<DetailMyOrdeEntity> implements 
 
 
         position = holder.getPosition();
-        if(index==3||index==4){//显示物流按钮
+        if (index == 3 || index == 4) {//显示物流按钮
             item_linear2.setVisibility(View.GONE);
             item_linera1.setVisibility(View.GONE);
             item_button_seewuliu.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             item_linear2.setVisibility(View.VISIBLE);
             item_linera1.setVisibility(View.VISIBLE);
             item_button_seewuliu.setVisibility(View.GONE);
@@ -104,29 +109,30 @@ public class MyordeAdapter extends CommonAdapter<DetailMyOrdeEntity> implements 
             @Override
             public void onClick(View v) {
                 //物流
-                MyOrdeActivity myorde=(MyOrdeActivity)mContext;
+                MyOrdeActivity myorde = (MyOrdeActivity) mContext;
                 Bundle bundle1 = new Bundle();
-                bundle1.putString("orderId",String.valueOf(detailMyOrdeEntity.getId()));
-                myorde.jumpActivity(SeeWuliu.class,bundle1);
+                bundle1.putString("orderId", String.valueOf(detailMyOrdeEntity.getId()));
+                myorde.jumpActivity(SeeWuliu.class, bundle1);
             }
         });
         item_content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(onitemListener!=null){
-                    onitemListener.itemClick(v,holder.getPosition());
+                if (onitemListener != null) {
+                    onitemListener.itemClick(v, holder.getPosition());
                 }
             }
         });
     }
-    public void setIndex(int index){
+
+    public void setIndex(int index) {
 //        this.index=index;
         notifyDataSetChanged();
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.item_button_seewuliu:
 
                 break;
@@ -137,10 +143,12 @@ public class MyordeAdapter extends CommonAdapter<DetailMyOrdeEntity> implements 
 //                break;
         }
     }
-    public void setOnitemListener(OnitemListener onitemListener){
-        this.onitemListener=onitemListener;
+
+    public void setOnitemListener(OnitemListener onitemListener) {
+        this.onitemListener = onitemListener;
     }
-    public interface OnitemListener{
+
+    public interface OnitemListener {
         void itemClick(View v, int position);
     }
 }

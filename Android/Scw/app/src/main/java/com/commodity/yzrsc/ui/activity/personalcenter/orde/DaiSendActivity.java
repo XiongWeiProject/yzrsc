@@ -1,10 +1,10 @@
 package com.commodity.yzrsc.ui.activity.personalcenter.orde;
 
 import android.os.Bundle;
-import android.os.Looper;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,13 +14,12 @@ import com.commodity.yzrsc.http.HttpMothed;
 import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.ServiceInfo;
 import com.commodity.yzrsc.http.UpLoadUtils;
-import com.commodity.yzrsc.manager.Constanct;
-import com.commodity.yzrsc.manager.ImageLoaderManager;
-import com.commodity.yzrsc.manager.SPKeyManager;
-import com.commodity.yzrsc.model.MyWallModel;
+import com.commodity.yzrsc.model.mine.MyOrdeGoodsEntity;
 import com.commodity.yzrsc.ui.BaseActivity;
-import com.commodity.yzrsc.ui.pay.PayActivity;
+import com.commodity.yzrsc.ui.adapter.OrderListAdapter;
+import com.commodity.yzrsc.utils.GsonUtils;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,8 +27,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -45,12 +46,12 @@ import okhttp3.Response;
 public class DaiSendActivity extends BaseActivity {
     @Bind(R.id.head_title)
     TextView title;
-    @Bind(R.id.send_image)
-    ImageView send_image;//图片
-    @Bind(R.id.send_text)
-    TextView send_text;//简介
-    @Bind(R.id.send_jiage)
-    TextView send_jiage;//价格
+    //    @Bind(R.id.send_image)
+//    ImageView send_image;//图片
+//    @Bind(R.id.send_text)
+//    TextView send_text;//简介
+//    @Bind(R.id.send_jiage)
+//    TextView send_jiage;//价格
     @Bind(R.id.send_item_value)
     TextView send_item_value;//订单时间
     @Bind(R.id.send_item_waybill)
@@ -71,6 +72,8 @@ public class DaiSendActivity extends BaseActivity {
     TextView send_item_phone;//联系方式
     @Bind(R.id.send_item_address)
     TextView send_item_address;//地址
+    @Bind(R.id.rcv_oder_list)
+    RecyclerView rcvOderList;
     private String id;
     private int ordeId;
 
@@ -79,7 +82,7 @@ public class DaiSendActivity extends BaseActivity {
     @Bind(R.id.send_item_total)
     TextView send_item_total;//总价
     int payFlag = 0;
-
+    OrderListAdapter orderListAdapter;
     @Override
     protected int getContentView() {
         return R.layout.activity_daisend;
@@ -182,7 +185,7 @@ public class DaiSendActivity extends BaseActivity {
                 send_item_address.setText(data.optString("receiverAddress"));//收件人地址
                 send_item_waybill.setText(data.optString("code"));//订单号
                 send_item_value.setText(data.optString("createTime"));//时间
-                send_jiage.setText("¥" + data.optString("goodsAmount"));//价格
+//                send_jiage.setText("¥" + data.optString("goodsAmount"));//价格
                 send_item_price.setText("¥" + data.optString("goodsAmount"));//价格
                 send_item_express.setText("¥" + data.optString("postage"));//运费
                 send_item_total.setText("¥" + data.optString("total"));//总价
@@ -190,15 +193,13 @@ public class DaiSendActivity extends BaseActivity {
                 send_item_state.setText(data.optString("state"));//订单状态
                 ordeId = data.optInt("id");
 
-
                 JSONArray orderGoods = data.optJSONArray("orderGoods");
-                try {
-                    JSONObject order = (JSONObject) orderGoods.get(0);
-                    ImageLoaderManager.getInstance().displayImage(order.optString("image"), send_image);
-
-                    send_text.setText(order.optString("description"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                Gson gson = new Gson();
+                List<MyOrdeGoodsEntity> orderGood = gson.fromJson(orderGoods.toString(), new TypeToken<List<MyOrdeGoodsEntity>>(){}.getType());;
+                if (orderGood != null && orderGood.size() != 0) {
+                    rcvOderList.setLayoutManager(new LinearLayoutManager(DaiSendActivity.this));
+                    orderListAdapter = new OrderListAdapter(DaiSendActivity.this, orderGood, R.layout.item_order_list);
+                    rcvOderList.setAdapter(orderListAdapter);
                 }
 
 
@@ -211,5 +212,12 @@ public class DaiSendActivity extends BaseActivity {
     public void OnFailedResponse(int tag, String code, String msg) {
         super.OnFailedResponse(tag, code, msg);
         tip(msg);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

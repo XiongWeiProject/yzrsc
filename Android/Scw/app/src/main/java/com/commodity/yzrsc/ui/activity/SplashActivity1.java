@@ -16,6 +16,13 @@
 
 package com.commodity.yzrsc.ui.activity;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -43,19 +50,22 @@ import butterknife.Bind;
  * 作者：liyushen on 2016/11/28 15:08
  * 功能：启动页
  */
-public class SplashActivity extends BaseActivity {
+public class SplashActivity1 extends BaseActivity {
 
     @Bind(R.id.splash_image)
     ImageView mSplashImage;
     @Bind(R.id.enter)
     Button enter;
+
     @Override
     protected int getContentView() {
+
         return R.layout.activity_splash;
     }
 
     @Override
     protected void initView() {
+
         sendRequest(1,"");
         if (SPManager.instance().getBoolean(SPKeyManager.ISNOTFIRSTNAPP)){
             Animation animation = AnimationUtils.loadAnimation(this, R.anim.splash_alpha_anim);;
@@ -130,4 +140,5 @@ public class SplashActivity extends BaseActivity {
         super.OnFailedResponse(tag, code, msg);
         tip(msg);
     }
+
 }

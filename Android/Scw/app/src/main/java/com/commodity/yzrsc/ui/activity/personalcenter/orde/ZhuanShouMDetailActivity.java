@@ -1,8 +1,9 @@
 package com.commodity.yzrsc.ui.activity.personalcenter.orde;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.commodity.yzrsc.R;
@@ -11,15 +12,22 @@ import com.commodity.yzrsc.http.HttpMothed;
 import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.ServiceInfo;
 import com.commodity.yzrsc.manager.ImageLoaderManager;
+import com.commodity.yzrsc.model.mine.MyOrdeGoodsEntity;
 import com.commodity.yzrsc.ui.BaseActivity;
+import com.commodity.yzrsc.ui.adapter.OrderListAdapter;
+import com.commodity.yzrsc.utils.GsonUtils;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -30,12 +38,12 @@ import butterknife.OnClick;
 public class ZhuanShouMDetailActivity extends BaseActivity {
     @Bind(R.id.head_title)
     TextView title;
-    @Bind(R.id.send_image)
-    ImageView send_image;//图片
-    @Bind(R.id.send_text)
-    TextView send_text;//简介
-    @Bind(R.id.send_jiage)
-    TextView send_jiage;//价格
+    //    @Bind(R.id.send_image)
+//    ImageView send_image;//图片
+//    @Bind(R.id.send_text)
+//    TextView send_text;//简介
+//    @Bind(R.id.send_jiage)
+//    TextView send_jiage;//价格
     @Bind(R.id.send_item_value)
     TextView send_item_value;//订单时间
     @Bind(R.id.send_item_waybill)
@@ -63,8 +71,10 @@ public class ZhuanShouMDetailActivity extends BaseActivity {
     TextView send_item_total;//总价
     @Bind(R.id.seller_view)
     TextView seller_view;
+    @Bind(R.id.rcv_oder_list)
+    RecyclerView rcvOderList;
     private String id;
-
+    OrderListAdapter orderListAdapter;
     @Override
     protected int getContentView() {
         return R.layout.activity_zhuanshoumdetail;
@@ -74,8 +84,8 @@ public class ZhuanShouMDetailActivity extends BaseActivity {
     protected void initView() {
         title.setText("订单详情");
         Bundle extras = getIntent().getExtras();
-        id =  extras.getString("orderId");
-        sendRequest(0,"");
+        id = extras.getString("orderId");
+        sendRequest(0, "");
         seller_view.setText("买家");
     }
 
@@ -83,8 +93,9 @@ public class ZhuanShouMDetailActivity extends BaseActivity {
     protected void initListeners() {
 
     }
+
     @OnClick({R.id.head_back})
-    public void click(View v){
+    public void click(View v) {
         finish();
     }
 
@@ -92,10 +103,10 @@ public class ZhuanShouMDetailActivity extends BaseActivity {
     public void sendRequest(int tag, Object... params) {
         super.sendRequest(tag, params);
         customLoadding.show();
-        if(tag==0){
+        if (tag == 0) {
             HashMap<String, String> map = new HashMap<>();
-            map.put("resellOrderId",String.valueOf(id));
-            new HttpManager(tag, HttpMothed.GET, IRequestConst.RequestMethod.GetResellOrderDetail,map,this).request();
+            map.put("resellOrderId", String.valueOf(id));
+            new HttpManager(tag, HttpMothed.GET, IRequestConst.RequestMethod.GetResellOrderDetail, map, this).request();
         }
     }
 
@@ -103,10 +114,10 @@ public class ZhuanShouMDetailActivity extends BaseActivity {
     public void OnSuccessResponse(int tag, ServiceInfo resultInfo) {
         super.OnSuccessResponse(tag, resultInfo);
         JSONObject response = (JSONObject) resultInfo.getResponse();
-        if(response.optBoolean("success")){
-            if(tag==0){
+        if (response.optBoolean("success")) {
+            if (tag == 0) {
                 JSONObject data = response.optJSONObject("data");
-                if (data!=null){
+                if (data != null) {
                     send_item_mai.setText(data.optString("buyer"));//卖家
                     send_item_comprin.setText(data.optString("logisticsName"));//快递公司
                     send_item_recivice.setText(data.optString("receiver"));//收件人名字
@@ -114,22 +125,22 @@ public class ZhuanShouMDetailActivity extends BaseActivity {
                     send_item_address.setText(data.optString("receiverAddress"));//收件人地址
                     send_item_waybill.setText(data.optString("code"));//订单号
                     send_item_value.setText(data.optString("createTime"));//时间
-                    send_jiage.setText("¥"+data.optString("goodsAmount"));//价格
-                    send_item_price.setText("¥"+data.optString("goodsAmount"));//价格
-                    send_item_express.setText("¥"+data.optString("postage"));//运费
-                    send_item_total.setText("¥"+data.optString("total"));//总价
+//                    send_jiage.setText("¥" + data.optString("goodsAmount"));//价格
+                    send_item_price.setText("¥" + data.optString("goodsAmount"));//价格
+                    send_item_express.setText("¥" + data.optString("postage"));//运费
+                    send_item_total.setText("¥" + data.optString("total"));//总价
 
                     send_item_state.setText(data.optString("state"));//订单状态
 
                     JSONArray orderGoods = data.optJSONArray("orderGoods");
-                    try {
-                        JSONObject order = (JSONObject) orderGoods.get(0);
-                        ImageLoaderManager.getInstance().displayImage(order.optString("image"),send_image);
-
-                        send_text.setText(order.optString("description"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    Gson gson = new Gson();
+                List<MyOrdeGoodsEntity> orderGood = gson.fromJson(orderGoods.toString(), new TypeToken<List<MyOrdeGoodsEntity>>(){}.getType());;
+                    if (orderGood != null && orderGood.size() != 0) {
+                        rcvOderList.setLayoutManager(new LinearLayoutManager(ZhuanShouMDetailActivity.this));
+                        orderListAdapter = new OrderListAdapter(ZhuanShouMDetailActivity.this, orderGood, R.layout.item_order_list);
+                        rcvOderList.setAdapter(orderListAdapter);
                     }
+
                 }
             }
         }
@@ -139,5 +150,12 @@ public class ZhuanShouMDetailActivity extends BaseActivity {
     public void OnFailedResponse(int tag, String code, String msg) {
         super.OnFailedResponse(tag, code, msg);
         tip(msg);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

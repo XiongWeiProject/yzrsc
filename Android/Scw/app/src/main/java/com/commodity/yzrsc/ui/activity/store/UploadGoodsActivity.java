@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -22,6 +23,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.commodity.yzrsc.MainApplication;
 import com.commodity.yzrsc.R;
@@ -39,6 +41,7 @@ import com.commodity.yzrsc.utils.FileUtil;
 import com.commodity.yzrsc.utils.KeyBoardUtils;
 import com.commodity.yzrsc.utils.PhotoUtils;
 import com.commodity.yzrsc.utils.VideoUtils;
+import com.sh.shvideolibrary.VideoInputDialog;
 import com.yixia.camera.util.StringUtils;
 
 import org.json.JSONException;
@@ -59,6 +62,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
 
 /**
  * Created by liyushen on 2017/6/3 19:04
@@ -99,6 +103,7 @@ public class UploadGoodsActivity extends BaseActivity {
     private List<String> pictrueData = new ArrayList<>();
     private List<String> moreData = new ArrayList<>();
     private UpLoadSelectPictureAdapter uploadPictureAdapter;
+    private static final String RENZHENG = ConfigManager.ROOT + "pic" + File.separator;
     //上传图片 视频的标识
     private boolean isPicture = true;//默认是图片
     //拍摄图片的名称
@@ -107,6 +112,7 @@ public class UploadGoodsActivity extends BaseActivity {
     private String videoPath = "";
     //private String videoCompressPath = ConfigManager.VIDEO_PATH_SD+"/compressorvideo/";
     private int openCamera = 1;
+    public final int CROP_CODE = 3;
     private int openCrop = 4;
     private int openAblumVideo = 5;
 
@@ -321,20 +327,22 @@ public class UploadGoodsActivity extends BaseActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+//                Looper.prepare();
                 for (int i = 0; i < pictrueData.size(); i++) {
-                    if (fileUtil.copyFile(pictrueData.get(i),ConfigManager.IMG_PATH+time+i+".jpg")){
-                        uploadList.add(ConfigManager.IMG_PATH+time+i+".jpg");
-                    }
+//                    if (fileUtil.copyFile(pictrueData.get(i),ConfigManager.IMG_PATH+time+i+".jpg")){
+                        uploadList.add(pictrueData.get(i));
+//                    }
                 }
                 for (int i = 0; i < uploadList.size(); i++) {
                     Bitmap bitmap=photoUtils.compressPixelPhotos(uploadList.get(i));
-                    File picFile=photoUtils.saveBitmapFile(bitmap,ConfigManager.IMG_PATH+time+i+".jpg");
-                    Log.e("startUpload: ", picFile.getPath());
+                    File picFile=photoUtils.saveBitmapFile(bitmap,uploadList.get(i));
+//                    Toast.makeText(UploadGoodsActivity.this,"startUpload图片地址:"+ picFile.getPath(),Toast.LENGTH_LONG).show();
                     multiparBody.addFormDataPart("images", picFile.getName(), RequestBody.create(MEDIA_TYPE_PNG, picFile));
                 }
                 Message message = new Message();
                 message.what=1201;
                 myHandler.sendMessage(message);
+//                Looper.loop();
             }
         }).start();
     }
@@ -380,7 +388,7 @@ public class UploadGoodsActivity extends BaseActivity {
                     if (jsob != null && jsob.optBoolean("success")) {
                         File file = new File(ConfigManager.ROOT + "temp.png");
                         FileUtil.copyFile(new File(pictrueData.get(0)), file);
-                        delete(ConfigManager.IMG_PATH);
+//                        delete(ConfigManager.IMG_PATH);
                         Bundle bundle = new Bundle();
                         bundle.putString("goodsUrl", jsob.optJSONObject("data").getString("url"));
                         bundle.putString("id", jsob.optJSONObject("data").getString("id"));
@@ -390,6 +398,10 @@ public class UploadGoodsActivity extends BaseActivity {
                         finish();
                         Looper.prepare();
                         tip("上传成功");
+                        Looper.loop();
+                    }else {
+                        Looper.prepare();
+                        tip(jsob.getString("msg"));
                         Looper.loop();
                     }
                 } catch (JSONException e) {
@@ -407,6 +419,22 @@ public class UploadGoodsActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == openCamera) {
+//            if (data == null) {
+            Bitmap photo = data.getParcelableExtra("data");
+            prctureNmae = UUID.randomUUID().toString() + ".png";
+            File file = FileUtil.bitmapToFile(this, photo, RENZHENG, prctureNmae);
+//                File file = new File(savefile, imgName);
+//            pictrueData.remove(pictrueData.size() - 1);
+            pictrueData.add(file.getPath());
+            uploadPictureAdapter.notifyDataSetChanged();
+            deleteTemp();
+            // PhotoUtils.cropImageUri(this, Uri.fromFile(file), 1, 1, 1000, 1000, CROP_CODE, savefile, imgName);
+
+//            } else {
+//                tip("请从新拍照");
+//            }
+        }
         if (requestCode == GoodsTypeActivity.resultCode) {
             if (data!=null){
                 typeCode = data.getStringExtra("typeCode");
@@ -429,15 +457,17 @@ public class UploadGoodsActivity extends BaseActivity {
                 } else {
                     tip("请重新拍摄");
                 }
-            } else if (requestCode == openCamera) {//打开相机
-                File file = new File(PhotoUtils.getTempPath(), PhotoUtils.tempPath);
-                if (file.exists()) {
-                    prctureNmae = UUID.randomUUID().toString() + ".png";
-                    PhotoUtils.cropImageUri(this, Uri.fromFile(file), 1, 1, 300, 300, openCrop, PhotoUtils.getTempPath(), prctureNmae);
-                } else {
-                    tip("请重新拍照");
-                }
-            } else if (requestCode == openCrop) {//裁剪后
+            }
+//             else if (requestCode == openCamera) {//打开相机
+//                File file = new File(PhotoUtils.getTempPath(), PhotoUtils.tempPath);
+//                if (file.exists()) {
+//                    prctureNmae = UUID.randomUUID().toString() + ".png";
+//                    PhotoUtils.cropImageUri(this, Uri.fromFile(file), 1, 1, 300, 300, openCrop, PhotoUtils.getTempPath(), prctureNmae);
+//                } else {
+//                    tip("请重新拍照");
+//                }
+//            }
+             else if (requestCode == openCrop) {//裁剪后
                 File file = new File(ConfigManager.IMG_PATH + "/" + prctureNmae);
                 if (file.exists()) {
                     pictrueData.add(ConfigManager.IMG_PATH + "/" + prctureNmae);
@@ -472,6 +502,12 @@ public class UploadGoodsActivity extends BaseActivity {
                     saveVideoPath(videoPath);
                  }
             }
+//            if (requestCode == CROP_CODE && resultCode == Activity.RESULT_OK) {
+//                pictrueData.remove(pictrueData.size() - 1);
+//                pictrueData.add(RENZHENG + prctureNmae);
+//                uploadPictureAdapter.notifyDataSetChanged();
+//                deleteTemp();
+//            }
         }
     }
 
@@ -499,14 +535,17 @@ public class UploadGoodsActivity extends BaseActivity {
                 switch (position) {
                     case 0://拍照或摄影
                         if (isPicture) {//拍照
-                            PhotoUtils.openCamera(UploadGoodsActivity.this, openCamera, PhotoUtils.getTempPath(), PhotoUtils.tempPath);
+                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(intent, openCamera);
+//                            PhotoUtils.openCamera(UploadGoodsActivity.this, openCamera, PhotoUtils.getTempPath(), PhotoUtils.tempPath);
                         } else {
                             if (PhotoUtils.getTempPath() == null) {
                                 tip("请插入内存卡");
                                 return;
                             }
-                            jumpActivityForResult(1002,VideoRecorderActivity.class);
+//                            jumpActivityForResult(1002,VideoRecorderActivity.class);
                           //  VideoUtils.openVideo(UploadGoodsActivity.this, openVideo);
+                            recordVideo();
                         }
                         break;
                     case 1://从文件中选择
@@ -533,7 +572,19 @@ public class UploadGoodsActivity extends BaseActivity {
             }
         });
     }
-
+    private void recordVideo() {
+        //显示视频录制控件
+        VideoInputDialog.show(getSupportFragmentManager(), new VideoInputDialog.VideoCall() {
+            @Override
+            public void videoPathCall(String path) {
+                videoPath = path;
+                Bitmap thumbnail = VideoUtils.getThumbnail(videoPath);
+                upload_add_vdio.setImageBitmap(thumbnail);
+                item_video_delete.setVisibility(View.VISIBLE);
+                saveVideoPath(videoPath);
+            }
+        }, VideoInputDialog.Q720, UploadGoodsActivity.this);
+    }
     @Override
     protected void onDestroy() {
         delete(ConfigManager.IMG_PATH);

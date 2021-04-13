@@ -2,9 +2,10 @@ package com.commodity.yzrsc.ui.activity.personalcenter.orde;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.commodity.yzrsc.R;
@@ -12,16 +13,21 @@ import com.commodity.yzrsc.http.HttpManager;
 import com.commodity.yzrsc.http.HttpMothed;
 import com.commodity.yzrsc.http.IRequestConst;
 import com.commodity.yzrsc.http.ServiceInfo;
-import com.commodity.yzrsc.manager.ImageLoaderManager;
+import com.commodity.yzrsc.model.mine.MyOrdeGoodsEntity;
 import com.commodity.yzrsc.ui.BaseActivity;
+import com.commodity.yzrsc.ui.adapter.OrderListAdapter;
+import com.commodity.yzrsc.utils.GsonUtils;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.yohoutils.StringUtil;
 
@@ -32,12 +38,12 @@ import cn.yohoutils.StringUtil;
 public class BackActivity extends BaseActivity {
     @Bind(R.id.head_title)
     TextView title;
-    @Bind(R.id.send_image)
-    ImageView send_image;//图片
-    @Bind(R.id.send_text)
-    TextView send_text;//简介
-    @Bind(R.id.send_jiage)
-    TextView send_jiage;//价格
+    //    @Bind(R.id.send_image)
+//    ImageView send_image;//图片
+//    @Bind(R.id.send_text)
+//    TextView send_text;//简介
+//    @Bind(R.id.send_jiage)
+//    TextView send_jiage;//价格
     @Bind(R.id.send_item_value)
     TextView send_item_value;//订单时间
     @Bind(R.id.send_item_waybill)
@@ -62,12 +68,15 @@ public class BackActivity extends BaseActivity {
     TextView send_item_express;//运费
     @Bind(R.id.send_item_total)
     TextView send_item_total;//总价
+    @Bind(R.id.rcv_oder_list)
+    RecyclerView rcvOderList;
     private String id;
     @Bind(R.id.pa_button_send)
     Button pa_button_send;
     private String orderState;
     @Bind(R.id.seller_view)
     TextView seller_view;
+    OrderListAdapter orderListAdapter;
 
     @Override
     protected int getContentView() {
@@ -88,9 +97,10 @@ public class BackActivity extends BaseActivity {
     protected void initListeners() {
 
     }
-    @OnClick({R.id.head_back,R.id.pa_button_send})
-    public void onClick(View v){
-        switch (v.getId()){
+
+    @OnClick({R.id.head_back, R.id.pa_button_send})
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.head_back://返回
                 finish();
                 break;
@@ -98,21 +108,22 @@ public class BackActivity extends BaseActivity {
 //                break;
             case R.id.pa_button_send://
                 Bundle bundle = new Bundle();
-                bundle.putString("orderId",id);
-                bundle.putString("state",orderState);
-                jumpActivity(BackDetailActivity.class,bundle);
+                bundle.putString("orderId", id);
+                bundle.putString("state", orderState);
+                jumpActivity(BackDetailActivity.class, bundle);
                 break;
         }
     }
+
     @Override
     public void sendRequest(int tag, Object... params) {
         super.sendRequest(tag, params);
         customLoadding.show();
-        if(tag==0){
+        if (tag == 0) {
             HashMap<String, String> map = new HashMap<>();
-            map.put("orderId",id);
-            new HttpManager(tag, HttpMothed.GET, IRequestConst.RequestMethod.GetSoldOrderDetail,map,this).request();
-        }else if(tag==1){
+            map.put("orderId", id);
+            new HttpManager(tag, HttpMothed.GET, IRequestConst.RequestMethod.GetSoldOrderDetail, map, this).request();
+        } else if (tag == 1) {
 
         }
     }
@@ -121,8 +132,8 @@ public class BackActivity extends BaseActivity {
     public void OnSuccessResponse(int tag, ServiceInfo resultInfo) {
         super.OnSuccessResponse(tag, resultInfo);
         JSONObject response = (JSONObject) resultInfo.getResponse();
-        if(response.optBoolean("success")){
-            if(tag==0){
+        if (response.optBoolean("success")) {
+            if (tag == 0) {
                 JSONObject data = response.optJSONObject("data");
                 send_item_mai.setText(data.optString("buyer"));//卖家
                 send_item_comprin.setText(data.optString("logisticsName"));//快递公司
@@ -131,34 +142,33 @@ public class BackActivity extends BaseActivity {
                 send_item_address.setText(data.optString("receiverAddress"));//收件人地址
                 send_item_waybill.setText(data.optString("code"));//订单号
                 send_item_value.setText(data.optString("createTime"));//时间
-                send_jiage.setText("¥"+data.optString("goodsAmount"));//价格
-                send_item_price.setText("¥"+data.optString("goodsAmount"));//价格
+//                send_jiage.setText("¥" + data.optString("goodsAmount"));//价格
+                send_item_price.setText("¥" + data.optString("goodsAmount"));//价格
 
-                send_item_express.setText("¥"+data.optString("postage"));//运费
-                send_item_total.setText("¥"+data.optString("total"));//总价
+                send_item_express.setText("¥" + data.optString("postage"));//运费
+                send_item_total.setText("¥" + data.optString("total"));//总价
                 orderState = data.optString("state");
                 send_item_state.setText(orderState);//订单状态
 
-                if(data.optString("state").contains("拒绝退款")){
+                if (data.optString("state").contains("拒绝退款")) {
                     pa_button_send.setVisibility(View.GONE);
-                }else if(data.optString("state").contains("交易成功")){
+                } else if (data.optString("state").contains("交易成功")) {
                     pa_button_send.setVisibility(View.GONE);
-                }else if(data.optString("state").contains("订单已取消")){
+                } else if (data.optString("state").contains("订单已取消")) {
                     pa_button_send.setVisibility(View.GONE);
-                }else if(data.optString("state").contains("订单已提交")){
+                } else if (data.optString("state").contains("订单已提交")) {
                     pa_button_send.setVisibility(View.GONE);
-                }else {
+                } else {
                     pa_button_send.setVisibility(View.VISIBLE);
                 }
 
                 JSONArray orderGoods = data.optJSONArray("orderGoods");
-                try {
-                    JSONObject order = (JSONObject) orderGoods.get(0);
-                    ImageLoaderManager.getInstance().displayImage(order.optString("image"),send_image);
-
-                    send_text.setText(order.optString("description"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                Gson gson = new Gson();
+                List<MyOrdeGoodsEntity> orderGood = gson.fromJson(orderGoods.toString(), new TypeToken<List<MyOrdeGoodsEntity>>(){}.getType());;
+                if (orderGood != null && orderGood.size() != 0) {
+                    rcvOderList.setLayoutManager(new LinearLayoutManager(BackActivity.this));
+                    orderListAdapter = new OrderListAdapter(BackActivity.this, orderGood, R.layout.item_order_list);
+                    rcvOderList.setAdapter(orderListAdapter);
                 }
 
 
@@ -176,14 +186,21 @@ public class BackActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        sendRequest(0,"");
+        sendRequest(0, "");
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(!StringUtil.isEmpty(id)){
-            sendRequest(0,"");
+        if (!StringUtil.isEmpty(id)) {
+            sendRequest(0, "");
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

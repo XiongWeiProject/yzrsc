@@ -184,9 +184,15 @@ public class PayActivity extends BaseActivity {
                 } else if (payFlag == 2) {//钱包余额
                     //TODO
                     if (oderList.size() == 0) {
-                        getPrepayId(OneordeId);
+                        ZhifubaoModel payModel = new ZhifubaoModel();
+                        payModel.setOrderId(OneordeId);
+                        payModel.setPayment("walletpay");
+                        getPrepayId(null,payModel,0);
                     } else {
-                        getPrepayId(oderList.get(0) + "");
+                        PayModel payModel = new PayModel();
+                        payModel.setOrderIds(oderList);
+                        payModel.setPayment("walletpay");
+                        getPrepayId(payModel ,null,1);
                     }
 
                 }
@@ -194,21 +200,23 @@ public class PayActivity extends BaseActivity {
         }
     }
 
-    public void getPrepayId(final String oneordeId) {
+    public void getPrepayId(final PayModel payModel,ZhifubaoModel qianbao,int type) {
         customLoadding.setTip("正在支付。。");
         customLoadding.show();
         Gson gson = new Gson();
         String Json = "";
         String url = "";
-        String iorderIds = "";
-        Json = gson.toJson(oneordeId);
-        iorderIds = "{\n" +
-                "  \"orderId\": " + Json + ",\n" +
-                "  \"payment\": \"walletpay\"\n" +
-                "}";
-        url = IRequestConst.RequestMethod.POSTWALLORDERPAY;
+        if (type==0){
+            url = IRequestConst.RequestMethod.POSTWALLORDERPAY;
+
+            Json = gson.toJson(qianbao);
+        }else {
+            url = IRequestConst.RequestMethod.POSTPAY;
+            Json = gson.toJson(payModel);
+        }
+
         Log.e("Json", Json + url);
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), iorderIds);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), Json);
         UpLoadUtils.instance().requestPayId(url, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

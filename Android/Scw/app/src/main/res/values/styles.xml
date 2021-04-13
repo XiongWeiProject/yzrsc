@@ -45,7 +45,12 @@
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
-
+    <style name="Splash" parent="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
 
     <!--  右进左出-->
     <style name="AnimationAcivity">
@@ -99,7 +104,19 @@
         <item name="android:textColor">@color/type_666666</item>
         <item name="android:textSize">@dimen/textsize13</item>
     </style>
+    <style name="PrimaryButton" parent="Theme.AppCompat">
+        <item name="colorButtonNormal">#fff</item>
+        <item name="colorControlHighlight">#503399cc</item>
+        <!--        <item name="actionButtonStyle" ></item>-->
+        <item name="borderlessButtonStyle">@style/Widget.AppCompat.Button.Borderless</item>
+        <item name="background">@drawable/btn_bg_creative</item>
+        <!--        <item name="selectableItemBackground">@drawable/item_background_material</item>-->
+        <!--        <item name="selectableItemBackgroundBorderless">@drawable/item_background_borderless_material</item>-->
+        <!--        <item name="borderlessButtonStyle">@style/Widget.Material.Light.Button.Borderless</item>-->
+        <!--        <item name="buttonBarButtonStyle">@style/Widget.Material.Light.Button.ButtonBar.AlertDialog</item>-->
 
+
+    </style>
     <style name="text_BA0008_14">
         <item name="android:textColor">@color/type_BA0008</item>
         <item name="android:textSize">@dimen/textsize14</item>

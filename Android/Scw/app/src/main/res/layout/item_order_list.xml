@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.commodity.yzrsc.ui.widget.imageview.XCRoundRectImageView
+            android:id="@+id/zhaunshoumanager_imag2"
+            android:layout_margin="10dp"
+            android:background="@drawable/ico_pic_fail_defalt"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:id="@+id/zhaunshoumanager_content2"
+            android:text="新春局限新春局限新春局限新春局限新春局限新春局限新春局限新春局限新春局限新春局限新春局限新春局限新春局限"
+            android:textColor="@color/co_111A3B"
+            android:textSize="@dimen/textsize13"
+            android:paddingTop="11dp"
+            android:paddingBottom="10dp"
+            android:maxLines="4"
+            android:ellipsize="end"
+            android:paddingRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</LinearLayout>

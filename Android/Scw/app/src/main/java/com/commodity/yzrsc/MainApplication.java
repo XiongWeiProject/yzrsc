@@ -11,7 +11,6 @@ import android.support.multidex.MultiDex;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
-
 import com.commodity.yzrsc.manager.ConfigManager;
 import com.commodity.yzrsc.manager.ImageLoaderManager;
 import com.commodity.yzrsc.manager.NetworkManager;
@@ -89,6 +88,10 @@ public class MainApplication extends Application {
 		PlatformConfig.setQQZone(AppConst.QQ_APP_ID, AppConst.QQ_APP_KEY);
 		PlatformConfig.setSinaWeibo(AppConst.SINA_APP_ID,AppConst.SINA_APP_SECRET, "http://sns.whalecloud.com");
 	}
+	private static final String VALUE = "Harvey";
+	private String appid ="4758"; //"由闲玩防提供的appid参数";
+	private String appsecret ="ybtpuf91i6nllcm4"; //"由闲玩防提供的appsecret参数";
+	private String value;
 
 	@Override
 	public void onCreate() {
@@ -106,9 +109,12 @@ public class MainApplication extends Application {
 		Config.isJumptoAppStore = true;
 		ImageLoaderManager.create(this);
 		// 注释掉IDE显示logcat日志，不注释掉异常存储在存储卡中
-		CrashHandler crashHandler = CrashHandler.getInstance();
-		crashHandler.init(this);
-
+//		CrashHandler crashHandler = CrashHandler.getInstance();
+//		crashHandler.init(this);
+//		initUnionAd();
+//		initXianwanSDK();
+//		initUmengSDK();//友盟统计SDK
+//		setValue(VALUE); // 初始化全局变量
 		OkHttpClient okHttpClient = new OkHttpClient.Builder()
 				// .addInterceptor(new LoggerInterceptor("TAG"))
 				.connectTimeout(100000L, TimeUnit.MILLISECONDS)
@@ -135,7 +141,7 @@ public class MainApplication extends Application {
 		// 初始化微信组件
 		initWeiXin();
 		// 初始化视频录制信息
-		 initRecorder();
+//		 initRecorder();
 	}
 
 	public boolean isLogin() {
@@ -342,5 +348,6 @@ public class MainApplication extends Application {
 		// 初始化拍摄SDK，必须
 		VCamera.initialize(this);
 	}
+
 
 }

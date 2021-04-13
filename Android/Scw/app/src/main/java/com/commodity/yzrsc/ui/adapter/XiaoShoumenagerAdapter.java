@@ -3,6 +3,8 @@ package com.commodity.yzrsc.ui.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import com.commodity.yzrsc.R;
 import com.commodity.yzrsc.manager.ImageLoaderManager;
 import com.commodity.yzrsc.model.mine.DetailMyOrdeEntity;
+import com.commodity.yzrsc.model.mine.MyOrdeGoodsEntity;
 import com.commodity.yzrsc.ui.activity.personalcenter.SeeWuliu;
 import com.commodity.yzrsc.ui.activity.personalcenter.XiaoShouActivity;
 import com.commodity.yzrsc.ui.adapter.base.CommonAdapter;
@@ -28,9 +31,11 @@ public class XiaoShoumenagerAdapter extends CommonAdapter<DetailMyOrdeEntity>  {
 
     private OnitemListener onitemListener;
     private int index;
-
+    OrderListAdapter orderListAdapter;
+    private Context contexts;
     public XiaoShoumenagerAdapter(Context context, List<DetailMyOrdeEntity> datas, int layoutId) {
         super(context, datas, layoutId);
+        contexts = context;
     }
 
     @Override
@@ -62,20 +67,23 @@ public class XiaoShoumenagerAdapter extends CommonAdapter<DetailMyOrdeEntity>  {
         holder.setText(R.id.xiaoshou_time,xiaoShoumenagerEntity.getCreateTime());//时间
         holder.setText(R.id.xiaoshou_state,xiaoShoumenagerEntity.getState());//状态
         holder.setText(R.id.xiaoshou_price,"¥"+xiaoShoumenagerEntity.getTotal());//价格
-        holder.setText(R.id.xioashou_content,xiaoShoumenagerEntity.getOrderGoods().get(0).getDescription());//介绍
         holder.setText(R.id.zhaunshoumanager_yuanjia2,"¥"+xiaoShoumenagerEntity.getOriginalAmount());
         holder.setText(R.id.zhaunshoumanager_yuji2,"¥"+xiaoShoumenagerEntity.getTotalProfit());
-        ImageView imageView = holder.getView(R.id.siaoshou_imag);//图片
-        ImageLoaderManager.getInstance().displayImage(xiaoShoumenagerEntity.getOrderGoods().get(0).getImage(),imageView);
 
         TextView price = holder.getView(R.id.xiaoshou_price);
-
+        RecyclerView item_rcv = holder.getView(R.id.rcv_oder_list);
         Button xiaoshou_button_seewuliu = holder.getView(R.id.xiaoshou_button_seewuliu);
         LinearLayout xiaoshou_content = holder.getView(R.id.xiaoshou_content);
 
         LinearLayout item_linera3 = holder.getView(R.id.item_linera3);
         LinearLayout item_linear4 = holder.getView(R.id.item_linear4);
 
+        List<MyOrdeGoodsEntity> orderGoods = xiaoShoumenagerEntity.getOrderGoods();
+        if (orderGoods != null && orderGoods.size() != 0) {
+            item_rcv.setLayoutManager(new LinearLayoutManager(contexts));
+            orderListAdapter = new OrderListAdapter(contexts, orderGoods, R.layout.item_order_list);
+            item_rcv.setAdapter(orderListAdapter);
+        }
         xiaoshou_button_seewuliu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

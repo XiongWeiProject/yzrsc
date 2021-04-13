@@ -5,7 +5,8 @@ package com.commodity.yzrsc.http;
  */
 public class IRequestConst {
     public static final String REQUEST_URL = "https://api.acb.wang/";//测试环境2 scw-web.83soft.cn
-    public static final String REQUEST_URLS = "https://api.acb.wang:443/";//测试环境动态
+    public static final String REQUEST_URLS = "https://api.acb.wang/";//测试环境动态https://yzrsc-api.83soft.cn/
+    //public static final String REQUEST_URL = "https://api.acb.wang/";//正式环境
     //public static final String REQUEST_URL = "http://api.soucangwang.com/";//正式环境
 
     // 请求类别
@@ -188,6 +189,8 @@ public class IRequestConst {
         public static final String GetFollowNotificationList = REQUEST_URL + "Notification/GetFollowNotificationList";
         // 获取广告数据
         public static final String GetAdvers = REQUEST_URL + "Adver/GetAdvers";
+        //获取首页分类
+        public static final String GethomeType = REQUEST_URL + "Goods/GetGoodsKindList";
         // 获取商品评价列表
         public static final String GetEvaluationList = REQUEST_URL + "Goods/GetEvaluationList";
         // 关于易州人商城静态页面

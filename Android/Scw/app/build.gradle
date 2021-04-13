@@ -13,12 +13,12 @@ android {
             storePassword 'scw123456'
         }
     }
-    compileSdkVersion 23
+    compileSdkVersion 26
     buildToolsVersion "23.0.1"
     defaultConfig {
         applicationId "com.commodity.yzrsc"
-        minSdkVersion 17
-        targetSdkVersion 22
+        minSdkVersion 16
+        targetSdkVersion 26
         versionCode 1
         versionName "1.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -64,6 +64,7 @@ android {
         repositories {
 
             // 添加下面的内容
+
             flatDir {
                 dirs 'libs'
             }
@@ -103,5 +104,10 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
     // 添加下面的内容
     implementation files('libs\\alipaySdk-15.7.7-20200702160044.aar')
-
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
+    //对话框
+    implementation 'com.sh.shvideo:shvideolibrary:1.5.0'
+    implementation 'com.gcssloop.recyclerview:pagerlayoutmanager:2.3.8'
+    //录制视频
+//    implementation 'cn.finalteam.rxgalleryfinal:library:1.1.3'
 }
