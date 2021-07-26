@@ -77,7 +77,7 @@ public class DynamicFragment extends BaseFragment {
 
     List<Banner> banners = new ArrayList<>();
 
-    DynamicAdapter dynamicAdapter ;
+    DynamicAdapter dynamicAdapter;
     DynamicListAdapter dynamicListAdapter;
 
     public static DynamicFragment newInstance(int param1, String param2) {
@@ -160,30 +160,30 @@ public class DynamicFragment extends BaseFragment {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             recyclerView.setLayoutManager(linearLayoutManager);
-            dynamicAdapter = new DynamicAdapter(getActivity(),bannerList);
+            dynamicAdapter = new DynamicAdapter(getActivity(), bannerList);
             recyclerView.setAdapter(dynamicAdapter);
             dynamicAdapter.setOnItemClickListener(new BaseRecycleAdapter.ItemClickListener() {
                 @Override
                 public void itemClick(View v, int position) {
-                    Intent intent=new Intent(getActivity(), GeneralWebViewActivity.class);
-                    Bundle bundle=new Bundle();
-                    bundle.putString("title","");//http://www.soucangwang.com:8090/web/StaticPage/GuideDetail?id=
-                    if (bannerList.get(position).getLinkType().contains("消息")){
-                        bundle.putString("content_url","http://www.soucangwang.com:8090/web/StaticPage/GuideDetail?id="+bannerList.get(position).getLink());
+                    Intent intent = new Intent(getActivity(), GeneralWebViewActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("title", "");//http://www.soucangwang.com:8090/web/StaticPage/GuideDetail?id=
+                    if (bannerList.get(position).getLinkType().contains("消息")) {
+                        bundle.putString("content_url", "http://www.soucangwang.com:8090/web/StaticPage/GuideDetail?id=" + bannerList.get(position).getLink());
                         intent.putExtras(bundle);
-                        if (!bannerList.get(position).getLink().isEmpty()){
+                        if (!bannerList.get(position).getLink().isEmpty()) {
                             getActivity().startActivity(intent);
                         }
-                    }else if (bannerList.get(position).getLinkType().contains("商品")){
+                    } else if (bannerList.get(position).getLinkType().contains("商品")) {
                         Intent intent1 = new Intent(getActivity(), CommodityDetailActivity.class);
-                        Bundle bundle1= new Bundle();
-                        bundle1.putString("goodsSaleId",bannerList.get(position).getLink());
+                        Bundle bundle1 = new Bundle();
+                        bundle1.putString("goodsSaleId", bannerList.get(position).getLink());
                         intent1.putExtras(bundle1);
                         getActivity().startActivity(intent1);
-                    }else {
-                        bundle.putString("content_url",bannerList.get(position).getLink());
+                    } else {
+                        bundle.putString("content_url", bannerList.get(position).getLink());
                         intent.putExtras(bundle);
-                        if (!bannerList.get(position).getLink().isEmpty()){
+                        if (!bannerList.get(position).getLink().isEmpty()) {
                             getActivity().startActivity(intent);
                         }
                     }
@@ -264,27 +264,30 @@ public class DynamicFragment extends BaseFragment {
                             e.printStackTrace();
                         }
                     }
-                    if (listModels.size() < SPKeyManager.pageSize) {
-                        xlistDynamic.setPullLoadEnable(false);
-                    } else {
-                        xlistDynamic.setPullLoadEnable(true);
+                    if (xlistDynamic != null) {
+                        if (listModels.size() < SPKeyManager.pageSize) {
+                            xlistDynamic.setPullLoadEnable(false);
+                        } else {
+                            xlistDynamic.setPullLoadEnable(true);
+                        }
+                        if (listModels.size() > 0) {
+                            tvNodata.setVisibility(View.GONE);
+                        } else {
+                            tvNodata.setVisibility(View.VISIBLE);
+                        }
+                        xlistDynamic.stopLoadMore();
+                        xlistDynamic.stopRefresh();
                     }
+
                 }
                 dynamicListAdapter.notifyDataSetChanged();
 
-                if (listModels.size() > 0) {
-                    tvNodata.setVisibility(View.GONE);
-                } else {
-                    tvNodata.setVisibility(View.VISIBLE);
-                }
 
             } else {
                 if (resultJson != null && !resultJson.optBoolean("success")) {
                     tip(resultJson.optString("msg"));
                 }
             }
-            xlistDynamic.stopLoadMore();
-            xlistDynamic.stopRefresh();
             sendRequest(2, "");
         } else if (tag == 2) {
             JSONObject resultJson = (JSONObject) resultInfo.getResponse();

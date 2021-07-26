@@ -1,1 +1,1 @@
-include ':app',':jcvideoplayer-lib',':IMLib', ':IMKit',   ':contactcard'
+include ':app', ':jcvideoplayer-lib', ':IMLib', ':IMKit', ':contactcard'

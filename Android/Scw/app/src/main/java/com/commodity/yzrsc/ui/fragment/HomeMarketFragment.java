@@ -126,16 +126,8 @@ public class HomeMarketFragment extends BaseFragment {
 // 2.设置滚动辅助工具
         PagerGridSnapHelper pageSnapHelper = new PagerGridSnapHelper();
         pageSnapHelper.attachToRecyclerView(recyclerView);
-        homeTypeAdapter = new HomeTypeAdapter(getActivity(),homeTypeModels);
+        homeTypeAdapter = new HomeTypeAdapter(getActivity(),homeTypeModels,this);
         recyclerView.setAdapter(homeTypeAdapter);
-        homeTypeAdapter.setOnItemClickListener(new BaseRecycleAdapter.ItemClickListener() {
-            @Override
-            public void itemClick(View v, int position) {
-                Bundle bundle = new Bundle();
-                bundle.putInt(Constanct.KINDID,homeTypeModels.get(position).getId());
-                jumpActivity(TypeActivity.class,bundle);
-            }
-        });
 
     }
 
