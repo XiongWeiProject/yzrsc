@@ -9,12 +9,12 @@ android {
         config {
             keyAlias 'key0'
             keyPassword '123456'
-            storeFile file('F:\\androidstudio\\yzrsc\\项目管理\\签名文件\\scw.jks')
+            storeFile file('/Users/xiongwei/mywork/Android/Scw/app/scw.jks')
             storePassword 'scw123456'
         }
     }
     compileSdkVersion 26
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "com.commodity.yzrsc"
         minSdkVersion 16
